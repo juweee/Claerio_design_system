@@ -1,0 +1,278 @@
+/*
+ * Claerio Design Tokens — Product UI (shadcn/ui compatible)
+ *
+ * DO NOT HAND-EDIT. Core surface/brand tokens below are taken AS-IS from
+ * a real shadcn/create export (style vega, baseColor olive, theme
+ * terracotta, iconLibrary phosphor, font inter/lora, 2026-07-06), not
+ * recomputed. Only one value was changed from the export: --ring, which
+ * pointed at a leftover generic gray that failed 3:1 against white
+ * (2.32:1); it now matches --primary instead. Everything else the export
+ * doesn't cover (Teal, progress bars, tooltips, avatars, modals, fonts,
+ * spacing) stays as previously defined, the builder never touched those.
+ * Chart palette is kept as our own 5-hue categorical set rather than the
+ * export's generic single-hue ramp (sequential vs. categorical data,
+ * reviewed via mockup on 2026-07-06).
+ *
+ * Sources: Claerio_UI_Guidelines.docx, Claerio_Brand_Guidelines.docx,
+ * claerio-site/index.html, Foundation Process decisions through 2026-07-06.
+ */
+
+:root {
+  /* ---- Fonts ---- */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Lora', Georgia, serif; /* Display and Heading 1 ONLY */
+
+  /* ---- Surfaces (from shadcn/create export, as-is) ---- */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.153 0.006 107.1);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.153 0.006 107.1);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.153 0.006 107.1);
+  --border: oklch(0.93 0.007 106.5);
+  --input: oklch(0.93 0.007 106.5);
+
+  /* ---- Brand / action (from shadcn/create export, as-is) ----
+     Amber retired 2026-07-06 (see decision log). This "Terracotta" theme
+     option is the builder's own preset, verified: bg+text 4.85:1 light /
+     6.84:1 dark, text-on-Greige 4.65:1. All clear 4.5:1. */
+  --primary: var(--terracotta-600); /* ramp defined below; kept as a direct reference (not a duplicated literal) so it can never silently drift from the ramp */
+  --primary-foreground: oklch(0.987 0.022 95.277);
+  --secondary: oklch(0.967 0.001 286.375);
+  --secondary-foreground: oklch(0.21 0.006 285.885);
+  --accent: oklch(0.966 0.005 106.5);
+  --accent-foreground: oklch(0.228 0.013 107.4);
+  --ring: var(--terracotta-600); /* CHANGED from export's oklch(0.737 0.021 106.9): that value only cleared 2.32:1 on white, fails 3:1. Now matches --primary (5.03:1). */
+
+  /* ---- Muted (from shadcn/create export, as-is) ---- */
+  --muted: oklch(0.966 0.005 106.5);
+  --muted-foreground: var(--olive-600); /* ramp defined below; direct reference, not a duplicated literal */
+
+  /* ---- Status / feedback (from shadcn/create export, as-is) ---- */
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(1 0 0);
+
+  /* ---- Secondary palette (data viz, status) — not covered by the export ---- */
+  --teal: oklch(0.593 0.07 182.939);          /* #4A8C82 */
+  --teal-dark: oklch(0.438 0.055 183.452);    /* #2A5C55 */
+
+  /* ---- Full color ramps (2026-07-06) ----
+     For components not yet individually reviewed (future additions,
+     hover/disabled states we haven't checked, chart shading, etc.), so
+     they inherit a sophisticated, on-brand shade automatically instead
+     of a generic gray. NOT a replacement for already-verified semantic
+     tokens above, --primary/--muted-foreground/--teal keep their exact
+     already-tested values; anchor steps below are identical to those
+     values by construction (verified, not approximated), everything
+     else is a generated, perceptually-even OKLCH scale around them.
+     Anchors: terracotta-600 = --primary (light AND dark, 2026-07-06),
+     olive-600 = --muted-foreground, teal-500 = --teal. */
+  --terracotta-50: oklch(0.97 0.024 48.998);
+  --terracotta-100: oklch(0.94 0.049 48.998);
+  --terracotta-200: oklch(0.88 0.081 48.998);
+  --terracotta-300: oklch(0.80 0.117 48.998);
+  --terracotta-400: oklch(0.70 0.147 48.998);
+  --terracotta-500: oklch(0.60 0.171 48.998);
+  --terracotta-600: oklch(0.555 0.163 48.998); /* = --primary, exact */
+  --terracotta-700: oklch(0.44 0.143 48.998);
+  --terracotta-800: oklch(0.36 0.117 48.998);
+  --terracotta-900: oklch(0.29 0.090 48.998);
+  --terracotta-950: oklch(0.21 0.062 48.998);
+
+  --olive-50: oklch(0.97 0.005 107.3);
+  --olive-100: oklch(0.94 0.009 107.3);
+  --olive-200: oklch(0.88 0.015 107.3);
+  --olive-300: oklch(0.80 0.022 107.3);
+  --olive-400: oklch(0.70 0.028 107.3);
+  --olive-500: oklch(0.60 0.033 107.3);
+  --olive-600: oklch(0.54 0.031 107.3); /* = --muted-foreground, exact. CHANGED 2026-07-07 from L 0.58 (#7C7C67): that value only cleared 4.25:1 on white / 3.93:1 on Greige, both fail 4.5:1. This darker value (#70705C) clears 5.05:1 / 4.67:1, same hue, kept per decision to make this hue the brand Olive going forward. */
+  --olive-700: oklch(0.44 0.027 107.3);
+  --olive-800: oklch(0.36 0.022 107.3);
+  --olive-900: oklch(0.29 0.017 107.3);
+  --olive-950: oklch(0.21 0.012 107.3);
+
+  --teal-50: oklch(0.97 0.011 182.939);
+  --teal-100: oklch(0.94 0.021 182.939);
+  --teal-200: oklch(0.88 0.035 182.939);
+  --teal-300: oklch(0.80 0.050 182.939);
+  --teal-400: oklch(0.70 0.063 182.939);
+  --teal-500: oklch(0.593 0.070 182.939); /* = --teal, exact */
+  --teal-600: oklch(0.52 0.062 182.939);
+  --teal-700: oklch(0.44 0.054 182.939);
+  --teal-800: oklch(0.36 0.045 182.939);
+  --teal-900: oklch(0.29 0.034 182.939);
+  --teal-950: oklch(0.21 0.024 182.939);
+
+  /* ---- Chart palette: kept as our own 5 distinct hues for categorical
+     data (Terracotta/Teal/Teal dark/Olive/Charcoal), not the export's
+     generic single-hue lightness ramp (built for sequential data). ---- */
+  --chart-1: var(--terracotta-600); /* Terracotta — matches primary */
+  --chart-2: oklch(0.593 0.07 182.939); /* Teal */
+  --chart-3: oklch(0.438 0.055 183.452); /* Teal dark */
+  --chart-4: var(--olive-600);           /* Olive (muted-foreground value) */
+  --chart-5: oklch(0.153 0.006 107.1);   /* Charcoal (foreground value) */
+
+  /* ---- Sidebar (from shadcn/create export, as-is) ---- */
+  --sidebar: oklch(0.988 0.003 106.5);
+  --sidebar-foreground: oklch(0.153 0.006 107.1);
+  --sidebar-primary: oklch(0.666 0.179 58.318);
+  --sidebar-primary-foreground: oklch(0.987 0.022 95.277);
+  --sidebar-accent: oklch(0.966 0.005 106.5);
+  --sidebar-accent-foreground: oklch(0.228 0.013 107.4);
+  --sidebar-border: oklch(0.93 0.007 106.5);
+  --sidebar-ring: oklch(0.737 0.021 106.9);
+
+  /* ---- Sidebar nav active state — not covered by the export (2026-07-08) ----
+     Deliberately NOT --sidebar-primary: light-mode --sidebar-primary is a
+     different value (oklch(0.666 0.179 58.318)), and --sidebar-primary is
+     currently solid/opaque, unused elsewhere. Overloading it with this
+     alpha-based tint would change its type and could break a future real
+     shadcn Sidebar component that expects a solid color there. These are
+     separate, dedicated tokens instead, --sidebar-primary stays untouched.
+     --nav-active-foreground is identical to --warning-foreground in both
+     modes (verified, not coincidental per Claude Design's note), aliased
+     via var() rather than duplicated, same reasoning as --primary/--ring. */
+  --nav-active: oklch(0.769 0.188 70.08); /* = --warning base */
+  --nav-active-tint: 10%;
+  --nav-active-foreground: var(--warning-foreground); /* verified: 5.51:1 on the tinted sidebar background */
+
+  /* ---- Progress bars — not covered by the export ---- */
+  --progress-track: var(--border);
+  --progress-fill: var(--teal);
+  --progress-height: 8px;
+
+  /* ---- Tooltips — not covered by the export ---- */
+  --tooltip-background: oklch(0.153 0.006 107.1); /* Charcoal */
+  --tooltip-foreground: oklch(0.988 0.003 106.5); /* Greige */
+
+  /* ---- Avatars — not covered by the export ---- */
+  --avatar-sm: 24px;
+  --avatar-md: 32px;
+  --avatar-lg: 40px;
+
+  /* ---- Modals — not covered by the export ---- */
+  --overlay: oklch(0.153 0.006 107.1 / 50%);
+  --modal-max-width: 480px;
+  --shadow-modal: 0 8px 24px rgba(45, 45, 43, 0.16);
+
+  /* ---- Overlay shadow (toast, select menu, popover) — added 2026-07-09 ----
+     Distinct from --shadow-modal on purpose: a modal sits behind the
+     full-screen --overlay dim, so it needs less help reading as elevated.
+     A toast or an open select menu has no dimming backdrop behind it, so
+     it carries its own shadow, one that has to survive being painted on
+     a dark background where the modal's shadow (rgba(45,45,43,.16), a
+     Charcoal tint) would be nearly invisible. Promoted from a literal
+     first used in the Toast component spec (2026-07-08 Claude Design
+     change), reused for the Select menu (03 States, selection controls). */
+  --shadow-overlay: 0 4px 16px rgba(45, 45, 43, 0.12);
+
+  /* ---- Banners — not covered by the export (added 2026-07-07) ----
+     Info/warning reuse existing verified tokens. Error is NOT
+     var(--destructive): that value only clears 3.99:1 against a
+     10%-tinted error background (needs 4.5:1), checked directly, not
+     assumed. This darker value clears 5.97:1. It renders as #B40000,
+     clipped to the sRGB gamut boundary since chroma 0.245 exceeds
+     gamut at this lightness, same as base --destructive already does. */
+  --info: var(--teal);
+  --info-foreground: var(--teal-dark);
+  --warning: oklch(0.769 0.188 70.08);
+  --warning-foreground: oklch(0.50 0.11 70);
+  --error-foreground: oklch(0.44 0.245 27.325); /* darker than --destructive, see note above */
+  --banner-tint: 10%;
+  --banner-border: 30%;
+
+  /* ---- Spacing scale — not covered by the export ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+
+  /* ---- Border radius — kept our own 8px, export's "small" was 7.2px ---- */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+  --radius: var(--radius-md);
+}
+
+.dark {
+  --background: oklch(0.153 0.006 107.1);
+  --foreground: oklch(0.988 0.003 106.5);
+  --card: oklch(0.228 0.013 107.4);
+  --card-foreground: oklch(0.988 0.003 106.5);
+  --popover: oklch(0.228 0.013 107.4);
+  --popover-foreground: oklch(0.988 0.003 106.5);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+
+  --primary: var(--terracotta-600); /* CHANGED 2026-07-06 from a separate custom dark value (oklch(0.473 0.137 46.201)). That value only cleared 2.76:1 for --ring against this dark background, below the 3:1 non-text minimum. terracotta-600, the same value already verified for light mode, clears all roles at once: text 4.85:1, ring vs dark bg 3.89:1, ring vs dark card 3.37:1. One value now covers both modes. */
+  --primary-foreground: oklch(0.987 0.022 95.277);
+  --secondary: oklch(0.274 0.006 286.033);
+  --secondary-foreground: oklch(0.985 0 0);
+  --accent: oklch(0.286 0.016 107.4);
+  --accent-foreground: oklch(0.988 0.003 106.5);
+  --ring: var(--terracotta-600);
+
+  --muted: oklch(0.286 0.016 107.4);
+  --muted-foreground: oklch(0.737 0.021 106.9);
+
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.153 0.006 107.1);
+
+  --teal: oklch(0.593 0.07 182.939);
+  --teal-dark: oklch(0.681 0.075 185.43); /* #5FA89F */
+
+  --chart-1: var(--terracotta-600); /* matches --primary, same reasoning */
+  --chart-2: oklch(0.593 0.07 182.939);
+  --chart-3: oklch(0.681 0.075 185.43);
+  --chart-4: oklch(0.737 0.021 106.9);
+  --chart-5: oklch(0.988 0.003 106.5);
+
+  --sidebar: oklch(0.228 0.013 107.4);
+  --sidebar-foreground: oklch(0.988 0.003 106.5);
+  --sidebar-primary: oklch(0.769 0.188 70.08);
+  --sidebar-primary-foreground: oklch(0.279 0.077 45.635);
+  --sidebar-accent: oklch(0.286 0.016 107.4);
+  --sidebar-accent-foreground: oklch(0.988 0.003 106.5);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.58 0.031 107.3);
+
+  --nav-active-tint: 15%;
+  --nav-active-foreground: var(--warning-foreground); /* verified: 6.74:1 on the tinted sidebar background */
+
+  --progress-track: var(--background); /* NOT --border: fails 3:1 against Teal fill in dark mode */
+  --progress-fill: var(--teal);
+  --progress-height: 8px;
+
+  --tooltip-background: oklch(0.153 0.006 107.1);
+  --tooltip-foreground: oklch(0.988 0.003 106.5);
+
+  --avatar-sm: 24px;
+  --avatar-md: 32px;
+  --avatar-lg: 40px;
+
+  --overlay: oklch(0 0 0 / 60%); /* NOT the same value as light mode: dark-on-dark page = zero visible dimming */
+  --modal-max-width: 480px;
+  --shadow-modal: none;
+
+  /* Unlike --shadow-modal, this does NOT vanish in dark mode: toasts and
+     select menus have no --overlay backdrop behind them, so they need a
+     real shadow that still reads on a dark page. Black-based, not
+     Charcoal-based, for the same reason. */
+  --shadow-overlay: 0 4px 16px rgba(0, 0, 0, 0.4);
+
+  /* ---- Banners — not covered by the export ----
+     --warning base is unchanged from light mode (not redefined here),
+     only its foreground gets a lighter dark-mode tint. Info and error
+     foregrounds reference the existing dark-mode overrides directly,
+     both already verified against the tinted banner background
+     (info 6.08:1, error 5.67:1), no separate value needed here. */
+  --info-foreground: var(--teal-dark);
+  --warning-foreground: oklch(0.80 0.15 75);
+  --error-foreground: var(--destructive);
+  --banner-tint: 15%;
+  --banner-border: 35%;
+}

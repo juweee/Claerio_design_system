@@ -1,0 +1,142 @@
+/* Claerio States, selection controls & validation — component spec /
+ * Claude Design test scaffolding
+ * NOT part of design-tokens.css. NOT permanent, retire once real shadcn
+ * Checkbox/RadioGroup/Switch/Select/Form components exist in code.
+ * Every color referenced below is an already-verified token, no new
+ * decisions were needed (confirmed 2026-07-09 against the sticker sheet,
+ * section 11, "States, selection controls & validation").
+ */
+
+/* ── Disabled — one rule, applies to any interactive element ────── */
+[disabled], .is-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  /* no color redefinition: the element keeps its normal colors at 50%
+     opacity rather than switching to a separate "disabled gray" */
+}
+
+/* ── Focus-visible — everywhere, uniform ─────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+/* Inputs additionally keep their existing 1.5px --ring border swap
+   (see Form Inputs section) on top of this outline, both together. */
+
+/* ── Checkbox ─────────────────────────────────────────────────────── */
+.checkbox {
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-sm);       /* 4px */
+  background: var(--input);
+}
+.checkbox[data-state="checked"],
+.checkbox[data-state="indeterminate"] {
+  background: var(--terracotta-600);
+  border-color: var(--terracotta-600);
+  color: var(--primary-foreground);       /* Cream check-mark / dash glyph */
+}
+/* indeterminate glyph is a dash ("−"), checked glyph is a check ("✓") */
+
+/* ── Radio ────────────────────────────────────────────────────────── */
+.radio {
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-full);
+  background: var(--input);
+}
+.radio[data-state="checked"] {
+  border-color: var(--terracotta-600);
+  /* inner dot, not a full fill */
+}
+.radio[data-state="checked"]::after {
+  content: "";
+  display: block;
+  width: 8px;
+  height: 8px;
+  margin: 4px;
+  border-radius: var(--radius-full);
+  background: var(--terracotta-600);
+}
+
+/* ── Switch ───────────────────────────────────────────────────────── */
+.switch {
+  width: 36px;
+  height: 20px;
+  border-radius: var(--radius-full);
+  background: var(--input);              /* off */
+  padding: 2px;
+  box-sizing: border-box;
+}
+.switch[data-state="checked"] {
+  background: var(--terracotta-600);      /* on */
+}
+.switch__thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-full);
+  background: var(--background);          /* white light / page-bg dark, reads as a light dot either way */
+  transition: transform 0.15s ease;
+}
+.switch[data-state="checked"] .switch__thumb {
+  transform: translateX(16px);            /* 36 − 2*2 padding − 16 thumb */
+}
+
+/* ── Select menu ──────────────────────────────────────────────────── */
+.select__trigger {
+  height: 32px;                            /* matches filter triggers, segmented control */
+  padding: 0 12px;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-md);
+  background: var(--background);
+  color: var(--foreground);
+  font: 400 14px/1 Inter, sans-serif;
+}
+.select__menu {
+  background: var(--popover);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 4px;                             /* inset */
+  box-shadow: var(--shadow-overlay);         /* same elevation as Toast: no
+                                                 dimming backdrop behind a
+                                                 select menu, needs its own
+                                                 shadow that survives dark
+                                                 mode (added 2026-07-09) */
+}
+.select__item {
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  color: var(--popover-foreground);
+  cursor: pointer;
+}
+.select__item:hover {
+  background: var(--accent);
+}
+.select__item[data-selected="true"]::before {
+  content: "✓ ";
+  color: var(--terracotta-600);
+}
+
+/* ── Form validation ──────────────────────────────────────────────── */
+.field__helper {
+  font: 400 12px/1.4 Inter, sans-serif;    /* Body small */
+  color: var(--muted-foreground);
+  margin-top: 4px;
+}
+.field__error {
+  font: 400 12px/1.4 Inter, sans-serif;    /* Body small, same size as helper */
+  color: var(--error-foreground);
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.field__error::before {
+  content: "!";                            /* leading icon glyph, production
+                                               swaps for a Phosphor Warning
+                                               icon at this size */
+}
+/* The error message REPLACES the helper text, the two never stack.
+   Error input border uses --destructive per mode (see Form Inputs). */

@@ -1,0 +1,82 @@
+/* Claerio Toolbar controls (segmented control + dropdown filters) —
+ * component spec / Claude Design test scaffolding
+ * NOT part of design-tokens.css. NOT permanent, retire once real shadcn
+ * ToggleGroup / Select-as-filter components exist in code.
+ * Principle (per sticker sheet section 12): amber tint means navigation
+ * (sidebar, tabs, "where you are"); these controls are neutral, never
+ * amber ("what you see": view toggles, dropdown filters, sorts).
+ * CSS below is pulled directly from Claude Design's 2026-07-08 change,
+ * normalized onto the 8/12px radius scale (the dashboard render still
+ * carries a few 5.2/11.2px radii inherited from the shadcn export's
+ * 7.2px base, not used here).
+ */
+
+/* ── Segmented control (view toggle) ────────────── */
+
+.segmented {
+  display: flex;
+  align-items: stretch;
+  height: 32px;                        /* fixed; matches filter triggers */
+  box-sizing: border-box;
+  padding: 2px;
+  gap: 2px;
+  background: var(--muted);            /* recessed track */
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);     /* 8px, track */
+}
+.dark .segmented {
+  background: var(--background);       /* --muted too close to --card in dark */
+}
+
+.segmented__option {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  border: 1px solid transparent;       /* reserved, so active doesn't shift */
+  border-radius: 6px;                  /* nested-radius rule: track radius (8)
+                                           minus track padding (2) = 6px, so
+                                           the corners nest concentrically.
+                                           Apply this rule anywhere an element
+                                           sits inset within a padded container. */
+  color: var(--muted-foreground);
+  font: 500 12px/1 Inter, sans-serif;
+  cursor: pointer;
+}
+.segmented__option:hover { color: var(--foreground); }
+
+/* Active = "raised on --card": background swap + hairline border, no
+   shadow. Elevation shadows are reserved for true overlays (modal, toast,
+   select menu); a shadow would vanish in dark mode anyway, the border is
+   what carries the raised read in both modes. */
+.segmented__option[aria-pressed="true"] {
+  background: var(--card);
+  border-color: var(--border);
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+/* ── Dropdown filter trigger ─────────────────────── */
+/* Sits on its own left-aligned row, between the card/section title and
+   any header row below it (table header, chart controls, etc). */
+
+.filter-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;                            /* --space-2 */
+  margin-bottom: 12px;                 /* --space-3, before the content it filters */
+}
+.filter-trigger {
+  height: 32px;                        /* matches segmented control */
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 12px;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-md);
+  background: var(--background);
+  cursor: pointer;
+  font: 400 14px/1 Inter, sans-serif;
+}
+.filter-trigger__label { color: var(--muted-foreground); }  /* "Customer:" */
+.filter-trigger__value { color: var(--foreground); }        /* "All" */
+.filter-trigger:hover { background: var(--accent); }
