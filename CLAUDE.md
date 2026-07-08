@@ -4,10 +4,10 @@
 into that project's root.)
 
 ## Sources of truth
-- **Token values & component CSS**: the `claerio-design-tokens` GitHub
-  repo (URL: TODO — paste once created). The CSS files in this project
-  are a mirror; never hand-edit token values here. If a value looks
-  wrong, fix it in the repo, then re-sync.
+- **Token values & component CSS**: the Claerio_design_system GitHub
+  repo (https://github.com/juweee/Claerio_design_system). The CSS files
+  in this project are a mirror; never hand-edit token values here; fix
+  upstream, then re-sync.
 - **Prose guidelines**: "Claerio UI Guidelines" in Google Drive
   (rev. 2026-07-11). References token names, not values.
 - At the start of a working session that will change or depend on
