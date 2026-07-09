@@ -57,7 +57,7 @@
   background: oklch(from var(--primary) l c h / var(--banner-tint));
   border-bottom: 1px solid oklch(from var(--primary) l c h / var(--banner-border));
   color: var(--terracotta-700); /* was a duplicated literal, now references the ramp directly */
-  font: 600 13px/1.4 Inter, sans-serif;
+  font: 600 14px/1.4 Inter, sans-serif;
 }
 .dark .banner-bar { color: var(--terracotta-400); } /* was a duplicated literal, now references the ramp directly */
 

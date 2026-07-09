@@ -58,3 +58,8 @@ design-tokens.css.
   Design system project = mirror/deployment target; prototypes bind to
   it. Re-sync is per-session, on request.
 - Next: four prototype use cases in a "Claerio Prototypes" project.
+
+## 2026-07-09 — banner-bar font-size correction
+- `.banner-bar` font-size 13px → 14px (specs/banner-component-spec.css),
+  aligning with Body per the type scale; 13px wasn't an established
+  token. No other value affected.
