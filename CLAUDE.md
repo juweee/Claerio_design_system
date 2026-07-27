@@ -23,6 +23,44 @@ into that project's root.)
 - Product Design System (this project): Inter body, Lora for Display/H1/logotype — shadcn-based.
 - Document Brand System (Word/Slides deliverables): Arial body, Lora for logotype/H2 — lives in Drive templates. Not covered here.
 
+## Content Style Guide
+Applies to all written copy: UI text, headings, body copy, labels, and docs.
+
+**Word choice**
+- Use plain English. Pick the simplest accurate word: use, not utilize; help, not facilitate; buy, not purchase.
+- Be concise. Cut words that don't add meaning: "to" not "in order to"; "because" not "due to the fact that".
+- Prefer specific language over vague language. Define jargon on first use. Use one consistent term per concept.
+- Spell out acronyms on first reference.
+
+**Sentence and paragraph structure**
+- Write in active voice with strong verbs: decide, analyze, review, not "make a decision" or "perform an analysis".
+- Keep sentences short, about 15 to 20 words. Keep paragraphs short: one idea, 2 to 5 sentences.
+- Organize copy around the reader's task, not internal structure.
+- Start procedural steps with a verb.
+
+**Formatting for scanning**
+- Write descriptive, task-based headings: "Install the app", not "Installation".
+- Use bullets for unordered information, numbered lists for sequences, and tables for comparisons.
+- Use numerals for dates, measurements, percentages, versions, and stats. Write dates as "July 14, 2026".
+- Never use em dashes. Rewrite with periods, commas, or colons instead. This rule overrides every other stylistic preference in this guide.
+
+**Tone**
+- Default tone: calm, knowledgeable, practical, friendly.
+- Write conversationally but professionally. No bureaucratic or academic tone, no marketing hype, no unsupported claims.
+- Use inclusive, respectful language.
+- Be honest. State uncertainty. Never invent facts or confidence.
+- Avoid AI clichés: filler phrases, unnecessary transitions, repeating the prompt, over-explaining, generic conclusions, and flattery.
+
+**Error messages**
+State what happened, why (if known), and what to do next.
+
+**Before finishing any copy, check that it:**
+1. Cuts extra words.
+2. Uses active voice.
+3. Keeps sentences and paragraphs short.
+4. Uses consistent terminology.
+5. Contains no em dashes.
+
 ## Hard rules
 - Never invent tokens, colors, fonts, or component treatments. Undefined = propose and mark PROPOSED until committed upstream.
 - Fonts: Lora (Display + H1 only) + Inter (everything else). Buttons: Inter 14/500.
