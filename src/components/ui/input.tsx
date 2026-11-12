@@ -10,8 +10,8 @@ import { cn } from "@/lib/utils"
  * CLAUDE.md hard rules.
  *
  * - 40px tall, 12px side padding, radius-md, Inter 14/400.
- * - 1px --input-border (PROPOSED, = --olive-500) on --card. Earlier
- *   --input, which measured below 3:1 (decided 2026-11-12).
+ * - 1px --input-border (= --olive-500) on --card. Earlier --input,
+ *   which measured below 3:1 (accepted on review 2026-11-12).
  * - Placeholder: --muted-foreground (decided 2026-11-12; the reference
  *   colors failed contrast).
  * - Focus: 1.5px --ring border plus the universal 2px --ring outline,

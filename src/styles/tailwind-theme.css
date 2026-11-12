@@ -32,7 +32,7 @@
   --color-popover-foreground: var(--popover-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
-  --color-input-border: var(--input-border); /* PROPOSED, see proposed-tokens.css */
+  --color-input-border: var(--input-border);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);

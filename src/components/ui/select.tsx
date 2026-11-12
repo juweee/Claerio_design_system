@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils"
  * states spec (Select menu).
  *
  * Trigger
- * - 32px tall, 12px side padding, 1px --input-border (PROPOSED, =
+ * - 32px tall, 12px side padding, 1px --input-border (=
  *   --olive-500; earlier --input, below 3:1), radius-md,
  *   --background fill, Inter 14/400 in --foreground.
  * - Phosphor CaretDown, 20px, matching body text per the iconography

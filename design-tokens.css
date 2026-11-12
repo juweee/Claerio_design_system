@@ -32,6 +32,13 @@
   --popover-foreground: oklch(0.153 0.006 107.1);
   --border: oklch(0.93 0.007 106.5);
   --input: oklch(0.93 0.007 106.5);
+  /* Added 2026-11-12, accepted on review: border for fields (text field,
+     select and filter trigger, toast action). --input measured 1.23:1
+     light and 1.60:1 dark against the card, below the 3:1 minimum for a
+     control's boundary; this measures 3.92:1 light and 4.32:1 dark.
+     Same value in both modes, so .dark does not redefine it. --input
+     stays the fill for checkbox, radio and switch. */
+  --input-border: var(--olive-500);
 
   /* ---- Brand / action (from shadcn/create export, as-is) ----
      Amber retired 2026-07-06 (see decision log). This "Terracotta" theme

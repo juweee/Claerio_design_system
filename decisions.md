@@ -316,9 +316,9 @@ Earlier entries that mention a spec refer to these retired files.
   treatment, and shadcn's filled secondary (`--secondary`,
   `--secondary-foreground`) is not adopted. Those two tokens stay in
   design-tokens.css, unused, as exported.
-- Field borders, pending review: text field, select and filter trigger,
-  and the toast action use a new PROPOSED `--input-border` token
-  (= `--olive-500`), chosen after a side-by-side preview. `--input`
+- Field borders: text field, select and filter trigger, and the toast
+  action use a new `--input-border` token (= `--olive-500`), chosen
+  after a side-by-side preview and accepted on review. `--input`
   measured 1.23:1 light and 1.60:1 dark against the card; `--olive-500`
   measures 3.92:1 and 4.32:1. Checkbox, radio and switch keep `--input`
   as their fill.

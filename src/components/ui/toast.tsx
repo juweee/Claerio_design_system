@@ -33,7 +33,7 @@ import { cn } from "@/lib/utils"
  *
  * Action
  * - 28px tall, 12px side padding, radius-md, 1px --input-border
- *   (PROPOSED, = --olive-500; earlier --input, below 3:1) on
+ *   (= --olive-500; earlier --input, below 3:1) on
  *   --popover, Inter 14/500 per the button hard rule (decided 2026-11-12;
  *   the spec said 13/600). Hover: --accent. Radix requires altText,
  *   which tells screen reader users how to do the same thing without the
