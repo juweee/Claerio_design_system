@@ -36,8 +36,10 @@ design-tokens.css.
   text = Body small in the error foreground; helper text = Body small
   muted.
 - Selection controls: checkbox/radio/switch fill terracotta-600 when
-  checked; unchecked fill = `--input`; radio checked = 1px ring + 8px
-  dot; switch-off thumb = `--muted-foreground`, on-thumb = Cream.
+  checked; unchecked fill = `--input`, unchecked checkbox/radio border =
+  `--muted-foreground` (changed 2026-11-12, see below); radio checked =
+  1px ring + 8px dot on `--card`; switch-off thumb =
+  `--muted-foreground`, on-thumb = Cream.
 - Nav (sidebar + horizontal tabs): active = amber tint + amber text, no
   border, radius-sm; tabs 8×12 padding, top-corner radius only.
 - Segmented control: 32px track, radius 8 outer / 6 segments, active
@@ -130,4 +132,30 @@ New tokens only: no existing value changed.
   guideline for component boundaries. Earlier notes listed only dark
   mode. The label, placeholder and focus and error borders still mark
   the field.
+
+## 2026-11-12: selection control decisions (component library)
+- Radio, selected: the fill switches from `--input` to `--card`,
+  following the reference CSS over the states spec. On `--input` the
+  terracotta-600 dot measured 2.60:1 in dark mode (3:1 needed); on
+  `--card` it measures 3.37:1 dark, 5.05:1 light.
+- Checkbox check and dash: Phosphor Check and Minus in Bold weight at
+  12px, matching the reference glyphs. An exception to the Regular
+  weight rule, because Regular is too thin at this size.
+- Switch thumb: off = `--muted-foreground`, on = Cream
+  (`--primary-foreground`), as decided earlier in this file. The states
+  spec says `--background` for both; this file outranks the spec.
+- Select menu: 8px gap between the selected check and its text. The
+  reference used 6px, which is off the spacing scale.
+- Unchecked checkbox and radio borders: `--muted-foreground` instead of
+  `--input`. Accepted on review, see the next entry.
+
+## 2026-11-12: unchecked checkbox and radio border accepted
+Reviewed under the CLAUDE.md "Before pushing" rule and accepted.
+- Unchecked checkbox and radio keep the `--input` fill and draw their
+  1px border in `--muted-foreground`.
+- Why: an `--input` border measured 1.23:1 light and 1.49:1 dark
+  against the page, below the 3:1 guideline for controls.
+  `--muted-foreground` measures 5.05:1 light and 7.30:1 dark.
+- No token added: `--muted-foreground` already exists. The states spec
+  is updated to match.
 
