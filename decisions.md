@@ -291,3 +291,16 @@ Two notes existed only in the specs and are kept here:
 Component treatments now live in the component code and this file.
 Earlier entries that mention a spec refer to these retired files.
 
+## 2026-11-12: Claude Design retired
+- Claude Design became read-only on November 12, 2026 and retires in
+  December 2026. It no longer mirrors this repository, and there is
+  nothing to re-sync.
+- This repository and the published Storybook
+  (https://juweee.github.io/Claerio_design_system/) are now the whole
+  design system. CLAUDE.md and the README are updated to match.
+- The "Workflow agreements" above describe the earlier setup.
+- Dropped follow-ups that lived in Claude Design: updating its Button
+  guideline for the new hovers, and its README's success-color note.
+- Logo SVGs: use the Drive logo folder listed in CLAUDE.md. The
+  `assets/logo/` copy existed only in the Claude Design project.
+

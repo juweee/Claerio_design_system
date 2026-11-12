@@ -23,9 +23,9 @@ Google Drive; that doc references token *names* only — values live here.
 
 ## Consumers
 
-1. **Claude Design** — the "Claerio Design System" project mirrors this
-   repo; prototype projects bind to that design system. Sync flow:
-   commit here → ask Claude to re-sync from the repo.
+1. **Claude Design** (retired): the "Claerio Design System" project used
+   to mirror this repo. It became read-only on November 12, 2026 and
+   retires in December 2026, so there is nothing to sync.
 2. **Figma / Figma Make** — import `tokens.json` via Tokens Studio (or
    paste `design-tokens.css` as context in Figma Make).
 3. **Product code** — drop `design-tokens.css` into the shadcn/ui app css.
@@ -65,10 +65,11 @@ Storybook, run `npm run build-storybook`.
 
 ## Change protocol
 
-1. Decide (usually visually, in the Claude Design workshop project).
+1. Decide, usually visually: for example, with a side-by-side preview in
+   Storybook.
 2. Commit the token or component change **here**, with a dated comment.
 3. Update the prose doc in Drive if usage guidance changed.
 4. Run `npm run tokens:json` to regenerate `tokens.json`, and commit it
-   with the token change. Then re-sync the Claude Design system project.
+   with the token change.
 
 Rev: 2026-07-11 · matches Claerio UI Guidelines rev. 2026-07-11 (final).
