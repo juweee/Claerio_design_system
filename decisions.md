@@ -31,8 +31,10 @@ design-tokens.css.
   edge-to-edge; actions are underlined links in banner foreground; ×
   dismiss in banner foreground, shown per use case.
 - Inputs: error border = `--destructive` both modes; focused = 1.5px
-  `--ring` border + 3px soft ring; validation text = Body small in the
-  error foreground; helper text = Body small muted.
+  `--ring` border + the universal 2px `--ring` outline, 2px offset
+  (corrected 2026-11-12, was "3px soft ring", see below); validation
+  text = Body small in the error foreground; helper text = Body small
+  muted.
 - Selection controls: checkbox/radio/switch fill terracotta-600 when
   checked; unchecked fill = `--input`; radio checked = 1px ring + 8px
   dot; switch-off thumb = `--muted-foreground`, on-thumb = Cream.
@@ -108,4 +110,24 @@ New tokens only: no existing value changed.
   library build: display 1.2, heading-1 1.25, heading-3 1.4,
   monospace 1.4.
 - Follow-up: regenerate `tokens.json` so Figma gets the new tokens.
+
+## 2026-11-12: text input decisions (component library, inputs batch)
+- Focus: 1.5px `--ring` border plus the universal 2px `--ring` outline
+  with 2px offset. This matches the Input guideline, the states spec and
+  the CLAUDE.md focus rule. The earlier "3px soft ring" note here had no
+  token behind it and is corrected above.
+- Placeholder: `--muted-foreground`. The reference colors (#ABAB9C
+  light, #6A6560 dark) were not tokens and failed contrast (2.32:1 and
+  2.94:1). `--muted-foreground` measures 5.03:1 light, 7.30:1 dark on
+  `--card`.
+- Invalid and focused: the border stays 1.5px `--destructive`, with the
+  `--ring` outline around it, so the error stays visible while typing.
+- Label to field gap: `space-2` (8px). The reference used 6px, which is
+  off the spacing scale. Field to helper or error text stays 4px, from
+  the states spec.
+- Known gap, not changed: the 1px `--input` border measures 1.23:1
+  against `--card` in light mode and 1.60:1 in dark, below the 3:1
+  guideline for component boundaries. Earlier notes listed only dark
+  mode. The label, placeholder and focus and error borders still mark
+  the field.
 
