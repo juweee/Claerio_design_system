@@ -208,3 +208,37 @@ Reviewed under the CLAUDE.md "Before pushing" rule and accepted.
   The tint itself barely differs from the sidebar (1.08:1 light); the
   amber text, 600 weight and aria-current carry the active state.
 
+## 2026-11-12: table and remaining components (component library)
+Covers table, filter trigger, badge and status chip, avatar, card,
+progress, segmented control, tooltip and modal.
+- Success color: one color for "good". A PROPOSED `--success` token
+  (= `--teal`) is the base for positive status chips and the success
+  toast icon, which moves from `--primary` (terracotta) to teal. Cream
+  check on teal: 3.78:1. Closes the open item in the toast spec and the
+  design system README, pending review of the token.
+- Status chip colors: the spec's literal values match existing tokens
+  exactly (`--teal-dark`, `--olive-600`, `--olive-700`, `--warning`,
+  `--warning-foreground`, `--error-foreground`), so chips use tokens.
+- Dark-mode chip tints, PROPOSED: positive 20% -> 10%, error 15% -> 6%.
+  At the spec's tints their text measured 4.03:1 and 4.00:1 on
+  highlighted table rows (`--accent`); now 4.58:1 and 4.56:1. Light mode
+  passes everywhere and is unchanged.
+- Type exceptions kept from the specs and reference: table headers and
+  segmented options at 12/500; chips 11/600; savings badge 11/700
+  uppercase; small-avatar initials 10px.
+- Reference-only spacing snapped to the scale: tooltip padding 4 x 8 and
+  4px from its trigger (was 6 x 10, 6px); savings badge padding 4 x 8
+  (was 3 x 8). Spec values kept: table cells 10px, filter gap 6px,
+  segmented options 0 x 10 with a 6px radius.
+- Card: no shadow in either mode. The Card README gives light mode a
+  faint shadow; the CLAUDE.md hard rule "No shadows on cards" wins.
+- Table: real HTML table. Sortable headers are buttons with aria-sort
+  and Phosphor carets (12px). Clickable rows are reachable with Tab and
+  open with Enter or Space; their focus outline follows the 2px rule.
+- Filter trigger: reuses the Select menu. Its accessible name is the
+  label ("Status"), because a combobox does not take its name from its
+  contents.
+- Modal: built as a draft on Radix Dialog; no full spec exists yet.
+- Known gap, not changed: dark-mode `--border` measures 1.35:1 against
+  the card, so table row dividers inherit it.
+

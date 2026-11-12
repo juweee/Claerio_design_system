@@ -1,0 +1,16 @@
+/*
+ * PROPOSED tokens
+ *
+ * These tokens are not in design-tokens.css yet. They wait for review
+ * under the CLAUDE.md "Before pushing" rule. Once accepted, move each one
+ * into design-tokens.css with a dated comment, then delete it here.
+ */
+
+:root {
+  /* PROPOSED 2026-11-12: one color for "good". Status chips already use
+     teal for positive; the success toast moves from --primary to this
+     token so a "Claim paid" toast matches a "Paid" chip. Same value in
+     both modes, like --teal. Cream check on it measures 3.78:1 (3:1
+     needed for icons). */
+  --success: var(--teal);
+}
