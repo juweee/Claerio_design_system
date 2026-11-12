@@ -13,8 +13,9 @@ Google Drive; that doc references token *names* only — values live here.
   nav-active + banner + shadow tokens. Dated changelog comments inline.
   **This file is the source of truth. Never hand-edit derived copies.**
 - `tokens.json` — the same tokens in design-tokens JSON form for Figma
-  (Tokens Studio / variables import). Generated from the CSS; regenerate
-  after any token change, never edit directly.
+  (Tokens Studio / variables import). Generated from the CSS by
+  `scripts/generate-tokens-json.mjs`: run `npm run tokens:json` after any
+  token change, and never edit the file directly.
 - `specs/*.css` — per-component CSS specs (banner, controls, sidebar nav,
   states, table, toast). Scratch/reference CSS documenting agreed
   treatments; the production destination is shadcn components (e.g.
@@ -67,6 +68,7 @@ Storybook, run `npm run build-storybook`.
 1. Decide (usually visually, in the Claude Design workshop project).
 2. Commit the token/spec change **here**, with a dated comment.
 3. Update the prose doc in Drive if usage guidance changed.
-4. Re-sync the Claude Design system project; regenerate `tokens.json`.
+4. Run `npm run tokens:json` to regenerate `tokens.json`, and commit it
+   with the token change. Then re-sync the Claude Design system project.
 
 Rev: 2026-07-11 · matches Claerio UI Guidelines rev. 2026-07-11 (final).
