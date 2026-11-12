@@ -41,7 +41,8 @@ design-tokens.css.
   1px ring + 8px dot on `--card`; switch-off thumb =
   `--muted-foreground`, on-thumb = Cream.
 - Nav (sidebar + horizontal tabs): active = amber tint + amber text, no
-  border, radius-sm; tabs 8×12 padding, top-corner radius only.
+  border, radius-sm; tabs 8×12 padding, top-corner radius only
+  (component details 2026-11-12, see below).
 - Segmented control: 32px track, radius 8 outer / 6 segments, active
   raised on `--card`.
 - Filter triggers: 32px, 14px label muted + value 400 foreground, own
@@ -191,4 +192,19 @@ Reviewed under the CLAUDE.md "Before pushing" rule and accepted.
   or close animation is specified, so none is used.
 - Built on Radix Toast: closes after 5 seconds by default, pauses on
   hover or focus, closes on Escape, and is announced to screen readers.
+
+## 2026-11-12: navigation decisions (component library)
+- Sidebar: the nav list only (SidebarNav, labels, items). Collapsing,
+  a mobile drawer and page layout are not designed yet.
+- Sidebar item gap: 2px, chosen after a side-by-side preview of 2px and
+  4px. A hairline gap, like the segmented control's 2px inset, so it
+  stays off the spacing scale on purpose.
+- Sidebar group label: body-small (12/400) in `--muted-foreground`. The
+  reference used 12/500, which is off the type scale.
+- Tabs come in two versions with the same look: NavTabs (links, each
+  with its own URL, aria-current="page") and Tabs (in-page tabs on Radix
+  Tabs, arrow keys and panels). Pick by behavior.
+- Contrast: active text measures 5.51:1 to 8.16:1 on the amber tint.
+  The tint itself barely differs from the sidebar (1.08:1 light); the
+  amber text, 600 weight and aria-current carry the active state.
 
