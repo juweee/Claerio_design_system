@@ -17,8 +17,11 @@ import { cn } from "@/lib/utils"
  * - 12px gap, 12 × 16 padding, radius-md, Inter 14/400 in --foreground.
  * - Severity color (--info-foreground, --warning-foreground or
  *   --error-foreground) carries the icon, title, action link and dismiss.
- * - Icon: 20px, filled Phosphor Info (info) or WarningCircle (warning,
- *   error), replacing the reference's "i" and "!" stand-ins.
+ * - Icon: a 20px circle in the severity color with the glyph in
+ *   --background (white in light mode, the page color in dark), as in
+ *   the reference. Built from filled Phosphor Info (info) or
+ *   WarningCircle (warning, error) over a --background disc, because
+ *   Phosphor has no plain "i" glyph.
  * - Title: 14/600. Action: an underlined link at 14/500, never a button.
  * - Dismiss: shown only when onDismiss is passed. Use it only when the
  *   message does not require action. A 16px Phosphor X in a 24px target.
@@ -81,7 +84,15 @@ function Banner({
       className={cn(bannerVariants({ variant }), className)}
       {...props}
     >
-      <Icon weight="fill" aria-hidden className="size-5 shrink-0 text-(color:--banner-fg)" />
+      {/* 20px slot. The disc sits behind the icon's cut-out glyph; the
+          24px icon's circle measures about 20px. */}
+      <span data-slot="banner-icon" aria-hidden className="relative size-5 shrink-0">
+        <span className="absolute inset-0.5 rounded-full bg-background" />
+        <Icon
+          weight="fill"
+          className="absolute -inset-0.5 size-6 text-(color:--banner-fg)"
+        />
+      </span>
       <div data-slot="banner-content" className="min-w-0 flex-1">
         {children}
       </div>
