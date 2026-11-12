@@ -131,3 +131,22 @@ New tokens only: no existing value changed.
   mode. The label, placeholder and focus and error borders still mark
   the field.
 
+## 2026-11-12: selection control decisions (component library)
+- Radio, selected: the fill switches from `--input` to `--card`,
+  following the reference CSS over the states spec. On `--input` the
+  terracotta-600 dot measured 2.60:1 in dark mode (3:1 needed); on
+  `--card` it measures 3.37:1 dark, 5.05:1 light.
+- Checkbox check and dash: Phosphor Check and Minus in Bold weight at
+  12px, matching the reference glyphs. An exception to the Regular
+  weight rule, because Regular is too thin at this size.
+- Switch thumb: off = `--muted-foreground`, on = Cream
+  (`--primary-foreground`), as decided earlier in this file. The states
+  spec says `--background` for both; this file outranks the spec.
+- Select menu: 8px gap between the selected check and its text. The
+  reference used 6px, which is off the spacing scale.
+- Pending review: unchecked checkbox and radio borders drawn in
+  `--muted-foreground` instead of `--input`. `--input` measures 1.23:1
+  light and 1.49:1 dark against the page (3:1 guideline);
+  `--muted-foreground` measures 5.05:1 light and 7.30:1 dark. Marked
+  PROPOSED in the component code until accepted.
+
