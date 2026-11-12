@@ -23,8 +23,9 @@ design-tokens.css.
 
 ## Components (all illustrated in the workshop sticker sheet, sections 01–13)
 - Buttons: 6 variants, 40px, radius-md, Inter 14/500 (weight lowered
-  from 600, contrast re-verified). Hovers: terracotta-700 light /
-  terracotta-500 dark; ghost/link dark text = terracotta-400.
+  from 600, contrast re-verified). Primary hover: terracotta-700 in
+  both modes (dark was terracotta-500 until 2026-11-12, see below);
+  ghost/link dark text = terracotta-400.
 - Banners: info = teal, warning = amber/gold, error = destructive;
   page-level bar = terracotta tint (--primary /10–15%), 0 radius,
   edge-to-edge; actions are underlined links in banner foreground; ×
@@ -63,3 +64,18 @@ design-tokens.css.
 - `.banner-bar` font-size 13px → 14px (specs/banner-component-spec.css),
   aligning with Body per the type scale; 13px wasn't an established
   token. No other value affected.
+
+## 2026-11-12: dark-mode primary hover changed to terracotta-700
+- Dark-mode primary button hover changes from terracotta-500 to
+  terracotta-700, the same value as light mode. Primary hover is now
+  terracotta-700 in both modes.
+- Why: cream text (--primary-foreground) on terracotta-500 measured
+  4.05:1, below the 4.5:1 minimum for text. Found during the component
+  library accessibility check.
+- Cream on terracotta-700 measures 7.90:1, which passes.
+- Trade-off: in dark mode the hovered fill stands out less from the page
+  background: 2.39:1, down from 3.88:1 for the resting terracotta-600
+  fill. The cream label keeps the button identifiable, so no contrast
+  rule fails.
+- No token value changed. Follow-up: update the CLAUDE.md hard rule and
+  the Claude Design Button guideline, which still say terracotta-500.

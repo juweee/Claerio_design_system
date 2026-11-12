@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils"
  * claude-design-reference/components/Button.
  *
  * - 40px tall, 16px side padding, radius-md, Inter 14/500.
- * - Primary hover: terracotta-700 light, terracotta-500 dark. No opacity hover.
+ * - Primary hover: terracotta-700 in both modes. No opacity hover.
  * - Ghost and link text: terracotta-400 in dark mode.
  * - Secondary reads --foreground for border and text, never brand Charcoal.
  * - Disabled: 50% opacity and not-allowed cursor. Hover styles are skipped
@@ -35,7 +35,6 @@ const buttonVariants = cva(
         primary: [
           "bg-primary text-primary-foreground",
           "not-disabled:not-aria-disabled:hover:bg-terracotta-700",
-          "dark:not-disabled:not-aria-disabled:hover:bg-terracotta-500",
         ],
         secondary: [
           "border-foreground bg-transparent text-foreground",
