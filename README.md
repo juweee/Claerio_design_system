@@ -2,7 +2,7 @@
 
 Canonical machine-readable design references for the Claerio product UI
 (healthcare-finance). This repo is the **single source of truth for token
-values and component CSS specs**. Prose guidelines (usage, rationale,
+values and component treatments**. Prose guidelines (usage, rationale,
 accessibility records) live in the Claerio UI Guidelines document in
 Google Drive; that doc references token *names* only — values live here.
 
@@ -16,10 +16,10 @@ Google Drive; that doc references token *names* only — values live here.
   (Tokens Studio / variables import). Generated from the CSS by
   `scripts/generate-tokens-json.mjs`: run `npm run tokens:json` after any
   token change, and never edit the file directly.
-- `specs/*.css` — per-component CSS specs (banner, controls, sidebar nav,
-  states, table, toast). Scratch/reference CSS documenting agreed
-  treatments; the production destination is shadcn components (e.g.
-  Alert.tsx with cva variants), after which a spec file can be retired.
+- `src/components/ui/` and `decisions.md`: agreed component treatments.
+  The earlier scratch CSS specs (`specs/*.css`) were retired on November
+  12, 2026, once every component existed in code. `decisions.md` lists
+  where each one's content lives now.
 
 ## Consumers
 
@@ -66,7 +66,7 @@ Storybook, run `npm run build-storybook`.
 ## Change protocol
 
 1. Decide (usually visually, in the Claude Design workshop project).
-2. Commit the token/spec change **here**, with a dated comment.
+2. Commit the token or component change **here**, with a dated comment.
 3. Update the prose doc in Drive if usage guidance changed.
 4. Run `npm run tokens:json` to regenerate `tokens.json`, and commit it
    with the token change. Then re-sync the Claude Design system project.

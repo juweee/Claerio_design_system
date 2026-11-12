@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils"
 /*
  * Clærio Toast
  *
- * Sources: specs/toast-component-spec.css, decisions.md (Toast) and
+ * Sources: the toast spec (retired 2026-11-12), decisions.md (Toast) and
  * claude-design-reference/components/Toast. Built on Radix Toast, which
  * pauses the timer while a toast is hovered or focused, closes on Escape
  * or swipe, and announces the toast to screen readers.

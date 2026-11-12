@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils"
 /*
  * Clærio Sidebar navigation
  *
- * Sources: specs/sidebar-nav-component-spec.css, decisions.md (Nav) and
+ * Sources: the sidebar nav spec (retired 2026-11-12), decisions.md (Nav) and
  * claude-design-reference/components/SidebarNav.
  *
  * This is the nav list only (decided 2026-11-12). Collapsing, a mobile

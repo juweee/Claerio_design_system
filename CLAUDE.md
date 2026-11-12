@@ -4,7 +4,7 @@
 into that project's root.)
 
 ## Sources of truth (check BEFORE any extensive work)
-1. **Token values & component CSS**: the `Claerio_design_system` GitHub repo (https://github.com/juweee/Claerio_design_system, branch main). The files in this project (`tokens/design-tokens.css`, `guidelines/specs/`, `guidelines/decisions.md`) are a MIRROR; never hand-edit token values here — fix upstream, then re-sync. At the start of any session that changes or depends on tokens/specs, re-fetch `design-tokens.css` from the repo, diff against the local mirror, and flag drift before designing.
+1. **Token values & component CSS**: the `Claerio_design_system` GitHub repo (https://github.com/juweee/Claerio_design_system, branch main). The files in this project (`tokens/design-tokens.css`, `guidelines/decisions.md`) are a MIRROR (the `guidelines/specs/` mirror was retired on November 12, 2026: delete it on the next re-sync); never hand-edit token values here; fix upstream, then re-sync. At the start of any session that changes or depends on tokens or component treatments, re-fetch `design-tokens.css` from the repo, diff against the local mirror, and flag drift before designing.
 2. **Prose guidelines & logomark files**: "Claerio UI Guidelines" and brand/logo files in Google Drive (use the Google Drive tools to search and read them). Consult the Drive doc for usage/rationale/accessibility guidance before extensive design work. Drive doc references token NAMES; values live in the repo.
    - Drive file IDs (stable — fetch live, don't rely on pasted snapshots):
      - Claerio_UI_Guidelines.docx: `1_o7SLOE8Bgno-zdI7xgR44-Vt3DcAeIF`
@@ -74,7 +74,7 @@ State what happened, why (if known), and what to do next.
 - No zebra striping; row hover/selection = --accent. Cream reserved for text on terracotta/charcoal. No shadows on cards.
 
 ## Before pushing
-Before pushing any branch, search design-tokens.css, specs/ and src/ for the word PROPOSED. If you find any, list each one with its value and the reason it was proposed, then ask me to accept or reject each one. Do not push until I've answered.
+Before pushing any branch, search design-tokens.css and src/ for the word PROPOSED. If you find any, list each one with its value and the reason it was proposed, then ask me to accept or reject each one. Do not push until I've answered.
 - If I accept: remove the PROPOSED label, add a dated comment explaining the decision, and add an entry to decisions.md.
 - If I reject: remove the item, or keep it out of the files and list it in the pull request description as not adopted.
 - If I want to decide later: push only after listing every remaining PROPOSED item in the pull request description under "Pending approval".

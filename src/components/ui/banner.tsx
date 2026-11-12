@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"
 /*
  * Clærio Banner (inline) and BannerBar (page level)
  *
- * Sources: specs/banner-component-spec.css, decisions.md (Banners) and
+ * Sources: the banner spec (retired 2026-11-12), decisions.md (Banners) and
  * claude-design-reference/components/Banner.
  *
  * Inline banner
