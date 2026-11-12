@@ -49,7 +49,8 @@ design-tokens.css.
 - Table: no zebra; `--accent` hover + transient new-row highlight;
   monospace IDs, right-aligned amounts, trailing › chevron only when
   rows are clickable; sorted column 600/foreground with ▼.
-- Toast: bottom-right, `--card` surface, radius-lg, shadow-overlay.
+- Toast: bottom-right, `--card` surface, radius-lg, shadow-overlay
+  (component details 2026-11-12, see below).
 
 ## Deferred / open
 - Table multi-select, inline editing, column resize — not yet designed.
@@ -175,4 +176,19 @@ Reviewed under the CLAUDE.md "Before pushing" rule and accepted.
   CSS still says 13px.
 - Known gap, not changed: banner borders measure 1.17 to 1.62:1 against
   their tint. The tint and icon mark the banner.
+
+## 2026-11-12: toast decisions (component library)
+- Success icon stays `--primary` (terracotta) with a Cream check. The
+  open item in the toast spec remains: status chips use `--teal` for
+  positive. Revisit when status chips are built.
+- Action button text: Inter 14/500, per the CLAUDE.md button rule. The
+  toast spec said 13/600. Still 28px tall, the only button below 40px.
+- Description: body-small (12/400) in `--muted-foreground`. The toast
+  spec and README said 13px, which is off the accepted type scale.
+- Error toast: `--destructive` circle with `--destructive-foreground`
+  glyph, as noted in the spec.
+- Stacked toasts sit 8px apart (`space-2`); not defined before. No open
+  or close animation is specified, so none is used.
+- Built on Radix Toast: closes after 5 seconds by default, pauses on
+  hover or focus, closes on Escape, and is announced to screen readers.
 
