@@ -159,3 +159,20 @@ Reviewed under the CLAUDE.md "Before pushing" rule and accepted.
 - No token added: `--muted-foreground` already exists. The states spec
   is updated to match.
 
+## 2026-11-12: banner implementation notes (component library)
+- Icons: a 20px circle in the severity color with the glyph in
+  `--background` (white in light mode, the page color in dark), as in
+  the reference. Built from filled Phosphor Info (info) and
+  WarningCircle (warning, error) over a `--background` disc, because
+  Phosphor has no plain "i" glyph. Glyphs measure 6.15:1 or more against
+  the circle in both modes.
+- Dismiss: a 16px Phosphor X inside an invisible 24px target, the
+  minimum target size in WCAG 2.2. Shown only when the message does not
+  require action.
+- Screen readers: error banners use role="alert" so they are announced
+  right away; info, warning and the page bar use role="status".
+- Page bar text stays 14px, per the 2026-07-09 correction. The reference
+  CSS still says 13px.
+- Known gap, not changed: banner borders measure 1.17 to 1.62:1 against
+  their tint. The tint and icon mark the banner.
+
