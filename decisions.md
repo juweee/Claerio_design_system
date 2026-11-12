@@ -77,8 +77,9 @@ design-tokens.css.
   background: 2.39:1, down from 3.88:1 for the resting terracotta-600
   fill. The cream label keeps the button identifiable, so no contrast
   rule fails.
-- No token value changed. Follow-up: update the CLAUDE.md hard rule and
-  the Claude Design Button guideline, which still say terracotta-500.
+- No token value changed. The CLAUDE.md hard rule was updated the same
+  day. Follow-up: the Claude Design Button guideline still says
+  terracotta-500.
 
 ## 2026-11-12: destructive button hover darkens in light mode (PROPOSED token)
 - Light-mode destructive button hover changes from a 90% opacity fill
