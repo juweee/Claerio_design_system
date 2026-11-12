@@ -28,6 +28,26 @@ Google Drive; that doc references token *names* only — values live here.
 2. **Figma / Figma Make** — import `tokens.json` via Tokens Studio (or
    paste `design-tokens.css` as context in Figma Make).
 3. **Product code** — drop `design-tokens.css` into the shadcn/ui app css.
+4. **Component library** (`src/`): React components built on shadcn/ui,
+   with a Storybook for review. It imports `design-tokens.css` unchanged
+   and maps the tokens to Tailwind in `src/styles/tailwind-theme.css`.
+   Components live in `src/components/ui/`, each with its stories next
+   to it. Foundations pages (color, type, spacing, radius, shadows) live
+   in `src/foundations/`.
+
+## Run Storybook
+
+Storybook shows every component and foundation in light and dark mode.
+Use the toolbar to switch modes, and the Accessibility tab to check
+contrast.
+
+1. Install Node.js 24 (the version in `.nvmrc`).
+2. Install the packages: `npm install`
+3. Start Storybook: `npm run storybook`
+4. Open http://localhost:6006
+
+To check types, run `npm run typecheck`. To build a static copy of
+Storybook, run `npm run build-storybook`.
 
 ## Change protocol
 
