@@ -1,26 +1,27 @@
-# Claerio Design System — standing instructions
+# Claerio Design System: standing instructions
 
-(For the Claude Design "Claerio Design System" project. Copy this file
-into that project's root.)
+(Standing instructions for working in this repository. This file was first
+written for the Claude Design "Claerio Design System" project, which became
+read-only on November 12, 2026 and retires in December 2026.)
 
 ## Sources of truth (check BEFORE any extensive work)
-1. **Token values & component CSS**: the `Claerio_design_system` GitHub repo (https://github.com/juweee/Claerio_design_system, branch main). The files in this project (`tokens/design-tokens.css`, `guidelines/decisions.md`) are a MIRROR (the `guidelines/specs/` mirror was retired on November 12, 2026: delete it on the next re-sync); never hand-edit token values here; fix upstream, then re-sync. At the start of any session that changes or depends on tokens or component treatments, re-fetch `design-tokens.css` from the repo, diff against the local mirror, and flag drift before designing.
+1. **Token values & component treatments**: this repository (https://github.com/juweee/Claerio_design_system, branch main). Token values live in `design-tokens.css`; component treatments live in `src/components/ui/` and `decisions.md`. Never hand-edit `tokens.json`: run `npm run tokens:json` after any token change. The published Storybook (https://juweee.github.io/Claerio_design_system/) shows the current components in light and dark mode.
 2. **Prose guidelines & logomark files**: "Claerio UI Guidelines" and brand/logo files in Google Drive (use the Google Drive tools to search and read them). Consult the Drive doc for usage/rationale/accessibility guidance before extensive design work. Drive doc references token NAMES; values live in the repo.
    - Drive file IDs (stable — fetch live, don't rely on pasted snapshots):
      - Claerio_UI_Guidelines.docx: `1_o7SLOE8Bgno-zdI7xgR44-Vt3DcAeIF`
      - Claerio_Brand_Guidelines.docx: `1zOuA5om6Qxl4MKzt-AMf_DkpFu_DCpcZ`
      - Claerio_Design_Foundation_Process.md: `1tuH88eTRIenJMcjTh78yZxiIwpYTDZxj`
-     - Logo SVGs folder (6 files, mirrored to `assets/logo/`): parent `1E85igOb2T43dzU_zTI-VgtAJHXyPdUbc`
+     - Logo SVGs folder (6 files): parent `1E85igOb2T43dzU_zTI-VgtAJHXyPdUbc`
      - Brand folder root: `1jHsxu4bTK_dslvMa_U2lBCJaFALhiDNC`
 
 ## Logo system (from Brand Guidelines 01)
 - Wordmark "Clærio": Lora 500, tracking −0.025em; the æ ligature is ALWAYS Lora Bold 700 in Amber #C4893A (Amber's only sanctioned UI use besides nav/warning).
 - æ mark alone = icon mark (app icons, favicons, avatars) below 120px wordmark width. Min sizes: logotype 120px, æ mark 32px.
-- Use the provided SVGs in assets/logo/ — never recreate in another font/weight, never recolor/distort, no shadows/effects.
+- Use the provided SVGs from the Drive logo folder (listed above). Never recreate them in another font or weight, never recolor or distort them, and add no shadows or effects.
 - Greige square on white needs 1px 20%-Charcoal border. Clear space = æ cap-height on all sides.
 
 ## Two separate systems (do not merge)
-- Product Design System (this project): Inter body, Lora for Display/H1/logotype — shadcn-based.
+- Product Design System (this repository): Inter body, Lora for Display/H1/logotype, built on shadcn/ui.
 - Document Brand System (Word/Slides deliverables): Arial body, Lora for logotype/H2 — lives in Drive templates. Not covered here.
 
 ## Content Style Guide
