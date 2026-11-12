@@ -22,15 +22,16 @@ import { cn } from "@/lib/utils"
  *   11px is kept below the type scale on purpose (decided 2026-11-12).
  * - Tints are light / dark. Every color is a token; the spec's literal
  *   values match these tokens exactly.
- *   positive: --success base (PROPOSED, = --teal) at 12% / 10%, --teal-dark text
+ *   positive: --success base (= --teal) at 12% / 10%, --teal-dark text
  *   neutral:  --olive-600 at 10% / 16%, --olive-700 text (dark: --muted-foreground)
  *   alert:    --warning at 10% / 15%, --warning-foreground text
  *   error:    --destructive at 10% / 6%, --error-foreground text
  * - A badge may sit next to a chip with a 6px gap.
- * - PROPOSED 2026-11-12, dark mode only: positive tint 20% -> 10% and
- *   error tint 15% -> 6%. At the spec's tints, their text measured 4.03:1
- *   and 4.00:1 on highlighted table rows (--accent hover and new-row);
- *   these tints measure 4.58:1 and 4.56:1. Light mode is unchanged.
+ * - Dark mode tints, accepted on review 2026-11-12: positive 20% -> 10%
+ *   and error 15% -> 6%. At the spec's earlier tints, their text measured
+ *   4.03:1 and 4.00:1 on highlighted table rows (--accent hover and
+ *   new-row); these tints measure 4.58:1 and 4.56:1. Light mode is
+ *   unchanged.
  */
 
 const badgeClasses =
@@ -47,7 +48,7 @@ const statusChipVariants = cva(
       variant: {
         positive: [
           "bg-[color-mix(in_oklch,var(--success)_12%,transparent)] text-teal-dark",
-          "dark:bg-[color-mix(in_oklch,var(--success)_10%,transparent)]", // PROPOSED dark tint, see note above
+          "dark:bg-[color-mix(in_oklch,var(--success)_10%,transparent)]",
         ],
         neutral: [
           "bg-[color-mix(in_oklch,var(--olive-600)_10%,transparent)] text-olive-700",
@@ -59,7 +60,7 @@ const statusChipVariants = cva(
         ],
         error: [
           "bg-[color-mix(in_oklch,var(--destructive)_10%,transparent)] text-error-foreground",
-          "dark:bg-[color-mix(in_oklch,var(--destructive)_6%,transparent)]", // PROPOSED dark tint, see note above
+          "dark:bg-[color-mix(in_oklch,var(--destructive)_6%,transparent)]",
         ],
       },
     },

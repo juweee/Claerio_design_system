@@ -11,7 +11,7 @@ import {
   ModalTrigger,
 } from "./modal"
 
-const meta = { title: "Components/Modal (draft)" } satisfies Meta
+const meta = { title: "Components/Modal" } satisfies Meta
 export default meta
 type Story = StoryObj<typeof meta>
 

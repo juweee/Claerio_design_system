@@ -21,8 +21,8 @@ import { cn } from "@/lib/utils"
  * Toast
  * - --popover surface, 1px --border, radius-lg, shadow-overlay, 16px
  *   padding, 12px gap.
- * - Icon: 20px circle. Success: --success (PROPOSED, = --teal) with a
- *   Cream check, 3.78:1 (decided 2026-11-12: one color for "good",
+ * - Icon: 20px circle. Success: --success (= --teal) with a Cream check,
+ *   3.78:1 (accepted on review 2026-11-12: one color for "good",
  *   matching positive status chips). Earlier: --primary.
  *   Error: --destructive with --destructive-foreground. Phosphor Bold
  *   12px glyphs, matching the checkbox.

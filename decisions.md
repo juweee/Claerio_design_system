@@ -238,7 +238,18 @@ progress, segmented control, tooltip and modal.
 - Filter trigger: reuses the Select menu. Its accessible name is the
   label ("Status"), because a combobox does not take its name from its
   contents.
-- Modal: built as a draft on Radix Dialog; no full spec exists yet.
+- Modal: built on Radix Dialog to the README and preview; no separate
+  spec exists. Reviewed and no longer labeled draft (2026-11-12).
 - Known gap, not changed: dark-mode `--border` measures 1.35:1 against
   the card, so table row dividers inherit it.
+
+## 2026-11-12: success color and chip tints accepted
+Reviewed under the CLAUDE.md "Before pushing" rule. All 3 items accepted.
+- `--success: var(--teal)` moved into design-tokens.css, same value in
+  both modes. Used by positive status chips and the success toast icon.
+  The toast spec's open item is closed and the spec now points at
+  `--success`.
+- Dark-mode status chip tints: positive 10% (was 20%), error 6% (was
+  15%). Text on highlighted table rows now measures 4.58:1 and 4.56:1.
+  The table spec's chip notes are updated to match.
 

@@ -4,10 +4,11 @@ import { Dialog as DialogPrimitive } from "radix-ui"
 import { cn } from "@/lib/utils"
 
 /*
- * Clærio Modal (draft)
+ * Clærio Modal
  *
- * Source: claude-design-reference/components/Modal. No full component
- * spec exists yet, so treat this as a draft. Built on Radix Dialog: it
+ * Source: claude-design-reference/components/Modal. No separate component
+ * spec exists; built to the README and preview, and reviewed
+ * 2026-11-12. Built on Radix Dialog: it
  * moves focus into the modal, keeps it there, closes on Escape, and
  * returns focus to the trigger when it closes.
  *
