@@ -35,6 +35,19 @@ Google Drive; that doc references token *names* only — values live here.
    to it. Foundations pages (color, type, spacing, radius, shadows) live
    in `src/foundations/`.
 
+## View Storybook online
+
+The published Storybook is at
+https://juweee.github.io/Claerio_design_system/
+
+It updates automatically a few minutes after each merge into `main`.
+The workflow in `.github/workflows/storybook.yml` checks types, builds
+Storybook and publishes it to GitHub Pages. To publish without a merge,
+open the Actions tab, choose "Publish Storybook" and click "Run
+workflow".
+
+The published site is public, like this repository.
+
 ## Run Storybook
 
 Storybook shows every component and foundation in light and dark mode.
