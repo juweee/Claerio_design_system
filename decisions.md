@@ -79,3 +79,14 @@ design-tokens.css.
   rule fails.
 - No token value changed. Follow-up: update the CLAUDE.md hard rule and
   the Claude Design Button guideline, which still say terracotta-500.
+
+## 2026-11-12: destructive button hover darkens in light mode (PROPOSED token)
+- Light-mode destructive button hover changes from a 90% opacity fill
+  to a darker solid color, matching the "hover darkens" rule for primary.
+- New PROPOSED token: `--destructive-hover: oklch(0.52 0.245 27.325)`,
+  light mode only. It lives in `src/styles/proposed-tokens.css` until it
+  is reviewed and moved into design-tokens.css.
+- Why: white text on the 90% opacity fill measured 4.49:1 in axe, below
+  the 4.5:1 minimum. On the new token it measures 5.61:1. It renders as
+  #D20000, clipped to the sRGB gamut like --destructive.
+- Dark mode keeps the 90% opacity hover: dark text on it measures 5.64:1.

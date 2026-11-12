@@ -12,6 +12,8 @@ import { cn } from "@/lib/utils"
  *
  * - 40px tall, 16px side padding, radius-md, Inter 14/500.
  * - Primary hover: terracotta-700 in both modes. No opacity hover.
+ * - Destructive hover: --destructive-hover (PROPOSED) in light mode, 90%
+ *   opacity in dark mode.
  * - Ghost and link text: terracotta-400 in dark mode.
  * - Secondary reads --foreground for border and text, never brand Charcoal.
  * - Disabled: 50% opacity and not-allowed cursor. Hover styles are skipped
@@ -46,7 +48,9 @@ const buttonVariants = cva(
         ],
         destructive: [
           "bg-destructive text-destructive-foreground",
-          "not-disabled:not-aria-disabled:hover:bg-destructive/90",
+          // Light: darker PROPOSED token. Dark: 90% opacity, unchanged.
+          "not-disabled:not-aria-disabled:hover:bg-destructive-hover",
+          "dark:not-disabled:not-aria-disabled:hover:bg-destructive/90",
         ],
         link: [
           "bg-transparent px-0 text-primary dark:text-terracotta-400",

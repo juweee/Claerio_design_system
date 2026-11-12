@@ -46,6 +46,7 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
+  --color-destructive-hover: var(--destructive-hover); /* PROPOSED, see proposed-tokens.css */
   --color-teal: var(--teal);
   --color-teal-dark: var(--teal-dark);
   --color-chart-1: var(--chart-1);
