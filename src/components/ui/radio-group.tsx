@@ -10,9 +10,9 @@ import { cn } from "@/lib/utils"
  * states spec and decisions.md (Selection controls).
  *
  * - 18px, round.
- * - Unselected: --input fill. Border: --muted-foreground. PROPOSED
- *   2026-11-12, same reason as Checkbox: --input borders measure 1.23:1
- *   light / 1.49:1 dark against the page.
+ * - Unselected: --input fill, --muted-foreground border. Accepted on
+ *   review 2026-11-12, same reason as Checkbox: an --input border
+ *   measured 1.23:1 light / 1.49:1 dark against the page.
  * - Selected: 1px terracotta-600 ring and an 8px terracotta-600 dot, not
  *   a full fill. Fill switches to --card (decided 2026-11-12, following
  *   the reference over the states spec): on --input the dot measured

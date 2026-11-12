@@ -36,8 +36,10 @@ design-tokens.css.
   text = Body small in the error foreground; helper text = Body small
   muted.
 - Selection controls: checkbox/radio/switch fill terracotta-600 when
-  checked; unchecked fill = `--input`; radio checked = 1px ring + 8px
-  dot; switch-off thumb = `--muted-foreground`, on-thumb = Cream.
+  checked; unchecked fill = `--input`, unchecked checkbox/radio border =
+  `--muted-foreground` (changed 2026-11-12, see below); radio checked =
+  1px ring + 8px dot on `--card`; switch-off thumb =
+  `--muted-foreground`, on-thumb = Cream.
 - Nav (sidebar + horizontal tabs): active = amber tint + amber text, no
   border, radius-sm; tabs 8×12 padding, top-corner radius only.
 - Segmented control: 32px track, radius 8 outer / 6 segments, active
@@ -144,9 +146,16 @@ New tokens only: no existing value changed.
   spec says `--background` for both; this file outranks the spec.
 - Select menu: 8px gap between the selected check and its text. The
   reference used 6px, which is off the spacing scale.
-- Pending review: unchecked checkbox and radio borders drawn in
-  `--muted-foreground` instead of `--input`. `--input` measures 1.23:1
-  light and 1.49:1 dark against the page (3:1 guideline);
-  `--muted-foreground` measures 5.05:1 light and 7.30:1 dark. Marked
-  PROPOSED in the component code until accepted.
+- Unchecked checkbox and radio borders: `--muted-foreground` instead of
+  `--input`. Accepted on review, see the next entry.
+
+## 2026-11-12: unchecked checkbox and radio border accepted
+Reviewed under the CLAUDE.md "Before pushing" rule and accepted.
+- Unchecked checkbox and radio keep the `--input` fill and draw their
+  1px border in `--muted-foreground`.
+- Why: an `--input` border measured 1.23:1 light and 1.49:1 dark
+  against the page, below the 3:1 guideline for controls.
+  `--muted-foreground` measures 5.05:1 light and 7.30:1 dark.
+- No token added: `--muted-foreground` already exists. The states spec
+  is updated to match.
 

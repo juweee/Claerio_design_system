@@ -27,7 +27,10 @@
 .checkbox {
   width: 18px;
   height: 18px;
-  border: 1px solid var(--input);
+  border: 1px solid var(--muted-foreground); /* changed 2026-11-12 from
+                                                 --input (1.23:1 light /
+                                                 1.49:1 dark vs the page);
+                                                 see decisions.md */
   border-radius: var(--radius-sm);       /* 4px */
   background: var(--input);
 }
@@ -43,12 +46,17 @@
 .radio {
   width: 18px;
   height: 18px;
-  border: 1px solid var(--input);
+  border: 1px solid var(--muted-foreground); /* changed 2026-11-12, same
+                                                 reason as .checkbox */
   border-radius: var(--radius-full);
   background: var(--input);
 }
 .radio[data-state="checked"] {
   border-color: var(--terracotta-600);
+  background: var(--card);                /* changed 2026-11-12 from
+                                              --input: the dot measured
+                                              2.60:1 on --input in dark
+                                              mode, 3.37:1 on --card */
   /* inner dot, not a full fill */
 }
 .radio[data-state="checked"]::after {

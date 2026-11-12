@@ -11,10 +11,10 @@ import { cn } from "@/lib/utils"
  * states spec and decisions.md (Selection controls).
  *
  * - 18px, radius-sm.
- * - Unchecked: --input fill. Border: --muted-foreground. PROPOSED
- *   2026-11-12: decisions.md sets the border to --input, which measures
- *   1.23:1 light / 1.49:1 dark against the page (3:1 guideline).
- *   --muted-foreground measures 5.05:1 light / 7.30:1 dark.
+ * - Unchecked: --input fill, --muted-foreground border. Accepted on
+ *   review 2026-11-12: an --input border measured 1.23:1 light / 1.49:1
+ *   dark against the page (3:1 guideline). --muted-foreground measures
+ *   5.05:1 light / 7.30:1 dark.
  * - Checked or indeterminate: terracotta-600 fill and border, Cream
  *   (--primary-foreground) check or dash. Phosphor Bold at 12px, matching
  *   the reference glyphs (decided 2026-11-12).
