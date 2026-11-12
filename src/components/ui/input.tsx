@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils"
  * Clærio Input
  *
  * Sources: claude-design-reference/components/Input, the states spec
- * (specs/states-component-spec.css), decisions.md (Inputs) and the
+ * (retired 2026-11-12), decisions.md (Inputs) and the
  * CLAUDE.md hard rules.
  *
  * - 40px tall, 12px side padding, radius-md, Inter 14/400.

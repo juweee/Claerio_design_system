@@ -266,3 +266,28 @@ Reviewed under the CLAUDE.md "Before pushing" rule. All 3 items accepted.
   dimension, not a color.
 - Not yet tested in Figma (Tokens Studio import).
 
+## 2026-11-12: component specs retired
+The six scratch CSS specs in `specs/` each said to retire them once their
+component existed in code. All of them do now, so the folder is removed.
+The files stay in Git history (last version: the commit before this
+change). Where their content lives now:
+
+| Spec | Now in |
+| --- | --- |
+| banner-component-spec.css | `src/components/ui/banner.tsx` |
+| controls-component-spec.css | `segmented-control.tsx`, `filter-trigger.tsx` |
+| sidebar-nav-component-spec.css | `sidebar-nav.tsx`, `tabs.tsx` |
+| states-component-spec.css | `input.tsx`, `field.tsx`, `checkbox.tsx`, `radio-group.tsx`, `switch.tsx`, `select.tsx`, plus the focus and disabled rules in CLAUDE.md |
+| table-component-spec.css | `table.tsx`, `badge.tsx` (status chips) |
+| toast-component-spec.css | `toast.tsx` |
+
+Two notes existed only in the specs and are kept here:
+- Zebra striping stays off. If it is ever needed, use `--muted` at 50%,
+  never Cream (Cream is reserved for text on terracotta and charcoal).
+- An amber tint means navigation ("where you are": sidebar, tabs).
+  Controls that change what you see (segmented control, filters, sorts)
+  stay neutral and never use amber.
+
+Component treatments now live in the component code and this file.
+Earlier entries that mention a spec refer to these retired files.
+

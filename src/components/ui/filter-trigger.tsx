@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
 /*
  * Clærio Filter trigger
  *
- * Sources: specs/controls-component-spec.css (dropdown filter trigger),
+ * Sources: the controls spec's filter trigger (retired 2026-11-12),
  * decisions.md (Filter triggers) and
  * claude-design-reference/components/FilterTrigger.
  *

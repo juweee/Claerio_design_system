@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils"
 /*
  * Clærio Table
  *
- * Sources: specs/table-component-spec.css, decisions.md (Table) and
+ * Sources: the table spec (retired 2026-11-12), decisions.md (Table) and
  * claude-design-reference/components/Table.
  *
  * - Sits on a Card. Hairline --border between rows, no outer border, no

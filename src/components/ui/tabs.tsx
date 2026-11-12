@@ -8,7 +8,7 @@ import { navFocus } from "./sidebar-nav"
 /*
  * Clærio Tabs
  *
- * Sources: specs/sidebar-nav-component-spec.css (secondary navigation),
+ * Sources: the sidebar nav spec's secondary navigation (retired 2026-11-12),
  * decisions.md (Nav) and claude-design-reference/components/Tabs.
  *
  * Two versions with the same look (decided 2026-11-12):

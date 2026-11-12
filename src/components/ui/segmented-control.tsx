@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils"
 /*
  * Clærio Segmented control
  *
- * Sources: specs/controls-component-spec.css (segmented control),
+ * Sources: the controls spec's segmented control (retired 2026-11-12),
  * decisions.md (Segmented control) and
  * claude-design-reference/components/SegmentedControl.
  *

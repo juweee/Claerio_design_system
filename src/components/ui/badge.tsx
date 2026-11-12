@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"
  * Clærio savings badge and status chip
  *
  * Sources: claude-design-reference/components/Badge and the status chip
- * notes in specs/table-component-spec.css.
+ * notes in the table spec (retired 2026-11-12).
  *
  * Savings badge (Badge)
  * - A financial benefit, such as "Save $187".
