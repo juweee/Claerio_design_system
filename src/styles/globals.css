@@ -1,0 +1,19 @@
+/* Entry stylesheet for the component library. */
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "./fonts.css";
+
+/* Token values: imported unchanged from the repository root. */
+@import "../../design-tokens.css";
+
+/* Token-to-Tailwind mapping. */
+@import "./tailwind-theme.css";
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background font-sans text-body text-foreground;
+  }
+}

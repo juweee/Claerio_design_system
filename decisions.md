@@ -23,8 +23,9 @@ design-tokens.css.
 
 ## Components (all illustrated in the workshop sticker sheet, sections 01–13)
 - Buttons: 6 variants, 40px, radius-md, Inter 14/500 (weight lowered
-  from 600, contrast re-verified). Hovers: terracotta-700 light /
-  terracotta-500 dark; ghost/link dark text = terracotta-400.
+  from 600, contrast re-verified). Primary hover: terracotta-700 in
+  both modes (dark was terracotta-500 until 2026-11-12, see below);
+  ghost/link dark text = terracotta-400.
 - Banners: info = teal, warning = amber/gold, error = destructive;
   page-level bar = terracotta tint (--primary /10–15%), 0 radius,
   edge-to-edge; actions are underlined links in banner foreground; ×
@@ -63,3 +64,48 @@ design-tokens.css.
 - `.banner-bar` font-size 13px → 14px (specs/banner-component-spec.css),
   aligning with Body per the type scale; 13px wasn't an established
   token. No other value affected.
+
+## 2026-11-12: dark-mode primary hover changed to terracotta-700
+- Dark-mode primary button hover changes from terracotta-500 to
+  terracotta-700, the same value as light mode. Primary hover is now
+  terracotta-700 in both modes.
+- Why: cream text (--primary-foreground) on terracotta-500 measured
+  4.05:1, below the 4.5:1 minimum for text. Found during the component
+  library accessibility check.
+- Cream on terracotta-700 measures 7.90:1, which passes.
+- Trade-off: in dark mode the hovered fill stands out less from the page
+  background: 2.39:1, down from 3.88:1 for the resting terracotta-600
+  fill. The cream label keeps the button identifiable, so no contrast
+  rule fails.
+- No token value changed. The CLAUDE.md hard rule was updated the same
+  day. Follow-up: the Claude Design Button guideline still says
+  terracotta-500.
+
+## 2026-11-12: destructive button hover darkens in light mode (PROPOSED token)
+- Light-mode destructive button hover changes from a 90% opacity fill
+  to a darker solid color, matching the "hover darkens" rule for primary.
+- New PROPOSED token: `--destructive-hover: oklch(0.52 0.245 27.325)`,
+  light mode only. It lives in `src/styles/proposed-tokens.css` until it
+  is reviewed and moved into design-tokens.css.
+- Why: white text on the 90% opacity fill measured 4.49:1 in axe, below
+  the 4.5:1 minimum. On the new token it measures 5.61:1. It renders as
+  #D20000, clipped to the sRGB gamut like --destructive.
+- Dark mode keeps the 90% opacity hover: dark text on it measures 5.64:1.
+
+## 2026-11-12: proposed tokens accepted into design-tokens.css
+Reviewed under the CLAUDE.md "Before pushing" rule. All 4 items accepted.
+New tokens only: no existing value changed.
+- `--destructive-hover: oklch(0.52 0.245 27.325)`, light mode only.
+  Accepted as proposed in the destructive hover entry above (5.61:1).
+- `--font-mono: ui-monospace, SFMono-Regular, Menlo, monospace`. The
+  computer's built-in monospace font for claim, order and member IDs.
+  The reference used `--font-mono`, but no token defined it.
+- Type scale as `--type-<style>-size`, `-weight` and `-line-height` for
+  display, heading-1, heading-2, heading-3, body, body-small, label,
+  button and monospace. Sizes and weights come from the Claude Design
+  reference README; most line heights come from the reference CSS.
+- Four line heights with no earlier source, chosen during the component
+  library build: display 1.2, heading-1 1.25, heading-3 1.4,
+  monospace 1.4.
+- Follow-up: regenerate `tokens.json` so Figma gets the new tokens.
+

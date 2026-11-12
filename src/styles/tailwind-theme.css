@@ -1,0 +1,159 @@
+/*
+ * Tailwind mapping for Clærio design tokens.
+ *
+ * This file holds no values. Each line points at a variable defined in
+ * design-tokens.css, which stays the single source of truth. Change a
+ * value there, never here.
+ *
+ * Tailwind's default palette, radii, shadows, fonts and text sizes are
+ * switched off, so only token-backed utilities exist.
+ */
+
+/* Dark mode follows the .dark class, matching design-tokens.css. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-*: initial;
+  --radius-*: initial;
+  --shadow-*: initial;
+  --inset-shadow-*: initial;
+  --drop-shadow-*: initial;
+  --font-*: initial;
+  --text-*: initial;
+}
+
+@theme inline {
+  /* ---- Semantic colors ---- */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-ring: var(--ring);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-destructive-hover: var(--destructive-hover); /* light mode only */
+  --color-teal: var(--teal);
+  --color-teal-dark: var(--teal-dark);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-nav-active: var(--nav-active);
+  --color-nav-active-foreground: var(--nav-active-foreground);
+  --color-progress-track: var(--progress-track);
+  --color-progress-fill: var(--progress-fill);
+  --color-tooltip-background: var(--tooltip-background);
+  --color-tooltip-foreground: var(--tooltip-foreground);
+  --color-overlay: var(--overlay);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-error-foreground: var(--error-foreground);
+
+  /* ---- Terracotta ramp ---- */
+  --color-terracotta-50: var(--terracotta-50);
+  --color-terracotta-100: var(--terracotta-100);
+  --color-terracotta-200: var(--terracotta-200);
+  --color-terracotta-300: var(--terracotta-300);
+  --color-terracotta-400: var(--terracotta-400);
+  --color-terracotta-500: var(--terracotta-500);
+  --color-terracotta-600: var(--terracotta-600);
+  --color-terracotta-700: var(--terracotta-700);
+  --color-terracotta-800: var(--terracotta-800);
+  --color-terracotta-900: var(--terracotta-900);
+  --color-terracotta-950: var(--terracotta-950);
+
+  /* ---- Olive ramp ---- */
+  --color-olive-50: var(--olive-50);
+  --color-olive-100: var(--olive-100);
+  --color-olive-200: var(--olive-200);
+  --color-olive-300: var(--olive-300);
+  --color-olive-400: var(--olive-400);
+  --color-olive-500: var(--olive-500);
+  --color-olive-600: var(--olive-600);
+  --color-olive-700: var(--olive-700);
+  --color-olive-800: var(--olive-800);
+  --color-olive-900: var(--olive-900);
+  --color-olive-950: var(--olive-950);
+
+  /* ---- Teal ramp ---- */
+  --color-teal-50: var(--teal-50);
+  --color-teal-100: var(--teal-100);
+  --color-teal-200: var(--teal-200);
+  --color-teal-300: var(--teal-300);
+  --color-teal-400: var(--teal-400);
+  --color-teal-500: var(--teal-500);
+  --color-teal-600: var(--teal-600);
+  --color-teal-700: var(--teal-700);
+  --color-teal-800: var(--teal-800);
+  --color-teal-900: var(--teal-900);
+  --color-teal-950: var(--teal-950);
+
+  /* ---- Fonts ---- */
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif); /* Display and Heading 1 only */
+  --font-mono: var(--font-mono);
+
+  /* ---- Radius ---- */
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-full: var(--radius-full);
+
+  /* ---- Shadows ---- */
+  --shadow-overlay: var(--shadow-overlay); /* toast, select menu */
+  --shadow-modal: var(--shadow-modal);     /* modal only */
+}
+
+/* ---- Type scale ---- */
+@theme inline {
+  --text-display: var(--type-display-size);
+  --text-display--line-height: var(--type-display-line-height);
+  --text-display--font-weight: var(--type-display-weight);
+  --text-heading-1: var(--type-heading-1-size);
+  --text-heading-1--line-height: var(--type-heading-1-line-height);
+  --text-heading-1--font-weight: var(--type-heading-1-weight);
+  --text-heading-2: var(--type-heading-2-size);
+  --text-heading-2--line-height: var(--type-heading-2-line-height);
+  --text-heading-2--font-weight: var(--type-heading-2-weight);
+  --text-heading-3: var(--type-heading-3-size);
+  --text-heading-3--line-height: var(--type-heading-3-line-height);
+  --text-heading-3--font-weight: var(--type-heading-3-weight);
+  --text-body: var(--type-body-size);
+  --text-body--line-height: var(--type-body-line-height);
+  --text-body--font-weight: var(--type-body-weight);
+  --text-body-small: var(--type-body-small-size);
+  --text-body-small--line-height: var(--type-body-small-line-height);
+  --text-body-small--font-weight: var(--type-body-small-weight);
+  --text-label: var(--type-label-size);
+  --text-label--line-height: var(--type-label-line-height);
+  --text-label--font-weight: var(--type-label-weight);
+  --text-button: var(--type-button-size);
+  --text-button--line-height: var(--type-button-line-height);
+  --text-button--font-weight: var(--type-button-weight);
+  --text-monospace: var(--type-monospace-size);
+  --text-monospace--line-height: var(--type-monospace-line-height);
+  --text-monospace--font-weight: var(--type-monospace-weight);
+}

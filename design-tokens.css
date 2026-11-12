@@ -21,6 +21,7 @@
   /* ---- Fonts ---- */
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-serif: 'Lora', Georgia, serif; /* Display and Heading 1 ONLY */
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace; /* Added 2026-11-12, accepted on review: claim, order and member IDs. The computer's built-in monospace font, no web font loaded. */
 
   /* ---- Surfaces (from shadcn/create export, as-is) ---- */
   --background: oklch(1 0 0);
@@ -51,6 +52,13 @@
   /* ---- Status / feedback (from shadcn/create export, as-is) ---- */
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(1 0 0);
+  /* Added 2026-11-12, accepted on review: destructive button hover,
+     light mode. Hover darkens, matching the primary rule. The previous
+     90% opacity hover measured 4.49:1 with white text, below 4.5:1. This
+     value measures 5.61:1 (renders as #D20000, clipped to the sRGB gamut
+     like --destructive). Light mode only: dark mode keeps --destructive
+     at 90% opacity (5.64:1), so .dark does not redefine this token. */
+  --destructive-hover: oklch(0.52 0.245 27.325);
 
   /* ---- Secondary palette (data viz, status) — not covered by the export ---- */
   --teal: oklch(0.593 0.07 182.939);          /* #4A8C82 */
@@ -180,6 +188,41 @@
   --error-foreground: oklch(0.44 0.245 27.325); /* darker than --destructive, see note above */
   --banner-tint: 10%;
   --banner-border: 30%;
+
+  /* ---- Type scale: added 2026-11-12, accepted on review ----
+     Sizes and weights come from the Claude Design reference README. Line
+     heights for heading-2, body, body-small, label and button come from
+     the reference CSS. Line heights for display (1.2), heading-1 (1.25),
+     heading-3 (1.4) and monospace (1.4) were chosen during the component
+     library build and accepted on review. Lora sets display and heading-1
+     only; Inter sets everything else; monospace uses --font-mono. */
+  --type-display-size: 32px;
+  --type-display-weight: 700;
+  --type-display-line-height: 1.2;
+  --type-heading-1-size: 24px;
+  --type-heading-1-weight: 700;
+  --type-heading-1-line-height: 1.25;
+  --type-heading-2-size: 20px;
+  --type-heading-2-weight: 600;
+  --type-heading-2-line-height: 1.3;
+  --type-heading-3-size: 16px;
+  --type-heading-3-weight: 600;
+  --type-heading-3-line-height: 1.4;
+  --type-body-size: 14px;
+  --type-body-weight: 400;
+  --type-body-line-height: 1.4;
+  --type-body-small-size: 12px;
+  --type-body-small-weight: 400;
+  --type-body-small-line-height: 1.4;
+  --type-label-size: 12px;
+  --type-label-weight: 600;
+  --type-label-line-height: 1.4;
+  --type-button-size: 14px;
+  --type-button-weight: 500;
+  --type-button-line-height: 1;
+  --type-monospace-size: 13px;
+  --type-monospace-weight: 400;
+  --type-monospace-line-height: 1.4;
 
   /* ---- Spacing scale — not covered by the export ---- */
   --space-1: 4px;
