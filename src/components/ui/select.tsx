@@ -11,7 +11,8 @@ import { cn } from "@/lib/utils"
  * states spec (Select menu).
  *
  * Trigger
- * - 32px tall, 12px side padding, 1px --input border, radius-md,
+ * - 32px tall, 12px side padding, 1px --input-border (PROPOSED, =
+ *   --olive-500; earlier --input, below 3:1), radius-md,
  *   --background fill, Inter 14/400 in --foreground.
  * - Phosphor CaretDown, 20px, matching body text per the iconography
  *   guideline.
@@ -45,7 +46,7 @@ function SelectTrigger({
       data-slot="select-trigger"
       className={cn(
         "inline-flex h-8 cursor-pointer items-center justify-between gap-2 whitespace-nowrap",
-        "rounded-md border border-input bg-background px-3",
+        "rounded-md border border-input-border bg-background px-3",
         "font-sans text-body leading-none text-foreground",
         "data-[placeholder]:text-muted-foreground",
         "focus-visible:outline-2 focus-visible:outline-solid focus-visible:outline-offset-2 focus-visible:outline-ring",

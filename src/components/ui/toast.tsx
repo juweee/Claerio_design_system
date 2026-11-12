@@ -32,7 +32,8 @@ import { cn } from "@/lib/utils"
  * - No open or close animation: none is specified.
  *
  * Action
- * - 28px tall, 12px side padding, radius-md, 1px --input border on
+ * - 28px tall, 12px side padding, radius-md, 1px --input-border
+ *   (PROPOSED, = --olive-500; earlier --input, below 3:1) on
  *   --popover, Inter 14/500 per the button hard rule (decided 2026-11-12;
  *   the spec said 13/600). Hover: --accent. Radix requires altText,
  *   which tells screen reader users how to do the same thing without the
@@ -121,7 +122,7 @@ function ToastAction({ className, ...props }: React.ComponentProps<typeof ToastP
     <ToastPrimitive.Action
       data-slot="toast-action"
       className={cn(
-        "inline-flex h-7 shrink-0 cursor-pointer items-center rounded-md border border-input bg-popover px-3",
+        "inline-flex h-7 shrink-0 cursor-pointer items-center rounded-md border border-input-border bg-popover px-3",
         "font-sans text-button text-foreground",
         "hover:bg-accent",
         "focus-visible:outline-2 focus-visible:outline-solid focus-visible:outline-offset-2 focus-visible:outline-ring",

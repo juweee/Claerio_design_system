@@ -10,7 +10,8 @@ import { cn } from "@/lib/utils"
  * CLAUDE.md hard rules.
  *
  * - 40px tall, 12px side padding, radius-md, Inter 14/400.
- * - 1px --input border on --card.
+ * - 1px --input-border (PROPOSED, = --olive-500) on --card. Earlier
+ *   --input, which measured below 3:1 (decided 2026-11-12).
  * - Placeholder: --muted-foreground (decided 2026-11-12; the reference
  *   colors failed contrast).
  * - Focus: 1.5px --ring border plus the universal 2px --ring outline,
@@ -28,7 +29,7 @@ function Input({ className, type = "text", ...props }: React.ComponentProps<"inp
       type={type}
       data-slot="input"
       className={cn(
-        "h-10 w-full min-w-0 rounded-md border border-input bg-card px-3",
+        "h-10 w-full min-w-0 rounded-md border border-input-border bg-card px-3",
         "font-sans text-body leading-none text-foreground",
         "placeholder:text-muted-foreground",
         // Focus: border swap plus the universal outline.

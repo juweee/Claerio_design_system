@@ -22,7 +22,8 @@ design-tokens.css.
   collision with shadcn avoided during the nav-active work.
 
 ## Components (all illustrated in the workshop sticker sheet, sections 01–13)
-- Buttons: 6 variants, 40px, radius-md, Inter 14/500 (weight lowered
+- Buttons: 5 variants (primary, secondary, ghost, destructive, link;
+  corrected 2026-11-12 from "6", see below), 40px, radius-md, Inter 14/500 (weight lowered
   from 600, contrast re-verified). Primary hover: terracotta-700 in
   both modes (dark was terracotta-500 until 2026-11-12, see below);
   ghost/link dark text = terracotta-400.
@@ -303,4 +304,29 @@ Earlier entries that mention a spec refer to these retired files.
   guideline for the new hovers, and its README's success-color note.
 - Logo SVGs: use the Drive logo folder listed in CLAUDE.md. The
   `assets/logo/` copy existed only in the Claude Design project.
+
+## 2026-11-12: open items closed
+- Base library: Radix. The July 6 proof in the Foundation Process log
+  pulled shadcn's real button from the new-york-v4 registry, which is
+  built on Radix, and nothing records Base UI. Every component uses the
+  `radix-ui` package.
+- Buttons: 5 variants, not 6. shadcn's button has six (default,
+  destructive, outline, secondary, ghost, link); the earlier "6" most
+  likely counted that set. Clærio's secondary is shadcn's outline
+  treatment, and shadcn's filled secondary (`--secondary`,
+  `--secondary-foreground`) is not adopted. Those two tokens stay in
+  design-tokens.css, unused, as exported.
+- Field borders, pending review: text field, select and filter trigger,
+  and the toast action use a new PROPOSED `--input-border` token
+  (= `--olive-500`), chosen after a side-by-side preview. `--input`
+  measured 1.23:1 light and 1.60:1 dark against the card; `--olive-500`
+  measures 3.92:1 and 4.32:1. Checkbox, radio and switch keep `--input`
+  as their fill.
+- Decorative borders: banner borders (1.17 to 1.62:1 against their
+  tint), card borders and table row dividers (dark `--border`, 1.35:1)
+  stay as they are. WCAG's 3:1 rule for non-text contrast covers
+  boundaries needed to identify a control or its state; these are
+  decorative, because tint, fill, icon or content already mark them.
+  This closes the border open items noted in the reference README and
+  the UI Guidelines in Drive.
 

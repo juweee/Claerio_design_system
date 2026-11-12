@@ -1,0 +1,17 @@
+/*
+ * PROPOSED tokens
+ *
+ * These tokens are not in design-tokens.css yet. They wait for review
+ * under the CLAUDE.md "Before pushing" rule. Once accepted, move each one
+ * into design-tokens.css with a dated comment, then delete it here.
+ */
+
+:root {
+  /* PROPOSED 2026-11-12: border for fields (text field, select and
+     filter trigger, toast action). --input measured 1.23:1 light and
+     1.60:1 dark against the card, below the 3:1 minimum for a control's
+     boundary. --olive-500 measures 3.92:1 light and 4.32:1 dark (4.99:1
+     on the dark page). Same value in both modes, so .dark does not
+     redefine it. --input stays the fill for checkbox, radio and switch. */
+  --input-border: var(--olive-500);
+}

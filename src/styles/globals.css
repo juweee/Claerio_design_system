@@ -6,6 +6,9 @@
 /* Token values: imported unchanged from the repository root. */
 @import "../../design-tokens.css";
 
+/* Tokens waiting for review. Remove each once it moves upstream. */
+@import "./proposed-tokens.css";
+
 /* Token-to-Tailwind mapping. */
 @import "./tailwind-theme.css";
 
