@@ -91,3 +91,21 @@ design-tokens.css.
   the 4.5:1 minimum. On the new token it measures 5.61:1. It renders as
   #D20000, clipped to the sRGB gamut like --destructive.
 - Dark mode keeps the 90% opacity hover: dark text on it measures 5.64:1.
+
+## 2026-11-12: proposed tokens accepted into design-tokens.css
+Reviewed under the CLAUDE.md "Before pushing" rule. All 4 items accepted.
+New tokens only: no existing value changed.
+- `--destructive-hover: oklch(0.52 0.245 27.325)`, light mode only.
+  Accepted as proposed in the destructive hover entry above (5.61:1).
+- `--font-mono: ui-monospace, SFMono-Regular, Menlo, monospace`. The
+  computer's built-in monospace font for claim, order and member IDs.
+  The reference used `--font-mono`, but no token defined it.
+- Type scale as `--type-<style>-size`, `-weight` and `-line-height` for
+  display, heading-1, heading-2, heading-3, body, body-small, label,
+  button and monospace. Sizes and weights come from the Claude Design
+  reference README; most line heights come from the reference CSS.
+- Four line heights with no earlier source, chosen during the component
+  library build: display 1.2, heading-1 1.25, heading-3 1.4,
+  monospace 1.4.
+- Follow-up: regenerate `tokens.json` so Figma gets the new tokens.
+

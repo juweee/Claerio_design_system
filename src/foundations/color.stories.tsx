@@ -20,9 +20,10 @@ const groups: { title: string; note?: string; tokens: string[] }[] = [
   },
   {
     title: "Status and feedback",
-    note: "Amber (warning, nav-active) marks warnings and where you are. Never use it on buttons or links.",
+    note: "Amber (warning, nav-active) marks warnings and where you are. Never use it on buttons or links. destructive-hover is light mode only: dark mode uses destructive at 90% opacity.",
     tokens: [
       "destructive",
+      "destructive-hover",
       "destructive-foreground",
       "error-foreground",
       "info",

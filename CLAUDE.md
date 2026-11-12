@@ -68,7 +68,7 @@ State what happened, why (if known), and what to do next.
 - Amber = navigation selection + warning ONLY — never buttons or links.
 - Primary actions = terracotta --primary; banner actions = underlined links, never buttons.
 - Primary button hover = terracotta-700 in both light and dark mode, per decisions.md (2026-11-12: dark-mode primary hover changed to terracotta-700). Never shadcn's bg-primary/90 opacity hover.
-- Destructive button hover darkens: light = --destructive-hover (PROPOSED, src/styles/proposed-tokens.css), dark = --destructive at 90% opacity, per decisions.md (2026-11-12: destructive button hover darkens in light mode).
+- Destructive button hover darkens: light = --destructive-hover, dark = --destructive at 90% opacity, per decisions.md (2026-11-12: destructive button hover darkens in light mode).
 - Radius: 4/8/12/9999 only. Nested radius = outer − inset.
 - Disabled = 50% opacity + not-allowed cursor. Focus-visible = 2px --ring outline, 2px offset.
 - No zebra striping; row hover/selection = --accent. Cream reserved for text on terracotta/charcoal. No shadows on cards.

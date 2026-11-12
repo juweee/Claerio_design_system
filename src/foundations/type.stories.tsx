@@ -13,7 +13,7 @@ const scale: { name: string; className: string; spec: string; sample: string }[]
   { name: "Body small", className: "text-body-small text-muted-foreground", spec: "Inter 12/400, muted", sample: "Updated July 14, 2026" },
   { name: "Label", className: "text-label", spec: "Inter 12/600", sample: "Member ID" },
   { name: "Button", className: "text-button", spec: "Inter 14/500", sample: "File dispute" },
-  { name: "Monospace", className: "font-mono text-monospace", spec: "System mono 13/400 (PROPOSED family)", sample: "CLM-2026-004817" },
+  { name: "Monospace", className: "font-mono text-monospace", spec: "System mono 13/400", sample: "CLM-2026-004817" },
 ]
 
 function TypeScale() {
