@@ -46,6 +46,7 @@
   --color-destructive-hover: var(--destructive-hover); /* light mode only */
   --color-teal: var(--teal);
   --color-teal-dark: var(--teal-dark);
+  --color-success: var(--success);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);

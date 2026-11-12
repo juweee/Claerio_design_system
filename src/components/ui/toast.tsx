@@ -21,8 +21,9 @@ import { cn } from "@/lib/utils"
  * Toast
  * - --popover surface, 1px --border, radius-lg, shadow-overlay, 16px
  *   padding, 12px gap.
- * - Icon: 20px circle. Success: --primary with a Cream check (decided
- *   2026-11-12 to keep --primary; see the open item in the spec).
+ * - Icon: 20px circle. Success: --success (= --teal) with a Cream check,
+ *   3.78:1 (accepted on review 2026-11-12: one color for "good",
+ *   matching positive status chips). Earlier: --primary.
  *   Error: --destructive with --destructive-foreground. Phosphor Bold
  *   12px glyphs, matching the checkbox.
  * - Title: 14/600 in --foreground.
@@ -58,7 +59,7 @@ const toastIconVariants = cva(
   {
     variants: {
       variant: {
-        success: "bg-primary text-primary-foreground",
+        success: "bg-success text-primary-foreground",
         error: "bg-destructive text-destructive-foreground",
       },
     },

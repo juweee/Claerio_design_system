@@ -65,13 +65,15 @@
 
 /* Cell content patterns: status chips reuse the chip/badge spec exactly,
  * radius-full, Inter 11/600, 2px 10px padding.
- * positive  bg rgba(74,140,130,.12|.20)   text #2A5C55 | #5FA89F
+ * positive  bg rgba(74,140,130,.12|.10)   text #2A5C55 | #5FA89F  (dark tint .20 -> .10, 2026-11-12)
  * neutral   bg rgba(112,112,92,.10|.16)   text #545443 | #ABAB9C
  * alert     bg rgba(254,154,0,.10|.15)    text #8A5600 | #F5AE39
- * error     bg --destructive /10|/15      text --error-foreground
+ * error     bg --destructive /10|/6       text --error-foreground (dark tint /15 -> /6, 2026-11-12)
  * Savings badge may sit inline next to a chip, gap 6px.
  * All four verified 2026-07-08 against the existing Status chips table,
- * no new color decisions made for Table.
+ * no new color decisions made for Table. Dark positive and error tints
+ * lowered 2026-11-12: the earlier tints failed 4.5:1 on highlighted
+ * (--accent) rows. Positive now uses --success (= --teal) as its base.
  */
 
 /* No zebra striping: hairlines suffice at this density. If ever needed,

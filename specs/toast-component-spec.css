@@ -29,22 +29,17 @@
 }
 
 /* Icon: 20px filled circle in the semantic color of the event.
- * OPEN ITEM: success currently borrows --primary (Terracotta), because
- * no --success token exists yet. This is inconsistent with the Status
- * chips spec, where "positive" is Teal, not Terracotta, two different
- * colors currently represent the same "things are good" meaning in two
- * different components. Flagged 2026-07-09, not resolved here, needs a
- * decision: introduce --success (probably = --teal, matching the chip)
- * and repoint this icon, or deliberately keep Toast-success as a
- * Terracotta "brand" moment distinct from the Teal "status" moment.
- */
+ * Success uses --success (= --teal), changed 2026-11-12 from --primary.
+ * Resolves the earlier open item: status chips already used teal for
+ * positive, so "good" now has one color in both components. See
+ * decisions.md, 2026-11-12. */
 .toast__icon {
   width: 20px;
   height: 20px;
   flex-shrink: 0;
   border-radius: var(--radius-full);
-  background: var(--primary);          /* success, see open item above */
-  color: var(--primary-foreground);    /* Cream check, 4.85:1 light / 6.84:1 dark, already-verified pairing */
+  background: var(--success);          /* changed 2026-11-12 from --primary */
+  color: var(--primary-foreground);    /* Cream check, 3.78:1 on teal (3:1 needed for icons) */
   display: flex;
   align-items: center;
   justify-content: center;
