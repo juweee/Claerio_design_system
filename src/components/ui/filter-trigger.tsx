@@ -12,7 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
  * claude-design-reference/components/FilterTrigger.
  *
  * - Narrows what data is shown. Opens the same menu as Select.
- * - 32px, 12px side padding, 1px --input border, radius-md, --background
+ * - 32px, 12px side padding, 1px --input-border (from Select), radius-md, --background
  *   fill, Inter 14/400. 6px between label, value and caret (spec).
  * - Muted label ("Status:") and --foreground value ("All").
  * - Hover: --accent. Neutral only: never amber.
