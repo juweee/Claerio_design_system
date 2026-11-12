@@ -72,3 +72,9 @@ State what happened, why (if known), and what to do next.
 - Radius: 4/8/12/9999 only. Nested radius = outer − inset.
 - Disabled = 50% opacity + not-allowed cursor. Focus-visible = 2px --ring outline, 2px offset.
 - No zebra striping; row hover/selection = --accent. Cream reserved for text on terracotta/charcoal. No shadows on cards.
+
+## Before pushing
+Before pushing any branch, search design-tokens.css, specs/ and src/ for the word PROPOSED. If you find any, list each one with its value and the reason it was proposed, then ask me to accept or reject each one. Do not push until I've answered.
+- If I accept: remove the PROPOSED label, add a dated comment explaining the decision, and add an entry to decisions.md.
+- If I reject: remove the item, or keep it out of the files and list it in the pull request description as not adopted.
+- If I want to decide later: push only after listing every remaining PROPOSED item in the pull request description under "Pending approval".
