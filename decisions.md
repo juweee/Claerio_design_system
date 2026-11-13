@@ -330,3 +330,17 @@ Earlier entries that mention a spec refer to these retired files.
   This closes the border open items noted in the reference README and
   the UI Guidelines in Drive.
 
+
+## 2026-11-13: accessibility checks fail story tests
+- Story tests (`npm run test-storybook`, and the Storybook MCP `test-run`
+  tool) now fail on any accessibility violation. `.storybook/preview.tsx`
+  sets `a11y.test` to "error"; it was "todo", which only reported them.
+- One exemption: the `aria-hidden-focus` rule is off on the 4 open-menu
+  stories (Filter trigger: Menu open, light and dark; Selection controls:
+  Select menu open, light and dark).
+- Why: an open Radix menu hides the rest of the page from screen readers,
+  including its own trigger button, and axe reports the hidden but
+  focusable trigger. Radix keeps keyboard focus inside the open menu, so
+  nobody can reach it. Every other rule still runs on these stories.
+- Rule for later exemptions: turn off a single rule on a specific story,
+  with a comment saying why, never globally.

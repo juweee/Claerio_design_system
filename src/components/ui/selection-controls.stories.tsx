@@ -244,6 +244,13 @@ export const AllStates: Story = {
 /* ---- Open select menu. The menu opens in a layer above the page, so
    each mode gets its own story with the whole page set to that mode. ---- */
 
+/* An open Radix menu hides the rest of the page from screen readers,
+   including its own trigger, which axe reports as aria-hidden-focus. Radix
+   keeps keyboard focus inside the open menu, so the hidden trigger can't be
+   reached. Exempt only that rule, only on the open-menu stories
+   (decided 2026-11-13, see decisions.md). */
+const openMenuA11y = { config: { rules: [{ id: "aria-hidden-focus", enabled: false }] } }
+
 function OpenMenu() {
   return (
     <div className="min-h-60">
@@ -265,13 +272,13 @@ function OpenMenu() {
 
 export const OpenMenuLight: Story = {
   name: "Select menu open, light",
-  parameters: { themes: { themeOverride: "Light" } },
+  parameters: { themes: { themeOverride: "Light" }, a11y: openMenuA11y },
   render: () => <OpenMenu />,
 }
 
 export const OpenMenuDark: Story = {
   name: "Select menu open, dark",
-  parameters: { themes: { themeOverride: "Dark" } },
+  parameters: { themes: { themeOverride: "Dark" }, a11y: openMenuA11y },
   render: () => <OpenMenu />,
 }
 
