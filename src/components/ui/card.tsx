@@ -19,6 +19,11 @@ import { cn } from "@/lib/utils"
  *   under the title.
  */
 
+/**
+ * Groups content about one subject, such as a claim, a visit or a
+ * recommendation. Cards have no shadow. Put view toggles in the header and
+ * data filters on their own row under the title.
+ */
 function Card({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div

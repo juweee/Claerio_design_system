@@ -8,6 +8,17 @@ import { NavTabs, NavTabsItem, Tabs, TabsContent, TabsList, TabsTrigger } from "
 
 const meta = {
   title: "Components/Navigation",
+  component: SidebarNav,
+  subcomponents: {
+    SidebarNavItem,
+    SidebarNavLabel,
+    NavTabs,
+    NavTabsItem,
+    Tabs,
+    TabsList,
+    TabsTrigger,
+    TabsContent,
+  },
 } satisfies Meta
 
 export default meta

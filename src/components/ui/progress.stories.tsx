@@ -4,7 +4,11 @@ import { ModePanels, modePanelParameters } from "@/foundations/mode-panels"
 
 import { ProgressField } from "./progress"
 
-const meta = { title: "Components/Progress" } satisfies Meta
+const meta = {
+  title: "Components/Progress",
+  component: ProgressField,
+  args: { label: "Deductible", valueText: "62% met", value: 62 },
+} satisfies Meta
 export default meta
 type Story = StoryObj<typeof meta>
 

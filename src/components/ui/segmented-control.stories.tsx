@@ -4,7 +4,11 @@ import { ModePanels, modePanelParameters } from "@/foundations/mode-panels"
 
 import { SegmentedControl, SegmentedControlOption } from "./segmented-control"
 
-const meta = { title: "Components/Segmented control" } satisfies Meta
+const meta = {
+  title: "Components/Segmented control",
+  component: SegmentedControl,
+  subcomponents: { SegmentedControlOption },
+} satisfies Meta
 export default meta
 type Story = StoryObj<typeof meta>
 

@@ -45,6 +45,10 @@ type ProgressFieldProps = {
   className?: string
 }
 
+/**
+ * Shows progress toward a limit, such as a deductible or out-of-pocket
+ * maximum, with a label and the value in words.
+ */
 function ProgressField({ label, valueText, value, className }: ProgressFieldProps) {
   const id = React.useId()
   return (

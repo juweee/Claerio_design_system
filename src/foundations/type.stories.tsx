@@ -37,6 +37,8 @@ function TypeScale() {
 
 const meta = {
   title: "Foundations/Type",
+  // Token reference pages, not components, so they stay out of the components manifest.
+  tags: ["!manifest"],
   parameters: modePanelParameters,
 } satisfies Meta
 

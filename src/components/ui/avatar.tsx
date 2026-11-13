@@ -38,6 +38,10 @@ type AvatarProps = Omit<React.ComponentProps<"span">, "children"> &
     name: string
   }
 
+/**
+ * Shows a person as initials in a circle, in 3 sizes. Pass the full name as
+ * `name` so screen readers read it instead of the initials.
+ */
 function Avatar({ className, size, initials, name, ...props }: AvatarProps) {
   return (
     <span

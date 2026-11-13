@@ -27,6 +27,11 @@ import { cn } from "@/lib/utils"
  * - Known gap: dark-mode --border reaches 1.35:1 against the card.
  */
 
+/**
+ * Shows rows of data, such as claims, in a real HTML table. No zebra
+ * striping: rows highlight on hover. Sortable headers and clickable rows
+ * work with the keyboard.
+ */
 function Table({ className, ...props }: React.ComponentProps<"table">) {
   return (
     <table

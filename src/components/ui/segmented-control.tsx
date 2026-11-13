@@ -32,6 +32,11 @@ type SegmentedControlProps = Omit<
   onValueChange?: (value: string) => void
 }
 
+/**
+ * Switches between a few views of the same content, such as chart types. Use
+ * it for view toggles, not navigation. It stays neutral and never uses
+ * amber.
+ */
 function SegmentedControl({
   className,
   value: valueProp,

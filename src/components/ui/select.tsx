@@ -28,6 +28,10 @@ import { cn } from "@/lib/utils"
  *   dark mode, per the reference). 8px gap: the reference used 6px,
  *   which is off the spacing scale.
  */
+/**
+ * Lets the person pick one option from a menu. The Selection controls page
+ * also covers Checkbox, RadioGroup and Switch.
+ */
 function Select(props: React.ComponentProps<typeof SelectPrimitive.Root>) {
   return <SelectPrimitive.Root data-slot="select" {...props} />
 }

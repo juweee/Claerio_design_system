@@ -37,6 +37,11 @@ import { cn } from "@/lib/utils"
 const badgeClasses =
   "inline-flex items-center rounded-sm bg-primary px-2 py-1 font-sans text-[11px] leading-[1.3] font-[700] uppercase text-primary-foreground"
 
+/**
+ * A terracotta savings badge for a financial benefit, such as "Save $187".
+ * For the state of a claim or plan, use StatusChip, which always names the
+ * state in words.
+ */
 function Badge({ className, ...props }: React.ComponentProps<"span">) {
   return <span data-slot="badge" className={cn(badgeClasses, className)} {...props} />
 }

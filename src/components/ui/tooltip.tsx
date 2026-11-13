@@ -22,6 +22,10 @@ const TooltipProvider = TooltipPrimitive.Provider
 const Tooltip = TooltipPrimitive.Root
 const TooltipTrigger = TooltipPrimitive.Trigger
 
+/**
+ * A short, one-phrase hint that appears on hover or keyboard focus. Use
+ * TooltipTerm to mark a term with a dotted underline.
+ */
 function TooltipContent({
   className,
   sideOffset = 4,

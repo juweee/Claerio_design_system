@@ -41,6 +41,11 @@ const navItemActive = [
 const navFocus =
   "focus-visible:outline-2 focus-visible:outline-solid focus-visible:outline-offset-2 focus-visible:outline-ring"
 
+/**
+ * The sidebar navigation list, with group labels and items. The active item
+ * uses the amber tint. For tabs across a page, use NavTabs for links or Tabs
+ * for in-page panels.
+ */
 function SidebarNav({ className, ...props }: React.ComponentProps<"nav">) {
   return (
     <nav
