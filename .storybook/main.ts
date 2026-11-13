@@ -5,11 +5,16 @@ const config: StorybookConfig = {
   core: {
     disableTelemetry: true,
   },
+  features: {
+    // Generates the components manifest that the Storybook MCP server reads.
+    componentsManifest: true,
+  },
   addons: [
     "@storybook/addon-docs",
     "@storybook/addon-a11y",
     "@storybook/addon-themes",
     "storybook-addon-pseudo-states",
+    "@storybook/addon-mcp",
   ],
   framework: {
     name: "@storybook/react-vite",

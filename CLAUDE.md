@@ -14,6 +14,13 @@ read-only on November 12, 2026 and retires in December 2026.)
      - Logo SVGs folder (6 files): parent `1E85igOb2T43dzU_zTI-VgtAJHXyPdUbc`
      - Brand folder root: `1jHsxu4bTK_dslvMa_U2lBCJaFALhiDNC`
 
+## Use the Storybook MCP tools for UI work
+When working on UI, use the Storybook MCP tools to look up components and documentation before writing code.
+- Start Storybook first (`npm run storybook`). The `storybook` server in `.mcp.json` connects to http://localhost:6006/mcp and only works while Storybook runs.
+- Call `docs-list` to find components, then `docs-show` for props, usage, and stories. Use only props those tools document.
+- Before creating or editing components or stories, call `get-storybook-story-instructions`.
+- After a visual change, call `stories-preview` and include the preview links in your reply.
+
 ## Logo system (from Brand Guidelines 01)
 - Wordmark "Clærio": Lora 500, tracking −0.025em; the æ ligature is ALWAYS Lora Bold 700 in Amber #C4893A (Amber's only sanctioned UI use besides nav/warning).
 - æ mark alone = icon mark (app icons, favicons, avatars) below 120px wordmark width. Min sizes: logotype 120px, æ mark 32px.
