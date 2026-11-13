@@ -26,6 +26,11 @@ const Modal = DialogPrimitive.Root
 const ModalTrigger = DialogPrimitive.Trigger
 const ModalClose = DialogPrimitive.Close
 
+/**
+ * Asks for a decision before the person can continue. The title is a
+ * question, the description explains the consequence, and the footer shows
+ * Cancel, then the confirming action. Focus stays inside until it closes.
+ */
 function ModalContent({ className, children, ...props }: React.ComponentProps<typeof DialogPrimitive.Content>) {
   return (
     <DialogPrimitive.Portal>

@@ -4,10 +4,6 @@ import { ModePanels, modePanelParameters } from "@/foundations/mode-panels"
 
 import { FilterRow, FilterSelect } from "./filter-trigger"
 
-const meta = { title: "Components/Filter trigger" } satisfies Meta
-export default meta
-type Story = StoryObj<typeof meta>
-
 const providers = [
   { value: "all", label: "All" },
   { value: "okafor", label: "Dr. Okafor" },
@@ -18,6 +14,15 @@ const statuses = [
   { value: "pending", label: "Pending" },
   { value: "paid", label: "Paid" },
 ]
+
+const meta = {
+  title: "Components/Filter trigger",
+  component: FilterSelect,
+  subcomponents: { FilterRow },
+  args: { label: "Provider:", defaultValue: "all", options: providers },
+} satisfies Meta
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const AllStates: Story = {
   name: "All states",

@@ -33,6 +33,11 @@ type FilterSelectProps = Omit<React.ComponentProps<typeof Select>, "children"> &
   className?: string
 }
 
+/**
+ * A compact dropdown that filters data, such as by provider or status. Group
+ * filters in a FilterRow under the card title. Filters stay neutral and
+ * never use amber.
+ */
 function FilterSelect({ label, options, className, ...props }: FilterSelectProps) {
   return (
     <Select {...props}>

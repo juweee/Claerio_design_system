@@ -71,6 +71,10 @@ const toastIconVariants = cva(
 type ToastProps = React.ComponentProps<typeof ToastPrimitive.Root> &
   VariantProps<typeof toastIconVariants>
 
+/**
+ * A short confirmation at the bottom right that closes on its own after 5
+ * seconds. It pauses on hover or focus and is announced to screen readers.
+ */
 function Toast({ className, variant = "success", children, ...props }: ToastProps) {
   return (
     <ToastPrimitive.Root

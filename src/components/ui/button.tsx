@@ -70,6 +70,11 @@ type ButtonProps = React.ComponentProps<"button"> &
     asChild?: boolean
   }
 
+/**
+ * Triggers an action. Comes in 5 variants: primary for the main action,
+ * secondary, ghost, destructive and link. Put the primary button rightmost,
+ * with Cancel to its left.
+ */
 function Button({
   className,
   variant = "primary",

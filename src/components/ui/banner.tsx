@@ -66,6 +66,11 @@ type BannerProps = React.ComponentProps<"div"> &
     dismissLabel?: string
   }
 
+/**
+ * Shows an info, warning or error message across a section, or a page-level
+ * bar. Banner actions are underlined links, never buttons. Error banners are
+ * announced to screen readers right away.
+ */
 function Banner({
   className,
   variant = "info",

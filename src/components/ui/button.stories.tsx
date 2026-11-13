@@ -39,19 +39,19 @@ type Story = StoryObj<typeof meta>
 export const Primary: Story = {}
 
 export const Secondary: Story = {
-  args: { variant: "secondary", children: labels.secondary },
+  args: { variant: "secondary", children: "View details" },
 }
 
 export const Ghost: Story = {
-  args: { variant: "ghost", children: labels.ghost },
+  args: { variant: "ghost", children: "Dismiss" },
 }
 
 export const Destructive: Story = {
-  args: { variant: "destructive", children: labels.destructive },
+  args: { variant: "destructive", children: "Delete claim" },
 }
 
 export const Link: Story = {
-  args: { variant: "link", children: labels.link },
+  args: { variant: "link", children: "See all claims" },
 }
 
 /* ---- Every variant in every state, light and dark side by side. ---- */
