@@ -16,8 +16,9 @@ const preview: Preview = {
     backgrounds: { disabled: true },
     controls: { expanded: true },
     a11y: {
-      // Show accessibility failures in the panel without failing the build.
-      test: "todo",
+      // Accessibility violations fail the story's test (decided 2026-11-13).
+      // Exempt a rule only on a specific story, with a comment saying why.
+      test: "error",
     },
     options: {
       storySort: { order: ["Foundations", ["Color", "Type", "Spacing, radius and shadows"], "Components"] },
