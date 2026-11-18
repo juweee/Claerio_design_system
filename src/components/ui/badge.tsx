@@ -95,7 +95,8 @@ type StatusChipProps = React.ComponentProps<"span"> & {
  *
  * ## Component record
  *
- * Status: **stable** (PROPOSED: no status has been assigned yet).
+ * Status: **stable**. *Source: decisions.md, 2026-11-18 component record
+ * review.*
  *
  * Each field ends with where its content came from. "PROPOSED" means
  * nothing in the repository decides it yet: treat it as a suggestion, not
@@ -159,11 +160,10 @@ type StatusChipProps = React.ComponentProps<"span"> & {
  * - For a financial benefit, such as "Save $187", use Badge. *Source:
  *   Badge description.*
  * - For a message that needs explaining or an action, use Banner. To
- *   confirm something the person just did, use Toast. PROPOSED: drawn
- *   from those components' descriptions, never compared with StatusChip.
- * - Don't use it as a button, link or filter. PROPOSED: the chip has no
- *   interactive state, and GAPS.md item 8 worries that a chip could look
- *   clickable, but no rule says so.
+ *   confirm something the person just did, use Toast.
+ *   *Source: decisions.md, 2026-11-18 component record review.*
+ * - Don't use it as a button, link or filter. The chip has no
+ *   interactive state. *Source: decisions.md, 2026-11-18 component record review.*
  *
  * ### Anatomy
  *
@@ -199,13 +199,11 @@ type StatusChipProps = React.ComponentProps<"span"> & {
  * - Name the state, not the color: "Denied", not "Red". *Source:
  *   badge.tsx comment.*
  * - Keep it short: one word, or a short phrase such as "3 claims
- *   pending" or "Deductible 62% met". The chip never wraps. PROPOSED as
- *   a length rule: drawn from the stories.
- * - Sentence case, no ending punctuation. PROPOSED: drawn from the
- *   stories.
- * - Claim states in the stories: Paid is positive, Pending is neutral,
- *   Review is alert, Denied is error. PROPOSED as the standard mapping:
- *   only the stories use it.
+ *   pending" or "Deductible 62% met". The chip never wraps.
+ *   *Source: decisions.md, 2026-11-18 component record review.*
+ * - Sentence case, no ending punctuation. *Source: decisions.md, 2026-11-18 component record review.*
+ * - Claim states: Paid is positive, Pending is neutral, Review is
+ *   alert, Denied is error. *Source: decisions.md, 2026-11-18 component record review.*
  * - No em dashes. *Source: CLAUDE.md content style guide.*
  *
  * ### Related components and patterns

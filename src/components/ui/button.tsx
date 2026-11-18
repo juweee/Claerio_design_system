@@ -87,7 +87,8 @@ type ButtonProps = React.ComponentProps<"button"> & {
  *
  * ## Component record
  *
- * Status: **stable** (PROPOSED: no status has been assigned yet).
+ * Status: **stable**. *Source: decisions.md, 2026-11-18 component record
+ * review.*
  *
  * Each field ends with where its content came from. "PROPOSED" means
  * nothing in the repository decides it yet: treat it as a suggestion, not
@@ -176,8 +177,7 @@ type ButtonProps = React.ComponentProps<"button"> & {
  * - To switch views of the same content, use SegmentedControl or Tabs.
  *   To filter data, use FilterSelect. *Source: those components' docs.*
  * - To go to another page, use a link, or Button with `asChild` around
- *   a router link if it must look like a button. PROPOSED: no source
- *   decides links versus buttons for navigation.
+ *   a router link if it must look like a button. *Source: decisions.md, 2026-11-18 component record review.*
  *
  * ### Anatomy
  *
@@ -228,9 +228,8 @@ type ButtonProps = React.ComponentProps<"button"> & {
  * - Put the primary button rightmost, with Cancel to its left.
  *   *Source: description above, Decision group story.*
  * - Start the label with a verb and name the object, in sentence case:
- *   "Review claim", "Delete claim", "File dispute". PROPOSED: drawn from
- *   the story labels and the content style guide, never decided.
- * - Keep labels to 1 to 3 words. PROPOSED: no source.
+ *   "Review claim", "Delete claim", "File dispute". *Source: decisions.md, 2026-11-18 component record review.*
+ * - Keep labels to 1 to 3 words. *Source: decisions.md, 2026-11-18 component record review.*
  * - No em dashes. *Source: CLAUDE.md content style guide.*
  *
  * ### Related components and patterns

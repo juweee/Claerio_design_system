@@ -40,8 +40,8 @@ type ModalProps = Omit<React.ComponentProps<typeof DialogPrimitive.Root>, "open"
  *
  * ## Component record
  *
- * Status: **stable** (PROPOSED: no status has been assigned yet. The
- * modal was reviewed and lost its draft label on 2026-11-12.)
+ * Status: **stable**. *Source: decisions.md, 2026-11-18 component record
+ * review.*
  *
  * Each field ends with where its content came from. "PROPOSED" means
  * nothing in the repository decides it yet: treat it as a suggestion, not
@@ -114,8 +114,7 @@ type ModalProps = Omit<React.ComponentProps<typeof DialogPrimitive.Root>, "open"
  *   weigh first, such as filing a dispute. *Source: modal.tsx comment,
  *   stories.*
  * - To confirm something already done, use Toast. To show a message on
- *   the page, use Banner. PROPOSED: drawn from those components'
- *   descriptions, never compared with Modal.
+ *   the page, use Banner. *Source: decisions.md, 2026-11-18 component record review.*
  * - Whether a clickable table row opens a modal, a panel or a page isn't
  *   decided (GAPS.md item 14).
  * - Forms and long content in a modal: none yet (GAPS.md item 22).
@@ -178,7 +177,7 @@ type ModalProps = Omit<React.ComponentProps<typeof DialogPrimitive.Root>, "open"
  *   will file the dispute with your insurer. Average resolution: 12
  *   days." *Source: modal.tsx comment, stories.*
  * - Buttons: "Cancel", then a verb that repeats the title's action, such
- *   as "File dispute". PROPOSED as the rule: drawn from the stories.
+ *   as "File dispute". *Source: decisions.md, 2026-11-18 component record review.*
  * - Whether a destructive confirmation, such as a delete, uses the
  *   destructive Button: not decided (GAPS.md item 22).
  * - No em dashes. *Source: CLAUDE.md content style guide.*

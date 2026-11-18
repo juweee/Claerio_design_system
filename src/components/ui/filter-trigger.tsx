@@ -75,7 +75,8 @@ type FilterSelectProps = Omit<
  *
  * ## Component record
  *
- * Status: **stable** (PROPOSED: no status has been assigned yet).
+ * Status: **stable**. *Source: decisions.md, 2026-11-18 component record
+ * review.*
  *
  * Each field ends with where its content came from. "PROPOSED" means
  * nothing in the repository decides it yet: treat it as a suggestion, not
@@ -174,8 +175,8 @@ type FilterSelectProps = Omit<
  *   `onValueChange` runs on the pick, with no Apply button. *Source:
  *   filter-trigger.tsx.*
  * - Without `value` or `defaultValue`, the trigger shows only the label.
- *   Always start on an option, such as "All". PROPOSED: the stories
- *   always set one, but no rule requires it.
+ *   Always start on an option, such as "All". *Source: decisions.md,
+ *   2026-11-18 component record review.*
  * - When the filters match nothing, replace the table or chart with an
  *   EmptyState that offers "Clear filters", and keep the filters in
  *   view. *Source: decisions.md, 2026-11-18 empty state.*
@@ -223,7 +224,7 @@ type FilterSelectProps = Omit<
  *   "Last 7 days", "Last 30 days", "Last 90 days" and "All dates".
  *   *Source: options prop comment, decisions.md 2026-11-18.*
  * - Options in sentence case, with names as written, such as
- *   "Dr. Okafor". PROPOSED: drawn from the stories.
+ *   "Dr. Okafor". *Source: decisions.md, 2026-11-18 component record review.*
  * - Option values are short IDs, such as "pending", never empty.
  *   *Source: FilterOption comment.*
  * - No em dashes. *Source: CLAUDE.md content style guide.*

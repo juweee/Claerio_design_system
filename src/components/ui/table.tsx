@@ -140,8 +140,7 @@ import { cn } from "@/lib/utils"
  * - Use it for a list of records that share the same fields, such as
  *   claims with an ID, date, provider, status and amount. *Source:
  *   stories.*
- * - For one record's details, use a Card. PROPOSED: no source compares
- *   the two.
+ * - For one record's details, use a Card. *Source: decisions.md, 2026-11-18 component record review.*
  * - When filters match nothing, use EmptyState instead of an empty
  *   table. *Source: decisions.md, 2026-11-18 empty state.*
  * - Rows with actions: in a clickable row, put actions in the detail
@@ -166,9 +165,8 @@ import { cn } from "@/lib/utils"
  *
  * - **Sorting:** the table doesn't sort data. Sort it yourself, pass
  *   `onSort` to each sortable TableHead and `sorted` to the sorted one.
- *   *Source: table.tsx.* In the stories, a new sort column starts
- *   descending and a second click flips it. PROPOSED as the rule: only
- *   the stories do this.
+ *   *Source: table.tsx.* A new sort column starts descending, and a
+ *   second click flips it. *Source: decisions.md, 2026-11-18 component record review.*
  * - **Clickable rows:** a click anywhere in the row, or Enter or Space
  *   on the focused row, calls `onClick`. *Source: table.tsx.*
  * - **Highlight:** remove `highlighted` after a few seconds or on the
@@ -200,8 +198,7 @@ import { cn } from "@/lib/utils"
  * - The row's text, so it says what's needed without opening it, such
  *   as "You owe $50.00". *Source: decisions.md, 2026-11-18.*
  * - A name for the table, with `aria-label` or `aria-labelledby`
- *   pointing at the Card title. PROPOSED: no source requires it (GAPS.md
- *   item 17).
+ *   pointing at the Card title. *Source: decisions.md, 2026-11-18 component record review.*
  *
  * Known limits: a clickable row keeps the row role, so screen readers
  * may not say that it opens anything. Not yet tested with a screen
@@ -221,7 +218,7 @@ import { cn } from "@/lib/utils"
  * ### Content guidance
  *
  * - Header labels: one or two words in sentence case, such as "Claim",
- *   "Provider", "Amount". PROPOSED: drawn from the stories, never decided.
+ *   "Provider", "Amount". *Source: decisions.md, 2026-11-18 component record review.*
  * - IDs in a mono cell. Amounts in a numeric cell, as currency with 2
  *   decimals, such as "$1,240.00". *Source: table.tsx, stories.*
  * - Status: a StatusChip with a one-word label. *Source: table.tsx,

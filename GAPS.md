@@ -13,7 +13,9 @@ to them keep working.
 
 Decided on November 18, 2026, and removed: 1 (CardTitle level), 2
 (empty state), 3 (date filter), 5 (banner retry action) and 6 (page
-layout, and the foundations in the MCP docs). See decisions.md.
+layout, and the foundations in the MCP docs). Also decided and
+removed: 19 (the PROPOSED fields in the component records). See
+decisions.md.
 
 ## 4. Define actions in tables without a detail view
 
@@ -135,16 +137,16 @@ layout, and the foundations in the MCP docs). See decisions.md.
 - **Decide:** checkbox column or not, how selection looks with the
   `--accent` hover and highlight, and where bulk actions go.
 
-## 17. Decide how a table is named and how clickable rows are announced
+## 17. Decide how screen readers announce clickable table rows
 
 - **Where it came up:** experiment 1.3, writing the Table record.
-- **Today:** Table has no caption or naming rule. A clickable row keeps
-  the row role, so a screen reader may not say it opens anything. Not
-  tested with a screen reader.
-- **Guessed in the record (PROPOSED):** name the table with
-  `aria-label`, or `aria-labelledby` pointing at the Card title.
-- **Decide:** the naming rule, and whether clickable rows need more for
-  screen readers after a screen reader test.
+- **Decided November 18, 2026:** name every table with `aria-label`, or
+  `aria-labelledby` pointing at the Card title (see decisions.md).
+- **Still open:** a clickable row keeps the row role, so a screen
+  reader may not say it opens anything. Not tested with a screen
+  reader.
+- **Decide:** whether clickable rows need more for screen readers,
+  after a screen reader test.
 
 ## 18. Decide whether tables may shorten dates
 
@@ -152,32 +154,6 @@ layout, and the foundations in the MCP docs). See decisions.md.
 - **Today:** the table stories write "Nov 2, 2026". The content style
   guide in CLAUDE.md writes dates as "July 14, 2026".
 - **Decide:** whether tables use the short month to save width.
-
-## 19. Review the PROPOSED fields in the component records
-
-- **Where it came up:** experiment 1.3. These fields had no source, so
-  they're marked PROPOSED in the records for Button, Table, StatusChip,
-  FilterSelect and Modal.
-- **Button:** status "stable"; use a link (or Button with `asChild`)
-  to go to another page; labels start with a verb, name the object and
-  use sentence case; labels are 1 to 3 words.
-- **Table:** use a Card, not a table, for one record's details; a new
-  sort column starts descending; header labels are one or two words in
-  sentence case; name the table (item 17).
-- **StatusChip:** status "stable"; use Banner or Toast instead for
-  messages and confirmations; don't use the chip as a button, link or
-  filter; labels are one word or a short phrase; sentence case with no
-  ending punctuation; claim states map Paid to positive, Pending to
-  neutral, Review to alert and Denied to error.
-- **FilterSelect:** status "stable"; always start on an option, such as
-  "All"; options in sentence case.
-- **Modal:** status "stable"; use Toast or Banner instead for
-  confirmations and messages; the confirming button repeats the
-  title's verb, such as "File dispute".
-- **Status levels:** the record template uses stable, new, first pass
-  and deprecated, but nothing defines them yet.
-- **Decide:** accept, change or reject each one. Accepted items go in
-  decisions.md and lose the PROPOSED label.
 
 ## 20. Show subcomponent guidance on Storybook Docs pages
 

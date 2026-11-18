@@ -458,3 +458,42 @@ Earlier entries that mention a spec refer to these retired files.
   stories (Filter trigger, Selection controls) are left off Docs pages
   with the `!autodocs` tag: in a frame, Radix closes the menu when the
   frame resizes. All 6 keep their story pages and tests.
+
+## 2026-11-18: component record review (experiment 1.3)
+Reviewed under the CLAUDE.md "Before pushing" rule. All 20 PROPOSED
+fields in the component records were accepted. The records now cite
+this entry in place of each PROPOSED label.
+
+Status levels, used in each record's Status line:
+- **Stable:** built, reviewed and tests pass. Use it freely.
+- **New:** built but not yet reviewed.
+- **First pass:** built, but some patterns are undecided. See GAPS.md.
+- **Deprecated:** don't use it in new work. The record names the
+  replacement.
+
+Status: Button, StatusChip, FilterSelect and Modal are stable. Table is
+first pass.
+
+Accepted rules:
+- **Button:** to go to another page, use a link, or Button with
+  `asChild` around a router link. Labels start with a verb and name the
+  object, in sentence case, such as "Review claim". Labels are 1 to 3
+  words.
+- **Table:** for one record's details, use a Card. A new sort column
+  starts descending, and a second click flips it. Header labels are one
+  or two words in sentence case. Name every table with `aria-label`, or
+  `aria-labelledby` pointing at the Card title.
+- **StatusChip:** for a message that needs explaining or an action, use
+  Banner; to confirm something just done, use Toast. Never use a chip as
+  a button, link or filter. Labels are one word or a short phrase, in
+  sentence case with no ending punctuation. Claim states: Paid is
+  positive, Pending is neutral, Review is alert, Denied is error.
+- **FilterSelect:** always start on an option, such as "All". Options
+  are in sentence case, with names as written.
+- **Modal:** to confirm something already done, use Toast; to show a
+  message on the page, use Banner. The buttons are "Cancel", then a verb
+  that repeats the title's action, such as "File dispute".
+
+Why: each rule matched how the stories and other components already
+work, but nothing had decided it. GAPS.md item 19 is closed, and the
+naming half of item 17 is decided.
