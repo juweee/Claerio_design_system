@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Slot } from "radix-ui"
 
+import type { AnchorElementProps, ChildrenProps, CommonProps } from "@/lib/html-props"
 import { cn } from "@/lib/utils"
 
 /*
@@ -48,7 +49,7 @@ const navFocus =
  *
  * @import import { SidebarNav } from "@/components/ui/sidebar-nav"
  */
-function SidebarNav({ className, ...props }: React.ComponentProps<"nav">) {
+function SidebarNav({ className, ...props }: React.ComponentProps<"nav"> & ChildrenProps & CommonProps<HTMLElement>) {
   return (
     <nav
       data-slot="sidebar-nav"
@@ -65,7 +66,7 @@ function SidebarNav({ className, ...props }: React.ComponentProps<"nav">) {
 /**
  * @import import { SidebarNavLabel } from "@/components/ui/sidebar-nav"
  */
-function SidebarNavLabel({ className, ...props }: React.ComponentProps<"div">) {
+function SidebarNavLabel({ className, ...props }: React.ComponentProps<"div"> & ChildrenProps & CommonProps<HTMLDivElement>) {
   return (
     <div
       data-slot="sidebar-nav-label"
@@ -80,7 +81,8 @@ type SidebarNavItemProps = React.ComponentProps<"a"> & {
   active?: boolean
   /** Render the child element (for example a router link) with item styles. */
   asChild?: boolean
-}
+} & AnchorElementProps &
+  ChildrenProps & CommonProps<HTMLAnchorElement>
 
 /**
  * @import import { SidebarNavItem } from "@/components/ui/sidebar-nav"

@@ -2,6 +2,7 @@ import * as React from "react"
 import { Select as SelectPrimitive } from "radix-ui"
 import { CaretDownIcon, CheckIcon } from "@phosphor-icons/react"
 
+import type { ChildrenProps, CommonProps, RadixAsChildProps, RadixDismissProps, RadixPopperProps } from "@/lib/html-props"
 import { cn } from "@/lib/utils"
 
 /*
@@ -28,6 +29,28 @@ import { cn } from "@/lib/utils"
  *   dark mode, per the reference). 8px gap: the reference used 6px,
  *   which is off the spacing scale.
  */
+/** Radix Select root props that Select and FilterSelect pass through. */
+type SelectRootProps = {
+  /** Whether the menu is open, when you control it. Use with onOpenChange. */
+  open?: boolean
+  /** Whether the menu starts open, when you don't control it. */
+  defaultOpen?: boolean
+  /** Called with the new open state. */
+  onOpenChange?: (open: boolean) => void
+  /** Dims the trigger and blocks changes. */
+  disabled?: boolean
+  /** Marks the select as required for form submission. */
+  required?: boolean
+  /** Form field name. */
+  name?: string
+  /** Browser autofill hint. */
+  autoComplete?: string
+  /** Id of the form it belongs to, when it sits outside that form. */
+  form?: string
+  /** Reading direction, "ltr" or "rtl". */
+  dir?: "ltr" | "rtl"
+}
+
 /**
  * Lets the person pick one option from a menu. The Selection controls page
  * also covers Checkbox, RadioGroup and Switch.
@@ -35,7 +58,9 @@ import { cn } from "@/lib/utils"
  * @import import { Select } from "@/components/ui/select"
  */
 function Select(
-  props: Omit<React.ComponentProps<typeof SelectPrimitive.Root>, "value" | "defaultValue" | "onValueChange"> & {
+  props: Omit<React.ComponentProps<typeof SelectPrimitive.Root>, "value" | "defaultValue" | "onValueChange"> &
+    SelectRootProps &
+    ChildrenProps & {
     /** The selected item's value, when you control the select. Use with onValueChange. */
     value?: string
     /** The item selected at first, when you don't control the select. */
@@ -50,7 +75,13 @@ function Select(
 /**
  * @import import { SelectValue } from "@/components/ui/select"
  */
-function SelectValue(props: React.ComponentProps<typeof SelectPrimitive.Value>) {
+function SelectValue(
+  props: React.ComponentProps<typeof SelectPrimitive.Value> & {
+    /** Shown while nothing is selected. */
+    placeholder?: React.ReactNode
+  } & RadixAsChildProps &
+    ChildrenProps & CommonProps<HTMLSpanElement>
+) {
   return <SelectPrimitive.Value data-slot="select-value" {...props} />
 }
 
@@ -61,7 +92,11 @@ function SelectTrigger({
   className,
   children,
   ...props
-}: React.ComponentProps<typeof SelectPrimitive.Trigger>) {
+}: React.ComponentProps<typeof SelectPrimitive.Trigger> & {
+  /** Dims the trigger and blocks opening. */
+  disabled?: boolean
+} & RadixAsChildProps &
+  ChildrenProps & CommonProps<HTMLButtonElement>) {
   return (
     <SelectPrimitive.Trigger
       data-slot="select-trigger"
@@ -99,7 +134,14 @@ function SelectContent({
   position?: "popper" | "item-aligned"
   /** Pixels between the trigger and the menu. Defaults to 4. */
   sideOffset?: number
-}) {
+  /** Called when the menu closes and returns focus to the trigger. Call event.preventDefault() to manage focus yourself. */
+  onCloseAutoFocus?: (event: Event) => void
+  /** Keeps the menu mounted while closed, for animation libraries. */
+  forceMount?: true
+} & RadixPopperProps &
+  RadixDismissProps &
+  RadixAsChildProps &
+  ChildrenProps & CommonProps<HTMLDivElement>) {
   return (
     <SelectPrimitive.Portal>
       <SelectPrimitive.Content
@@ -123,7 +165,19 @@ function SelectContent({
 /**
  * @import import { SelectItem } from "@/components/ui/select"
  */
-function SelectItem({ className, children, ...props }: React.ComponentProps<typeof SelectPrimitive.Item>) {
+function SelectItem({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<typeof SelectPrimitive.Item> & {
+  /** Required. The value Select reports when this item is picked. Must not be empty. */
+  value: string
+  /** Dims this item and blocks picking it. */
+  disabled?: boolean
+  /** Text used for type-ahead, when the children aren't plain text. */
+  textValue?: string
+} & RadixAsChildProps &
+  ChildrenProps & CommonProps<HTMLDivElement>) {
   return (
     <SelectPrimitive.Item
       data-slot="select-item"
@@ -144,3 +198,4 @@ function SelectItem({ className, children, ...props }: React.ComponentProps<type
 }
 
 export { Select, SelectContent, SelectItem, SelectTrigger, SelectValue }
+export type { SelectRootProps }

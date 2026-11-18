@@ -1,6 +1,7 @@
 import * as React from "react"
 import { cva } from "class-variance-authority"
 
+import type { ChildrenProps, CommonProps } from "@/lib/html-props"
 import { cn } from "@/lib/utils"
 
 /*
@@ -44,7 +45,7 @@ const badgeClasses =
  *
  * @import import { Badge } from "@/components/ui/badge"
  */
-function Badge({ className, ...props }: React.ComponentProps<"span">) {
+function Badge({ className, ...props }: React.ComponentProps<"span"> & ChildrenProps & CommonProps<HTMLSpanElement>) {
   return <span data-slot="badge" className={cn(badgeClasses, className)} {...props} />
 }
 
@@ -85,7 +86,7 @@ type StatusChipProps = React.ComponentProps<"span"> & {
    * Always name the state in the chip's text, too.
    */
   variant?: StatusChipVariant
-}
+} & ChildrenProps & CommonProps<HTMLSpanElement>
 
 /**
  * @import import { StatusChip } from "@/components/ui/badge"

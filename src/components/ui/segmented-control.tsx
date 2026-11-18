@@ -1,6 +1,7 @@
 import * as React from "react"
 import { ToggleGroup as ToggleGroupPrimitive } from "radix-ui"
 
+import type { ChildrenProps, CommonProps, RadixAsChildProps } from "@/lib/html-props"
 import { cn } from "@/lib/utils"
 
 /*
@@ -27,10 +28,24 @@ type SegmentedControlProps = Omit<
   React.ComponentProps<typeof ToggleGroupPrimitive.Root>,
   "type" | "value" | "defaultValue" | "onValueChange"
 > & {
+  /** The selected option's value, when you control it. Use with onValueChange. */
   value?: string
+  /** The option selected at first, when you don't control it. */
   defaultValue?: string
+  /** Called with the new option's value. One option always stays selected. */
   onValueChange?: (value: string) => void
-}
+  /** Dims every option and blocks changes. */
+  disabled?: boolean
+  /** Whether arrow keys move between options. Defaults to true. */
+  rovingFocus?: boolean
+  /** Whether arrow keys wrap from the last option to the first. Defaults to true. */
+  loop?: boolean
+  /** "horizontal" or "vertical": which arrow keys move between options. */
+  orientation?: "horizontal" | "vertical"
+  /** Reading direction, "ltr" or "rtl". */
+  dir?: "ltr" | "rtl"
+} & RadixAsChildProps &
+  ChildrenProps & CommonProps<HTMLDivElement>
 
 /**
  * Switches between a few views of the same content, such as chart types. Use
@@ -73,7 +88,13 @@ function SegmentedControl({
 function SegmentedControlOption({
   className,
   ...props
-}: React.ComponentProps<typeof ToggleGroupPrimitive.Item>) {
+}: React.ComponentProps<typeof ToggleGroupPrimitive.Item> & {
+  /** Required. The value the control reports when this option is picked. */
+  value: string
+  /** Dims this option and blocks picking it. */
+  disabled?: boolean
+} & RadixAsChildProps &
+  ChildrenProps & CommonProps<HTMLButtonElement>) {
   return (
     <ToggleGroupPrimitive.Item
       data-slot="segmented-control-option"

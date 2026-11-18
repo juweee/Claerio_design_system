@@ -1,5 +1,6 @@
 import * as React from "react"
 
+import type { ChildrenProps, CommonProps } from "@/lib/html-props"
 import { cn } from "@/lib/utils"
 
 /*
@@ -37,7 +38,7 @@ import { cn } from "@/lib/utils"
  *
  * @import import { EmptyState } from "@/components/ui/empty-state"
  */
-function EmptyState({ className, ...props }: React.ComponentProps<"div">) {
+function EmptyState({ className, ...props }: React.ComponentProps<"div"> & ChildrenProps & CommonProps<HTMLDivElement>) {
   return (
     <div
       data-slot="empty-state"
@@ -54,7 +55,7 @@ function EmptyState({ className, ...props }: React.ComponentProps<"div">) {
  *
  * @import import { EmptyStateTitle } from "@/components/ui/empty-state"
  */
-function EmptyStateTitle({ className, ...props }: React.ComponentProps<"p">) {
+function EmptyStateTitle({ className, ...props }: React.ComponentProps<"p"> & ChildrenProps & CommonProps<HTMLParagraphElement>) {
   return <p data-slot="empty-state-title" className={cn("text-heading-3 text-foreground", className)} {...props} />
 }
 
@@ -64,7 +65,7 @@ function EmptyStateTitle({ className, ...props }: React.ComponentProps<"p">) {
  *
  * @import import { EmptyStateDescription } from "@/components/ui/empty-state"
  */
-function EmptyStateDescription({ className, ...props }: React.ComponentProps<"p">) {
+function EmptyStateDescription({ className, ...props }: React.ComponentProps<"p"> & ChildrenProps & CommonProps<HTMLParagraphElement>) {
   return (
     <p data-slot="empty-state-description" className={cn("text-body text-muted-foreground", className)} {...props} />
   )
@@ -77,7 +78,7 @@ function EmptyStateDescription({ className, ...props }: React.ComponentProps<"p"
  *
  * @import import { EmptyStateActions } from "@/components/ui/empty-state"
  */
-function EmptyStateActions({ className, ...props }: React.ComponentProps<"div">) {
+function EmptyStateActions({ className, ...props }: React.ComponentProps<"div"> & ChildrenProps & CommonProps<HTMLDivElement>) {
   return (
     <div
       data-slot="empty-state-actions"

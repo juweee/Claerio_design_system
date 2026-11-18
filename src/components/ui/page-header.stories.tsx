@@ -29,27 +29,21 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-function HeaderActions() {
-  return (
-    <PageHeaderActions>
-      <span className="text-body-small whitespace-nowrap text-muted-foreground">Synced 12 minutes ago</span>
-      <div className="flex items-center gap-2">
-        <Button variant="ghost" aria-label="Help" className="px-2 text-foreground dark:text-foreground">
-          <QuestionIcon aria-hidden />
-        </Button>
-        <Button variant="ghost" aria-label="Alerts" className="px-2 text-foreground dark:text-foreground">
-          <BellIcon aria-hidden />
-        </Button>
-      </div>
-    </PageHeaderActions>
-  )
-}
-
 function Header() {
   return (
     <PageHeader>
       <PageHeaderTitle>Activity</PageHeaderTitle>
-      <HeaderActions />
+      <PageHeaderActions>
+        <span className="text-body-small whitespace-nowrap text-muted-foreground">Synced 12 minutes ago</span>
+        <div className="flex items-center gap-2">
+          <Button variant="ghost" aria-label="Help" className="px-2 text-foreground dark:text-foreground">
+            <QuestionIcon aria-hidden />
+          </Button>
+          <Button variant="ghost" aria-label="Alerts" className="px-2 text-foreground dark:text-foreground">
+            <BellIcon aria-hidden />
+          </Button>
+        </div>
+      </PageHeaderActions>
     </PageHeader>
   )
 }
@@ -63,20 +57,20 @@ export const Default: Story = {
 
 /* ---------- App shell ---------- */
 
-const sections = [
-  { id: "home", label: "Dashboard", Icon: SquaresFourIcon },
-  { id: "activity", label: "Activity", Icon: PulseIcon },
-  { id: "coverage", label: "Coverage", Icon: ShieldCheckIcon },
-  { id: "reporting", label: "Reporting", Icon: ChartBarIcon },
-  { id: "advisor", label: "My ædvisor", Icon: SparkleIcon },
-]
-
 /* The whole page frame: rail, then a column of PageHeader, <main> and
    <footer>. The header and footer sit outside <main>, so they're the
    banner and contentinfo landmarks. The shell is at most
    --layout-max-width wide. The logo row is left out: use the provided
    logo files from the brand folder. */
 function AppShell() {
+  const sections = [
+    { id: "home", label: "Dashboard", Icon: SquaresFourIcon },
+    { id: "activity", label: "Activity", Icon: PulseIcon },
+    { id: "coverage", label: "Coverage", Icon: ShieldCheckIcon },
+    { id: "reporting", label: "Reporting", Icon: ChartBarIcon },
+    { id: "advisor", label: "My ædvisor", Icon: SparkleIcon },
+  ]
+
   return (
     <div className="mx-auto flex min-h-screen max-w-(--layout-max-width) bg-background text-foreground">
       <aside className="flex w-55 shrink-0 flex-col border-r border-sidebar-border bg-sidebar">
@@ -101,7 +95,17 @@ function AppShell() {
       <div className="flex min-w-0 flex-1 flex-col">
         <PageHeader>
           <PageHeaderTitle>Good afternoon, Ava</PageHeaderTitle>
-          <HeaderActions />
+          <PageHeaderActions>
+            <span className="text-body-small whitespace-nowrap text-muted-foreground">Synced 12 minutes ago</span>
+            <div className="flex items-center gap-2">
+              <Button variant="ghost" aria-label="Help" className="px-2 text-foreground dark:text-foreground">
+                <QuestionIcon aria-hidden />
+              </Button>
+              <Button variant="ghost" aria-label="Alerts" className="px-2 text-foreground dark:text-foreground">
+                <BellIcon aria-hidden />
+              </Button>
+            </div>
+          </PageHeaderActions>
         </PageHeader>
         <main className="flex flex-1 flex-col gap-6 p-6">
           <Banner variant="warning">

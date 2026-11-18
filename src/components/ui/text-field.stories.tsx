@@ -59,20 +59,20 @@ export const NoHelper: Story = {
 
 /* ---- Every state, light and dark. ---- */
 
-const states: { name: string; key: string; props: Partial<React.ComponentProps<typeof TextField>> }[] = [
-  { name: "Empty", key: "empty", props: {} },
-  { name: "Filled", key: "filled", props: { defaultValue: "CLA-48213" } },
-  { name: "Focus", key: "focus", props: { defaultValue: "CLA-48213" } },
-  { name: "Error", key: "error", props: { defaultValue: "48213", error: "Start the ID with CLA-" } },
-  {
-    name: "Error and focus",
-    key: "error-focus",
-    props: { defaultValue: "48213", error: "Start the ID with CLA-" },
-  },
-  { name: "Disabled", key: "disabled", props: { defaultValue: "CLA-48213", disabled: true } },
-]
-
 function StateGrid() {
+  const states: { name: string; key: string; props: Partial<React.ComponentProps<typeof TextField>> }[] = [
+    { name: "Empty", key: "empty", props: {} },
+    { name: "Filled", key: "filled", props: { defaultValue: "CLA-48213" } },
+    { name: "Focus", key: "focus", props: { defaultValue: "CLA-48213" } },
+    { name: "Error", key: "error", props: { defaultValue: "48213", error: "Start the ID with CLA-" } },
+    {
+      name: "Error and focus",
+      key: "error-focus",
+      props: { defaultValue: "48213", error: "Start the ID with CLA-" },
+    },
+    { name: "Disabled", key: "disabled", props: { defaultValue: "CLA-48213", disabled: true } },
+  ]
+
   return (
     <div className="grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-x-6 gap-y-8">
       {states.map((state) => (

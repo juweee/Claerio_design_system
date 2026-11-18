@@ -27,8 +27,6 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-const years = ["2026", "2025", "2024"]
-
 /* ---- Playground stories. These follow the toolbar light/dark switch. ---- */
 
 export const CheckboxStory: Story = {
@@ -91,11 +89,9 @@ export const SelectStory: Story = {
         <SelectValue />
       </SelectTrigger>
       <SelectContent>
-        {years.map((y) => (
-          <SelectItem key={y} value={y}>
-            {y}
-          </SelectItem>
-        ))}
+        <SelectItem value="2026">2026</SelectItem>
+        <SelectItem value="2025">2025</SelectItem>
+        <SelectItem value="2024">2024</SelectItem>
       </SelectContent>
     </Select>
   ),
@@ -103,28 +99,28 @@ export const SelectStory: Story = {
 
 /* ---- Every state, light and dark. ---- */
 
-const columns = ["Default", "Focus", "Disabled"] as const
-
-function StateRow({
-  label,
-  render,
-}: {
-  label: string
-  render: (props: { disabled: boolean }) => React.ReactNode
-}) {
-  return (
-    <>
-      <span className="text-label">{label}</span>
-      {columns.map((col) => (
-        <div key={col} className={`state-${col.toLowerCase()} flex items-center`}>
-          {render({ disabled: col === "Disabled" })}
-        </div>
-      ))}
-    </>
-  )
-}
-
 function StateMatrix() {
+  const columns = ["Default", "Focus", "Disabled"] as const
+
+  function StateRow({
+    label,
+    render,
+  }: {
+    label: string
+    render: (props: { disabled: boolean }) => React.ReactNode
+  }) {
+    return (
+      <>
+        <span className="text-label">{label}</span>
+        {columns.map((col) => (
+          <div key={col} className={`state-${col.toLowerCase()} flex items-center`}>
+            {render({ disabled: col === "Disabled" })}
+          </div>
+        ))}
+      </>
+    )
+  }
+
   return (
     <div className="grid grid-cols-[160px_repeat(3,minmax(160px,max-content))] items-center gap-x-8 gap-y-5">
       <span />
@@ -208,11 +204,9 @@ function StateMatrix() {
               <SelectValue placeholder="Choose a year" />
             </SelectTrigger>
             <SelectContent>
-              {years.map((y) => (
-                <SelectItem key={y} value={y}>
-                  {y}
-                </SelectItem>
-              ))}
+              <SelectItem value="2026">2026</SelectItem>
+              <SelectItem value="2025">2025</SelectItem>
+              <SelectItem value="2024">2024</SelectItem>
             </SelectContent>
           </Select>
         )}
@@ -225,11 +219,9 @@ function StateMatrix() {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              {years.map((y) => (
-                <SelectItem key={y} value={y}>
-                  {y}
-                </SelectItem>
-              ))}
+              <SelectItem value="2026">2026</SelectItem>
+              <SelectItem value="2025">2025</SelectItem>
+              <SelectItem value="2024">2024</SelectItem>
             </SelectContent>
           </Select>
         )}
@@ -268,11 +260,9 @@ function OpenMenu() {
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
-          {years.map((y) => (
-            <SelectItem key={y} value={y}>
-              {y}
-            </SelectItem>
-          ))}
+          <SelectItem value="2026">2026</SelectItem>
+          <SelectItem value="2025">2025</SelectItem>
+          <SelectItem value="2024">2024</SelectItem>
         </SelectContent>
       </Select>
     </div>
@@ -335,11 +325,9 @@ function ReferenceRow() {
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
-          {years.map((y) => (
-            <SelectItem key={y} value={y}>
-              {y}
-            </SelectItem>
-          ))}
+          <SelectItem value="2026">2026</SelectItem>
+          <SelectItem value="2025">2025</SelectItem>
+          <SelectItem value="2024">2024</SelectItem>
         </SelectContent>
       </Select>
     </div>

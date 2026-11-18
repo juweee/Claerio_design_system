@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Slot, Tabs as TabsPrimitive } from "radix-ui"
 
+import type { AnchorElementProps, ChildrenProps, CommonProps, RadixAsChildProps } from "@/lib/html-props"
 import { cn } from "@/lib/utils"
 
 import { navFocus } from "./sidebar-nav"
@@ -38,7 +39,7 @@ const tabItem = [
 /**
  * @import import { NavTabs } from "@/components/ui/tabs"
  */
-function NavTabs({ className, ...props }: React.ComponentProps<"nav">) {
+function NavTabs({ className, ...props }: React.ComponentProps<"nav"> & ChildrenProps & CommonProps<HTMLElement>) {
   return <nav data-slot="nav-tabs" className={cn(tabRow, className)} {...props} />
 }
 
@@ -47,7 +48,8 @@ type NavTabsItemProps = React.ComponentProps<"a"> & {
   active?: boolean
   /** Render the child element (for example a router link) with tab styles. */
   asChild?: boolean
-}
+} & AnchorElementProps &
+  ChildrenProps & CommonProps<HTMLAnchorElement>
 
 /**
  * @import import { NavTabsItem } from "@/components/ui/tabs"
@@ -75,21 +77,53 @@ function NavTabsItem({ className, active, asChild = false, ...props }: NavTabsIt
 /**
  * @import import { Tabs } from "@/components/ui/tabs"
  */
-function Tabs(props: React.ComponentProps<typeof TabsPrimitive.Root>) {
+function Tabs(
+  props: React.ComponentProps<typeof TabsPrimitive.Root> & {
+    /** The selected tab's value, when you control the tabs. Use with onValueChange. */
+    value?: string
+    /** The tab selected at first, when you don't control the tabs. */
+    defaultValue?: string
+    /** Called with the new tab's value. */
+    onValueChange?: (value: string) => void
+    /** "automatic" (the default) shows a panel when its tab gets focus. "manual" waits for Enter or a click. */
+    activationMode?: "automatic" | "manual"
+    /** "horizontal" or "vertical": which arrow keys move between tabs. */
+    orientation?: "horizontal" | "vertical"
+    /** Reading direction, "ltr" or "rtl". */
+    dir?: "ltr" | "rtl"
+  } & RadixAsChildProps &
+    ChildrenProps & CommonProps<HTMLDivElement>
+) {
   return <TabsPrimitive.Root data-slot="tabs" {...props} />
 }
 
 /**
  * @import import { TabsList } from "@/components/ui/tabs"
  */
-function TabsList({ className, ...props }: React.ComponentProps<typeof TabsPrimitive.List>) {
+function TabsList({
+  className,
+  ...props
+}: React.ComponentProps<typeof TabsPrimitive.List> & {
+  /** Whether arrow keys wrap from the last tab to the first. Defaults to true. */
+  loop?: boolean
+} & RadixAsChildProps &
+  ChildrenProps & CommonProps<HTMLDivElement>) {
   return <TabsPrimitive.List data-slot="tabs-list" className={cn(tabRow, className)} {...props} />
 }
 
 /**
  * @import import { TabsTrigger } from "@/components/ui/tabs"
  */
-function TabsTrigger({ className, ...props }: React.ComponentProps<typeof TabsPrimitive.Trigger>) {
+function TabsTrigger({
+  className,
+  ...props
+}: React.ComponentProps<typeof TabsPrimitive.Trigger> & {
+  /** Required. Matches the value of the TabsContent this tab shows. */
+  value: string
+  /** Dims the tab and blocks selecting it. */
+  disabled?: boolean
+} & RadixAsChildProps &
+  ChildrenProps & CommonProps<HTMLButtonElement>) {
   return (
     <TabsPrimitive.Trigger
       data-slot="tabs-trigger"
@@ -109,7 +143,16 @@ function TabsTrigger({ className, ...props }: React.ComponentProps<typeof TabsPr
 /**
  * @import import { TabsContent } from "@/components/ui/tabs"
  */
-function TabsContent({ className, ...props }: React.ComponentProps<typeof TabsPrimitive.Content>) {
+function TabsContent({
+  className,
+  ...props
+}: React.ComponentProps<typeof TabsPrimitive.Content> & {
+  /** Required. Matches the value of the TabsTrigger that shows this panel. */
+  value: string
+  /** Keeps the panel mounted while hidden, for animation libraries. */
+  forceMount?: true
+} & RadixAsChildProps &
+  ChildrenProps & CommonProps<HTMLDivElement>) {
   return (
     <TabsPrimitive.Content
       data-slot="tabs-content"

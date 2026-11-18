@@ -2,6 +2,7 @@ import * as React from "react"
 import { Checkbox as CheckboxPrimitive } from "radix-ui"
 import { CheckIcon, MinusIcon } from "@phosphor-icons/react"
 
+import type { CommonProps, RadixAsChildProps } from "@/lib/html-props"
 import { cn } from "@/lib/utils"
 
 /*
@@ -22,10 +23,35 @@ import { cn } from "@/lib/utils"
  * - Disabled: 50% opacity, not-allowed cursor.
  * - Always pair with a text label.
  */
+type CheckboxRootProps = {
+  /** Whether it's checked, when you control it: true, false or "indeterminate". Use with onCheckedChange. */
+  checked?: boolean | "indeterminate"
+  /** The state at first, when you don't control it. */
+  defaultChecked?: boolean | "indeterminate"
+  /** Called with the new state when the person checks or unchecks it. */
+  onCheckedChange?(checked: boolean | "indeterminate"): void
+  /** Dims the checkbox and blocks changes. */
+  disabled?: boolean
+  /** Marks it as required for form submission. */
+  required?: boolean
+  /** Form field name. */
+  name?: string
+  /** Form field value sent when checked. Defaults to "on". */
+  value?: string | readonly string[] | number
+  /** Id of the form it belongs to, when it sits outside that form. */
+  form?: string
+}
+
 /**
  * @import import { Checkbox } from "@/components/ui/checkbox"
  */
-function Checkbox({ className, ...props }: React.ComponentProps<typeof CheckboxPrimitive.Root>) {
+function Checkbox({
+  className,
+  ...props
+}: React.ComponentProps<typeof CheckboxPrimitive.Root> &
+  CheckboxRootProps &
+  RadixAsChildProps &
+  CommonProps<HTMLButtonElement>) {
   return (
     <CheckboxPrimitive.Root
       data-slot="checkbox"

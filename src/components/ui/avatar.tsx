@@ -1,6 +1,7 @@
 import * as React from "react"
 import { cva } from "class-variance-authority"
 
+import type { CommonProps } from "@/lib/html-props"
 import { cn } from "@/lib/utils"
 
 /*
@@ -41,7 +42,7 @@ type AvatarProps = Omit<React.ComponentProps<"span">, "children"> &
     initials: string
     /** The person's full name, read by screen readers. */
     name: string
-  }
+  } & CommonProps<HTMLSpanElement>
 
 /**
  * Shows a person as initials in a circle, in 3 sizes. Pass the full name as

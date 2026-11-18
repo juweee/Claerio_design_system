@@ -2,6 +2,7 @@ import * as React from "react"
 import { cva } from "class-variance-authority"
 import { Slot } from "radix-ui"
 
+import type { ButtonElementProps, ChildrenProps, CommonProps } from "@/lib/html-props"
 import { cn } from "@/lib/utils"
 
 /*
@@ -76,7 +77,8 @@ type ButtonProps = React.ComponentProps<"button"> & {
     variant?: ButtonVariant
     /** Render the child element (for example a router link) with button styles. */
     asChild?: boolean
-  }
+  } & ButtonElementProps &
+  ChildrenProps & CommonProps<HTMLButtonElement>
 
 /**
  * Triggers an action. Comes in 5 variants: primary for the main action,

@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Dialog as DialogPrimitive } from "radix-ui"
 
+import type { ButtonElementProps, ChildrenProps, CommonProps, RadixAsChildProps, RadixDismissProps } from "@/lib/html-props"
 import { cn } from "@/lib/utils"
 
 /*
@@ -29,7 +30,9 @@ type ModalProps = Omit<React.ComponentProps<typeof DialogPrimitive.Root>, "open"
   defaultOpen?: boolean
   /** Called with the new open state when the modal opens or closes. */
   onOpenChange?: (open: boolean) => void
-}
+  /** Blocks the rest of the page while open. Defaults to true. Keep it on. */
+  modal?: boolean
+} & ChildrenProps
 
 /**
  * The root of a modal. Wraps a ModalTrigger and a ModalContent and holds
@@ -51,7 +54,8 @@ function ModalTrigger(
   props: Omit<React.ComponentProps<typeof DialogPrimitive.Trigger>, "asChild"> & {
     /** Use the child element, such as a Button, as the trigger instead of a plain button. */
     asChild?: boolean
-  }
+  } & ButtonElementProps &
+    ChildrenProps & CommonProps<HTMLButtonElement>
 ) {
   return <DialogPrimitive.Trigger {...props} />
 }
@@ -65,7 +69,8 @@ function ModalClose(
   props: Omit<React.ComponentProps<typeof DialogPrimitive.Close>, "asChild"> & {
     /** Use the child element, such as a Button, as the close control instead of a plain button. */
     asChild?: boolean
-  }
+  } & ButtonElementProps &
+    ChildrenProps & CommonProps<HTMLButtonElement>
 ) {
   return <DialogPrimitive.Close {...props} />
 }
@@ -77,7 +82,26 @@ function ModalClose(
  *
  * @import import { ModalContent } from "@/components/ui/modal"
  */
-function ModalContent({ className, children, ...props }: React.ComponentProps<typeof DialogPrimitive.Content>) {
+function ModalContent({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<typeof DialogPrimitive.Content> & {
+  /** Called when the modal opens and moves focus inside. Call event.preventDefault() to manage focus yourself. */
+  onOpenAutoFocus?: (event: Event) => void
+  /** Called when the modal closes and returns focus to the trigger. Call event.preventDefault() to manage focus yourself. */
+  onCloseAutoFocus?: (event: Event) => void
+  /** Called on any pointer down or focus outside. Call event.preventDefault() to keep it open. */
+  onInteractOutside?: (
+    event: CustomEvent<{ originalEvent: PointerEvent }> | CustomEvent<{ originalEvent: FocusEvent }>
+  ) => void
+  /** Called when focus moves outside. Call event.preventDefault() to keep it open. */
+  onFocusOutside?: (event: CustomEvent<{ originalEvent: FocusEvent }>) => void
+  /** Keeps the content mounted while closed, for animation libraries. */
+  forceMount?: true
+} & RadixDismissProps &
+  RadixAsChildProps &
+  ChildrenProps & CommonProps<HTMLDivElement>) {
   return (
     <DialogPrimitive.Portal>
       <DialogPrimitive.Overlay data-slot="modal-overlay" className="fixed inset-0 z-50 bg-overlay" />
@@ -100,14 +124,20 @@ function ModalContent({ className, children, ...props }: React.ComponentProps<ty
 /**
  * @import import { ModalTitle } from "@/components/ui/modal"
  */
-function ModalTitle({ className, ...props }: React.ComponentProps<typeof DialogPrimitive.Title>) {
+function ModalTitle({
+  className,
+  ...props
+}: React.ComponentProps<typeof DialogPrimitive.Title> & RadixAsChildProps & ChildrenProps & CommonProps<HTMLHeadingElement>) {
   return <DialogPrimitive.Title data-slot="modal-title" className={cn("text-heading-2", className)} {...props} />
 }
 
 /**
  * @import import { ModalDescription } from "@/components/ui/modal"
  */
-function ModalDescription({ className, ...props }: React.ComponentProps<typeof DialogPrimitive.Description>) {
+function ModalDescription({
+  className,
+  ...props
+}: React.ComponentProps<typeof DialogPrimitive.Description> & RadixAsChildProps & ChildrenProps & CommonProps<HTMLParagraphElement>) {
   return (
     <DialogPrimitive.Description
       data-slot="modal-description"
@@ -120,7 +150,7 @@ function ModalDescription({ className, ...props }: React.ComponentProps<typeof D
 /**
  * @import import { ModalFooter } from "@/components/ui/modal"
  */
-function ModalFooter({ className, ...props }: React.ComponentProps<"div">) {
+function ModalFooter({ className, ...props }: React.ComponentProps<"div"> & ChildrenProps & CommonProps<HTMLDivElement>) {
   return <div data-slot="modal-footer" className={cn("mt-4 flex justify-end gap-2", className)} {...props} />
 }
 

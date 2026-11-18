@@ -1,5 +1,6 @@
 import * as React from "react"
 
+import type { ChildrenProps, CommonProps } from "@/lib/html-props"
 import { cn } from "@/lib/utils"
 
 /*
@@ -30,7 +31,7 @@ import { cn } from "@/lib/utils"
  *
  * @import import { PageHeader } from "@/components/ui/page-header"
  */
-function PageHeader({ className, ...props }: React.ComponentProps<"header">) {
+function PageHeader({ className, ...props }: React.ComponentProps<"header"> & ChildrenProps & CommonProps<HTMLElement>) {
   return (
     <header
       data-slot="page-header"
@@ -50,7 +51,7 @@ function PageHeader({ className, ...props }: React.ComponentProps<"header">) {
  *
  * @import import { PageHeaderTitle } from "@/components/ui/page-header"
  */
-function PageHeaderTitle({ className, ...props }: React.ComponentProps<"h1">) {
+function PageHeaderTitle({ className, ...props }: React.ComponentProps<"h1"> & ChildrenProps & CommonProps<HTMLHeadingElement>) {
   return (
     <h1
       data-slot="page-header-title"
@@ -67,7 +68,7 @@ function PageHeaderTitle({ className, ...props }: React.ComponentProps<"h1">) {
  *
  * @import import { PageHeaderActions } from "@/components/ui/page-header"
  */
-function PageHeaderActions({ className, ...props }: React.ComponentProps<"div">) {
+function PageHeaderActions({ className, ...props }: React.ComponentProps<"div"> & ChildrenProps & CommonProps<HTMLDivElement>) {
   return <div data-slot="page-header-actions" className={cn("flex shrink-0 items-center gap-4", className)} {...props} />
 }
 

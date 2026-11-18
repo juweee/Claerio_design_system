@@ -19,24 +19,20 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-const statusOptions = [
-  { value: "all", label: "All" },
-  { value: "pending", label: "Pending" },
-  { value: "paid", label: "Paid" },
-  { value: "denied", label: "Denied" },
-]
-
-const claims = [
-  { id: "CLA-48213", provider: "Dr. Okafor", status: "pending", amount: "$240.00" },
-  { id: "CLA-47911", provider: "Valley Urgent Care", status: "paid", amount: "$385.50" },
-  { id: "CLA-46987", provider: "Westside Imaging", status: "pending", amount: "$1,240.00" },
-]
-
 function FilteredResult() {
   return (
     <Card>
       <FilterRow>
-        <FilterSelect label="Status:" defaultValue="denied" options={statusOptions} />
+        <FilterSelect
+          label="Status:"
+          defaultValue="denied"
+          options={[
+            { value: "all", label: "All" },
+            { value: "pending", label: "Pending" },
+            { value: "paid", label: "Paid" },
+            { value: "denied", label: "Denied" },
+          ]}
+        />
       </FilterRow>
       <EmptyState>
         <EmptyStateTitle>No denied claims</EmptyStateTitle>
@@ -90,6 +86,19 @@ export const Chart: Story = {
 /* The filter and the empty state working together: the table is replaced
    while nothing matches, and Clear filters brings the rows back. */
 function ClaimsWithFilter() {
+  const statusOptions = [
+    { value: "all", label: "All" },
+    { value: "pending", label: "Pending" },
+    { value: "paid", label: "Paid" },
+    { value: "denied", label: "Denied" },
+  ]
+
+  const claims = [
+    { id: "CLA-48213", provider: "Dr. Okafor", status: "pending", amount: "$240.00" },
+    { id: "CLA-47911", provider: "Valley Urgent Care", status: "paid", amount: "$385.50" },
+    { id: "CLA-46987", provider: "Westside Imaging", status: "pending", amount: "$1,240.00" },
+  ]
+
   const [status, setStatus] = React.useState("denied")
   const rows = status === "all" ? claims : claims.filter((c) => c.status === status)
   return (
@@ -151,7 +160,8 @@ export const ClearFilters: Story = {
     await step("Clear filters shows every claim", async () => {
       await userEvent.click(canvas.getByRole("button", { name: "Clear filters" }))
       await expect(canvas.getByRole("table", { name: "Claims" })).toBeInTheDocument()
-      await expect(canvas.getAllByRole("row")).toHaveLength(claims.length + 1)
+      // 3 claims plus the header row.
+      await expect(canvas.getAllByRole("row")).toHaveLength(4)
       await expect(canvas.queryByRole("status")).toBeNull()
     })
   },
