@@ -344,3 +344,26 @@ Earlier entries that mention a spec refer to these retired files.
   nobody can reach it. Every other rule still runs on these stories.
 - Rule for later exemptions: turn off a single rule on a specific story,
   with a comment saying why, never globally.
+
+## 2026-11-18: component documentation conventions
+- Every exported component has a JSDoc `@import` tag with its real path,
+  such as `@import import { Button } from "@/components/ui/button"`.
+  Storybook builds each snippet's import line from these tags. Without
+  one, it falls back to the package name, `claerio-design-system`, which
+  isn't an installable package.
+- Radix parts that were plain aliases (`Modal`, `ModalTrigger`,
+  `ModalClose`, `ToastProvider`, `Tooltip`, `TooltipProvider`,
+  `TooltipTrigger`) are now thin function components that pass every
+  prop through. Same rendered HTML; the docs tooling can now read them.
+- Variant props use explicit string unions (such as `ButtonVariant`),
+  checked against the cva variants with `satisfies`. The docs tooling
+  can't read `VariantProps`, so variants showed as `any`.
+- Props that come from Radix (such as `value` and `onValueChange`) are
+  declared again with a description where people need them, because the
+  docs tooling can't follow imported types.
+- Story files that cover several parts set `component` and
+  `subcomponents` on the meta, so every part's props are documented.
+- Stories don't hide code behind a wrapper. `render` points to a named
+  function, and ModePanels goes in a decorator (`withModePanels`), so
+  the snippet shows the real composition.
+- Design questions found while documenting are listed in GAPS.md.

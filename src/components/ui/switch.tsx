@@ -20,6 +20,9 @@ import { cn } from "@/lib/utils"
  * - Disabled: 50% opacity, not-allowed cursor.
  * - Always pair with a text label.
  */
+/**
+ * @import import { Switch } from "@/components/ui/switch"
+ */
 function Switch({ className, ...props }: React.ComponentProps<typeof SwitchPrimitive.Root>) {
   return (
     <SwitchPrimitive.Root

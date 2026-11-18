@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
 
-import { ModePanels, modePanelParameters } from "@/foundations/mode-panels"
+import { ModePanels, modePanelParameters, withModePanels } from "@/foundations/mode-panels"
 
 import { Banner, BannerAction, BannerBar, BannerDescription, BannerTitle } from "./banner"
 
@@ -130,11 +130,8 @@ export const AllVariantsStory: Story = {
       focusVisible: [".state-focus a", ".state-focus button"],
     },
   },
-  render: () => (
-    <ModePanels>
-      <AllVariants />
-    </ModePanels>
-  ),
+  decorators: [withModePanels()],
+  render: AllVariants,
 }
 
 /* ---- Same layout as the reference preview.html, for comparison. ---- */

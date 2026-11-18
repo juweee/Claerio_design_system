@@ -31,6 +31,13 @@ import { cn } from "@/lib/utils"
  * Shows rows of data, such as claims, in a real HTML table. No zebra
  * striping: rows highlight on hover. Sortable headers and clickable rows
  * work with the keyboard.
+ *
+ * Build it from parts: Table > TableHeader > a <tr> of TableHead cells,
+ * then TableBody > TableRow > TableCell. Put the table on a Card. For
+ * clickable rows, give each TableRow an onClick and end it with a
+ * TableChevronCell, and end the header row with a TableChevronHead.
+ *
+ * @import import { Table } from "@/components/ui/table"
  */
 function Table({ className, ...props }: React.ComponentProps<"table">) {
   return (
@@ -42,10 +49,21 @@ function Table({ className, ...props }: React.ComponentProps<"table">) {
   )
 }
 
+/**
+ * Holds the header row. Put one plain <tr> inside it, filled with TableHead
+ * cells.
+ *
+ * @import import { TableHeader } from "@/components/ui/table"
+ */
 function TableHeader(props: React.ComponentProps<"thead">) {
   return <thead data-slot="table-header" {...props} />
 }
 
+/**
+ * Holds the data rows (TableRow). The last row has no bottom border.
+ *
+ * @import import { TableBody } from "@/components/ui/table"
+ */
 function TableBody({ className, ...props }: React.ComponentProps<"tbody">) {
   return (
     <tbody
@@ -57,10 +75,26 @@ function TableBody({ className, ...props }: React.ComponentProps<"tbody">) {
 }
 
 type TableRowProps = React.ComponentProps<"tr"> & {
-  /** Briefly marks a just-created or just-updated row. */
+  /**
+   * Makes the row clickable, such as to open a claim. Also adds the
+   * pointer, hover color, Tab focus and Enter or Space to open.
+   */
+  onClick?: React.MouseEventHandler<HTMLTableRowElement>
+  /**
+   * Briefly marks a just-created or just-updated row with --accent. Remove
+   * it after a few seconds or on the first interaction. Pairs with a
+   * success toast.
+   */
   highlighted?: boolean
 }
 
+/**
+ * One data row. Give it an onClick to make the whole row clickable: it
+ * then gets a pointer, the --accent hover, Tab focus, and opens with Enter
+ * or Space. Clickable rows need a TableChevronCell as their last cell.
+ *
+ * @import import { TableRow } from "@/components/ui/table"
+ */
 function TableRow({ className, onClick, onKeyDown, highlighted, ...props }: TableRowProps) {
   const clickable = Boolean(onClick)
   return (
@@ -96,10 +130,17 @@ type TableHeadProps = React.ComponentProps<"th"> & {
   numeric?: boolean
   /** Shows a sort button. Set when the column can be sorted. */
   onSort?: () => void
-  /** The current sort direction, when this is the sorted column. */
+  /** "ascending" or "descending" on the sorted column. Leave it out on every other column. */
   sorted?: SortDirection
 }
 
+/**
+ * A column header cell (<th scope="col">). Pass onSort to make it a sort
+ * button, and sorted on the column that is currently sorted, which also
+ * sets aria-sort. Use numeric on amount columns.
+ *
+ * @import import { TableHead } from "@/components/ui/table"
+ */
 function TableHead({ className, numeric, onSort, sorted, children, ...props }: TableHeadProps) {
   const Caret = sorted === "ascending" ? CaretUpIcon : sorted === "descending" ? CaretDownIcon : CaretUpDownIcon
   return (
@@ -142,6 +183,12 @@ type TableCellProps = React.ComponentProps<"td"> & {
   mono?: boolean
 }
 
+/**
+ * A data cell. Use mono for IDs and numeric for amounts. For a status,
+ * put a StatusChip inside.
+ *
+ * @import import { TableCell } from "@/components/ui/table"
+ */
 function TableCell({ className, numeric, mono, ...props }: TableCellProps) {
   return (
     <td
@@ -157,7 +204,11 @@ function TableCell({ className, numeric, mono, ...props }: TableCellProps) {
   )
 }
 
-/** The trailing › for clickable rows. Leave it out when rows are not clickable. */
+/**
+ * The trailing › for clickable rows. Leave it out when rows are not clickable.
+ *
+ * @import import { TableChevronCell } from "@/components/ui/table"
+ */
 function TableChevronCell({ className, ...props }: React.ComponentProps<"td">) {
   return (
     <td
@@ -174,7 +225,11 @@ function TableChevronCell({ className, ...props }: React.ComponentProps<"td">) {
   )
 }
 
-/** Header cell above the chevron column. */
+/**
+ * Header cell above the chevron column.
+ *
+ * @import import { TableChevronHead } from "@/components/ui/table"
+ */
 function TableChevronHead({ className, ...props }: React.ComponentProps<"th">) {
   return (
     <th

@@ -1,7 +1,7 @@
 import * as React from "react"
 import type { Meta, StoryObj } from "@storybook/react-vite"
 
-import { ModePanels, modePanelParameters } from "@/foundations/mode-panels"
+import { ModePanels, modePanelParameters, withModePanels } from "@/foundations/mode-panels"
 
 import { StatusChip } from "./badge"
 import { Card } from "./card"
@@ -18,7 +18,19 @@ import {
   type SortDirection,
 } from "./table"
 
-const meta = { title: "Components/Table" } satisfies Meta
+const meta = {
+  title: "Components/Table",
+  component: Table,
+  subcomponents: {
+    TableHeader,
+    TableBody,
+    TableRow,
+    TableHead,
+    TableCell,
+    TableChevronCell,
+    TableChevronHead,
+  },
+} satisfies Meta
 export default meta
 type Story = StoryObj<typeof meta>
 
@@ -42,13 +54,8 @@ const money = (n: number) => n.toLocaleString("en-US", { style: "currency", curr
 
 type SortKey = "date" | "amount"
 
-function ClaimsTable({
-  clickable = true,
-  rowClassName,
-}: {
-  clickable?: boolean
-  rowClassName?: (index: number) => string | undefined
-}) {
+/* Sortable, filterable, with clickable rows. */
+function ClaimsTable() {
   const [sort, setSort] = React.useState<{ key: SortKey; dir: SortDirection }>({ key: "date", dir: "descending" })
   const [status, setStatus] = React.useState("all")
   const [opened, setOpened] = React.useState<string | null>(null)
@@ -92,16 +99,15 @@ function ClaimsTable({
             <TableHead numeric onSort={() => toggle("amount")} sorted={sort.key === "amount" ? sort.dir : undefined}>
               Amount
             </TableHead>
-            {clickable ? <TableChevronHead /> : null}
+            <TableChevronHead />
           </tr>
         </TableHeader>
         <TableBody>
-          {rows.map((c, i) => (
+          {rows.map((c) => (
             <TableRow
               key={c.id}
-              highlighted={clickable && c.id === "CLA-48213" && !opened}
-              onClick={clickable ? () => setOpened(c.id) : undefined}
-              className={rowClassName?.(i)}
+              highlighted={c.id === "CLA-48213" && !opened}
+              onClick={() => setOpened(c.id)}
             >
               <TableCell mono>{c.id}</TableCell>
               <TableCell>{c.date}</TableCell>
@@ -110,16 +116,14 @@ function ClaimsTable({
                 <StatusChip variant={c.status.variant}>{c.status.label}</StatusChip>
               </TableCell>
               <TableCell numeric>{money(c.amount)}</TableCell>
-              {clickable ? <TableChevronCell /> : null}
+              <TableChevronCell />
             </TableRow>
           ))}
         </TableBody>
       </Table>
-      {clickable ? (
-        <p className="mt-3 text-body-small text-muted-foreground">
-          {opened ? `Opened ${opened}.` : "Click a row or press Enter on it. CLA-48213 shows the new-row highlight."}
-        </p>
-      ) : null}
+      <p className="mt-3 text-body-small text-muted-foreground">
+        {opened ? `Opened ${opened}.` : "Click a row or press Enter on it. CLA-48213 shows the new-row highlight."}
+      </p>
     </Card>
   )
 }
@@ -127,16 +131,24 @@ function ClaimsTable({
 /* ---- Playground. Follows the toolbar light/dark switch. Sort, filter and open rows. ---- */
 
 export const Interactive: Story = {
-  render: () => <ClaimsTable />,
+  render: ClaimsTable,
 }
 
 /* ---- Every state, light and dark. ---- */
 
+/**
+ * ClaimsTable is the full code shown in the Interactive story: sortable,
+ * filterable, with clickable rows.
+ */
 export const AllStates: Story = {
   name: "All states",
   parameters: {
     ...modePanelParameters,
-    pseudo: { hover: [".state-hover"], focusVisible: [".state-focus"] },
+    // Second row shows hover, third shows keyboard focus.
+    pseudo: {
+      hover: [".clickable-states tbody tr:nth-child(2)"],
+      focusVisible: [".clickable-states tbody tr:nth-child(3)"],
+    },
   },
   render: () => (
     <ModePanels layout="stacked">
@@ -144,9 +156,36 @@ export const AllStates: Story = {
         <span className="text-label text-muted-foreground">
           Clickable rows: first row new (highlighted), second hover, third keyboard focus
         </span>
-        <ClaimsTable rowClassName={(i) => (i === 1 ? "state-hover" : i === 2 ? "state-focus" : undefined)} />
-        <span className="text-label text-muted-foreground">Not clickable: no chevron column</span>
-        <ClaimsTable clickable={false} />
+        <div className="clickable-states">
+          <ClaimsTable />
+        </div>
+        <span className="text-label text-muted-foreground">Not clickable, not sortable: no chevron column</span>
+        <Card className="max-w-180">
+          <Table>
+            <TableHeader>
+              <tr>
+                <TableHead>Claim</TableHead>
+                <TableHead>Date</TableHead>
+                <TableHead>Provider</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead numeric>Amount</TableHead>
+              </tr>
+            </TableHeader>
+            <TableBody>
+              {claims.map((c) => (
+                <TableRow key={c.id}>
+                  <TableCell mono>{c.id}</TableCell>
+                  <TableCell>{c.date}</TableCell>
+                  <TableCell>{c.provider}</TableCell>
+                  <TableCell>
+                    <StatusChip variant={c.status.variant}>{c.status.label}</StatusChip>
+                  </TableCell>
+                  <TableCell numeric>{money(c.amount)}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </Card>
       </div>
     </ModePanels>
   ),
@@ -157,9 +196,6 @@ export const AllStates: Story = {
 export const ReferenceLayout: Story = {
   name: "Reference layout",
   parameters: modePanelParameters,
-  render: () => (
-    <ModePanels layout="stacked">
-      <ClaimsTable />
-    </ModePanels>
-  ),
+  decorators: [withModePanels("stacked")],
+  render: ClaimsTable,
 }

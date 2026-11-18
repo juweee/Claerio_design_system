@@ -1,11 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
 
-import { ModePanels, modePanelParameters } from "@/foundations/mode-panels"
+import { ModePanels, modePanelParameters, withModePanels } from "@/foundations/mode-panels"
 
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTerm, TooltipTrigger } from "./tooltip"
 
 const meta = {
   title: "Components/Tooltip",
+  component: Tooltip,
+  subcomponents: { TooltipProvider, TooltipTrigger, TooltipContent, TooltipTerm },
   decorators: [
     (Story) => (
       <TooltipProvider delayDuration={200}>
@@ -36,11 +38,8 @@ function OpenExample() {
 export const Open: Story = {
   name: "Open, both modes",
   parameters: modePanelParameters,
-  render: () => (
-    <ModePanels>
-      <OpenExample />
-    </ModePanels>
-  ),
+  decorators: [withModePanels()],
+  render: OpenExample,
 }
 
 export const Live: Story = {

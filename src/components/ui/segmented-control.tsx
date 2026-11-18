@@ -36,6 +36,8 @@ type SegmentedControlProps = Omit<
  * Switches between a few views of the same content, such as chart types. Use
  * it for view toggles, not navigation. It stays neutral and never uses
  * amber.
+ *
+ * @import import { SegmentedControl } from "@/components/ui/segmented-control"
  */
 function SegmentedControl({
   className,
@@ -65,6 +67,9 @@ function SegmentedControl({
   )
 }
 
+/**
+ * @import import { SegmentedControlOption } from "@/components/ui/segmented-control"
+ */
 function SegmentedControlOption({
   className,
   ...props

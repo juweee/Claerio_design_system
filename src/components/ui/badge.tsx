@@ -1,5 +1,5 @@
 import * as React from "react"
-import { cva, type VariantProps } from "class-variance-authority"
+import { cva } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
 
@@ -41,10 +41,15 @@ const badgeClasses =
  * A terracotta savings badge for a financial benefit, such as "Save $187".
  * For the state of a claim or plan, use StatusChip, which always names the
  * state in words.
+ *
+ * @import import { Badge } from "@/components/ui/badge"
  */
 function Badge({ className, ...props }: React.ComponentProps<"span">) {
   return <span data-slot="badge" className={cn(badgeClasses, className)} {...props} />
 }
+
+/** The 4 status chip variants. Listed here so the docs show each value. */
+type StatusChipVariant = "positive" | "neutral" | "alert" | "error"
 
 const statusChipVariants = cva(
   "inline-flex items-center rounded-full px-2.5 py-0.5 font-sans text-[11px] leading-[1.4] font-[600] whitespace-nowrap",
@@ -67,14 +72,24 @@ const statusChipVariants = cva(
           "bg-[color-mix(in_oklch,var(--destructive)_10%,transparent)] text-error-foreground",
           "dark:bg-[color-mix(in_oklch,var(--destructive)_6%,transparent)]",
         ],
-      },
+      } satisfies Record<StatusChipVariant, string[]>,
     },
     defaultVariants: { variant: "neutral" },
   }
 )
 
-type StatusChipProps = React.ComponentProps<"span"> & VariantProps<typeof statusChipVariants>
+type StatusChipProps = React.ComponentProps<"span"> & {
+  /**
+   * positive: good news, such as Paid. neutral: the default, such as
+   * Pending. alert: needs the person's attention. error: failed or denied.
+   * Always name the state in the chip's text, too.
+   */
+  variant?: StatusChipVariant
+}
 
+/**
+ * @import import { StatusChip } from "@/components/ui/badge"
+ */
 function StatusChip({ className, variant, ...props }: StatusChipProps) {
   return (
     <span

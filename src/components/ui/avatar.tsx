@@ -1,5 +1,5 @@
 import * as React from "react"
-import { cva, type VariantProps } from "class-variance-authority"
+import { cva } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
 
@@ -16,6 +16,9 @@ import { cn } from "@/lib/utils"
  * - Pass the person's full name as `name`: screen readers read it
  *   instead of the initials.
  */
+/** The 3 avatar sizes. Listed here so the docs show each value. */
+type AvatarSize = "sm" | "md" | "lg"
+
 const avatarVariants = cva(
   "inline-flex shrink-0 items-center justify-center rounded-full border border-border bg-accent font-sans font-[600] text-accent-foreground select-none",
   {
@@ -24,14 +27,16 @@ const avatarVariants = cva(
         sm: "size-(--avatar-sm) text-[10px]",
         md: "size-(--avatar-md) text-[12px]",
         lg: "size-(--avatar-lg) text-[14px]",
-      },
+      } satisfies Record<AvatarSize, string>,
     },
     defaultVariants: { size: "md" },
   }
 )
 
 type AvatarProps = Omit<React.ComponentProps<"span">, "children"> &
-  VariantProps<typeof avatarVariants> & {
+  {
+    /** sm, md (the default) or lg. Sizes come from --avatar-sm, --avatar-md and --avatar-lg. */
+    size?: AvatarSize
     /** Up to two letters, such as "MK". */
     initials: string
     /** The person's full name, read by screen readers. */
@@ -41,6 +46,8 @@ type AvatarProps = Omit<React.ComponentProps<"span">, "children"> &
 /**
  * Shows a person as initials in a circle, in 3 sizes. Pass the full name as
  * `name` so screen readers read it instead of the initials.
+ *
+ * @import import { Avatar } from "@/components/ui/avatar"
  */
 function Avatar({ className, size, initials, name, ...props }: AvatarProps) {
   return (

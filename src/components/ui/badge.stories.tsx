@@ -1,10 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
 
-import { ModePanels, modePanelParameters } from "@/foundations/mode-panels"
+import { ModePanels, modePanelParameters, withModePanels } from "@/foundations/mode-panels"
 
 import { Badge, StatusChip } from "./badge"
 
-const meta = { title: "Components/Badge and status chip" } satisfies Meta
+const meta = {
+  title: "Components/Badge and status chip",
+  component: Badge,
+  subcomponents: { StatusChip },
+} satisfies Meta
 export default meta
 type Story = StoryObj<typeof meta>
 
@@ -41,11 +45,8 @@ function AllVariants() {
 export const AllVariantsStory: Story = {
   name: "All variants",
   parameters: modePanelParameters,
-  render: () => (
-    <ModePanels>
-      <AllVariants />
-    </ModePanels>
-  ),
+  decorators: [withModePanels()],
+  render: AllVariants,
 }
 
 export const ReferenceLayout: Story = {

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
 
-import { ModePanels, modePanelParameters } from "@/foundations/mode-panels"
+import { ModePanels, modePanelParameters, withModePanels } from "@/foundations/mode-panels"
 
 import { Checkbox } from "./checkbox"
 import { Label } from "./label"
@@ -10,6 +10,18 @@ import { Switch } from "./switch"
 
 const meta = {
   title: "Components/Selection controls",
+  component: Select,
+  subcomponents: {
+    SelectTrigger,
+    SelectValue,
+    SelectContent,
+    SelectItem,
+    Checkbox,
+    RadioGroup,
+    RadioGroupItem,
+    Switch,
+    Label,
+  },
 } satisfies Meta
 
 export default meta
@@ -234,11 +246,8 @@ export const AllStates: Story = {
       focusVisible: [".state-focus button"],
     },
   },
-  render: () => (
-    <ModePanels layout="stacked">
-      <StateMatrix />
-    </ModePanels>
-  ),
+  decorators: [withModePanels("stacked")],
+  render: StateMatrix,
 }
 
 /* ---- Open select menu. The menu opens in a layer above the page, so
@@ -273,13 +282,13 @@ function OpenMenu() {
 export const OpenMenuLight: Story = {
   name: "Select menu open, light",
   parameters: { themes: { themeOverride: "Light" }, a11y: openMenuA11y },
-  render: () => <OpenMenu />,
+  render: OpenMenu,
 }
 
 export const OpenMenuDark: Story = {
   name: "Select menu open, dark",
   parameters: { themes: { themeOverride: "Dark" }, a11y: openMenuA11y },
-  render: () => <OpenMenu />,
+  render: OpenMenu,
 }
 
 /* ---- Same layout as the reference preview.html, for comparison. ---- */
@@ -340,9 +349,6 @@ function ReferenceRow() {
 export const ReferenceLayout: Story = {
   name: "Reference layout",
   parameters: modePanelParameters,
-  render: () => (
-    <ModePanels layout="stacked">
-      <ReferenceRow />
-    </ModePanels>
-  ),
+  decorators: [withModePanels("stacked")],
+  render: ReferenceRow,
 }

@@ -31,15 +31,32 @@ import { cn } from "@/lib/utils"
 /**
  * Lets the person pick one option from a menu. The Selection controls page
  * also covers Checkbox, RadioGroup and Switch.
+ *
+ * @import import { Select } from "@/components/ui/select"
  */
-function Select(props: React.ComponentProps<typeof SelectPrimitive.Root>) {
+function Select(
+  props: Omit<React.ComponentProps<typeof SelectPrimitive.Root>, "value" | "defaultValue" | "onValueChange"> & {
+    /** The selected item's value, when you control the select. Use with onValueChange. */
+    value?: string
+    /** The item selected at first, when you don't control the select. */
+    defaultValue?: string
+    /** Called with the new item's value when the person picks one. */
+    onValueChange?: (value: string) => void
+  }
+) {
   return <SelectPrimitive.Root data-slot="select" {...props} />
 }
 
+/**
+ * @import import { SelectValue } from "@/components/ui/select"
+ */
 function SelectValue(props: React.ComponentProps<typeof SelectPrimitive.Value>) {
   return <SelectPrimitive.Value data-slot="select-value" {...props} />
 }
 
+/**
+ * @import import { SelectTrigger } from "@/components/ui/select"
+ */
 function SelectTrigger({
   className,
   children,
@@ -68,13 +85,21 @@ function SelectTrigger({
   )
 }
 
+/**
+ * @import import { SelectContent } from "@/components/ui/select"
+ */
 function SelectContent({
   className,
   children,
   position = "popper",
   sideOffset = 4,
   ...props
-}: React.ComponentProps<typeof SelectPrimitive.Content>) {
+}: Omit<React.ComponentProps<typeof SelectPrimitive.Content>, "position" | "sideOffset"> & {
+  /** "popper" (the default) opens the menu below the trigger. "item-aligned" lines the selected item up with the trigger. */
+  position?: "popper" | "item-aligned"
+  /** Pixels between the trigger and the menu. Defaults to 4. */
+  sideOffset?: number
+}) {
   return (
     <SelectPrimitive.Portal>
       <SelectPrimitive.Content
@@ -95,6 +120,9 @@ function SelectContent({
   )
 }
 
+/**
+ * @import import { SelectItem } from "@/components/ui/select"
+ */
 function SelectItem({ className, children, ...props }: React.ComponentProps<typeof SelectPrimitive.Item>) {
   return (
     <SelectPrimitive.Item

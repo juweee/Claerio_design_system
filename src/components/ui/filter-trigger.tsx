@@ -20,16 +20,39 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
  *   filters, 12px above the content it filters.
  */
 
+/**
+ * Holds one or more FilterSelects on their own left-aligned row, under the
+ * card title and 12px above the content they filter.
+ *
+ * @import import { FilterRow } from "@/components/ui/filter-trigger"
+ */
 function FilterRow({ className, ...props }: React.ComponentProps<"div">) {
   return <div data-slot="filter-row" className={cn("mb-3 flex items-center gap-2", className)} {...props} />
 }
 
-type FilterOption = { value: string; label: string }
-
-type FilterSelectProps = Omit<React.ComponentProps<typeof Select>, "children"> & {
-  /** The muted label, such as "Status:". */
+/** One choice in a FilterSelect menu. */
+type FilterOption = {
+  /** The value passed to onValueChange, such as "pending". Must be unique and not empty. */
+  value: string
+  /** The text shown in the menu and on the trigger, such as "Pending". */
   label: string
+}
+
+type FilterSelectProps = Omit<
+  React.ComponentProps<typeof Select>,
+  "children" | "value" | "defaultValue" | "onValueChange"
+> & {
+  /** The muted label, such as "Status:". It also names the trigger for screen readers, without the colon. */
+  label: string
+  /** The menu choices, in order, as `{ value, label }` objects. Include an "All" option to clear the filter. */
   options: FilterOption[]
+  /** The selected option's value, when you control the filter. Use with onValueChange. */
+  value?: string
+  /** The option selected at first, when you don't control the filter. */
+  defaultValue?: string
+  /** Called with the new option's value when the person picks one. */
+  onValueChange?: (value: string) => void
+  /** Classes for the trigger button. */
   className?: string
 }
 
@@ -37,6 +60,12 @@ type FilterSelectProps = Omit<React.ComponentProps<typeof Select>, "children"> &
  * A compact dropdown that filters data, such as by provider or status. Group
  * filters in a FilterRow under the card title. Filters stay neutral and
  * never use amber.
+ *
+ * Control it with `value` and `onValueChange`, or set `defaultValue` and let
+ * it manage itself. Other Radix Select root props, such as `defaultOpen`,
+ * `disabled` and `name`, pass through.
+ *
+ * @import import { FilterSelect, type FilterOption } from "@/components/ui/filter-trigger"
  */
 function FilterSelect({ label, options, className, ...props }: FilterSelectProps) {
   return (
