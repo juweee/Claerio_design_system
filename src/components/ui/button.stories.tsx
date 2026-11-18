@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
 import { ArrowRightIcon, FileTextIcon, TrashIcon } from "@phosphor-icons/react"
 
-import { ModePanels, modePanelParameters } from "@/foundations/mode-panels"
+import { ModePanels, modePanelParameters, withModePanels } from "@/foundations/mode-panels"
 
 import { Button } from "./button"
 
@@ -91,11 +91,8 @@ export const AllStates: Story = {
       focusVisible: [".state-focus button"],
     },
   },
-  render: () => (
-    <ModePanels layout="stacked">
-      <StateMatrix />
-    </ModePanels>
-  ),
+  decorators: [withModePanels("stacked")],
+  render: StateMatrix,
 }
 
 /* ---- Buttons with icons. ---- */

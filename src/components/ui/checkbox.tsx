@@ -22,6 +22,9 @@ import { cn } from "@/lib/utils"
  * - Disabled: 50% opacity, not-allowed cursor.
  * - Always pair with a text label.
  */
+/**
+ * @import import { Checkbox } from "@/components/ui/checkbox"
+ */
 function Checkbox({ className, ...props }: React.ComponentProps<typeof CheckboxPrimitive.Root>) {
   return (
     <CheckboxPrimitive.Root

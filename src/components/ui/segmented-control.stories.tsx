@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
 
-import { ModePanels, modePanelParameters } from "@/foundations/mode-panels"
+import { ModePanels, modePanelParameters, withModePanels } from "@/foundations/mode-panels"
 
 import { SegmentedControl, SegmentedControlOption } from "./segmented-control"
 
@@ -12,9 +12,9 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-function Example({ className }: { className?: string }) {
+function Example() {
   return (
-    <SegmentedControl defaultValue="bar" aria-label="Chart type" className={className}>
+    <SegmentedControl defaultValue="bar" aria-label="Chart type">
       <SegmentedControlOption value="bar">Bar</SegmentedControlOption>
       <SegmentedControlOption value="stacked">Stacked</SegmentedControlOption>
       <SegmentedControlOption value="pie">Pie</SegmentedControlOption>
@@ -52,15 +52,12 @@ export const AllStates: Story = {
 }
 
 export const Playground: Story = {
-  render: () => <Example />,
+  render: Example,
 }
 
 export const ReferenceLayout: Story = {
   name: "Reference layout",
   parameters: modePanelParameters,
-  render: () => (
-    <ModePanels layout="stacked">
-      <Example />
-    </ModePanels>
-  ),
+  decorators: [withModePanels("stacked")],
+  render: Example,
 }

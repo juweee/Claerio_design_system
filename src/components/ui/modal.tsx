@@ -22,14 +22,60 @@ import { cn } from "@/lib/utils"
  *   (primary), rightmost, 8px apart.
  */
 
-const Modal = DialogPrimitive.Root
-const ModalTrigger = DialogPrimitive.Trigger
-const ModalClose = DialogPrimitive.Close
+type ModalProps = Omit<React.ComponentProps<typeof DialogPrimitive.Root>, "open" | "defaultOpen" | "onOpenChange"> & {
+  /** Whether the modal is open, when you control it. Use with onOpenChange. */
+  open?: boolean
+  /** Whether the modal starts open, when you don't control it. */
+  defaultOpen?: boolean
+  /** Called with the new open state when the modal opens or closes. */
+  onOpenChange?: (open: boolean) => void
+}
+
+/**
+ * The root of a modal. Wraps a ModalTrigger and a ModalContent and holds
+ * the open state.
+ *
+ * @import import { Modal } from "@/components/ui/modal"
+ */
+function Modal(props: ModalProps) {
+  return <DialogPrimitive.Root {...props} />
+}
+
+/**
+ * Opens the modal. Pass a Button as its child and set `asChild`, so the
+ * Button keeps its own styles.
+ *
+ * @import import { ModalTrigger } from "@/components/ui/modal"
+ */
+function ModalTrigger(
+  props: Omit<React.ComponentProps<typeof DialogPrimitive.Trigger>, "asChild"> & {
+    /** Use the child element, such as a Button, as the trigger instead of a plain button. */
+    asChild?: boolean
+  }
+) {
+  return <DialogPrimitive.Trigger {...props} />
+}
+
+/**
+ * Closes the modal. Wrap the Cancel button in it, with `asChild`.
+ *
+ * @import import { ModalClose } from "@/components/ui/modal"
+ */
+function ModalClose(
+  props: Omit<React.ComponentProps<typeof DialogPrimitive.Close>, "asChild"> & {
+    /** Use the child element, such as a Button, as the close control instead of a plain button. */
+    asChild?: boolean
+  }
+) {
+  return <DialogPrimitive.Close {...props} />
+}
 
 /**
  * Asks for a decision before the person can continue. The title is a
  * question, the description explains the consequence, and the footer shows
  * Cancel, then the confirming action. Focus stays inside until it closes.
+ *
+ * @import import { ModalContent } from "@/components/ui/modal"
  */
 function ModalContent({ className, children, ...props }: React.ComponentProps<typeof DialogPrimitive.Content>) {
   return (
@@ -51,10 +97,16 @@ function ModalContent({ className, children, ...props }: React.ComponentProps<ty
   )
 }
 
+/**
+ * @import import { ModalTitle } from "@/components/ui/modal"
+ */
 function ModalTitle({ className, ...props }: React.ComponentProps<typeof DialogPrimitive.Title>) {
   return <DialogPrimitive.Title data-slot="modal-title" className={cn("text-heading-2", className)} {...props} />
 }
 
+/**
+ * @import import { ModalDescription } from "@/components/ui/modal"
+ */
 function ModalDescription({ className, ...props }: React.ComponentProps<typeof DialogPrimitive.Description>) {
   return (
     <DialogPrimitive.Description
@@ -65,6 +117,9 @@ function ModalDescription({ className, ...props }: React.ComponentProps<typeof D
   )
 }
 
+/**
+ * @import import { ModalFooter } from "@/components/ui/modal"
+ */
 function ModalFooter({ className, ...props }: React.ComponentProps<"div">) {
   return <div data-slot="modal-footer" className={cn("mt-4 flex justify-end gap-2", className)} {...props} />
 }

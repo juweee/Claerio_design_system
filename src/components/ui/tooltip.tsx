@@ -18,19 +18,69 @@ import { cn } from "@/lib/utils"
  *   underline and makes it reachable with the keyboard.
  */
 
-const TooltipProvider = TooltipPrimitive.Provider
-const Tooltip = TooltipPrimitive.Root
-const TooltipTrigger = TooltipPrimitive.Trigger
+/**
+ * Wrap your app, or the part that has tooltips, once in a TooltipProvider.
+ * It sets the shared open delay.
+ *
+ * @import import { TooltipProvider } from "@/components/ui/tooltip"
+ */
+function TooltipProvider(
+  props: Omit<React.ComponentProps<typeof TooltipPrimitive.Provider>, "delayDuration"> & {
+    /** Milliseconds from hover to open. Defaults to 700. */
+    delayDuration?: number
+  }
+) {
+  return <TooltipPrimitive.Provider {...props} />
+}
+
+/**
+ * The root of one tooltip. Wraps a TooltipTrigger (or TooltipTerm) and a
+ * TooltipContent.
+ *
+ * @import import { Tooltip } from "@/components/ui/tooltip"
+ */
+function Tooltip(
+  props: Omit<React.ComponentProps<typeof TooltipPrimitive.Root>, "open" | "defaultOpen" | "onOpenChange"> & {
+    /** Whether the tooltip is showing, when you control it. Use with onOpenChange. */
+    open?: boolean
+    /** Whether the tooltip starts open, when you don't control it. */
+    defaultOpen?: boolean
+    /** Called with the new open state. */
+    onOpenChange?: (open: boolean) => void
+  }
+) {
+  return <TooltipPrimitive.Root {...props} />
+}
+
+/**
+ * The element the tooltip describes. Set `asChild` to use your own element.
+ * For a term in running text, use TooltipTerm instead.
+ *
+ * @import import { TooltipTrigger } from "@/components/ui/tooltip"
+ */
+function TooltipTrigger(
+  props: Omit<React.ComponentProps<typeof TooltipPrimitive.Trigger>, "asChild"> & {
+    /** Use the child element as the trigger instead of a plain button. */
+    asChild?: boolean
+  }
+) {
+  return <TooltipPrimitive.Trigger {...props} />
+}
 
 /**
  * A short, one-phrase hint that appears on hover or keyboard focus. Use
  * TooltipTerm to mark a term with a dotted underline.
+ *
+ * @import import { TooltipContent } from "@/components/ui/tooltip"
  */
 function TooltipContent({
   className,
   sideOffset = 4,
   ...props
-}: React.ComponentProps<typeof TooltipPrimitive.Content>) {
+}: Omit<React.ComponentProps<typeof TooltipPrimitive.Content>, "sideOffset"> & {
+  /** Pixels between the trigger and the tooltip. Defaults to 4. */
+  sideOffset?: number
+}) {
   return (
     <TooltipPrimitive.Portal>
       <TooltipPrimitive.Content
@@ -46,7 +96,11 @@ function TooltipContent({
   )
 }
 
-/** A term with a dotted underline that shows a tooltip on hover or focus. */
+/**
+ * A term with a dotted underline that shows a tooltip on hover or focus.
+ *
+ * @import import { TooltipTerm } from "@/components/ui/tooltip"
+ */
 function TooltipTerm({
   tip,
   className,

@@ -1,5 +1,5 @@
 import * as React from "react"
-import { cva, type VariantProps } from "class-variance-authority"
+import { cva } from "class-variance-authority"
 import { Slot } from "radix-ui"
 
 import { cn } from "@/lib/utils"
@@ -21,6 +21,9 @@ import { cn } from "@/lib/utils"
  * - Focus visible: 2px --ring outline, 2px offset.
  * - No amber or teal on buttons.
  */
+/** The 5 button variants. Listed here so the docs show each value. */
+type ButtonVariant = "primary" | "secondary" | "ghost" | "destructive" | "link"
+
 const buttonVariants = cva(
   [
     "inline-flex h-10 shrink-0 cursor-pointer items-center justify-center gap-2 whitespace-nowrap",
@@ -56,7 +59,7 @@ const buttonVariants = cva(
           "bg-transparent px-0 text-primary dark:text-terracotta-400",
           "not-disabled:not-aria-disabled:hover:underline",
         ],
-      },
+      } satisfies Record<ButtonVariant, string[]>,
     },
     defaultVariants: {
       variant: "primary",
@@ -64,8 +67,13 @@ const buttonVariants = cva(
   }
 )
 
-type ButtonProps = React.ComponentProps<"button"> &
-  VariantProps<typeof buttonVariants> & {
+type ButtonProps = React.ComponentProps<"button"> & {
+    /**
+     * primary: the main action, one per view. secondary: other actions.
+     * ghost: low-emphasis actions, such as Dismiss. destructive: deletes or
+     * cancels something. link: a text-only action inside content.
+     */
+    variant?: ButtonVariant
     /** Render the child element (for example a router link) with button styles. */
     asChild?: boolean
   }
@@ -74,6 +82,8 @@ type ButtonProps = React.ComponentProps<"button"> &
  * Triggers an action. Comes in 5 variants: primary for the main action,
  * secondary, ghost, destructive and link. Put the primary button rightmost,
  * with Cancel to its left.
+ *
+ * @import import { Button } from "@/components/ui/button"
  */
 function Button({
   className,

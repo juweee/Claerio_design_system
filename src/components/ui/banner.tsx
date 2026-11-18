@@ -1,5 +1,5 @@
 import * as React from "react"
-import { cva, type VariantProps } from "class-variance-authority"
+import { cva } from "class-variance-authority"
 import { InfoIcon, WarningCircleIcon, XIcon } from "@phosphor-icons/react"
 
 import { cn } from "@/lib/utils"
@@ -33,6 +33,9 @@ import { cn } from "@/lib/utils"
  *   (terracotta-400 in dark mode). 14px per the 2026-07-09 correction.
  */
 
+/** The 3 banner variants. Listed here so the docs show each value. */
+type BannerVariant = "info" | "warning" | "error"
+
 const bannerVariants = cva(
   [
     "flex items-start gap-3 rounded-md border px-4 py-3",
@@ -46,7 +49,7 @@ const bannerVariants = cva(
         info: "[--banner-base:var(--info)] [--banner-fg:var(--info-foreground)]",
         warning: "[--banner-base:var(--warning)] [--banner-fg:var(--warning-foreground)]",
         error: "[--banner-base:var(--destructive)] [--banner-fg:var(--error-foreground)]",
-      },
+      } satisfies Record<BannerVariant, string>,
     },
     defaultVariants: { variant: "info" },
   }
@@ -58,8 +61,12 @@ const icons = {
   error: WarningCircleIcon,
 } as const
 
-type BannerProps = React.ComponentProps<"div"> &
-  VariantProps<typeof bannerVariants> & {
+type BannerProps = React.ComponentProps<"div"> & {
+    /**
+     * info: neutral news, the default. warning: something may need
+     * attention. error: something failed; announced right away.
+     */
+    variant?: BannerVariant
     /** Shows the dismiss ×. Leave out when the message requires action. */
     onDismiss?: () => void
     /** Accessible name for the dismiss button. */
@@ -70,6 +77,8 @@ type BannerProps = React.ComponentProps<"div"> &
  * Shows an info, warning or error message across a section, or a page-level
  * bar. Banner actions are underlined links, never buttons. Error banners are
  * announced to screen readers right away.
+ *
+ * @import import { Banner } from "@/components/ui/banner"
  */
 function Banner({
   className,
@@ -119,6 +128,9 @@ function Banner({
   )
 }
 
+/**
+ * @import import { BannerTitle } from "@/components/ui/banner"
+ */
 function BannerTitle({ className, ...props }: React.ComponentProps<"p">) {
   return (
     <p
@@ -129,10 +141,16 @@ function BannerTitle({ className, ...props }: React.ComponentProps<"p">) {
   )
 }
 
+/**
+ * @import import { BannerDescription } from "@/components/ui/banner"
+ */
 function BannerDescription({ className, ...props }: React.ComponentProps<"p">) {
   return <p data-slot="banner-description" className={cn("text-foreground", className)} {...props} />
 }
 
+/**
+ * @import import { BannerAction } from "@/components/ui/banner"
+ */
 function BannerAction({ className, ...props }: React.ComponentProps<"a">) {
   return (
     <a
@@ -147,6 +165,9 @@ function BannerAction({ className, ...props }: React.ComponentProps<"a">) {
   )
 }
 
+/**
+ * @import import { BannerBar } from "@/components/ui/banner"
+ */
 function BannerBar({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div

@@ -1,12 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
 
-import { ModePanels, modePanelParameters } from "@/foundations/mode-panels"
+import { ModePanels, modePanelParameters, withModePanels } from "@/foundations/mode-panels"
 
 import { Card, CardBody, CardHeader, CardMeta, CardTitle } from "./card"
 import { ProgressField } from "./progress"
 import { SegmentedControl, SegmentedControlOption } from "./segmented-control"
 
-const meta = { title: "Components/Card" } satisfies Meta
+const meta = {
+  title: "Components/Card",
+  component: Card,
+  subcomponents: { CardHeader, CardTitle, CardBody, CardMeta },
+} satisfies Meta
 export default meta
 type Story = StoryObj<typeof meta>
 
@@ -40,11 +44,8 @@ function Examples() {
 export const AllVariants: Story = {
   name: "Examples",
   parameters: modePanelParameters,
-  render: () => (
-    <ModePanels>
-      <Examples />
-    </ModePanels>
-  ),
+  decorators: [withModePanels()],
+  render: Examples,
 }
 
 export const ReferenceLayout: Story = {

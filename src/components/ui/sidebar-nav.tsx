@@ -45,6 +45,8 @@ const navFocus =
  * The sidebar navigation list, with group labels and items. The active item
  * uses the amber tint. For tabs across a page, use NavTabs for links or Tabs
  * for in-page panels.
+ *
+ * @import import { SidebarNav } from "@/components/ui/sidebar-nav"
  */
 function SidebarNav({ className, ...props }: React.ComponentProps<"nav">) {
   return (
@@ -60,6 +62,9 @@ function SidebarNav({ className, ...props }: React.ComponentProps<"nav">) {
   )
 }
 
+/**
+ * @import import { SidebarNavLabel } from "@/components/ui/sidebar-nav"
+ */
 function SidebarNavLabel({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -77,6 +82,9 @@ type SidebarNavItemProps = React.ComponentProps<"a"> & {
   asChild?: boolean
 }
 
+/**
+ * @import import { SidebarNavItem } from "@/components/ui/sidebar-nav"
+ */
 function SidebarNavItem({ className, active, asChild = false, ...props }: SidebarNavItemProps) {
   const Comp = asChild ? Slot.Root : "a"
   return (

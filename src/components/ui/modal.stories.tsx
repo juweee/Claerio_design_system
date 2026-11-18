@@ -1,4 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react-vite"
+import * as React from "react"
+import type { Decorator, Meta, StoryObj } from "@storybook/react-vite"
 
 import { Button } from "./button"
 import {
@@ -11,13 +12,17 @@ import {
   ModalTrigger,
 } from "./modal"
 
-const meta = { title: "Components/Modal" } satisfies Meta
+const meta = {
+  title: "Components/Modal",
+  component: Modal,
+  subcomponents: { ModalTrigger, ModalContent, ModalTitle, ModalDescription, ModalFooter, ModalClose },
+} satisfies Meta
 export default meta
 type Story = StoryObj<typeof meta>
 
-function DisputeModal({ defaultOpen = false }: { defaultOpen?: boolean }) {
+function DisputeModal(args: React.ComponentProps<typeof Modal>) {
   return (
-    <Modal defaultOpen={defaultOpen}>
+    <Modal {...args}>
       <ModalTrigger asChild>
         <Button variant="destructive">Dispute charge</Button>
       </ModalTrigger>
@@ -39,39 +44,45 @@ function DisputeModal({ defaultOpen = false }: { defaultOpen?: boolean }) {
   )
 }
 
+/* Fills the page so the open modal sits over a full-height background. */
+const fullPage: Decorator = (Story) => (
+  <div className="min-h-screen p-6">
+    <Story />
+  </div>
+)
+
 /* The modal opens in a layer above the page, so each mode gets its own
    story with the whole page set to that mode. */
 
 export const OpenLight: Story = {
   name: "Open, light",
   parameters: { themes: { themeOverride: "Light" }, layout: "fullscreen" },
-  render: () => (
-    <div className="min-h-screen p-6">
-      <DisputeModal defaultOpen />
-    </div>
-  ),
+  args: { defaultOpen: true },
+  decorators: [fullPage],
+  render: DisputeModal,
 }
 
 export const OpenDark: Story = {
   name: "Open, dark",
   parameters: { themes: { themeOverride: "Dark" }, layout: "fullscreen" },
-  render: () => (
-    <div className="min-h-screen p-6">
-      <DisputeModal defaultOpen />
-    </div>
-  ),
+  args: { defaultOpen: true },
+  decorators: [fullPage],
+  render: DisputeModal,
 }
 
 export const Live: Story = {
   name: "Live example",
-  render: () => (
-    <div className="flex flex-col gap-4">
-      <p className="max-w-120 font-sans text-body text-muted-foreground">
-        Open the modal, then try Tab (focus stays inside), Escape (closes) and the buttons.
-      </p>
-      <div>
-        <DisputeModal />
+  decorators: [
+    (Story) => (
+      <div className="flex flex-col gap-4">
+        <p className="max-w-120 font-sans text-body text-muted-foreground">
+          Open the modal, then try Tab (focus stays inside), Escape (closes) and the buttons.
+        </p>
+        <div>
+          <Story />
+        </div>
       </div>
-    </div>
-  ),
+    ),
+  ],
+  render: DisputeModal,
 }

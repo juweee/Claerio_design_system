@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
 
-import { ModePanels, modePanelParameters } from "@/foundations/mode-panels"
+import { ModePanels, modePanelParameters, withModePanels } from "@/foundations/mode-panels"
 
 import { TextField } from "./field"
 
@@ -98,11 +98,8 @@ export const AllStates: Story = {
       focusVisible: [".state-focus input", ".state-error-focus input"],
     },
   },
-  render: () => (
-    <ModePanels layout="stacked">
-      <StateGrid />
-    </ModePanels>
-  ),
+  decorators: [withModePanels("stacked")],
+  render: StateGrid,
 }
 
 /* ---- Same layout as the reference preview.html, for comparison. ---- */

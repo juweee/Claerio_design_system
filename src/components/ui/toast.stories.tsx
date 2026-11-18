@@ -1,7 +1,7 @@
 import * as React from "react"
 import type { Meta, StoryObj } from "@storybook/react-vite"
 
-import { ModePanels, modePanelParameters } from "@/foundations/mode-panels"
+import { ModePanels, modePanelParameters, withModePanels } from "@/foundations/mode-panels"
 
 import { Button } from "./button"
 import {
@@ -16,6 +16,8 @@ import {
 
 const meta = {
   title: "Components/Toast",
+  component: Toast,
+  subcomponents: { ToastProvider, ToastViewport, ToastBody, ToastTitle, ToastDescription, ToastAction },
 } satisfies Meta
 
 export default meta
@@ -90,6 +92,11 @@ function AllVariants() {
 
 /* ---- Every variant and state, light and dark. ---- */
 
+/**
+ * InPlace is a story-only helper: it wraps each toast in its own
+ * ToastProvider and a static ToastViewport so it shows in place. In an
+ * app, wire toasts as the Live example story does.
+ */
 export const AllVariantsStory: Story = {
   name: "All variants",
   parameters: {
@@ -99,14 +106,13 @@ export const AllVariantsStory: Story = {
       focusVisible: [".state-focus [data-slot=toast-action]"],
     },
   },
-  render: () => (
-    <ModePanels>
-      <AllVariants />
-    </ModePanels>
-  ),
+  decorators: [withModePanels()],
+  render: AllVariants,
 }
 
-/* ---- A real toast in the bottom-right corner. Follows the toolbar. ---- */
+/* ---- A real toast in the bottom-right corner. Follows the toolbar. ----
+   In an app, put ToastProvider and ToastViewport once near the root, and
+   keep each toast's open state where the action happens. */
 
 function LiveDemo() {
   const [open, setOpen] = React.useState(false)
@@ -135,19 +141,27 @@ function LiveDemo() {
 export const Live: Story = {
   name: "Live example",
   parameters: { layout: "fullscreen" },
-  render: () => (
-    <div className="min-h-screen p-6">
-      <p className="mb-4 max-w-120 text-body text-muted-foreground">
-        Click the button to show a toast in the bottom-right corner. It closes after 5 seconds, or on
-        Escape. Hover or focus pauses the timer.
-      </p>
-      <LiveDemo />
-    </div>
-  ),
+  decorators: [
+    (Story) => (
+      <div className="min-h-screen p-6">
+        <p className="mb-4 max-w-120 text-body text-muted-foreground">
+          Click the button to show a toast in the bottom-right corner. It closes after 5 seconds, or on
+          Escape. Hover or focus pauses the timer.
+        </p>
+        <Story />
+      </div>
+    ),
+  ],
+  render: LiveDemo,
 }
 
 /* ---- Same as the reference preview.html, for comparison. ---- */
 
+/**
+ * InPlace is a story-only helper: it wraps each toast in its own
+ * ToastProvider and a static ToastViewport so it shows in place. In an
+ * app, wire toasts as the Live example story does.
+ */
 export const ReferenceLayout: Story = {
   name: "Reference layout",
   parameters: modePanelParameters,

@@ -58,7 +58,16 @@ function OpenMenu() {
   return (
     <div className="min-h-56">
       <FilterRow>
-        <FilterSelect label="Status:" defaultValue="pending" options={statuses} defaultOpen />
+        <FilterSelect
+          label="Status:"
+          defaultValue="pending"
+          options={[
+            { value: "all", label: "All" },
+            { value: "pending", label: "Pending" },
+            { value: "paid", label: "Paid" },
+          ]}
+          defaultOpen
+        />
       </FilterRow>
     </div>
   )
@@ -67,13 +76,13 @@ function OpenMenu() {
 export const OpenLight: Story = {
   name: "Menu open, light",
   parameters: { themes: { themeOverride: "Light" }, a11y: openMenuA11y },
-  render: () => <OpenMenu />,
+  render: OpenMenu,
 }
 
 export const OpenDark: Story = {
   name: "Menu open, dark",
   parameters: { themes: { themeOverride: "Dark" }, a11y: openMenuA11y },
-  render: () => <OpenMenu />,
+  render: OpenMenu,
 }
 
 export const ReferenceLayout: Story = {

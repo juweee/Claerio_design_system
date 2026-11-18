@@ -35,6 +35,9 @@ const tabItem = [
 
 /* ---- Link tabs ---- */
 
+/**
+ * @import import { NavTabs } from "@/components/ui/tabs"
+ */
 function NavTabs({ className, ...props }: React.ComponentProps<"nav">) {
   return <nav data-slot="nav-tabs" className={cn(tabRow, className)} {...props} />
 }
@@ -46,6 +49,9 @@ type NavTabsItemProps = React.ComponentProps<"a"> & {
   asChild?: boolean
 }
 
+/**
+ * @import import { NavTabsItem } from "@/components/ui/tabs"
+ */
 function NavTabsItem({ className, active, asChild = false, ...props }: NavTabsItemProps) {
   const Comp = asChild ? Slot.Root : "a"
   return (
@@ -66,14 +72,23 @@ function NavTabsItem({ className, active, asChild = false, ...props }: NavTabsIt
 
 /* ---- In-page tabs ---- */
 
+/**
+ * @import import { Tabs } from "@/components/ui/tabs"
+ */
 function Tabs(props: React.ComponentProps<typeof TabsPrimitive.Root>) {
   return <TabsPrimitive.Root data-slot="tabs" {...props} />
 }
 
+/**
+ * @import import { TabsList } from "@/components/ui/tabs"
+ */
 function TabsList({ className, ...props }: React.ComponentProps<typeof TabsPrimitive.List>) {
   return <TabsPrimitive.List data-slot="tabs-list" className={cn(tabRow, className)} {...props} />
 }
 
+/**
+ * @import import { TabsTrigger } from "@/components/ui/tabs"
+ */
 function TabsTrigger({ className, ...props }: React.ComponentProps<typeof TabsPrimitive.Trigger>) {
   return (
     <TabsPrimitive.Trigger
@@ -91,6 +106,9 @@ function TabsTrigger({ className, ...props }: React.ComponentProps<typeof TabsPr
   )
 }
 
+/**
+ * @import import { TabsContent } from "@/components/ui/tabs"
+ */
 function TabsContent({ className, ...props }: React.ComponentProps<typeof TabsPrimitive.Content>) {
   return (
     <TabsPrimitive.Content

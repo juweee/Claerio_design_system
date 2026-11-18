@@ -16,6 +16,9 @@ import { cn } from "@/lib/utils"
  *   8px above the bar, and gives both to screen readers.
  */
 
+/**
+ * @import import { Progress } from "@/components/ui/progress"
+ */
 function Progress({
   className,
   value = 0,
@@ -48,6 +51,8 @@ type ProgressFieldProps = {
 /**
  * Shows progress toward a limit, such as a deductible or out-of-pocket
  * maximum, with a label and the value in words.
+ *
+ * @import import { ProgressField } from "@/components/ui/progress"
  */
 function ProgressField({ label, valueText, value, className }: ProgressFieldProps) {
   const id = React.useId()

@@ -21,10 +21,16 @@ import { Label } from "./label"
  *   stack.
  */
 
+/**
+ * @import import { Field } from "@/components/ui/field"
+ */
 function Field({ className, ...props }: React.ComponentProps<"div">) {
   return <div data-slot="field" className={cn("flex flex-col", className)} {...props} />
 }
 
+/**
+ * @import import { FieldDescription } from "@/components/ui/field"
+ */
 function FieldDescription({ className, ...props }: React.ComponentProps<"p">) {
   return (
     <p
@@ -35,6 +41,9 @@ function FieldDescription({ className, ...props }: React.ComponentProps<"p">) {
   )
 }
 
+/**
+ * @import import { FieldError } from "@/components/ui/field"
+ */
 function FieldError({ className, children, ...props }: React.ComponentProps<"p">) {
   return (
     <p
@@ -68,6 +77,8 @@ type TextFieldProps = Omit<React.ComponentProps<"input">, "id"> & {
  * A labelled text input with optional helper and error text. It links the
  * message to the input for screen readers and sets aria-invalid when an
  * error is present.
+ *
+ * @import import { TextField } from "@/components/ui/field"
  */
 function TextField({ label, helper, error, id, fieldClassName, ...inputProps }: TextFieldProps) {
   const generatedId = React.useId()

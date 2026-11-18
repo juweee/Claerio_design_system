@@ -1,7 +1,7 @@
 import * as React from "react"
 import type { Meta, StoryObj } from "@storybook/react-vite"
 
-import { ModePanels, modePanelParameters } from "@/foundations/mode-panels"
+import { ModePanels, modePanelParameters, withModePanels } from "@/foundations/mode-panels"
 
 import { SidebarNav, SidebarNavItem, SidebarNavLabel } from "./sidebar-nav"
 import { NavTabs, NavTabsItem, Tabs, TabsContent, TabsList, TabsTrigger } from "./tabs"
@@ -30,8 +30,8 @@ function useExampleLabel(label: string) {
   return `${label} (example ${React.useId()})`
 }
 
-function ExampleSidebar({ label = "Main" }: { label?: string }) {
-  const name = useExampleLabel(label)
+function ExampleSidebar() {
+  const name = useExampleLabel("Main")
   return (
     <SidebarNav aria-label={name} className="w-55">
       <SidebarNavLabel>Platform</SidebarNavLabel>
@@ -51,8 +51,8 @@ function ExampleSidebar({ label = "Main" }: { label?: string }) {
   )
 }
 
-function ExampleNavTabs({ label = "Claim views" }: { label?: string }) {
-  const name = useExampleLabel(label)
+function ExampleNavTabs() {
+  const name = useExampleLabel("Claim views")
   return (
     <NavTabs aria-label={name}>
       <NavTabsItem href="#" active>
@@ -96,17 +96,17 @@ function ExampleTabs() {
 /* ---- Playground stories. These follow the toolbar light/dark switch. ---- */
 
 export const Sidebar: Story = {
-  render: () => <ExampleSidebar />,
+  render: ExampleSidebar,
 }
 
 export const LinkTabs: Story = {
   name: "Link tabs",
-  render: () => <ExampleNavTabs />,
+  render: ExampleNavTabs,
 }
 
 export const InPageTabs: Story = {
   name: "In-page tabs",
-  render: () => <ExampleTabs />,
+  render: ExampleTabs,
 }
 
 /* ---- Every state, light and dark. ---- */
@@ -151,11 +151,8 @@ export const AllStates: Story = {
 export const ReferenceLayout: Story = {
   name: "Reference layout",
   parameters: modePanelParameters,
-  render: () => (
-    <ModePanels layout="stacked">
-      <ReferenceExamples />
-    </ModePanels>
-  ),
+  decorators: [withModePanels("stacked")],
+  render: ReferenceExamples,
 }
 
 function ReferenceExamples() {

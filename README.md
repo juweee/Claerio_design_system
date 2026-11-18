@@ -63,6 +63,23 @@ contrast.
 To check types, run `npm run typecheck`. To build a static copy of
 Storybook, run `npm run build-storybook`.
 
+## Document a component
+
+Agents read component docs through the Storybook MCP server, so the docs
+must show working code. For each component:
+
+1. Add a JSDoc description and an `@import` tag with the real path:
+   `@import import { Button } from "@/components/ui/button"`.
+2. Write variant props as explicit string unions, not `VariantProps`.
+3. In the story file, set `component` and `subcomponents` on the meta.
+4. Point `render` at a named function, not `() => <Wrapper />`, and use
+   the `withModePanels` decorator instead of wrapping ModePanels in
+   `render`.
+5. With Storybook running, check http://localhost:6006/manifests/components.json
+   for errors and warnings.
+
+See decisions.md (2026-11-18) for the reasons.
+
 ## Change protocol
 
 1. Decide, usually visually: for example, with a side-by-side preview in

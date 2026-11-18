@@ -1,4 +1,5 @@
 import * as React from "react"
+import type { Decorator } from "@storybook/react-vite"
 
 import { cn } from "@/lib/utils"
 
@@ -6,6 +7,8 @@ import { cn } from "@/lib/utils"
  * Renders the same content twice: once in light mode and once inside a
  * .dark wrapper. Stories that use this pin the toolbar to light mode so
  * the light panel stays light.
+ *
+ * @import import { ModePanels } from "@/foundations/mode-panels"
  */
 export function ModePanels({
   children,
@@ -47,7 +50,24 @@ export const modePanelParameters = {
   themes: { themeOverride: "Light" },
 } as const
 
-/** Shows the resolved value of a CSS variable where it is rendered. */
+/**
+ * Story decorator that shows the story in ModePanels. Use it instead of
+ * wrapping ModePanels inside render, so the story's code snippet shows
+ * the real component code rather than a wrapper.
+ */
+export function withModePanels(layout: "columns" | "stacked" = "columns"): Decorator {
+  return (Story) => (
+    <ModePanels layout={layout}>
+      <Story />
+    </ModePanels>
+  )
+}
+
+/**
+ * Shows the resolved value of a CSS variable where it is rendered.
+ *
+ * @import import { TokenValue } from "@/foundations/mode-panels"
+ */
 export function TokenValue({ name }: { name: string }) {
   const ref = React.useRef<HTMLElement>(null)
   const [value, setValue] = React.useState("")

@@ -1,5 +1,5 @@
 import * as React from "react"
-import { cva, type VariantProps } from "class-variance-authority"
+import { cva } from "class-variance-authority"
 import { Toast as ToastPrimitive } from "radix-ui"
 import { CheckIcon, ExclamationMarkIcon } from "@phosphor-icons/react"
 
@@ -40,8 +40,35 @@ import { cn } from "@/lib/utils"
  *   toast.
  */
 
-const ToastProvider = ToastPrimitive.Provider
+type ToastProviderProps = Omit<
+  React.ComponentProps<typeof ToastPrimitive.Provider>,
+  "duration" | "label" | "swipeDirection"
+> & {
+  /** Milliseconds before each toast closes. Defaults to 5000. A Toast's own duration overrides it. */
+  duration?: number
+  /** Names the notification region for screen readers. Defaults to "Notification". */
+  label?: string
+  /** The direction a person swipes to close a toast. Defaults to "right", to match the bottom-right viewport. */
+  swipeDirection?: "right" | "left" | "up" | "down"
+}
 
+/**
+ * Wrap your app once in a ToastProvider, with one ToastViewport inside it.
+ * Then render a Toast anywhere inside the provider and open it with its
+ * `open` and `onOpenChange` props.
+ *
+ * @import import { ToastProvider } from "@/components/ui/toast"
+ */
+function ToastProvider(props: ToastProviderProps) {
+  return <ToastPrimitive.Provider {...props} />
+}
+
+/**
+ * The fixed bottom-right region where toasts appear. Render one inside
+ * ToastProvider, after your content.
+ *
+ * @import import { ToastViewport } from "@/components/ui/toast"
+ */
 function ToastViewport({ className, ...props }: React.ComponentProps<typeof ToastPrimitive.Viewport>) {
   return (
     <ToastPrimitive.Viewport
@@ -55,6 +82,9 @@ function ToastViewport({ className, ...props }: React.ComponentProps<typeof Toas
   )
 }
 
+/** The 2 toast variants. Listed here so the docs show each value. */
+type ToastVariant = "success" | "error"
+
 const toastIconVariants = cva(
   "inline-flex size-5 shrink-0 items-center justify-center rounded-full [&_svg]:size-3",
   {
@@ -62,18 +92,33 @@ const toastIconVariants = cva(
       variant: {
         success: "bg-success text-primary-foreground",
         error: "bg-destructive text-destructive-foreground",
-      },
+      } satisfies Record<ToastVariant, string>,
     },
     defaultVariants: { variant: "success" },
   }
 )
 
-type ToastProps = React.ComponentProps<typeof ToastPrimitive.Root> &
-  VariantProps<typeof toastIconVariants>
+type ToastProps = Omit<
+  React.ComponentProps<typeof ToastPrimitive.Root>,
+  "open" | "defaultOpen" | "onOpenChange" | "duration"
+> & {
+  /** success: a teal check, the default. error: a red exclamation mark. */
+  variant?: ToastVariant
+  /** Whether the toast is showing, when you control it. Use with onOpenChange. */
+  open?: boolean
+  /** Whether the toast shows when it first renders, when you don't control it. Defaults to true. */
+  defaultOpen?: boolean
+  /** Called with false when the toast closes: after its timer, on Escape, on swipe, or when its action is clicked. */
+  onOpenChange?: (open: boolean) => void
+  /** Milliseconds before this toast closes. Overrides the ToastProvider duration. */
+  duration?: number
+}
 
 /**
  * A short confirmation at the bottom right that closes on its own after 5
  * seconds. It pauses on hover or focus and is announced to screen readers.
+ *
+ * @import import { Toast } from "@/components/ui/toast"
  */
 function Toast({ className, variant = "success", children, ...props }: ToastProps) {
   return (
@@ -96,11 +141,20 @@ function Toast({ className, variant = "success", children, ...props }: ToastProp
   )
 }
 
-/** Wraps the title and description so they share the space beside the icon. */
+/**
+ * Wraps the title and description so they share the space beside the icon.
+ *
+ * @import import { ToastBody } from "@/components/ui/toast"
+ */
 function ToastBody({ className, ...props }: React.ComponentProps<"div">) {
   return <div data-slot="toast-body" className={cn("min-w-0 flex-1", className)} {...props} />
 }
 
+/**
+ * One short line, such as "Dispute filed".
+ *
+ * @import import { ToastTitle } from "@/components/ui/toast"
+ */
 function ToastTitle({ className, ...props }: React.ComponentProps<typeof ToastPrimitive.Title>) {
   return (
     <ToastPrimitive.Title
@@ -111,6 +165,11 @@ function ToastTitle({ className, ...props }: React.ComponentProps<typeof ToastPr
   )
 }
 
+/**
+ * One sentence of detail under the title.
+ *
+ * @import import { ToastDescription } from "@/components/ui/toast"
+ */
 function ToastDescription({ className, ...props }: React.ComponentProps<typeof ToastPrimitive.Description>) {
   return (
     <ToastPrimitive.Description
@@ -121,7 +180,23 @@ function ToastDescription({ className, ...props }: React.ComponentProps<typeof T
   )
 }
 
-function ToastAction({ className, ...props }: React.ComponentProps<typeof ToastPrimitive.Action>) {
+/**
+ * An optional button inside the toast, such as Undo. Clicking it closes
+ * the toast.
+ *
+ * @import import { ToastAction } from "@/components/ui/toast"
+ */
+function ToastAction({
+  className,
+  ...props
+}: Omit<React.ComponentProps<typeof ToastPrimitive.Action>, "altText"> & {
+  /**
+   * Required. Tells screen reader users another way to do the same thing,
+   * because they may not reach the toast in time. For example: "Open the
+   * claim to withdraw the dispute".
+   */
+  altText: string
+}) {
   return (
     <ToastPrimitive.Action
       data-slot="toast-action"

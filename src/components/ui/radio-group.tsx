@@ -21,6 +21,9 @@ import { cn } from "@/lib/utils"
  * - Disabled: 50% opacity, not-allowed cursor.
  * - Always pair each item with a text label.
  */
+/**
+ * @import import { RadioGroup } from "@/components/ui/radio-group"
+ */
 function RadioGroup({ className, ...props }: React.ComponentProps<typeof RadioGroupPrimitive.Root>) {
   return (
     <RadioGroupPrimitive.Root
@@ -31,6 +34,9 @@ function RadioGroup({ className, ...props }: React.ComponentProps<typeof RadioGr
   )
 }
 
+/**
+ * @import import { RadioGroupItem } from "@/components/ui/radio-group"
+ */
 function RadioGroupItem({ className, ...props }: React.ComponentProps<typeof RadioGroupPrimitive.Item>) {
   return (
     <RadioGroupPrimitive.Item

@@ -23,6 +23,9 @@ import { cn } from "@/lib/utils"
  * Use TextField (field.tsx) for a labelled field with helper and error
  * text. Use Input on its own only when you wire the label yourself.
  */
+/**
+ * @import import { Input } from "@/components/ui/input"
+ */
 function Input({ className, type = "text", ...props }: React.ComponentProps<"input">) {
   return (
     <input
