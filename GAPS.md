@@ -85,3 +85,26 @@ it, and remove it from this list.
   project can't import from these paths.
 - **Decide:** whether to publish a package, and its name. If you do,
   update the `@import` tags (see decisions.md, November 18, 2026).
+
+## 8. Decide whether StatusChip needs a terracotta variant
+
+- **Today:** StatusChip has positive, neutral, alert and error.
+- **Where it came up:** The prototype canvas (Activity and Dashboard
+  pages) marks "Overpayment" with a PROPOSED terracotta chip:
+  `--terracotta-600` at 10% fill, `--terracotta-700` text. It keeps
+  Overpayment apart from the amber "Payment due" chip and matches the
+  Overpayment segment color.
+- **Problem:** Terracotta is the primary action color, so a terracotta
+  chip may look clickable.
+- **Decide:** whether to add the variant, or which existing variant
+  Overpayment should use.
+
+## 9. Decide whether BannerBar can be dismissed
+
+- **Today:** Banner has a dismiss button. BannerBar, the page-level bar,
+  has none.
+- **Where it came up:** The July prototype (`src/design-system/banner.css`)
+  adds a PROPOSED dismiss button to the bar. It uses the bar's terracotta
+  text color, with a hover rule.
+- **Decide:** whether BannerBar should have a dismiss option, and its
+  treatment.
