@@ -17,9 +17,9 @@ it, and remove it from this list.
   the level. This is now documented.
 - **Problem:** On a page with an `<h1>` and cards directly under it, the
   headings skip from level 1 to level 3. Axe reports `heading-order`,
-  which fails story tests. All 3 runs hit this.
-- **What agents did:** added `aria-level={2}` to CardTitle in their own
-  code.
+  which fails story tests. Runs 2 and 3 hit this.
+- **What agents did:** runs 2 and 3 added `aria-level={2}` to CardTitle
+  in their own code.
 - **Decide:** whether to add a way to set the level (such as an `as` or
   `level` prop), to approve `aria-level` as the pattern, or to require
   an `<h2>` section heading above cards.
