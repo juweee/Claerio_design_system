@@ -175,6 +175,12 @@
   --modal-max-width: 480px;
   --shadow-modal: 0 8px 24px rgba(45, 45, 43, 0.16);
 
+  /* ---- Layout — added 2026-11-18 ----
+     Maximum width of the app shell (navigation rail, header, page body
+     and footer). Taken from the prototype canvas's Page Template and
+     accepted on review 2026-11-18. See decisions.md. */
+  --layout-max-width: 1280px;
+
   /* ---- Overlay shadow (toast, select menu, popover) — added 2026-07-09 ----
      Distinct from --shadow-modal on purpose: a modal sits behind the
      full-screen --overlay dim, so it needs less help reading as elevated.
@@ -312,6 +318,8 @@
   --overlay: oklch(0 0 0 / 60%); /* NOT the same value as light mode: dark-on-dark page = zero visible dimming */
   --modal-max-width: 480px;
   --shadow-modal: none;
+
+  --layout-max-width: 1280px;
 
   /* Unlike --shadow-modal, this does NOT vanish in dark mode: toasts and
      select menus have no --overlay backdrop behind them, so they need a

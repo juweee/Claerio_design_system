@@ -385,3 +385,36 @@ Earlier entries that mention a spec refer to these retired files.
   row", against the prototype canvas's Activity table.
 - Still open (GAPS.md item 4): actions in tables whose rows don't open
   a detail view.
+
+## 2026-11-18: empty state
+- New component: `EmptyState`, with `EmptyStateTitle`,
+  `EmptyStateDescription` and `EmptyStateActions`. It replaces a table
+  or chart that has nothing to show, inside the same Card, with the
+  filters still in view.
+- Centered, 48px top and bottom padding. A title in heading-3 type that
+  says what happened, one sentence that says what to do next, and a
+  secondary "Clear filters" button. A primary button only when it's the
+  page's main action.
+- The title is a `<p>`, so it never breaks the page's heading order.
+  The component has `role="status"`, so screen readers announce it.
+- One field with no value yet, such as "Amount pending", is regular
+  `--muted-foreground` text, not italic. Italic isn't in the type scale.
+- Why: the prototype canvas had two versions (a line of text with no
+  action on Activity, and a text-only "Clear filters" without a focus
+  outline on Reporting). One pattern keeps pages alike and keeps the
+  focus ring.
+
+## 2026-11-18: page header and layout
+- New component: `PageHeader`, with `PageHeaderTitle` and
+  `PageHeaderActions`. A sticky 64px `<header>` with the page title on
+  the left and page-wide status and actions on the right.
+- The page title is the page's only `<h1>`, in Lora heading-1. The
+  prototype canvas used a `<span>`, so its pages had no `<h1>`.
+- PageHeader and the `<footer>` sit outside `<main>`, so they're the
+  banner and contentinfo landmarks. Footer links go to real pages.
+- Page body: 24px padding and 24px between sections, as in the canvas.
+- Navigation selection stays amber (`--nav-active`), per CLAUDE.md. The
+  canvas's olive selection with white text is not adopted.
+- New token: `--layout-max-width: 1280px`, the app shell's maximum
+  width, taken from the canvas and accepted on review. The
+  "App shell" stories in Page header show the whole frame.

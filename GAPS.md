@@ -9,7 +9,9 @@ needs a design decision before it can be documented. Nothing here was
 added to the components or tokens.
 
 When you decide an item, record it in decisions.md, build or document
-it, and remove it from this list.
+it, and remove it from this list. Item numbers stay the same, so links
+to them keep working. Decided: item 2 (empty state, November 18, 2026)
+and most of item 6 (page header and layout).
 
 ## 1. Choose a heading level for CardTitle
 
@@ -23,16 +25,6 @@ it, and remove it from this list.
 - **Decide:** whether to add a way to set the level (such as an `as` or
   `level` prop), to approve `aria-level` as the pattern, or to require
   an `<h2>` section heading above cards.
-
-## 2. Define an empty state
-
-- **Today:** No component or pattern for "no results" or "nothing here
-  yet".
-- **What agents did:** a full-width table cell with a short message and
-  a "Clear filters" button. Runs 1 and 3 used a link-variant Button, and
-  run 2 a secondary Button.
-- **Decide:** the layout (icon or not, title, text, action), the button
-  variant, and whether it should be a component.
 
 ## 3. Choose a date filter
 
@@ -67,18 +59,15 @@ it, and remove it from this list.
 - **Decide:** whether BannerAction can render a `<button>` styled as a
   link for in-place actions, or another pattern for retry.
 
-## 6. Define a page header and page layout
+## 6. Document the foundations for the MCP docs
 
-- **Today:** No page header pattern, and no example of a page title.
-  Agents found `font-serif text-heading-1` in the Type foundations story
-  and the CLAUDE.md rule that Lora is for Display and H1.
-- **Also:** The Color, Type and Spacing foundations aren't in the MCP
-  docs. They have no component, so Storybook leaves them out of the
+- **Decided November 18, 2026:** the page header and page layout (see
+  decisions.md and the PageHeader component).
+- **Still open:** The Color, Type and Spacing foundations aren't in the
+  MCP docs. They have no component, so Storybook leaves them out of the
   components manifest. Agents read `design-tokens.css` instead.
-- **Decide:** the page header (title, optional description, where
-  actions go), page padding and maximum width. Then decide whether to
-  document the foundations for the MCP docs, for example as MDX docs
-  pages.
+- **Decide:** whether to document the foundations for the MCP docs, for
+  example as MDX docs pages.
 
 ## 7. Decide how other projects import the components
 
