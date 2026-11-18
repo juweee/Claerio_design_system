@@ -4,6 +4,9 @@ import { withThemeByClassName } from "@storybook/addon-themes"
 import "../src/styles/globals.css"
 
 const preview: Preview = {
+  // A Docs page for every component, built from the component's comment
+  // (its component record), props and stories. Decided 2026-11-18.
+  tags: ["autodocs"],
   decorators: [
     // Toolbar switch: adds or removes the .dark class on <html>.
     withThemeByClassName({

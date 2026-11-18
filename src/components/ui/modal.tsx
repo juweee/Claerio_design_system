@@ -38,6 +38,163 @@ type ModalProps = Omit<React.ComponentProps<typeof DialogPrimitive.Root>, "open"
  * The root of a modal. Wraps a ModalTrigger and a ModalContent and holds
  * the open state.
  *
+ * ## Component record
+ *
+ * Status: **stable**. *Source: decisions.md, 2026-11-18 component record
+ * review.*
+ *
+ * Each field ends with where its content came from. "PROPOSED" means
+ * nothing in the repository decides it yet: treat it as a suggestion, not
+ * a rule. "None yet" means nothing exists.
+ *
+ * ### Name and import path
+ *
+ * `Modal`, with the parts `ModalTrigger`, `ModalContent`, `ModalTitle`,
+ * `ModalDescription`, `ModalFooter` and `ModalClose`, all imported from
+ * `src/components/ui/modal` (each part's import line is in its own
+ * section). Built on Radix Dialog. *Source: modal.tsx.*
+ *
+ * ### Props
+ *
+ * Every prop of every part is in the Props and Subcomponents sections of
+ * this entry, including the HTML and Radix props each part passes
+ * through. The ones that matter most:
+ * - Modal: `open` with `onOpenChange` when you control it, or
+ *   `defaultOpen`. `modal` defaults to true: keep it on.
+ * - ModalTrigger and ModalClose: `asChild`, to use a Button.
+ * - ModalContent: `onOpenAutoFocus`, `onCloseAutoFocus` and
+ *   `onInteractOutside`, to change focus or closing behavior.
+ *
+ * *Source: modal.tsx.*
+ *
+ * ### Variants and states
+ *
+ * One variant.
+ * - **Closed:** only the trigger shows.
+ * - **Open:** the page dims with `--overlay` (the foreground color at 50%
+ *   in light mode, black at 60% in dark). The dialog is centered on `--card`, `--radius-lg`,
+ *   16px padding, up to `--modal-max-width` (480px) and 32px narrower
+ *   than the screen. `--shadow-modal` in light mode, no shadow in dark.
+ * - **Focus visible on the dialog itself:** 2px `--ring` outline, 2px
+ *   offset.
+ * - **Title:** heading-2 type. **Description:** body type, 8px below.
+ *   **Footer:** 16px below, buttons on the right, 8px apart.
+ * - **None yet:** sizes, a close (×) button, a loading state while the
+ *   action runs, an error state inside the modal and scrolling for long
+ *   content (GAPS.md item 27).
+ *
+ * *Source: modal.tsx, design-tokens.css.*
+ *
+ * ### Stories
+ *
+ * Story IDs, with links to the published Storybook:
+ * [components-modal--open-light](https://juweee.github.io/Claerio_design_system/?path=/story/components-modal--open-light),
+ * [components-modal--open-dark](https://juweee.github.io/Claerio_design_system/?path=/story/components-modal--open-dark),
+ * [components-modal--live](https://juweee.github.io/Claerio_design_system/?path=/story/components-modal--live).
+ * *Source: modal.stories.tsx.*
+ *
+ * ### Tokens
+ *
+ * `--overlay`, `--card`, `--card-foreground`, `--radius-lg`,
+ * `--modal-max-width`, `--shadow-modal`, `--ring`, `--font-sans`,
+ * `--type-heading-2-size`, `--type-heading-2-weight`,
+ * `--type-heading-2-line-height`, `--type-body-size`,
+ * `--type-body-weight`, `--type-body-line-height`. The buttons inside
+ * use Button's tokens. *Source: modal.tsx class names,
+ * design-tokens.css.*
+ *
+ * ### Purpose
+ *
+ * Asks for a decision before the person can continue, such as "Dispute
+ * this charge?". *Source: modal.tsx comment.*
+ *
+ * ### When to use, when not to
+ *
+ * - Use it to confirm an action with a consequence the person should
+ *   weigh first, such as filing a dispute. *Source: modal.tsx comment,
+ *   stories.*
+ * - To confirm something already done, use Toast. To show a message on
+ *   the page, use Banner. *Source: decisions.md, 2026-11-18 component record review.*
+ * - Whether a clickable table row opens a modal, a panel or a page isn't
+ *   decided (GAPS.md item 12).
+ * - Forms and long content in a modal: none yet (GAPS.md item 27).
+ *
+ * ### Anatomy
+ *
+ * 1. Modal: holds the open state.
+ * 2. ModalTrigger: the Button that opens it.
+ * 3. ModalContent: the dimmed page and the dialog.
+ * 4. ModalTitle: the question.
+ * 5. ModalDescription: the consequence.
+ * 6. ModalFooter: Cancel (secondary, in a ModalClose), then the
+ *    confirming action (primary), rightmost.
+ *
+ * *Source: modal.tsx, stories.*
+ *
+ * ### Behavior
+ *
+ * - Opening moves focus to the first control inside, which is Cancel in
+ *   the standard footer. Tab stays inside the modal.
+ * - Escape, clicking the dimmed page and any ModalClose close it. Focus
+ *   then returns to the trigger.
+ * - The page behind can't be scrolled or reached while it's open.
+ * - In the stories, the confirming action sits in a ModalClose, so the
+ *   modal closes the moment it's pressed. How to keep it open while the
+ *   action runs, or show an error: none yet (GAPS.md item 27).
+ * - Opening it without a ModalTrigger, with `open` and `onOpenChange`,
+ *   such as from a table row: not decided, nor where focus returns
+ *   then (GAPS.md item 14).
+ *
+ * *Source: modal.tsx comment, Radix Dialog.*
+ *
+ * ### Accessibility
+ *
+ * The component handles (Radix Dialog):
+ * - The dialog role, marked modal, named by ModalTitle and described by
+ *   ModalDescription. ModalTitle is an `<h2>`.
+ * - Focus moving in, staying in, and returning to the trigger.
+ * - Hiding the rest of the page from screen readers while open.
+ *
+ * You must provide:
+ * - A ModalTitle, always. Radix warns in the console without one.
+ * - A ModalDescription, or `aria-describedby={undefined}` on
+ *   ModalContent when there's nothing to describe.
+ * - A real Button as the trigger, with `asChild`. *Source: ModalTrigger
+ *   description.*
+ *
+ * Test checklist:
+ * 1. Open it with the keyboard: focus lands inside, on Cancel.
+ * 2. Tab and Shift+Tab never leave the modal.
+ * 3. Escape closes it, and focus returns to the trigger.
+ * 4. A screen reader says "dialog", the title and the description.
+ * 5. The Storybook `test-run` passes for the open stories in both modes.
+ *    *Source: decisions.md, 2026-11-13.*
+ *
+ * *Source: modal.tsx comment, Radix Dialog, stories.*
+ *
+ * ### Content guidance
+ *
+ * - Title: a question about the action, such as "Dispute this charge?".
+ *   *Source: modal.tsx comment.*
+ * - Description: one or two sentences on the consequence, such as "We
+ *   will file the dispute with your insurer. Average resolution: 12
+ *   days." *Source: modal.tsx comment, stories.*
+ * - Buttons: "Cancel", then a verb that repeats the title's action, such
+ *   as "File dispute". *Source: decisions.md, 2026-11-18 component record review.*
+ * - Whether a destructive confirmation, such as a delete, uses the
+ *   destructive Button: not decided (GAPS.md item 27).
+ * - No em dashes. *Source: CLAUDE.md content style guide.*
+ *
+ * ### Related components and patterns
+ *
+ * Button (trigger and footer), Toast, Banner, Table (GAPS.md item 12).
+ * *Source: modal.tsx, stories.*
+ *
+ * ### Links
+ *
+ * decisions.md: 2026-11-12 table and remaining components (modal built
+ * on Radix Dialog, reviewed). GAPS.md: items 12, 14 and 27. Figma: none yet.
+ *
  * @import import { Modal } from "@/components/ui/modal"
  */
 function Modal(props: ModalProps) {

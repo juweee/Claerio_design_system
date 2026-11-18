@@ -50,6 +50,200 @@ import { cn } from "@/lib/utils"
  * clickable rows, give each TableRow an onClick and end it with a
  * TableChevronCell, and end the header row with a TableChevronHead.
  *
+ * ## Component record
+ *
+ * Status: **first pass**. Some table patterns aren't designed yet: see
+ * GAPS.md items 4, 12, 13 and 19. *Source: experiment 1.3 brief.*
+ *
+ * Each field ends with where its content came from. "PROPOSED" means
+ * nothing in the repository decides it yet: treat it as a suggestion, not
+ * a rule. "None yet" means nothing exists.
+ *
+ * ### Name and import path
+ *
+ * `Table`, with the parts `TableHeader`, `TableBody`, `TableRow`,
+ * `TableHead`, `TableCell`, `TableChevronCell` and `TableChevronHead`,
+ * all imported from `src/components/ui/table` (each part's import line is
+ * in its own section). The file also exports the types `SortDirection`,
+ * `TableRowProps`, `TableHeadProps` and `TableCellProps`.
+ * *Source: table.tsx.*
+ *
+ * ### Props
+ *
+ * Every prop of every part, with types and defaults, is in the Props and
+ * Subcomponents sections of this entry, including the HTML props each
+ * part passes through. The props that change the look or behavior:
+ * - TableRow: `onClick` (makes the row clickable), `highlighted`.
+ * - TableHead: `numeric`, `onSort`, `sorted` ("ascending" or
+ *   "descending").
+ * - TableCell: `numeric`, `mono`.
+ *
+ * *Source: table.tsx.*
+ *
+ * ### Variants and states
+ *
+ * - **Base:** Inter 14/400 in `--foreground`. A 1px `--border` line
+ *   under each row except the last. No outer border, no zebra striping.
+ *   Cells: 10px top and bottom, 12px to the next column.
+ * - **Header cell:** 12/500 in `--muted-foreground`, 8px top and bottom,
+ *   `--border` line beneath.
+ * - **Sortable header, not sorted:** a button with a 12px CaretUpDown
+ *   at 45% opacity.
+ * - **Sorted header:** 600 weight in `--foreground`, CaretUp or
+ *   CaretDown at full opacity, and `aria-sort` on the cell.
+ * - **Numeric cell or header:** right-aligned, with tabular figures in
+ *   cells.
+ * - **Mono cell:** `--font-mono` at 13/400, for IDs. It sits about 1px
+ *   higher than the other cells (GAPS.md item 20).
+ * - **Rows not clickable:** no pointer, no hover color, no chevron
+ *   column.
+ * - **Clickable row, rest:** a trailing › chevron in
+ *   `--muted-foreground`.
+ * - **Clickable row, hover:** pointer, `--accent` fill, chevron in
+ *   `--foreground`.
+ * - **Clickable row, focus visible:** 2px `--ring` outline, 2px offset.
+ * - **Highlighted row:** `--accent` fill, for a just-created or
+ *   just-updated row.
+ * - **No rows:** replace the table with an EmptyState in the same Card,
+ *   with the filters still in view. *Source: decisions.md, 2026-11-18
+ *   empty state.*
+ * - **None yet:** loading (GAPS.md item 16), the layout when loading
+ *   fails (GAPS.md item 17), row selection (GAPS.md item 19),
+ *   pagination, long text, narrow screens and sticky headers.
+ *
+ * *Source: table.tsx, decisions.md (Components: Table; 2026-11-12 table
+ * and remaining components).*
+ *
+ * ### Stories
+ *
+ * Story IDs, with links to the published Storybook:
+ * [components-table--interactive](https://juweee.github.io/Claerio_design_system/?path=/story/components-table--interactive),
+ * [components-table--all-states](https://juweee.github.io/Claerio_design_system/?path=/story/components-table--all-states),
+ * [components-table--reference-layout](https://juweee.github.io/Claerio_design_system/?path=/story/components-table--reference-layout).
+ * *Source: table.stories.tsx.*
+ *
+ * ### Tokens
+ *
+ * `--foreground`, `--muted-foreground`, `--border`, `--accent`,
+ * `--ring`, `--radius-sm` (sort button), `--font-sans`, `--font-mono`,
+ * `--type-body-size`, `--type-body-weight`, `--type-body-line-height`,
+ * `--type-body-small-size` and `--type-body-small-line-height` (headers,
+ * at weight 500), `--type-monospace-size`, `--type-monospace-weight`,
+ * `--type-monospace-line-height`. *Source: table.tsx class names,
+ * design-tokens.css.*
+ *
+ * ### Purpose
+ *
+ * Shows rows of records, such as claims, so people can scan, sort and
+ * open them. *Source: drafted from the description above.*
+ *
+ * ### When to use, when not to
+ *
+ * - Use it for a list of records that share the same fields, such as
+ *   claims with an ID, date, provider, status and amount. *Source:
+ *   stories.*
+ * - For one record's details, use a Card. *Source: decisions.md, 2026-11-18 component record review.*
+ * - When filters match nothing, use EmptyState instead of an empty
+ *   table. *Source: decisions.md, 2026-11-18 empty state.*
+ * - Rows with actions: in a clickable row, put actions in the detail
+ *   view it opens. Where rows open nothing, see GAPS.md item 4.
+ *   *Source: decisions.md, 2026-11-18 actions in clickable table rows.*
+ * - What a clickable row opens (a page, a panel or a modal) isn't
+ *   decided: see GAPS.md item 12.
+ *
+ * ### Anatomy
+ *
+ * 1. Card: the surface the table sits on. Filters go above the table,
+ *    in a FilterRow.
+ * 2. TableHeader: one `<tr>` of TableHead cells, plus a TableChevronHead
+ *    when rows are clickable.
+ * 3. TableBody: TableRow elements.
+ * 4. TableRow: TableCell elements, plus a TableChevronCell when the row
+ *    is clickable.
+ *
+ * *Source: description above, table.tsx, stories.*
+ *
+ * ### Behavior
+ *
+ * - **Sorting:** the table doesn't sort data. Sort it yourself, pass
+ *   `onSort` to each sortable TableHead and `sorted` to the sorted one.
+ *   *Source: table.tsx.* A new sort column starts descending, and a
+ *   second click flips it. *Source: decisions.md, 2026-11-18 component record review.*
+ * - **Clickable rows:** a click anywhere in the row, or Enter or Space
+ *   on the focused row, calls `onClick`. *Source: table.tsx.*
+ * - **Highlight:** remove `highlighted` after a few seconds or on the
+ *   first interaction. Pair it with a success toast. The exact time:
+ *   none yet. *Source: table.tsx.*
+ * - **Filtering:** FilterSelect controls in a FilterRow above the table,
+ *   inside the same Card. *Source: decisions.md (Filter triggers),
+ *   stories.*
+ * - **Mixed tables**, where only some rows open something: not decided,
+ *   see GAPS.md item 13.
+ *
+ * ### Accessibility
+ *
+ * The component handles:
+ * - A real HTML `<table>`, with `<th scope="col">` headers.
+ * - Sort buttons, with `aria-sort` on the sorted column.
+ * - Clickable rows reachable with Tab and opened with Enter or Space,
+ *   with the 2px focus outline.
+ * - The chevron is hidden from screen readers. Its header cell has
+ *   visually hidden text, "Open".
+ * - Status chip text on highlighted rows measures 4.58:1 and 4.56:1 in
+ *   dark mode. *Source: decisions.md, 2026-11-12.*
+ *
+ * *Source: table.tsx, decisions.md (2026-11-12 table entry).*
+ *
+ * You must provide:
+ * - Visible header text in every column except the chevron column.
+ *   *Source: table.tsx.*
+ * - The row's text, so it says what's needed without opening it, such
+ *   as "You owe $50.00". *Source: decisions.md, 2026-11-18.*
+ * - A name for the table, with `aria-label` or `aria-labelledby`
+ *   pointing at the Card title. *Source: decisions.md, 2026-11-18 component record review.*
+ *
+ * Known limits: a clickable row keeps the row role, so screen readers
+ * may not say that it opens anything. Not yet tested with a screen
+ * reader (GAPS.md item 23). Dark-mode row lines measure 1.35:1 against
+ * the card; they're decorative. *Source: decisions.md, 2026-11-12 open
+ * items closed.*
+ *
+ * Test checklist:
+ * 1. A screen reader reads each cell with its column header.
+ * 2. Tab reaches each sort button and each clickable row, with the
+ *    outline visible in light and dark mode.
+ * 3. Enter and Space sort a column and open a row.
+ * 4. After sorting, the sorted column's header has `aria-sort`.
+ * 5. The Storybook `test-run` passes. *Source: decisions.md,
+ *    2026-11-13.*
+ *
+ * ### Content guidance
+ *
+ * - Header labels: one or two words in sentence case, such as "Claim",
+ *   "Provider", "Amount". *Source: decisions.md, 2026-11-18 component record review.*
+ * - IDs in a mono cell. Amounts in a numeric cell, as currency with 2
+ *   decimals, such as "$1,240.00". *Source: table.tsx, stories.*
+ * - Status: a StatusChip with a one-word label. *Source: table.tsx,
+ *   stories.*
+ * - Dates: the stories write "Nov 2, 2026". The content style guide
+ *   writes dates as "July 14, 2026". Whether tables may shorten the
+ *   month isn't decided (GAPS.md item 24).
+ * - No em dashes. *Source: CLAUDE.md content style guide.*
+ *
+ * ### Related components and patterns
+ *
+ * Card, FilterRow and FilterSelect, StatusChip, EmptyState, Toast (with
+ * the row highlight), Button (not inside clickable rows).
+ * *Source: table.tsx, stories, decisions.md.*
+ *
+ * ### Links
+ *
+ * decisions.md: Components (Table); Deferred / open (multi-select,
+ * inline editing, column resize); 2026-11-12 table and remaining
+ * components; 2026-11-12 open items closed (decorative borders);
+ * 2026-11-18 actions in clickable table rows; 2026-11-18 empty state.
+ * GAPS.md: items 4, 12, 13, 16, 17, 19, 20, 23 and 24. Figma: none yet.
+ *
  * @import import { Table } from "@/components/ui/table"
  */
 function Table({ className, ...props }: React.ComponentProps<"table"> & ChildrenProps & CommonProps<HTMLTableElement>) {

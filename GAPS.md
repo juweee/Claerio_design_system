@@ -5,8 +5,9 @@ Last updated: November 18, 2026.
 These came up in experiment 1.4, when agents built a payments review
 screen from the Storybook MCP docs alone, and in the comparison with the
 prototype canvas. Items 12 to 20 came up in experiment 1.4b, which ran
-the same task 3 times. Each item below needs a design decision before it
-can be documented or built.
+the same task 3 times. Items 21 to 27 came up in experiment 1.3, while
+writing component records. Each item below needs a design decision
+before it can be documented or built.
 
 When you decide an item, record it in decisions.md, build or document
 it, and remove it from this list. Item numbers stay the same, so links
@@ -14,7 +15,9 @@ to them keep working.
 
 Decided on November 18, 2026, and removed: 1 (CardTitle level), 2
 (empty state), 3 (date filter), 5 (banner retry action) and 6 (page
-layout, and the foundations in the MCP docs). See decisions.md.
+layout, and the foundations in the MCP docs). Also decided on
+November 18, 2026: the PROPOSED fields in the experiment 1.3 component
+records. See decisions.md.
 
 ## 4. Define actions in tables without a detail view
 
@@ -99,8 +102,11 @@ layout, and the foundations in the MCP docs). See decisions.md.
 - **Today:** TableRow says a clickable row's actions live in "the
   detail view the row opens", but the system has no detail view.
 - **What agents did:** all 3 runs used a Modal to approve a claim.
+- **Also raised in experiment 1.3:** the Table record points here. The
+  2026-11-18 row actions comparison used a temporary panel preview.
 - **Decide:** whether the system needs a detail view, drawer or side
-  panel, and when a Modal is enough.
+  panel, and when a Modal is enough. Also decide where focus goes when
+  it closes.
 
 ## 13. Define tables where only some rows open
 
@@ -110,7 +116,8 @@ layout, and the foundations in the MCP docs). See decisions.md.
 - **What agents did:** runs 1 and 2 put an empty cell where the chevron
   would be. Run 3 made every row clickable, including approved claims.
 - **Decide:** the pattern for mixed rows, including what fills the
-  chevron column on rows that don't open.
+  chevron column on rows that don't open, and how those rows differ on
+  hover (raised again in experiment 1.3).
 
 ## 14. Decide whether a Modal can open without a trigger
 
@@ -159,9 +166,14 @@ layout, and the foundations in the MCP docs). See decisions.md.
 - **What agents did:** each run chose its own labels and variants. Run
   3 used "Pending review" (neutral), "Needs info" (alert), "Approved"
   (positive) and "Denied" (error).
+- **Partly decided November 18, 2026:** the experiment 1.3 record
+  review accepted a mapping for 4 states in the StatusChip record: Paid
+  is positive, Pending is neutral, Review is alert, Denied is error (see
+  decisions.md).
 - **Decide:** whether status labels and their variants are documented,
   and where. They're product content rather than design system
-  content.
+  content. If they move out of the design system, the StatusChip
+  mapping moves with them.
 
 ## 19. Decide whether Table supports row selection
 
@@ -169,8 +181,12 @@ layout, and the foundations in the MCP docs). See decisions.md.
 - **Today:** Table has no row selection, so there are no bulk actions.
 - **What agents did:** approved one claim at a time. Run 3 noted that a
   billing manager would likely approve several claims at once.
+- **Also listed in:** decisions.md, "Deferred / open" (Table
+  multi-select, inline editing, column resize). Raised again in
+  experiment 1.3.
 - **Decide:** whether Table supports selection and bulk actions, and
-  how they work with clickable rows.
+  how they work with clickable rows. Also decide how selection looks
+  next to the `--accent` hover and new-row highlight.
 
 ## 20. Fix the baseline of monospace IDs in tables
 
@@ -179,3 +195,75 @@ layout, and the foundations in the MCP docs). See decisions.md.
   the text in the other cells of the same row. It shows in the run 3
   screenshots.
 - **Decide:** nothing to decide. Fix the alignment in TableCell.
+
+## 21. Design an icon-only button
+
+- **Found in:** experiment 1.3, writing the Button record.
+- **Today:** Button has no icon-only treatment. The PageHeader stories
+  build the Help and Alerts buttons from a ghost Button with
+  `aria-label` and class overrides (`px-2 text-foreground`).
+- **Decide:** whether icon-only is a variant or a size, its padding and
+  icon color, and whether `aria-label` becomes required for it.
+
+## 22. Decide whether Button needs a loading state
+
+- **Found in:** experiment 1.3, writing the Button record.
+- **Today:** no loading state and no protection against a second
+  click. Disabled is the only way to block clicks. `aria-disabled`
+  changes the look but still runs the click handler. Item 16 covers
+  loading content.
+- **Decide:** whether to add a loading state (spinner, label, width),
+  and when to use `disabled` versus `aria-disabled`.
+
+## 23. Decide how screen readers announce clickable table rows
+
+- **Found in:** experiment 1.3, writing the Table record.
+- **Decided November 18, 2026:** name every table with `aria-label`, or
+  `aria-labelledby` pointing at the Card title (see decisions.md).
+- **Still open:** a clickable row keeps the row role, so a screen
+  reader may not say it opens anything. Not tested with a screen
+  reader.
+- **Decide:** whether clickable rows need more for screen readers,
+  after a screen reader test.
+
+## 24. Decide whether tables may shorten dates
+
+- **Found in:** experiment 1.3, writing the Table record.
+- **Today:** the table stories write "Nov 2, 2026". The content style
+  guide in CLAUDE.md writes dates as "July 14, 2026".
+- **Decide:** whether tables use the short month to save width.
+
+## 25. Show subcomponent guidance on Storybook Docs pages
+
+- **Found in:** experiment 1.3, after turning on autodocs.
+- **Today:** a Docs page shows only the main component's description.
+  The descriptions of its parts, such as TableRow's "no buttons in a
+  clickable row" and ModalTrigger's "use a Button with asChild", appear
+  in `docs-show` but not on the page. Badge's description is no longer
+  on the "Badge and status chip" page, because StatusChip became that
+  entry's main component so its record leads.
+- **Decide:** whether part guidance moves into the main component's
+  record, or the Docs page gets a custom layout that lists each part's
+  description.
+
+## 26. Announce filter results to screen readers
+
+- **Found in:** experiment 1.3, writing the FilterSelect record.
+- **Today:** when a filter changes the rows, screen readers aren't told.
+  EmptyState has `role="status"`, so "no results" is announced, but a
+  change from 12 rows to 3 isn't.
+- **Decide:** whether to announce a result count, such as "3 claims",
+  and where the live region lives.
+
+## 27. Decide how Modal handles real actions and longer content
+
+- **Found in:** experiment 1.3, writing the Modal record.
+- **Today:** the confirming button sits in a ModalClose, so the modal
+  closes as soon as it's pressed. Nothing shows progress or an error if
+  the action fails. There's no close (×) button, one size, and no rule
+  for long content or forms. The story's "Dispute charge" trigger is a
+  destructive Button, but its confirming "File dispute" is primary.
+  Item 14 covers opening a Modal without a trigger.
+- **Decide:** the loading and error states, whether to add a close
+  button, whether a destructive confirmation uses the destructive
+  Button, and whether forms belong in a modal.
