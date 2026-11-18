@@ -441,3 +441,20 @@ Earlier entries that mention a spec refer to these retired files.
   radius pages list values for reference; `design-tokens.css` stays the
   source of truth, so update the pages when a value changes.
 - **Imports for other projects:** deferred (GAPS.md item 7).
+
+## 2026-11-18: a Docs page for every component (autodocs)
+- `.storybook/preview.tsx` sets `tags: ["autodocs"]`, so Storybook builds
+  a Docs page for every component: its comment, props table and stories.
+- The component comment is the one source. Storybook builds the Docs
+  page and the MCP manifest (what `docs-show` returns) from the same
+  comment, so nothing is copied or kept in sync by hand.
+- Why: the component records from experiment 1.3 reached agents through
+  `docs-show` but weren't visible to people in Storybook.
+- Not adopted: a hand-written MDX page per component. It would be a
+  second copy, and `docs-show` returns attached MDX as raw source.
+- Stories that start with an overlay open: on Docs pages, the 2 open
+  Modal stories render in their own frame (`docs.story.inline: false`),
+  because inline they cover the page and trap focus. The 4 open-menu
+  stories (Filter trigger, Selection controls) are left off Docs pages
+  with the `!autodocs` tag: in a frame, Radix closes the menu when the
+  frame resizes. All 6 keep their story pages and tests.

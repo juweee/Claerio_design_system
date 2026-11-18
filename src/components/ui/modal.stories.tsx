@@ -51,12 +51,16 @@ const fullPage: Decorator = (Story) => (
   </div>
 )
 
+/* On Docs pages, the open modal renders in its own frame. Inline, it
+   would cover the whole Docs page and trap focus there (2026-11-18). */
+const openModalDocs = { story: { inline: false, height: "400px" } }
+
 /* The modal opens in a layer above the page, so each mode gets its own
    story with the whole page set to that mode. */
 
 export const OpenLight: Story = {
   name: "Open, light",
-  parameters: { themes: { themeOverride: "Light" }, layout: "fullscreen" },
+  parameters: { themes: { themeOverride: "Light" }, layout: "fullscreen", docs: openModalDocs },
   args: { defaultOpen: true },
   decorators: [fullPage],
   render: DisputeModal,
@@ -64,7 +68,7 @@ export const OpenLight: Story = {
 
 export const OpenDark: Story = {
   name: "Open, dark",
-  parameters: { themes: { themeOverride: "Dark" }, layout: "fullscreen" },
+  parameters: { themes: { themeOverride: "Dark" }, layout: "fullscreen", docs: openModalDocs },
   args: { defaultOpen: true },
   decorators: [fullPage],
   render: DisputeModal,

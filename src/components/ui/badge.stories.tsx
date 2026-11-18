@@ -6,8 +6,10 @@ import { Badge, StatusChip } from "./badge"
 
 const meta = {
   title: "Components/Badge and status chip",
-  component: Badge,
-  subcomponents: { StatusChip },
+  // StatusChip is the main component so its record leads the docs entry.
+  // Badge's description and props show under Subcomponents.
+  component: StatusChip,
+  subcomponents: { Badge },
 } satisfies Meta
 export default meta
 type Story = StoryObj<typeof meta>

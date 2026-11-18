@@ -89,6 +89,136 @@ type StatusChipProps = React.ComponentProps<"span"> & {
 } & ChildrenProps & CommonProps<HTMLSpanElement>
 
 /**
+ * Names the state of a claim, accumulator or plan, such as "Paid" or
+ * "Denied", in a small colored pill. The text carries the meaning: color
+ * only supports it.
+ *
+ * ## Component record
+ *
+ * Status: **stable** (PROPOSED: no status has been assigned yet).
+ *
+ * Each field ends with where its content came from. "PROPOSED" means
+ * nothing in the repository decides it yet: treat it as a suggestion, not
+ * a rule. "None yet" means nothing exists.
+ *
+ * ### Name and import path
+ *
+ * `StatusChip`, imported from `src/components/ui/badge` (the import line
+ * is below). The same file exports `Badge` and `statusChipVariants`, the
+ * class function behind the variants. StatusChip leads the "Badge and
+ * status chip" docs entry, with Badge under Subcomponents. *Source:
+ * badge.tsx, badge.stories.tsx.*
+ *
+ * ### Props
+ *
+ * Every prop, with its type, is in this part's Props section, including
+ * the HTML span props it passes through. One default doesn't show there:
+ * `variant` is "neutral" when you leave it out. *Source: badge.tsx.*
+ *
+ * ### Variants and states
+ *
+ * | Variant | Use for | Fill, light / dark | Text |
+ * | --- | --- | --- | --- |
+ * | positive | Good news, such as Paid | `--success` at 12% / 10% | `--teal-dark` |
+ * | neutral (default) | Waiting or informational, such as Pending | `--olive-600` at 10% / 16% | `--olive-700`; dark: `--muted-foreground` |
+ * | alert | Needs the person's attention | `--warning` at 10% / 15% | `--warning-foreground` |
+ * | error | Failed or denied | `--destructive` at 10% / 6% | `--error-foreground` |
+ *
+ * Every variant: Inter 11/600, `--radius-full`, 2px top and bottom and
+ * 10px side padding, on one line. 11px is below the type scale on
+ * purpose. No hover, focus or disabled state: the chip isn't interactive.
+ * A terracotta variant isn't decided (GAPS.md item 8).
+ *
+ * *Source: badge.tsx, decisions.md (2026-11-12 table and remaining
+ * components; 2026-11-12 success color and chip tints accepted).*
+ *
+ * ### Stories
+ *
+ * StatusChip shares the Badge stories:
+ * [components-badge-and-status-chip--all-variants-story](https://juweee.github.io/Claerio_design_system/?path=/story/components-badge-and-status-chip--all-variants-story),
+ * [components-badge-and-status-chip--reference-layout](https://juweee.github.io/Claerio_design_system/?path=/story/components-badge-and-status-chip--reference-layout).
+ * The Table stories show chips in table rows. *Source: badge.stories.tsx,
+ * table.stories.tsx.*
+ *
+ * ### Tokens
+ *
+ * `--success`, `--teal-dark`, `--olive-600`, `--olive-700`,
+ * `--muted-foreground`, `--warning`, `--warning-foreground`,
+ * `--destructive`, `--error-foreground`, `--radius-full`, `--font-sans`.
+ * *Source: badge.tsx class names, design-tokens.css.*
+ *
+ * ### Purpose
+ *
+ * Names the state of a claim, accumulator or plan so people can scan it.
+ * *Source: badge.tsx comment.*
+ *
+ * ### When to use, when not to
+ *
+ * - Use it for the state of one item, in a table cell or next to the
+ *   item's name. *Source: badge.tsx comment, stories.*
+ * - For a financial benefit, such as "Save $187", use Badge. *Source:
+ *   Badge description.*
+ * - For a message that needs explaining or an action, use Banner. To
+ *   confirm something the person just did, use Toast. PROPOSED: drawn
+ *   from those components' descriptions, never compared with StatusChip.
+ * - Don't use it as a button, link or filter. PROPOSED: the chip has no
+ *   interactive state, and GAPS.md item 8 worries that a chip could look
+ *   clickable, but no rule says so.
+ *
+ * ### Anatomy
+ *
+ * One part: a pill with a text label. No icon. *Source: badge.tsx.*
+ *
+ * ### Behavior
+ *
+ * Static: it shows what you pass and doesn't change by itself. When a
+ * state changes on screen, screen readers aren't told: none yet.
+ * *Source: badge.tsx.*
+ *
+ * ### Accessibility
+ *
+ * The component handles:
+ * - Text contrast in both modes, including on highlighted table rows:
+ *   4.58:1 (positive) and 4.56:1 (error) in dark mode, the lowest pair.
+ *   *Source: decisions.md, 2026-11-12.*
+ *
+ * You must provide:
+ * - The state in words. Screen readers read only the text, never the
+ *   color. *Source: badge.tsx comment.*
+ *
+ * Test checklist:
+ * 1. Read the chip with colors turned off: the text alone gives the
+ *    state.
+ * 2. A screen reader reads the chip's text in place, such as within its
+ *    table row.
+ * 3. The Storybook `test-run` passes, including color contrast.
+ *    *Source: decisions.md, 2026-11-13.*
+ *
+ * ### Content guidance
+ *
+ * - Name the state, not the color: "Denied", not "Red". *Source:
+ *   badge.tsx comment.*
+ * - Keep it short: one word, or a short phrase such as "3 claims
+ *   pending" or "Deductible 62% met". The chip never wraps. PROPOSED as
+ *   a length rule: drawn from the stories.
+ * - Sentence case, no ending punctuation. PROPOSED: drawn from the
+ *   stories.
+ * - Claim states in the stories: Paid is positive, Pending is neutral,
+ *   Review is alert, Denied is error. PROPOSED as the standard mapping:
+ *   only the stories use it.
+ * - No em dashes. *Source: CLAUDE.md content style guide.*
+ *
+ * ### Related components and patterns
+ *
+ * Badge (may sit next to a chip, 6px apart), Table (status column),
+ * Banner, Toast. *Source: badge.tsx comment, stories.*
+ *
+ * ### Links
+ *
+ * decisions.md: 2026-11-12 table and remaining components (status chip
+ * colors, type exceptions); 2026-11-12 success color and chip tints
+ * accepted. GAPS.md: item 8. Figma: none yet.
+ *
  * @import import { StatusChip } from "@/components/ui/badge"
  */
 function StatusChip({ className, variant, ...props }: StatusChipProps) {
