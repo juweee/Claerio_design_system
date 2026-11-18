@@ -1,6 +1,7 @@
 import * as React from "react"
 import { WarningIcon } from "@phosphor-icons/react"
 
+import type { AttributeProps, ChildrenProps, CommonProps, EventProps, InputElementProps } from "@/lib/html-props"
 import { cn } from "@/lib/utils"
 
 import { Input } from "./input"
@@ -24,14 +25,14 @@ import { Label } from "./label"
 /**
  * @import import { Field } from "@/components/ui/field"
  */
-function Field({ className, ...props }: React.ComponentProps<"div">) {
+function Field({ className, ...props }: React.ComponentProps<"div"> & ChildrenProps & CommonProps<HTMLDivElement>) {
   return <div data-slot="field" className={cn("flex flex-col", className)} {...props} />
 }
 
 /**
  * @import import { FieldDescription } from "@/components/ui/field"
  */
-function FieldDescription({ className, ...props }: React.ComponentProps<"p">) {
+function FieldDescription({ className, ...props }: React.ComponentProps<"p"> & ChildrenProps & CommonProps<HTMLParagraphElement>) {
   return (
     <p
       data-slot="field-description"
@@ -44,7 +45,7 @@ function FieldDescription({ className, ...props }: React.ComponentProps<"p">) {
 /**
  * @import import { FieldError } from "@/components/ui/field"
  */
-function FieldError({ className, children, ...props }: React.ComponentProps<"p">) {
+function FieldError({ className, children, ...props }: React.ComponentProps<"p"> & ChildrenProps & CommonProps<HTMLParagraphElement>) {
   return (
     <p
       data-slot="field-error"
@@ -71,7 +72,11 @@ type TextFieldProps = Omit<React.ComponentProps<"input">, "id"> & {
   id?: string
   /** Class for the outer wrapper. */
   fieldClassName?: string
-}
+  /** Classes for the input itself. Use fieldClassName for the wrapper. */
+  className?: string
+} & InputElementProps &
+  AttributeProps &
+  EventProps<HTMLInputElement>
 
 /**
  * A labelled text input with optional helper and error text. It links the

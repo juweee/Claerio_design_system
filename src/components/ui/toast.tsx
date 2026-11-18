@@ -3,6 +3,7 @@ import { cva } from "class-variance-authority"
 import { Toast as ToastPrimitive } from "radix-ui"
 import { CheckIcon, ExclamationMarkIcon } from "@phosphor-icons/react"
 
+import type { ButtonElementProps, ChildrenProps, CommonProps, RadixAsChildProps } from "@/lib/html-props"
 import { cn } from "@/lib/utils"
 
 /*
@@ -50,7 +51,11 @@ type ToastProviderProps = Omit<
   label?: string
   /** The direction a person swipes to close a toast. Defaults to "right", to match the bottom-right viewport. */
   swipeDirection?: "right" | "left" | "up" | "down"
-}
+  /** Pixels a person must swipe before the toast closes. Defaults to 50. */
+  swipeThreshold?: number
+  /** Where the screen reader announcer renders. Defaults to document.body. */
+  announcerContainer?: Element | DocumentFragment
+} & ChildrenProps
 
 /**
  * Wrap your app once in a ToastProvider, with one ToastViewport inside it.
@@ -69,7 +74,16 @@ function ToastProvider(props: ToastProviderProps) {
  *
  * @import import { ToastViewport } from "@/components/ui/toast"
  */
-function ToastViewport({ className, ...props }: React.ComponentProps<typeof ToastPrimitive.Viewport>) {
+function ToastViewport({
+  className,
+  ...props
+}: React.ComponentProps<typeof ToastPrimitive.Viewport> & {
+  /** Keys that move focus to the toasts. Defaults to ["F8"]. */
+  hotkey?: string[]
+  /** Names the region for screen readers. "{hotkey}" is replaced with the keys. Defaults to "Notifications ({hotkey})". */
+  label?: string
+} & RadixAsChildProps &
+  ChildrenProps & CommonProps<HTMLOListElement>) {
   return (
     <ToastPrimitive.Viewport
       data-slot="toast-viewport"
@@ -98,6 +112,9 @@ const toastIconVariants = cva(
   }
 )
 
+/** The event Radix passes to the swipe callbacks. */
+type ToastSwipeEvent = Parameters<NonNullable<ToastPrimitive.ToastProps["onSwipeStart"]>>[0]
+
 type ToastProps = Omit<
   React.ComponentProps<typeof ToastPrimitive.Root>,
   "open" | "defaultOpen" | "onOpenChange" | "duration"
@@ -112,7 +129,26 @@ type ToastProps = Omit<
   onOpenChange?: (open: boolean) => void
   /** Milliseconds before this toast closes. Overrides the ToastProvider duration. */
   duration?: number
-}
+  /** "foreground" (the default) is announced right away. "background" waits politely. */
+  type?: "foreground" | "background"
+  /** Called when the person presses Escape. Call event.preventDefault() to keep it open. */
+  onEscapeKeyDown?: (event: KeyboardEvent) => void
+  /** Called when the close timer pauses, on hover or focus. */
+  onPause?: () => void
+  /** Called when the close timer resumes. */
+  onResume?: () => void
+  /** Called when a swipe starts. */
+  onSwipeStart?(event: ToastSwipeEvent): void
+  /** Called as a swipe moves. */
+  onSwipeMove?(event: ToastSwipeEvent): void
+  /** Called when a swipe ends without closing the toast. */
+  onSwipeCancel?(event: ToastSwipeEvent): void
+  /** Called when a swipe ends. */
+  onSwipeEnd?(event: ToastSwipeEvent): void
+  /** Keeps the toast mounted while closed, for animation libraries. */
+  forceMount?: true
+} & RadixAsChildProps &
+  ChildrenProps & CommonProps<HTMLLIElement>
 
 /**
  * A short confirmation at the bottom right that closes on its own after 5
@@ -146,7 +182,7 @@ function Toast({ className, variant = "success", children, ...props }: ToastProp
  *
  * @import import { ToastBody } from "@/components/ui/toast"
  */
-function ToastBody({ className, ...props }: React.ComponentProps<"div">) {
+function ToastBody({ className, ...props }: React.ComponentProps<"div"> & ChildrenProps & CommonProps<HTMLDivElement>) {
   return <div data-slot="toast-body" className={cn("min-w-0 flex-1", className)} {...props} />
 }
 
@@ -155,7 +191,10 @@ function ToastBody({ className, ...props }: React.ComponentProps<"div">) {
  *
  * @import import { ToastTitle } from "@/components/ui/toast"
  */
-function ToastTitle({ className, ...props }: React.ComponentProps<typeof ToastPrimitive.Title>) {
+function ToastTitle({
+  className,
+  ...props
+}: React.ComponentProps<typeof ToastPrimitive.Title> & RadixAsChildProps & ChildrenProps & CommonProps<HTMLDivElement>) {
   return (
     <ToastPrimitive.Title
       data-slot="toast-title"
@@ -170,7 +209,10 @@ function ToastTitle({ className, ...props }: React.ComponentProps<typeof ToastPr
  *
  * @import import { ToastDescription } from "@/components/ui/toast"
  */
-function ToastDescription({ className, ...props }: React.ComponentProps<typeof ToastPrimitive.Description>) {
+function ToastDescription({
+  className,
+  ...props
+}: React.ComponentProps<typeof ToastPrimitive.Description> & RadixAsChildProps & ChildrenProps & CommonProps<HTMLDivElement>) {
   return (
     <ToastPrimitive.Description
       data-slot="toast-description"
@@ -196,7 +238,9 @@ function ToastAction({
    * claim to withdraw the dispute".
    */
   altText: string
-}) {
+} & ButtonElementProps &
+  RadixAsChildProps &
+  ChildrenProps & CommonProps<HTMLButtonElement>) {
   return (
     <ToastPrimitive.Action
       data-slot="toast-action"

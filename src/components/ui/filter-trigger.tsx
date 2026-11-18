@@ -1,8 +1,9 @@
 import * as React from "react"
 
+import type { ChildrenProps, CommonProps } from "@/lib/html-props"
 import { cn } from "@/lib/utils"
 
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./select"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, type SelectRootProps } from "./select"
 
 /*
  * Clærio Filter trigger
@@ -29,7 +30,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
  *
  * @import import { FilterRow } from "@/components/ui/filter-trigger"
  */
-function FilterRow({ className, ...props }: React.ComponentProps<"div">) {
+function FilterRow({ className, ...props }: React.ComponentProps<"div"> & ChildrenProps & CommonProps<HTMLDivElement>) {
   return <div data-slot="filter-row" className={cn("mb-3 flex items-center gap-2", className)} {...props} />
 }
 
@@ -57,7 +58,7 @@ type FilterSelectProps = Omit<
   onValueChange?: (value: string) => void
   /** Classes for the trigger button. */
   className?: string
-}
+} & SelectRootProps
 
 /**
  * A compact dropdown that filters data, such as by provider or status. Group

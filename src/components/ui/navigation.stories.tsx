@@ -95,10 +95,22 @@ function ExampleTabs() {
 
 /* ---- Playground stories. These follow the toolbar light/dark switch. ---- */
 
+/**
+ * useExampleLabel(label) is a story-only helper. It returns the label with
+ * a unique suffix, because the light and dark panels repeat each example
+ * and every copy needs its own accessible name. In an app, pass a plain
+ * aria-label, such as "Main".
+ */
 export const Sidebar: Story = {
   render: ExampleSidebar,
 }
 
+/**
+ * useExampleLabel(label) is a story-only helper. It returns the label with
+ * a unique suffix, because the light and dark panels repeat each example
+ * and every copy needs its own accessible name. In an app, pass a plain
+ * aria-label, such as "Main".
+ */
 export const LinkTabs: Story = {
   name: "Link tabs",
   render: ExampleNavTabs,
@@ -111,6 +123,10 @@ export const InPageTabs: Story = {
 
 /* ---- Every state, light and dark. ---- */
 
+/**
+ * ExampleSidebar, ExampleNavTabs and ExampleTabs are the full code shown
+ * in the Sidebar, Link tabs and In-page tabs stories.
+ */
 export const AllStates: Story = {
   name: "All states",
   parameters: {
@@ -148,6 +164,12 @@ export const AllStates: Story = {
 
 /* ---- Same as the reference previews, for comparison. ---- */
 
+/**
+ * useExampleLabel(label) is a story-only helper. It returns the label with
+ * a unique suffix, because the light and dark panels repeat each example
+ * and every copy needs its own accessible name. In an app, pass a plain
+ * aria-label, such as "Main".
+ */
 export const ReferenceLayout: Story = {
   name: "Reference layout",
   parameters: modePanelParameters,

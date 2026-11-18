@@ -4,22 +4,19 @@ import { ModePanels, modePanelParameters, withModePanels } from "@/foundations/m
 
 import { FilterRow, FilterSelect } from "./filter-trigger"
 
-const providers = [
-  { value: "all", label: "All" },
-  { value: "okafor", label: "Dr. Okafor" },
-  { value: "city-lab", label: "City Lab" },
-]
-const statuses = [
-  { value: "all", label: "All" },
-  { value: "pending", label: "Pending" },
-  { value: "paid", label: "Paid" },
-]
-
 const meta = {
   title: "Components/Filter trigger",
   component: FilterSelect,
   subcomponents: { FilterRow },
-  args: { label: "Provider:", defaultValue: "all", options: providers },
+  args: {
+    label: "Provider:",
+    defaultValue: "all",
+    options: [
+      { value: "all", label: "All" },
+      { value: "okafor", label: "Dr. Okafor" },
+      { value: "city-lab", label: "City Lab" },
+    ],
+  },
 } satisfies Meta
 export default meta
 type Story = StoryObj<typeof meta>
@@ -37,8 +34,24 @@ export const AllStates: Story = {
           <div key={state} className={`flex flex-col gap-2 state-${state.toLowerCase()}`}>
             <span className="text-label text-muted-foreground">{state}</span>
             <FilterRow className="mb-0">
-              <FilterSelect label="Provider:" defaultValue="all" options={providers} />
-              <FilterSelect label="Status:" defaultValue="pending" options={statuses} />
+              <FilterSelect
+                label="Provider:"
+                defaultValue="all"
+                options={[
+                  { value: "all", label: "All" },
+                  { value: "okafor", label: "Dr. Okafor" },
+                  { value: "city-lab", label: "City Lab" },
+                ]}
+              />
+              <FilterSelect
+                label="Status:"
+                defaultValue="pending"
+                options={[
+                  { value: "all", label: "All" },
+                  { value: "pending", label: "Pending" },
+                  { value: "paid", label: "Paid" },
+                ]}
+              />
             </FilterRow>
           </div>
         ))}
@@ -91,8 +104,24 @@ export const ReferenceLayout: Story = {
   render: () => (
     <ModePanels layout="stacked">
       <FilterRow>
-        <FilterSelect label="Provider:" defaultValue="all" options={providers} />
-        <FilterSelect label="Status:" defaultValue="pending" options={statuses} />
+        <FilterSelect
+          label="Provider:"
+          defaultValue="all"
+          options={[
+            { value: "all", label: "All" },
+            { value: "okafor", label: "Dr. Okafor" },
+            { value: "city-lab", label: "City Lab" },
+          ]}
+        />
+        <FilterSelect
+          label="Status:"
+          defaultValue="pending"
+          options={[
+            { value: "all", label: "All" },
+            { value: "pending", label: "Pending" },
+            { value: "paid", label: "Paid" },
+          ]}
+        />
       </FilterRow>
     </ModePanels>
   ),
@@ -112,7 +141,15 @@ function DateRange() {
           { value: "all", label: "All dates" },
         ]}
       />
-      <FilterSelect label="Status:" defaultValue="all" options={statuses} />
+      <FilterSelect
+        label="Status:"
+        defaultValue="all"
+        options={[
+          { value: "all", label: "All" },
+          { value: "pending", label: "Pending" },
+          { value: "paid", label: "Paid" },
+        ]}
+      />
     </FilterRow>
   )
 }

@@ -18,8 +18,6 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-const noop = () => {}
-
 const narrow: Story["decorators"] = [
   (Story) => (
     <div className="max-w-160">
@@ -33,7 +31,7 @@ const narrow: Story["decorators"] = [
 export const Info: Story = {
   decorators: narrow,
   render: (args) => (
-    <Banner {...args} variant="info" onDismiss={noop}>
+    <Banner {...args} variant="info" onDismiss={() => {}}>
       <BannerTitle>Claim received</BannerTitle>
       <BannerDescription>
         Processing usually takes 12 days. <BannerAction href="#">Track status</BannerAction>
@@ -80,6 +78,10 @@ function RetryAction() {
   )
 }
 
+/**
+ * onRetry is a test spy (fn() from storybook/test), so the play function
+ * can check the click. In an app, pass your own retry handler to onClick.
+ */
 export const Retry: Story = {
   name: "Retry action",
   decorators: narrow,
@@ -118,22 +120,22 @@ function AllVariants() {
   return (
     <div className="flex max-w-160 flex-col gap-3">
       <span className="text-label text-muted-foreground">With title, action and dismiss</span>
-      <Banner variant="info" onDismiss={noop}>
+      <Banner variant="info" onDismiss={() => {}}>
         <BannerTitle>Claim received</BannerTitle>
         <BannerDescription>
           Processing usually takes 12 days. <BannerAction href="#">Track status</BannerAction>
         </BannerDescription>
       </Banner>
-      <Banner variant="warning" onDismiss={noop}>
+      <Banner variant="warning" onDismiss={() => {}}>
         <BannerTitle>Possible overcharge</BannerTitle>
         <BannerDescription>
           $187 more than your plan's allowed amount. <BannerAction href="#">Review claim</BannerAction>
         </BannerDescription>
       </Banner>
-      <Banner variant="error" onDismiss={noop}>
+      <Banner variant="error" onDismiss={() => {}}>
         <BannerTitle>Sync failed</BannerTitle>
         <BannerDescription>
-          We could not reach your insurer. <BannerAction onClick={noop}>Try again</BannerAction>
+          We could not reach your insurer. <BannerAction onClick={() => {}}>Try again</BannerAction>
         </BannerDescription>
       </Banner>
 
@@ -150,7 +152,7 @@ function AllVariants() {
 
       <span className="mt-4 text-label text-muted-foreground">Focus on action and dismiss</span>
       <div className="state-focus">
-        <Banner variant="info" onDismiss={noop}>
+        <Banner variant="info" onDismiss={() => {}}>
           <BannerTitle>Claim received</BannerTitle>
           <BannerDescription>
             Processing usually takes 12 days. <BannerAction href="#">Track status</BannerAction>
@@ -182,7 +184,7 @@ export const ReferenceLayout: Story = {
     <ModePanels layout="stacked">
       <div className="flex max-w-160 flex-col gap-3">
         <BannerBar>Your plan renews on January 1, 2027. Review coverage changes.</BannerBar>
-        <Banner variant="info" onDismiss={noop}>
+        <Banner variant="info" onDismiss={() => {}}>
           <BannerTitle>Claim received</BannerTitle>
           <BannerDescription>
             Processing usually takes 12 days. <BannerAction href="#">Track status</BannerAction>

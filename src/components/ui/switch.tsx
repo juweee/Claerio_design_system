@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Switch as SwitchPrimitive } from "radix-ui"
 
+import type { CommonProps, RadixAsChildProps } from "@/lib/html-props"
 import { cn } from "@/lib/utils"
 
 /*
@@ -23,7 +24,28 @@ import { cn } from "@/lib/utils"
 /**
  * @import import { Switch } from "@/components/ui/switch"
  */
-function Switch({ className, ...props }: React.ComponentProps<typeof SwitchPrimitive.Root>) {
+function Switch({
+  className,
+  ...props
+}: React.ComponentProps<typeof SwitchPrimitive.Root> & {
+  /** Whether it's on, when you control it. Use with onCheckedChange. */
+  checked?: boolean
+  /** Whether it starts on, when you don't control it. */
+  defaultChecked?: boolean
+  /** Called with the new state when the person turns it on or off. */
+  onCheckedChange?(checked: boolean): void
+  /** Dims the switch and blocks changes. */
+  disabled?: boolean
+  /** Marks it as required for form submission. */
+  required?: boolean
+  /** Form field name. */
+  name?: string
+  /** Form field value sent when on. Defaults to "on". */
+  value?: string | readonly string[] | number
+  /** Id of the form it belongs to, when it sits outside that form. */
+  form?: string
+} & RadixAsChildProps &
+  CommonProps<HTMLButtonElement>) {
   return (
     <SwitchPrimitive.Root
       data-slot="switch"

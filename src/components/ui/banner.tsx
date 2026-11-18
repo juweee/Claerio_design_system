@@ -2,6 +2,7 @@ import * as React from "react"
 import { cva } from "class-variance-authority"
 import { InfoIcon, WarningCircleIcon, XIcon } from "@phosphor-icons/react"
 
+import type { AttributeProps, ChildrenProps, ClassNameProps, CommonProps, IdProps } from "@/lib/html-props"
 import { cn } from "@/lib/utils"
 
 /*
@@ -73,7 +74,7 @@ type BannerProps = React.ComponentProps<"div"> & {
     onDismiss?: () => void
     /** Accessible name for the dismiss button. */
     dismissLabel?: string
-  }
+  } & ChildrenProps & CommonProps<HTMLDivElement>
 
 /**
  * Shows an info, warning or error message across a section, or a page-level
@@ -135,7 +136,7 @@ function Banner({
 /**
  * @import import { BannerTitle } from "@/components/ui/banner"
  */
-function BannerTitle({ className, ...props }: React.ComponentProps<"p">) {
+function BannerTitle({ className, ...props }: React.ComponentProps<"p"> & ChildrenProps & CommonProps<HTMLParagraphElement>) {
   return (
     <p
       data-slot="banner-title"
@@ -148,19 +149,33 @@ function BannerTitle({ className, ...props }: React.ComponentProps<"p">) {
 /**
  * @import import { BannerDescription } from "@/components/ui/banner"
  */
-function BannerDescription({ className, ...props }: React.ComponentProps<"p">) {
+function BannerDescription({ className, ...props }: React.ComponentProps<"p"> & ChildrenProps & CommonProps<HTMLParagraphElement>) {
   return <p data-slot="banner-description" className={cn("text-foreground", className)} {...props} />
 }
 
-type BannerActionProps =
-  | (React.ComponentProps<"a"> & {
-      /** Where the action goes. With href, BannerAction is a link. */
-      href: string
-    })
-  | (React.ComponentProps<"button"> & {
-      /** Leave out for an action that happens in place, such as "Try again". */
-      href?: undefined
-    })
+/*
+ * react-docgen can't read union types, so the docs come from
+ * BannerActionDocProps. It only declares props whose types are the same on
+ * both the link and the button form, so it changes no types.
+ */
+type BannerActionDocProps = {
+  /**
+   * Where the action goes. With href, BannerAction renders an <a> and takes
+   * any <a> attribute, such as target and rel. Without href, it renders a
+   * <button type="button"> and takes any <button> attribute, such as
+   * onClick and disabled.
+   */
+  href?: string
+} & ChildrenProps &
+  ClassNameProps &
+  IdProps &
+  AttributeProps
+
+type BannerActionProps = BannerActionDocProps &
+  (
+    | (React.ComponentProps<"a"> & { href: string })
+    | (React.ComponentProps<"button"> & { href?: undefined })
+  )
 
 const bannerActionClasses = [
   "font-[500] text-(color:--banner-fg) underline",
@@ -202,7 +217,7 @@ function BannerAction({ className, ...props }: BannerActionProps) {
 /**
  * @import import { BannerBar } from "@/components/ui/banner"
  */
-function BannerBar({ className, ...props }: React.ComponentProps<"div">) {
+function BannerBar({ className, ...props }: React.ComponentProps<"div"> & ChildrenProps & CommonProps<HTMLDivElement>) {
   return (
     <div
       data-slot="banner-bar"

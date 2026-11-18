@@ -1,6 +1,16 @@
 import * as React from "react"
 import { CaretDownIcon, CaretRightIcon, CaretUpDownIcon, CaretUpIcon } from "@phosphor-icons/react"
 
+import type {
+  AttributeProps,
+  ChildrenProps,
+  ClassNameProps,
+  CommonProps,
+  IdProps,
+  KeyFocusProps,
+  RefProps,
+  TableCellElementProps,
+} from "@/lib/html-props"
 import { cn } from "@/lib/utils"
 
 /*
@@ -42,7 +52,7 @@ import { cn } from "@/lib/utils"
  *
  * @import import { Table } from "@/components/ui/table"
  */
-function Table({ className, ...props }: React.ComponentProps<"table">) {
+function Table({ className, ...props }: React.ComponentProps<"table"> & ChildrenProps & CommonProps<HTMLTableElement>) {
   return (
     <table
       data-slot="table"
@@ -58,7 +68,7 @@ function Table({ className, ...props }: React.ComponentProps<"table">) {
  *
  * @import import { TableHeader } from "@/components/ui/table"
  */
-function TableHeader(props: React.ComponentProps<"thead">) {
+function TableHeader(props: React.ComponentProps<"thead"> & ChildrenProps & CommonProps<HTMLTableSectionElement>) {
   return <thead data-slot="table-header" {...props} />
 }
 
@@ -67,7 +77,7 @@ function TableHeader(props: React.ComponentProps<"thead">) {
  *
  * @import import { TableBody } from "@/components/ui/table"
  */
-function TableBody({ className, ...props }: React.ComponentProps<"tbody">) {
+function TableBody({ className, ...props }: React.ComponentProps<"tbody"> & ChildrenProps & CommonProps<HTMLTableSectionElement>) {
   return (
     <tbody
       data-slot="table-body"
@@ -91,7 +101,12 @@ type TableRowProps = React.ComponentProps<"tr"> & {
    * success toast.
    */
   highlighted?: boolean
-}
+} & ChildrenProps &
+  ClassNameProps &
+  IdProps &
+  AttributeProps &
+  RefProps<HTMLTableRowElement> &
+  KeyFocusProps<HTMLTableRowElement>
 
 /**
  * One data row. Give it an onClick to make the whole row clickable: it
@@ -143,7 +158,8 @@ type TableHeadProps = React.ComponentProps<"th"> & {
   onSort?: () => void
   /** "ascending" or "descending" on the sorted column. Leave it out on every other column. */
   sorted?: SortDirection
-}
+} & TableCellElementProps &
+  ChildrenProps & CommonProps<HTMLTableCellElement>
 
 /**
  * A column header cell (<th scope="col">). Pass onSort to make it a sort
@@ -192,7 +208,8 @@ type TableCellProps = React.ComponentProps<"td"> & {
   numeric?: boolean
   /** Monospace, for claim, order and member IDs. */
   mono?: boolean
-}
+} & TableCellElementProps &
+  ChildrenProps & CommonProps<HTMLTableCellElement>
 
 /**
  * A data cell. Use mono for IDs and numeric for amounts. For a status,
@@ -220,7 +237,7 @@ function TableCell({ className, numeric, mono, ...props }: TableCellProps) {
  *
  * @import import { TableChevronCell } from "@/components/ui/table"
  */
-function TableChevronCell({ className, ...props }: React.ComponentProps<"td">) {
+function TableChevronCell({ className, ...props }: React.ComponentProps<"td"> & ChildrenProps & CommonProps<HTMLTableCellElement>) {
   return (
     <td
       data-slot="table-chevron"
@@ -241,7 +258,7 @@ function TableChevronCell({ className, ...props }: React.ComponentProps<"td">) {
  *
  * @import import { TableChevronHead } from "@/components/ui/table"
  */
-function TableChevronHead({ className, ...props }: React.ComponentProps<"th">) {
+function TableChevronHead({ className, ...props }: React.ComponentProps<"th"> & ChildrenProps & CommonProps<HTMLTableCellElement>) {
   return (
     <th
       data-slot="table-chevron-head"

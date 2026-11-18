@@ -1,5 +1,6 @@
 import * as React from "react"
 
+import type { ChildrenProps, CommonProps } from "@/lib/html-props"
 import { cn } from "@/lib/utils"
 
 /*
@@ -28,7 +29,7 @@ import { cn } from "@/lib/utils"
  *
  * @import import { Card } from "@/components/ui/card"
  */
-function Card({ className, ...props }: React.ComponentProps<"div">) {
+function Card({ className, ...props }: React.ComponentProps<"div"> & ChildrenProps & CommonProps<HTMLDivElement>) {
   return (
     <div
       data-slot="card"
@@ -44,7 +45,7 @@ function Card({ className, ...props }: React.ComponentProps<"div">) {
  *
  * @import import { CardHeader } from "@/components/ui/card"
  */
-function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
+function CardHeader({ className, ...props }: React.ComponentProps<"div"> & ChildrenProps & CommonProps<HTMLDivElement>) {
   return (
     <div
       data-slot="card-header"
@@ -65,7 +66,7 @@ type CardTitleProps = React.ComponentProps<"h3"> & {
    * The look stays the same at every level.
    */
   level?: CardTitleLevel
-}
+} & ChildrenProps & CommonProps<HTMLHeadingElement>
 
 const headingTags = { 2: "h2", 3: "h3", 4: "h4" } as const satisfies Record<CardTitleLevel, string>
 
@@ -90,7 +91,7 @@ function CardTitle({ className, level = 3, ...props }: CardTitleProps) {
  *
  * @import import { CardBody } from "@/components/ui/card"
  */
-function CardBody({ className, ...props }: React.ComponentProps<"div">) {
+function CardBody({ className, ...props }: React.ComponentProps<"div"> & ChildrenProps & CommonProps<HTMLDivElement>) {
   return <div data-slot="card-body" className={cn("mt-2 text-body", className)} {...props} />
 }
 
@@ -100,7 +101,7 @@ function CardBody({ className, ...props }: React.ComponentProps<"div">) {
  *
  * @import import { CardMeta } from "@/components/ui/card"
  */
-function CardMeta({ className, ...props }: React.ComponentProps<"p">) {
+function CardMeta({ className, ...props }: React.ComponentProps<"p"> & ChildrenProps & CommonProps<HTMLParagraphElement>) {
   return (
     <p data-slot="card-meta" className={cn("mt-3 text-body-small text-muted-foreground", className)} {...props} />
   )

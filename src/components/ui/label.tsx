@@ -2,6 +2,7 @@ import * as React from "react"
 import { cva } from "class-variance-authority"
 import { Label as LabelPrimitive } from "radix-ui"
 
+import type { ChildrenProps, CommonProps, RadixAsChildProps } from "@/lib/html-props"
 import { cn } from "@/lib/utils"
 
 /*
@@ -39,7 +40,10 @@ function Label({
    * checkbox, radio or switch, and wraps it.
    */
   variant?: LabelVariant
-}) {
+  /** Id of the control this label names. Not needed when the label wraps the control. */
+  htmlFor?: string
+} & RadixAsChildProps &
+  ChildrenProps & CommonProps<HTMLLabelElement>) {
   return (
     <LabelPrimitive.Root
       data-slot="label"

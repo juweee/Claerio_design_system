@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Progress as ProgressPrimitive } from "radix-ui"
 
+import type { CommonProps, RadixAsChildProps } from "@/lib/html-props"
 import { cn } from "@/lib/utils"
 
 /*
@@ -23,7 +24,15 @@ function Progress({
   className,
   value = 0,
   ...props
-}: React.ComponentProps<typeof ProgressPrimitive.Root> & { value?: number }) {
+}: React.ComponentProps<typeof ProgressPrimitive.Root> & {
+  /** Progress from 0 to max. Defaults to 0. */
+  value?: number
+  /** The value that means complete. Defaults to 100. */
+  max?: number
+  /** Returns the value in words for screen readers, such as "62% met". */
+  getValueLabel?(value: number, max: number): string
+} & RadixAsChildProps &
+  CommonProps<HTMLDivElement>) {
   return (
     <ProgressPrimitive.Root
       data-slot="progress"
@@ -41,10 +50,13 @@ function Progress({
 }
 
 type ProgressFieldProps = {
+  /** The visible label, such as "Deductible". It also names the bar for screen readers. */
   label: string
   /** The value in words, such as "62% met". */
   valueText: string
+  /** Progress from 0 to 100. */
   value: number
+  /** Extra classes for the wrapper. */
   className?: string
 }
 

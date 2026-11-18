@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Tooltip as TooltipPrimitive } from "radix-ui"
 
+import type { ButtonElementProps, ChildrenProps, CommonProps, RadixAsChildProps, RadixDismissProps, RadixPopperProps } from "@/lib/html-props"
 import { cn } from "@/lib/utils"
 
 /*
@@ -28,6 +29,12 @@ function TooltipProvider(
   props: Omit<React.ComponentProps<typeof TooltipPrimitive.Provider>, "delayDuration"> & {
     /** Milliseconds from hover to open. Defaults to 700. */
     delayDuration?: number
+    /** Milliseconds after one tooltip closes during which the next opens without delay. Defaults to 300. */
+    skipDelayDuration?: number
+    /** Closes the tooltip as soon as the pointer leaves the trigger, even onto the tooltip. */
+    disableHoverableContent?: boolean
+    /** Required. The part of the app that has tooltips. */
+    children: React.ReactNode
   }
 ) {
   return <TooltipPrimitive.Provider {...props} />
@@ -47,7 +54,11 @@ function Tooltip(
     defaultOpen?: boolean
     /** Called with the new open state. */
     onOpenChange?: (open: boolean) => void
-  }
+    /** Milliseconds from hover to open, for this tooltip only. Overrides TooltipProvider. */
+    delayDuration?: number
+    /** Closes the tooltip as soon as the pointer leaves the trigger, even onto the tooltip. */
+    disableHoverableContent?: boolean
+  } & ChildrenProps
 ) {
   return <TooltipPrimitive.Root {...props} />
 }
@@ -62,7 +73,8 @@ function TooltipTrigger(
   props: Omit<React.ComponentProps<typeof TooltipPrimitive.Trigger>, "asChild"> & {
     /** Use the child element as the trigger instead of a plain button. */
     asChild?: boolean
-  }
+  } & ButtonElementProps &
+    ChildrenProps & CommonProps<HTMLButtonElement>
 ) {
   return <TooltipPrimitive.Trigger {...props} />
 }
@@ -80,7 +92,12 @@ function TooltipContent({
 }: Omit<React.ComponentProps<typeof TooltipPrimitive.Content>, "sideOffset"> & {
   /** Pixels between the trigger and the tooltip. Defaults to 4. */
   sideOffset?: number
-}) {
+  /** Keeps the tooltip mounted while closed, for animation libraries. */
+  forceMount?: true
+} & RadixPopperProps &
+  RadixDismissProps &
+  RadixAsChildProps &
+  ChildrenProps & CommonProps<HTMLDivElement>) {
   return (
     <TooltipPrimitive.Portal>
       <TooltipPrimitive.Content
@@ -106,7 +123,11 @@ function TooltipTerm({
   className,
   children,
   ...props
-}: React.ComponentProps<"span"> & { tip: React.ReactNode }) {
+}: React.ComponentProps<"span"> & {
+  /** Required. The tooltip text. */
+  tip: React.ReactNode
+} & ChildrenProps &
+  CommonProps<HTMLSpanElement>) {
   return (
     <Tooltip>
       <TooltipTrigger asChild>

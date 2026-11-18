@@ -1,6 +1,7 @@
 import * as React from "react"
 import { RadioGroup as RadioGroupPrimitive } from "radix-ui"
 
+import type { ChildrenProps, CommonProps, RadixAsChildProps } from "@/lib/html-props"
 import { cn } from "@/lib/utils"
 
 /*
@@ -24,7 +25,32 @@ import { cn } from "@/lib/utils"
 /**
  * @import import { RadioGroup } from "@/components/ui/radio-group"
  */
-function RadioGroup({ className, ...props }: React.ComponentProps<typeof RadioGroupPrimitive.Root>) {
+function RadioGroup({
+  className,
+  ...props
+}: React.ComponentProps<typeof RadioGroupPrimitive.Root> & {
+  /** The selected item's value, when you control the group. Use with onValueChange. */
+  value?: string | null
+  /** The item selected at first, when you don't control the group. */
+  defaultValue?: string
+  /** Called with the new item's value when the person picks one. */
+  onValueChange?: (value: string) => void
+  /** Dims every item and blocks changes. */
+  disabled?: boolean
+  /** Marks the group as required for form submission. */
+  required?: boolean
+  /** Form field name. */
+  name?: string
+  /** Id of the form it belongs to, when it sits outside that form. */
+  form?: string
+  /** "vertical" or "horizontal": which arrow keys move between items. */
+  orientation?: "horizontal" | "vertical"
+  /** Whether arrow keys wrap from the last item to the first. Defaults to true. */
+  loop?: boolean
+  /** Reading direction, "ltr" or "rtl". */
+  dir?: "ltr" | "rtl"
+} & RadixAsChildProps &
+  ChildrenProps & CommonProps<HTMLDivElement>) {
   return (
     <RadioGroupPrimitive.Root
       data-slot="radio-group"
@@ -37,7 +63,18 @@ function RadioGroup({ className, ...props }: React.ComponentProps<typeof RadioGr
 /**
  * @import import { RadioGroupItem } from "@/components/ui/radio-group"
  */
-function RadioGroupItem({ className, ...props }: React.ComponentProps<typeof RadioGroupPrimitive.Item>) {
+function RadioGroupItem({
+  className,
+  ...props
+}: React.ComponentProps<typeof RadioGroupPrimitive.Item> & {
+  /** Required. The value the group reports when this item is picked. */
+  value: string
+  /** Dims this item and blocks picking it. */
+  disabled?: boolean
+  /** Marks the item as required for form submission. */
+  required?: boolean
+} & RadixAsChildProps &
+  CommonProps<HTMLButtonElement>) {
   return (
     <RadioGroupPrimitive.Item
       data-slot="radio-group-item"

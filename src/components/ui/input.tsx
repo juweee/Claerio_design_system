@@ -1,5 +1,6 @@
 import * as React from "react"
 
+import type { CommonProps, InputElementProps } from "@/lib/html-props"
 import { cn } from "@/lib/utils"
 
 /*
@@ -26,7 +27,11 @@ import { cn } from "@/lib/utils"
 /**
  * @import import { Input } from "@/components/ui/input"
  */
-function Input({ className, type = "text", ...props }: React.ComponentProps<"input">) {
+function Input({
+  className,
+  type = "text",
+  ...props
+}: React.ComponentProps<"input"> & InputElementProps & CommonProps<HTMLInputElement>) {
   return (
     <input
       type={type}

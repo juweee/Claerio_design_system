@@ -5,18 +5,6 @@ import { ModePanels, modePanelParameters, withModePanels } from "@/foundations/m
 
 import { Button } from "./button"
 
-const variants = ["primary", "secondary", "ghost", "destructive", "link"] as const
-
-const labels: Record<(typeof variants)[number], string> = {
-  primary: "Review claim",
-  secondary: "View details",
-  ghost: "Dismiss",
-  destructive: "Delete claim",
-  link: "See all claims",
-}
-
-const states = ["Default", "Hover", "Focus", "Disabled"] as const
-
 const meta = {
   title: "Components/Button",
   component: Button,
@@ -26,7 +14,7 @@ const meta = {
     disabled: false,
   },
   argTypes: {
-    variant: { control: "inline-radio", options: variants },
+    variant: { control: "inline-radio", options: ["primary", "secondary", "ghost", "destructive", "link"] },
     asChild: { table: { disable: true } },
   },
 } satisfies Meta<typeof Button>
@@ -57,6 +45,18 @@ export const Link: Story = {
 /* ---- Every variant in every state, light and dark side by side. ---- */
 
 function StateMatrix() {
+  const variants = ["primary", "secondary", "ghost", "destructive", "link"] as const
+
+  const labels: Record<(typeof variants)[number], string> = {
+    primary: "Review claim",
+    secondary: "View details",
+    ghost: "Dismiss",
+    destructive: "Delete claim",
+    link: "See all claims",
+  }
+
+  const states = ["Default", "Hover", "Focus", "Disabled"] as const
+
   return (
     <div className="grid grid-cols-[96px_repeat(4,max-content)] items-center gap-x-6 gap-y-4">
       <span />

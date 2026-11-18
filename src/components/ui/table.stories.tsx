@@ -34,28 +34,28 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-type Claim = {
-  id: string
-  date: string
-  sortDate: number
-  provider: string
-  status: { label: string; variant: "positive" | "neutral" | "alert" | "error" }
-  amount: number
-}
-
-const claims: Claim[] = [
-  { id: "CLA-48213", date: "Nov 2, 2026", sortDate: 20261102, provider: "Dr. Okafor", status: { label: "Pending", variant: "neutral" }, amount: 240 },
-  { id: "CLA-47120", date: "May 2, 2026", sortDate: 20260502, provider: "City Lab", status: { label: "Paid", variant: "positive" }, amount: 0 },
-  { id: "CLA-46987", date: "Apr 18, 2026", sortDate: 20260418, provider: "Westside Imaging", status: { label: "Review", variant: "alert" }, amount: 1240 },
-  { id: "CLA-46511", date: "Mar 3, 2026", sortDate: 20260303, provider: "Valley Urgent Care", status: { label: "Denied", variant: "error" }, amount: 385.5 },
-]
-
-const money = (n: number) => n.toLocaleString("en-US", { style: "currency", currency: "USD" })
-
-type SortKey = "date" | "amount"
-
 /* Sortable, filterable, with clickable rows. */
 function ClaimsTable() {
+  type Claim = {
+    id: string
+    date: string
+    sortDate: number
+    provider: string
+    status: { label: string; variant: "positive" | "neutral" | "alert" | "error" }
+    amount: number
+  }
+
+  const claims: Claim[] = [
+    { id: "CLA-48213", date: "Nov 2, 2026", sortDate: 20261102, provider: "Dr. Okafor", status: { label: "Pending", variant: "neutral" }, amount: 240 },
+    { id: "CLA-47120", date: "May 2, 2026", sortDate: 20260502, provider: "City Lab", status: { label: "Paid", variant: "positive" }, amount: 0 },
+    { id: "CLA-46987", date: "Apr 18, 2026", sortDate: 20260418, provider: "Westside Imaging", status: { label: "Review", variant: "alert" }, amount: 1240 },
+    { id: "CLA-46511", date: "Mar 3, 2026", sortDate: 20260303, provider: "Valley Urgent Care", status: { label: "Denied", variant: "error" }, amount: 385.5 },
+  ]
+
+  const money = (n: number) => n.toLocaleString("en-US", { style: "currency", currency: "USD" })
+
+  type SortKey = "date" | "amount"
+
   const [sort, setSort] = React.useState<{ key: SortKey; dir: SortDirection }>({ key: "date", dir: "descending" })
   const [status, setStatus] = React.useState("all")
   const [opened, setOpened] = React.useState<string | null>(null)
@@ -150,45 +150,55 @@ export const AllStates: Story = {
       focusVisible: [".clickable-states tbody tr:nth-child(3)"],
     },
   },
-  render: () => (
-    <ModePanels layout="stacked">
-      <div className="flex flex-col gap-6">
-        <span className="text-label text-muted-foreground">
-          Clickable rows: first row new (highlighted), second hover, third keyboard focus
-        </span>
-        <div className="clickable-states">
-          <ClaimsTable />
+  render: () => {
+    const claims = [
+      { id: "CLA-48213", date: "Nov 2, 2026", provider: "Dr. Okafor", status: { label: "Pending", variant: "neutral" }, amount: 240 },
+      { id: "CLA-47120", date: "May 2, 2026", provider: "City Lab", status: { label: "Paid", variant: "positive" }, amount: 0 },
+      { id: "CLA-46987", date: "Apr 18, 2026", provider: "Westside Imaging", status: { label: "Review", variant: "alert" }, amount: 1240 },
+      { id: "CLA-46511", date: "Mar 3, 2026", provider: "Valley Urgent Care", status: { label: "Denied", variant: "error" }, amount: 385.5 },
+    ] as const
+    const money = (n: number) => n.toLocaleString("en-US", { style: "currency", currency: "USD" })
+
+    return (
+      <ModePanels layout="stacked">
+        <div className="flex flex-col gap-6">
+          <span className="text-label text-muted-foreground">
+            Clickable rows: first row new (highlighted), second hover, third keyboard focus
+          </span>
+          <div className="clickable-states">
+            <ClaimsTable />
+          </div>
+          <span className="text-label text-muted-foreground">Not clickable, not sortable: no chevron column</span>
+          <Card className="max-w-180">
+            <Table>
+              <TableHeader>
+                <tr>
+                  <TableHead>Claim</TableHead>
+                  <TableHead>Date</TableHead>
+                  <TableHead>Provider</TableHead>
+                  <TableHead>Status</TableHead>
+                  <TableHead numeric>Amount</TableHead>
+                </tr>
+              </TableHeader>
+              <TableBody>
+                {claims.map((c) => (
+                  <TableRow key={c.id}>
+                    <TableCell mono>{c.id}</TableCell>
+                    <TableCell>{c.date}</TableCell>
+                    <TableCell>{c.provider}</TableCell>
+                    <TableCell>
+                      <StatusChip variant={c.status.variant}>{c.status.label}</StatusChip>
+                    </TableCell>
+                    <TableCell numeric>{money(c.amount)}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </Card>
         </div>
-        <span className="text-label text-muted-foreground">Not clickable, not sortable: no chevron column</span>
-        <Card className="max-w-180">
-          <Table>
-            <TableHeader>
-              <tr>
-                <TableHead>Claim</TableHead>
-                <TableHead>Date</TableHead>
-                <TableHead>Provider</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead numeric>Amount</TableHead>
-              </tr>
-            </TableHeader>
-            <TableBody>
-              {claims.map((c) => (
-                <TableRow key={c.id}>
-                  <TableCell mono>{c.id}</TableCell>
-                  <TableCell>{c.date}</TableCell>
-                  <TableCell>{c.provider}</TableCell>
-                  <TableCell>
-                    <StatusChip variant={c.status.variant}>{c.status.label}</StatusChip>
-                  </TableCell>
-                  <TableCell numeric>{money(c.amount)}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </Card>
-      </div>
-    </ModePanels>
-  ),
+      </ModePanels>
+    )
+  },
 }
 
 /* ---- Same as the reference preview.html, for comparison. ---- */
