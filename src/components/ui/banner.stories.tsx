@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect, fn, userEvent } from "storybook/test"
 
 import { ModePanels, modePanelParameters, withModePanels } from "@/foundations/mode-panels"
 
@@ -7,6 +8,7 @@ import { Banner, BannerAction, BannerBar, BannerDescription, BannerTitle } from 
 const meta = {
   title: "Components/Banner",
   component: Banner,
+  subcomponents: { BannerTitle, BannerDescription, BannerAction, BannerBar },
   args: { variant: "info" },
   argTypes: {
     variant: { control: "inline-radio", options: ["info", "warning", "error"] },
@@ -63,6 +65,43 @@ export const ErrorStory: Story = {
   ),
 }
 
+/* An in-place action: BannerAction without href is a <button> that looks
+   like the link. */
+const onRetry = fn()
+
+function RetryAction() {
+  return (
+    <Banner variant="error">
+      <BannerTitle>Sync failed</BannerTitle>
+      <BannerDescription>
+        We could not reach your insurer. <BannerAction onClick={onRetry}>Try again</BannerAction>
+      </BannerDescription>
+    </Banner>
+  )
+}
+
+export const Retry: Story = {
+  name: "Retry action",
+  decorators: narrow,
+  render: RetryAction,
+  play: async ({ canvas, step }) => {
+    const retry = canvas.getByRole("button", { name: "Try again" })
+    const before = onRetry.mock.calls.length
+    await step("Try again is a button, not a link", async () => {
+      await expect(canvas.queryByRole("link", { name: "Try again" })).toBeNull()
+    })
+    await step("Clicking it runs the retry", async () => {
+      await userEvent.click(retry)
+      await expect(onRetry).toHaveBeenCalledTimes(before + 1)
+    })
+    await step("Enter runs it too", async () => {
+      retry.focus()
+      await userEvent.keyboard("{Enter}")
+      await expect(onRetry).toHaveBeenCalledTimes(before + 2)
+    })
+  },
+}
+
 export const PageBar: Story = {
   name: "Page-level bar",
   parameters: { layout: "fullscreen" },
@@ -94,7 +133,7 @@ function AllVariants() {
       <Banner variant="error" onDismiss={noop}>
         <BannerTitle>Sync failed</BannerTitle>
         <BannerDescription>
-          We could not reach your insurer. <BannerAction href="#">Try again</BannerAction>
+          We could not reach your insurer. <BannerAction onClick={noop}>Try again</BannerAction>
         </BannerDescription>
       </Banner>
 

@@ -1,0 +1,45 @@
+import { Meta } from "@storybook/addon-docs/blocks"
+
+<Meta title="Foundations/Docs/Color" />
+
+# Use color
+
+Every color is a token in `design-tokens.css`, with a light and a dark value. Use the Tailwind utility for each token, such as `bg-card` or `text-muted-foreground`. Tailwind's own palette is switched off, so only token colors exist. Never write a hex or oklch value in a component.
+
+The "Foundations/Color" stories show every token's value in light and dark mode.
+
+## Pick a color by job
+
+| Job | Tokens | Utilities |
+|---|---|---|
+| Page background and text | `--background`, `--foreground` | `bg-background`, `text-foreground` |
+| Cards and menus | `--card`, `--card-foreground`, `--popover`, `--popover-foreground` | `bg-card`, `bg-popover` |
+| Secondary text, such as dates and helper text | `--muted-foreground` | `text-muted-foreground` |
+| Borders and dividers | `--border` | `border-border` |
+| Input fields | `--input`, `--input-border` | `bg-input`, `border-input-border` |
+| The main action on a screen, and links | `--primary` (terracotta), `--primary-foreground` | `bg-primary`, `text-primary` |
+| Secondary buttons | `--secondary`, `--secondary-foreground` | `bg-secondary` |
+| Hover fills, selected rows, new-row highlight | `--accent`, `--accent-foreground` | `bg-accent` |
+| Focus outline | `--ring` | `outline-ring` |
+| Delete or cancel, and errors | `--destructive`, `--destructive-hover`, `--error-foreground` | `bg-destructive` |
+| Information | `--info` (teal), `--info-foreground` | `bg-info` |
+| Warnings | `--warning` (amber), `--warning-foreground` | `bg-warning` |
+| Success | `--success` (teal) | `bg-success` |
+| Where you are in navigation | `--nav-active`, `--nav-active-foreground` | Used by SidebarNav and Tabs |
+| Navigation rail | `--sidebar`, `--sidebar-foreground`, `--sidebar-accent`, `--sidebar-border` | `bg-sidebar` |
+| Tooltip | `--tooltip-background` (Charcoal), `--tooltip-foreground` | Used by Tooltip |
+| Charts | `--chart-1` to `--chart-5` | Use in order: terracotta, teal, teal dark, olive, charcoal |
+
+## Follow these rules
+
+- **Terracotta** (`--primary`) is for primary actions and links.
+- **Amber** (`--warning`, `--nav-active`) is for warnings and navigation selection only. Never use it on buttons or links.
+- **Brand Charcoal** (#2D2D2B) is only for fixed surfaces: logo blocks and the tooltip. Product text uses `--foreground`.
+- **Cream** text is only for text on terracotta or Charcoal.
+- **Hover:** the primary button darkens to `--terracotta-700` in both modes. Never use an opacity hover such as `bg-primary/90`. The destructive button uses `--destructive-hover` in light mode and `--destructive` at 90% in dark mode.
+- **Tables:** no zebra striping. Row hover and selection use `--accent`.
+- **Disabled:** 50% opacity with a not-allowed cursor, not a separate color.
+
+## Use the color ramps sparingly
+
+The terracotta, olive and teal ramps (`--terracotta-50` to `--terracotta-950`, and the same for olive and teal) exist for the semantic tokens to point at. Reach for a semantic token first. Use a ramp step only when no semantic token fits, and note why.

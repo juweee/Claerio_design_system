@@ -3,36 +3,17 @@
 Last updated: November 18, 2026.
 
 These came up in experiment 1.4, when agents built a payments review
-screen from the Storybook MCP docs alone. The docs-fixes branch fixed
-everything that could be documented from existing code. Each item below
-needs a design decision before it can be documented. Nothing here was
-added to the components or tokens.
+screen from the Storybook MCP docs alone, and in the comparison with the
+prototype canvas. Each item below needs a design decision before it can
+be documented or built.
 
 When you decide an item, record it in decisions.md, build or document
 it, and remove it from this list. Item numbers stay the same, so links
-to them keep working. Decided: item 2 (empty state, November 18, 2026)
-and most of item 6 (page header and layout).
+to them keep working.
 
-## 1. Choose a heading level for CardTitle
-
-- **Today:** CardTitle always renders an `<h3>`, with no way to change
-  the level. This is now documented.
-- **Problem:** On a page with an `<h1>` and cards directly under it, the
-  headings skip from level 1 to level 3. Axe reports `heading-order`,
-  which fails story tests. Runs 2 and 3 hit this.
-- **What agents did:** runs 2 and 3 added `aria-level={2}` to CardTitle
-  in their own code.
-- **Decide:** whether to add a way to set the level (such as an `as` or
-  `level` prop), to approve `aria-level` as the pattern, or to require
-  an `<h2>` section heading above cards.
-
-## 3. Choose a date filter
-
-- **Today:** No date picker or date range control.
-- **What agents did:** a FilterSelect with preset ranges (Last 7, 30
-  and 90 days, All dates).
-- **Decide:** whether preset ranges in a FilterSelect are the pattern,
-  or whether the system needs a date range control.
+Decided on November 18, 2026, and removed: 1 (CardTitle level), 2
+(empty state), 3 (date filter), 5 (banner retry action) and 6 (page
+layout, and the foundations in the MCP docs). See decisions.md.
 
 ## 4. Define actions in tables without a detail view
 
@@ -48,28 +29,10 @@ and most of item 6 (page header and layout).
 - **Decide:** the button variant for these row actions, whether a
   compact button size is needed, and how to label the column.
 
-## 5. Choose a retry action for banners
+## 7. Decide how other projects import the components (deferred)
 
-- **Today:** Banner actions are underlined links (`BannerAction` is an
-  `<a>`), per the hard rule "banner actions = underlined links, never
-  buttons".
-- **Problem:** "Try again" after an error is an action, not navigation.
-  Agents used a link with `href="#"` and a click handler, which screen
-  readers announce as a link that goes nowhere.
-- **Decide:** whether BannerAction can render a `<button>` styled as a
-  link for in-place actions, or another pattern for retry.
-
-## 6. Document the foundations for the MCP docs
-
-- **Decided November 18, 2026:** the page header and page layout (see
-  decisions.md and the PageHeader component).
-- **Still open:** The Color, Type and Spacing foundations aren't in the
-  MCP docs. They have no component, so Storybook leaves them out of the
-  components manifest. Agents read `design-tokens.css` instead.
-- **Decide:** whether to document the foundations for the MCP docs, for
-  example as MDX docs pages.
-
-## 7. Decide how other projects import the components
+- **Status:** Deferred on November 18, 2026. Revisit when another
+  project needs the components.
 
 - **Today:** The docs now show the paths that work in this repository,
   such as `@/components/ui/button`. The `@/` alias comes from this
@@ -87,7 +50,9 @@ and most of item 6 (page header and layout).
   Overpayment apart from the amber "Payment due" chip and matches the
   Overpayment segment color.
 - **Problem:** Terracotta is the primary action color, so a terracotta
-  chip may look clickable.
+  chip may look clickable. In dark mode, the proposed text measures
+  1.56:1 against its fill, below the 4.5:1 minimum, because the canvas
+  has no dark-mode style for it.
 - **Decide:** whether to add the variant, or which existing variant
   Overpayment should use.
 
@@ -100,3 +65,29 @@ and most of item 6 (page header and layout).
   text color, with a hover rule.
 - **Decide:** whether BannerBar should have a dismiss option, and its
   treatment.
+
+## 10. Design a count for the Alerts button
+
+- **Today:** No treatment for a count on an icon button. The PageHeader
+  stories show Alerts with no count.
+- **Where it came up:** The prototype canvas's Page Template shows the
+  unread count in a 15px terracotta circle with 10px text, at the top
+  right of the bell. 10px is below the type scale; the smallest style
+  is 12px.
+- **Decide:** whether the count shows a number or only a dot, its size,
+  color and type, and how screen readers hear it. The canvas puts the
+  count in the button's label, such as "Alerts, 4 unread".
+
+## 11. Fix the logo so it doesn't depend on a font
+
+- **Today:** The only logo file in this repository was a preview copy of
+  `Claerio_ae_charcoal_circle.svg`, now deleted. Its æ is live text that
+  loads Lora with a web-font `@import`. Inside an `<img>`, the browser
+  doesn't load that font, so the æ renders in Georgia. That breaks the
+  logo rule: never recreate the logo in another font.
+- **Likely fix:** Start from the original SVGs in the Drive brand folder
+  and convert the æ (and the wordmark text) to outlines, so each file
+  draws the letters as shapes. Then add the files to this repository and
+  use them in the app shell's navigation rail.
+- **Decide:** who converts the files, and whether the outlined versions
+  replace the originals in Drive.

@@ -18,6 +18,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
  * - Hover: --accent. Neutral only: never amber.
  * - FilterRow: its own left-aligned row under the card title, 8px between
  *   filters, 12px above the content it filters.
+ * - Dates: filter by date with preset ranges in a FilterSelect, labeled
+ *   "Date:", with "Last 7 days", "Last 30 days", "Last 90 days" and
+ *   "All dates". There is no date picker (decided 2026-11-18).
  */
 
 /**
@@ -64,6 +67,10 @@ type FilterSelectProps = Omit<
  * Control it with `value` and `onValueChange`, or set `defaultValue` and let
  * it manage itself. Other Radix Select root props, such as `defaultOpen`,
  * `disabled` and `name`, pass through.
+ *
+ * To filter by date, use a FilterSelect with preset ranges: label
+ * "Date:", options "Last 7 days", "Last 30 days", "Last 90 days" and
+ * "All dates". The system has no date picker or date range control.
  *
  * @import import { FilterSelect, type FilterOption } from "@/components/ui/filter-trigger"
  */

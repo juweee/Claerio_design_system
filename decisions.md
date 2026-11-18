@@ -418,3 +418,26 @@ Earlier entries that mention a spec refer to these retired files.
 - New token: `--layout-max-width: 1280px`, the app shell's maximum
   width, taken from the canvas and accepted on review. The
   "App shell" stories in Page header show the whole frame.
+
+## 2026-11-18: CardTitle level, date filter, banner retry, foundations docs
+- **CardTitle level:** new `level` prop (2, 3 or 4, default 3). Pick
+  the level that follows the heading above the card: 2 right under the
+  page's `<h1>`, 3 under an `<h2>` section title. The look is the same
+  at every level. Don't use `aria-level` for this. Default 3 keeps every
+  existing card the same.
+- **Date filter:** preset ranges in a FilterSelect, labeled "Date:",
+  with "Last 7 days", "Last 30 days", "Last 90 days" and "All dates".
+  No date picker or date range control. Documented on FilterSelect,
+  with a "Date range presets" story.
+- **Banner retry:** BannerAction renders a `<button>` when it has no
+  `href`, styled the same as the link, for in-place actions such as
+  "Try again". With `href`, it stays a link. Never a link with
+  `href="#"` for an action. The CLAUDE.md hard rule now says
+  "underlined text, never Buttons".
+- **Foundations in the MCP docs:** 3 MDX pages under "Foundations/Docs"
+  (Color, Type, Spacing and layout) give the rules and utilities for
+  each token group. Storybook now loads `src/**/*.mdx`, and the pages
+  show in the MCP `docs-list` under Docs. The type, spacing and
+  radius pages list values for reference; `design-tokens.css` stays the
+  source of truth, so update the pages when a value changes.
+- **Imports for other projects:** deferred (GAPS.md item 7).

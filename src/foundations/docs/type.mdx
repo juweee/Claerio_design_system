@@ -1,0 +1,30 @@
+import { Meta } from "@storybook/addon-docs/blocks"
+
+<Meta title="Foundations/Docs/Type" />
+
+# Use type
+
+The product uses two fonts. Lora (`font-serif`) is only for Display and Heading 1. Inter (`font-sans`, the default) is for everything else. Each style is a token set in `design-tokens.css` (size, weight and line height), with one Tailwind utility that applies all three.
+
+The "Foundations/Type" story shows every style.
+
+## Pick a style
+
+| Style | Utility | Font, size/weight | Use it for |
+|---|---|---|---|
+| Display | `font-serif text-display` | Lora 32/700 | The largest titles |
+| Heading 1 | `font-serif text-heading-1` | Lora 24/700 | The page title, in PageHeaderTitle. One per page. |
+| Heading 2 | `text-heading-2` | Inter 20/600 | Section titles and card titles (CardTitle) |
+| Heading 3 | `text-heading-3` | Inter 16/600 | Smaller titles, such as the EmptyState title |
+| Body | `text-body` | Inter 14/400 | Most text |
+| Body small | `text-body-small` | Inter 12/400 | Secondary details, such as dates and helper text, usually in `text-muted-foreground` |
+| Label | `text-label` | Inter 12/600 | Short labels, such as "Member ID" |
+| Button | `text-button` | Inter 14/500 | Button text. Button applies it for you. |
+| Monospace | `font-mono text-monospace` | System mono 13/400 | IDs, such as claim numbers |
+
+## Follow these rules
+
+- Use only these styles. Don't set font sizes in pixels, such as `text-[15px]`.
+- Don't use italics. They aren't in the scale.
+- The look of a heading is separate from its level. Pick the HTML level that keeps the page's heading order (h1, then h2, then h3), and the style that fits the design. CardTitle has a `level` prop for this.
+- Lora never goes below Heading 1, and never on buttons, labels or body text.

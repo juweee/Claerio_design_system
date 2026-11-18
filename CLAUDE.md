@@ -74,7 +74,7 @@ State what happened, why (if known), and what to do next.
 - Fonts: Lora (Display + H1 only) + Inter (everything else). Buttons: Inter 14/500.
 - Brand Charcoal #2D2D2B = fixed surfaces only (logo blocks, tooltip). Product text = --foreground.
 - Amber = navigation selection + warning ONLY — never buttons or links.
-- Primary actions = terracotta --primary; banner actions = underlined links, never buttons.
+- Primary actions = terracotta --primary; banner actions = underlined text, never Buttons. BannerAction is a link with href, or a <button> that looks the same for in-place actions such as "Try again", per decisions.md (2026-11-18).
 - Primary button hover = terracotta-700 in both light and dark mode, per decisions.md (2026-11-12: dark-mode primary hover changed to terracotta-700). Never shadcn's bg-primary/90 opacity hover.
 - Destructive button hover darkens: light = --destructive-hover, dark = --destructive at 90% opacity, per decisions.md (2026-11-12: destructive button hover darkens in light mode).
 - Radius: 4/8/12/9999 only. Nested radius = outer − inset.

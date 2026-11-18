@@ -1,0 +1,50 @@
+import { Meta } from "@storybook/addon-docs/blocks"
+
+<Meta title="Foundations/Docs/Spacing and layout" />
+
+# Use spacing, radius and layout
+
+Spacing, radius, shadows and layout widths are tokens in `design-tokens.css`. The "Foundations/Spacing, radius and shadows" stories show them.
+
+## Space things on the scale
+
+| Token | Value | Tailwind |
+|---|---|---|
+| `--space-1` | 4px | `p-1`, `gap-1` |
+| `--space-2` | 8px | `p-2`, `gap-2` |
+| `--space-3` | 12px | `p-3`, `gap-3` |
+| `--space-4` | 16px | `p-4`, `gap-4` |
+| `--space-6` | 24px | `p-6`, `gap-6` |
+| `--space-8` | 32px | `p-8`, `gap-8` |
+| `--space-12` | 48px | `p-12`, `gap-12` |
+
+Tailwind's spacing steps are 4px, so `p-6` is 24px. Stay on the values above.
+
+## Lay out a page
+
+- The app shell is at most `--layout-max-width` (1280px) wide, centered: `mx-auto max-w-(--layout-max-width)`.
+- The shell is a navigation rail, then a column of PageHeader, `<main>` and `<footer>`. The header and footer sit outside `<main>`.
+- The page body has 24px padding and 24px between sections: `p-6 gap-6`.
+- Cards have 16px padding (Card applies it). Put a FilterRow under the card title, 12px above what it filters.
+- The "Page header" component's "App shell" stories show the whole frame.
+
+## Round corners
+
+| Token | Value | Utility | Use it for |
+|---|---|---|---|
+| `--radius-sm` | 4px | `rounded-sm` | Tooltips and small parts, such as focus outlines on text |
+| `--radius-md` | 8px | `rounded-md` | Buttons, inputs, filters and menus |
+| `--radius-lg` | 12px | `rounded-lg` | Cards, modals and toasts |
+| `--radius-full` | 9999px | `rounded-full` | Avatars, chips |
+
+Use only these 4 values. For a rounded shape inside another one, the inner radius is the outer radius minus the gap between them.
+
+## Use shadows only on overlays
+
+- `--shadow-overlay` (`shadow-overlay`): toasts and menus.
+- `--shadow-modal` (`shadow-modal`): modals only. It's `none` in dark mode.
+- Cards have no shadow, in either mode.
+
+## Show focus the same way everywhere
+
+Focus-visible is a 2px `--ring` outline with a 2px offset: `focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring`.

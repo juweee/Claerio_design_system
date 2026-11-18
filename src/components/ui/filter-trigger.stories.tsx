@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
 
-import { ModePanels, modePanelParameters } from "@/foundations/mode-panels"
+import { ModePanels, modePanelParameters, withModePanels } from "@/foundations/mode-panels"
 
 import { FilterRow, FilterSelect } from "./filter-trigger"
 
@@ -96,4 +96,30 @@ export const ReferenceLayout: Story = {
       </FilterRow>
     </ModePanels>
   ),
+}
+
+/* Dates use preset ranges, not a date picker. */
+function DateRange() {
+  return (
+    <FilterRow className="mb-0">
+      <FilterSelect
+        label="Date:"
+        defaultValue="30"
+        options={[
+          { value: "7", label: "Last 7 days" },
+          { value: "30", label: "Last 30 days" },
+          { value: "90", label: "Last 90 days" },
+          { value: "all", label: "All dates" },
+        ]}
+      />
+      <FilterSelect label="Status:" defaultValue="all" options={statuses} />
+    </FilterRow>
+  )
+}
+
+export const DateRangeStory: Story = {
+  name: "Date range presets",
+  parameters: modePanelParameters,
+  decorators: [withModePanels()],
+  render: DateRange,
 }

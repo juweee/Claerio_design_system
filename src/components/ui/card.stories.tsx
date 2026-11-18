@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
+import { expect } from "storybook/test"
 
 import { ModePanels, modePanelParameters, withModePanels } from "@/foundations/mode-panels"
 
@@ -62,4 +63,34 @@ export const ReferenceLayout: Story = {
       </Card>
     </ModePanels>
   ),
+}
+
+/* Cards right under the page title: level 2 keeps the heading order
+   h1, h2 with no skipped level. */
+function HeadingLevels() {
+  return (
+    <div className="flex max-w-180 flex-col gap-6">
+      <h1 className="font-serif text-heading-1">Dashboard</h1>
+      <div className="grid grid-cols-2 gap-6">
+        <Card>
+          <CardTitle level={2}>Deductible</CardTitle>
+          <CardBody>$1,240 of $2,000 met.</CardBody>
+        </Card>
+        <Card>
+          <CardTitle level={2}>Out-of-pocket max</CardTitle>
+          <CardBody>$2,180 of $6,000 met.</CardBody>
+        </Card>
+      </div>
+    </div>
+  )
+}
+
+export const Levels: Story = {
+  name: "Heading level under the page title",
+  parameters: { layout: "padded", themes: { themeOverride: "Light" } },
+  render: HeadingLevels,
+  play: async ({ canvas }) => {
+    await expect(canvas.getAllByRole("heading", { level: 2 })).toHaveLength(2)
+    await expect(canvas.queryAllByRole("heading", { level: 3 })).toHaveLength(0)
+  },
 }
