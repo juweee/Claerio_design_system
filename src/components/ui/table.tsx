@@ -32,8 +32,8 @@ import { cn } from "@/lib/utils"
 
 /**
  * Shows rows of data, such as claims, in a real HTML table. No zebra
- * striping: rows highlight on hover. Sortable headers and clickable rows
- * work with the keyboard.
+ * striping. Clickable rows highlight on hover; other rows don't. Sortable
+ * headers and clickable rows work with the keyboard.
  *
  * Build it from parts: Table > TableHeader > a <tr> of TableHead cells,
  * then TableBody > TableRow > TableCell. Put the table on a Card. For
