@@ -42,16 +42,19 @@ it, and remove it from this list.
 - **Decide:** whether preset ranges in a FilterSelect are the pattern,
   or whether the system needs a date range control.
 
-## 4. Define row actions in tables
+## 4. Define actions in tables without a detail view
 
-- **Today:** No guidance on buttons inside table rows.
+- **Decided November 18, 2026:** a clickable row holds no buttons or
+  links. Its actions live in the detail view it opens (see
+  decisions.md).
+- **Still open:** tables whose rows don't open anything, where an
+  action can only sit in the row.
 - **What agents did:** a Button in each row, such as Approve. Run 3
   used a secondary Button under a visually hidden "Actions" header.
 - **Problem:** Button is 40px tall, so rows with a button are taller
   than rows without one. This shows in the run 1 and run 2 screenshots.
-- **Decide:** the button variant for row actions, whether a compact
-  button size is needed, whether a row with actions can also be
-  clickable, and how to label the column.
+- **Decide:** the button variant for these row actions, whether a
+  compact button size is needed, and how to label the column.
 
 ## 5. Choose a retry action for banners
 

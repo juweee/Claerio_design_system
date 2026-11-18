@@ -367,3 +367,21 @@ Earlier entries that mention a spec refer to these retired files.
   function, and ModePanels goes in a decorator (`withModePanels`), so
   the snippet shows the real composition.
 - Design questions found while documenting are listed in GAPS.md.
+
+## 2026-11-18: actions in clickable table rows
+- A clickable row (TableRow with `onClick`) holds no buttons or links.
+  The row is its one action: it opens the item's detail view, and the
+  item's actions, such as "Pay now", live there.
+- The row can still say what's needed in plain text, such as "You owe
+  $50.00", so people see it without opening the row.
+- Why: TableRow opens on any click inside it and on Enter. A control
+  inside the row fires both actions, or only opens the row when pressed
+  with Enter. The detail view also has room to confirm a money action
+  (amount, account) before it runs.
+- Considered and not adopted: a compact button in its own column, with
+  TableRow ignoring events from controls inside it. It saves one step
+  but needs a TableRow change and a new 32px button size.
+- Compared in the temporary preview "Row actions: panel or button in
+  row", against the prototype canvas's Activity table.
+- Still open (GAPS.md item 4): actions in tables whose rows don't open
+  a detail view.
