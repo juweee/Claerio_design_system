@@ -21,6 +21,9 @@ import { cn } from "@/lib/utils"
  * - Clickable rows (onClick): pointer, --accent hover and a trailing
  *   chevron, all three together. Rows are reachable with Tab and open
  *   with Enter or Space. Non-clickable tables have no chevron column.
+ * - Clickable rows hold no buttons or links: the row opens the detail
+ *   view, and the item's actions live there (decided 2026-11-18). Say
+ *   what's needed in plain text in the row instead.
  * - highlighted: the --accent "just created" highlight. Remove it after
  *   a few seconds or on first interaction (pairs with a success toast).
  * - Status cells reuse StatusChip exactly.
@@ -77,7 +80,9 @@ function TableBody({ className, ...props }: React.ComponentProps<"tbody">) {
 type TableRowProps = React.ComponentProps<"tr"> & {
   /**
    * Makes the row clickable, such as to open a claim. Also adds the
-   * pointer, hover color, Tab focus and Enter or Space to open.
+   * pointer, hover color, Tab focus and Enter or Space to open. A
+   * clickable row holds no buttons or links: put the item's actions in
+   * the view the row opens.
    */
   onClick?: React.MouseEventHandler<HTMLTableRowElement>
   /**
@@ -92,6 +97,12 @@ type TableRowProps = React.ComponentProps<"tr"> & {
  * One data row. Give it an onClick to make the whole row clickable: it
  * then gets a pointer, the --accent hover, Tab focus, and opens with Enter
  * or Space. Clickable rows need a TableChevronCell as their last cell.
+ *
+ * Don't put buttons or links in a clickable row. The row opens on any
+ * click inside it and on Enter, so a control there would fire both or
+ * be skipped. Put actions such as "Pay now" in the detail view the row
+ * opens, and say what's needed in the row as plain text, such as "You
+ * owe $50.00".
  *
  * @import import { TableRow } from "@/components/ui/table"
  */

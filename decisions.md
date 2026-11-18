@@ -367,3 +367,54 @@ Earlier entries that mention a spec refer to these retired files.
   function, and ModePanels goes in a decorator (`withModePanels`), so
   the snippet shows the real composition.
 - Design questions found while documenting are listed in GAPS.md.
+
+## 2026-11-18: actions in clickable table rows
+- A clickable row (TableRow with `onClick`) holds no buttons or links.
+  The row is its one action: it opens the item's detail view, and the
+  item's actions, such as "Pay now", live there.
+- The row can still say what's needed in plain text, such as "You owe
+  $50.00", so people see it without opening the row.
+- Why: TableRow opens on any click inside it and on Enter. A control
+  inside the row fires both actions, or only opens the row when pressed
+  with Enter. The detail view also has room to confirm a money action
+  (amount, account) before it runs.
+- Considered and not adopted: a compact button in its own column, with
+  TableRow ignoring events from controls inside it. It saves one step
+  but needs a TableRow change and a new 32px button size.
+- Compared in the temporary preview "Row actions: panel or button in
+  row", against the prototype canvas's Activity table.
+- Still open (GAPS.md item 4): actions in tables whose rows don't open
+  a detail view.
+
+## 2026-11-18: empty state
+- New component: `EmptyState`, with `EmptyStateTitle`,
+  `EmptyStateDescription` and `EmptyStateActions`. It replaces a table
+  or chart that has nothing to show, inside the same Card, with the
+  filters still in view.
+- Centered, 48px top and bottom padding. A title in heading-3 type that
+  says what happened, one sentence that says what to do next, and a
+  secondary "Clear filters" button. A primary button only when it's the
+  page's main action.
+- The title is a `<p>`, so it never breaks the page's heading order.
+  The component has `role="status"`, so screen readers announce it.
+- One field with no value yet, such as "Amount pending", is regular
+  `--muted-foreground` text, not italic. Italic isn't in the type scale.
+- Why: the prototype canvas had two versions (a line of text with no
+  action on Activity, and a text-only "Clear filters" without a focus
+  outline on Reporting). One pattern keeps pages alike and keeps the
+  focus ring.
+
+## 2026-11-18: page header and layout
+- New component: `PageHeader`, with `PageHeaderTitle` and
+  `PageHeaderActions`. A sticky 64px `<header>` with the page title on
+  the left and page-wide status and actions on the right.
+- The page title is the page's only `<h1>`, in Lora heading-1. The
+  prototype canvas used a `<span>`, so its pages had no `<h1>`.
+- PageHeader and the `<footer>` sit outside `<main>`, so they're the
+  banner and contentinfo landmarks. Footer links go to real pages.
+- Page body: 24px padding and 24px between sections, as in the canvas.
+- Navigation selection stays amber (`--nav-active`), per CLAUDE.md. The
+  canvas's olive selection with white text is not adopted.
+- New token: `--layout-max-width: 1280px`, the app shell's maximum
+  width, taken from the canvas and accepted on review. The
+  "App shell" stories in Page header show the whole frame.
