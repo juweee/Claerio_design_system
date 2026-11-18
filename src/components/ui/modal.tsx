@@ -81,7 +81,7 @@ type ModalProps = Omit<React.ComponentProps<typeof DialogPrimitive.Root>, "open"
  *   **Footer:** 16px below, buttons on the right, 8px apart.
  * - **None yet:** sizes, a close (×) button, a loading state while the
  *   action runs, an error state inside the modal and scrolling for long
- *   content (GAPS.md item 22).
+ *   content (GAPS.md item 27).
  *
  * *Source: modal.tsx, design-tokens.css.*
  *
@@ -116,8 +116,8 @@ type ModalProps = Omit<React.ComponentProps<typeof DialogPrimitive.Root>, "open"
  * - To confirm something already done, use Toast. To show a message on
  *   the page, use Banner. *Source: decisions.md, 2026-11-18 component record review.*
  * - Whether a clickable table row opens a modal, a panel or a page isn't
- *   decided (GAPS.md item 14).
- * - Forms and long content in a modal: none yet (GAPS.md item 22).
+ *   decided (GAPS.md item 12).
+ * - Forms and long content in a modal: none yet (GAPS.md item 27).
  *
  * ### Anatomy
  *
@@ -140,7 +140,10 @@ type ModalProps = Omit<React.ComponentProps<typeof DialogPrimitive.Root>, "open"
  * - The page behind can't be scrolled or reached while it's open.
  * - In the stories, the confirming action sits in a ModalClose, so the
  *   modal closes the moment it's pressed. How to keep it open while the
- *   action runs, or show an error: none yet (GAPS.md item 22).
+ *   action runs, or show an error: none yet (GAPS.md item 27).
+ * - Opening it without a ModalTrigger, with `open` and `onOpenChange`,
+ *   such as from a table row: not decided, nor where focus returns
+ *   then (GAPS.md item 14).
  *
  * *Source: modal.tsx comment, Radix Dialog.*
  *
@@ -179,18 +182,18 @@ type ModalProps = Omit<React.ComponentProps<typeof DialogPrimitive.Root>, "open"
  * - Buttons: "Cancel", then a verb that repeats the title's action, such
  *   as "File dispute". *Source: decisions.md, 2026-11-18 component record review.*
  * - Whether a destructive confirmation, such as a delete, uses the
- *   destructive Button: not decided (GAPS.md item 22).
+ *   destructive Button: not decided (GAPS.md item 27).
  * - No em dashes. *Source: CLAUDE.md content style guide.*
  *
  * ### Related components and patterns
  *
- * Button (trigger and footer), Toast, Banner, Table (GAPS.md item 14).
+ * Button (trigger and footer), Toast, Banner, Table (GAPS.md item 12).
  * *Source: modal.tsx, stories.*
  *
  * ### Links
  *
  * decisions.md: 2026-11-12 table and remaining components (modal built
- * on Radix Dialog, reviewed). GAPS.md: items 14 and 22. Figma: none yet.
+ * on Radix Dialog, reviewed). GAPS.md: items 12, 14 and 27. Figma: none yet.
  *
  * @import import { Modal } from "@/components/ui/modal"
  */

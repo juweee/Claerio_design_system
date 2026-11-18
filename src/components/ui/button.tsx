@@ -125,7 +125,7 @@ type ButtonProps = React.ComponentProps<"button"> & {
  * - **Disabled** (`disabled` or `aria-disabled`): 50% opacity,
  *   not-allowed cursor, no hover change.
  * - **None yet:** sizes, a loading state, a pressed state and an
- *   icon-only variant (see GAPS.md items 12 and 13).
+ *   icon-only variant (see GAPS.md items 21 and 22).
  *
  * *Source: button.tsx, decisions.md (Components: Buttons; 2026-11-12
  * hover entries).*
@@ -193,7 +193,7 @@ type ButtonProps = React.ComponentProps<"button"> & {
  * - Disabled blocks clicks. `aria-disabled` only changes the look: the
  *   click handler still runs, so block it yourself. *Source:
  *   button.tsx.*
- * - Loading and double-click protection: none yet (GAPS.md item 13).
+ * - Loading and double-click protection: none yet (GAPS.md item 22).
  *
  * ### Accessibility
  *

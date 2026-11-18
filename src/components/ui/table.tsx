@@ -42,8 +42,8 @@ import { cn } from "@/lib/utils"
 
 /**
  * Shows rows of data, such as claims, in a real HTML table. No zebra
- * striping: rows highlight on hover. Sortable headers and clickable rows
- * work with the keyboard.
+ * striping. Clickable rows highlight on hover; other rows don't. Sortable
+ * headers and clickable rows work with the keyboard.
  *
  * Build it from parts: Table > TableHeader > a <tr> of TableHead cells,
  * then TableBody > TableRow > TableCell. Put the table on a Card. For
@@ -53,7 +53,7 @@ import { cn } from "@/lib/utils"
  * ## Component record
  *
  * Status: **first pass**. Some table patterns aren't designed yet: see
- * GAPS.md items 4 and 14 to 16. *Source: experiment 1.3 brief.*
+ * GAPS.md items 4, 12, 13 and 19. *Source: experiment 1.3 brief.*
  *
  * Each field ends with where its content came from. "PROPOSED" means
  * nothing in the repository decides it yet: treat it as a suggestion, not
@@ -93,7 +93,8 @@ import { cn } from "@/lib/utils"
  *   CaretDown at full opacity, and `aria-sort` on the cell.
  * - **Numeric cell or header:** right-aligned, with tabular figures in
  *   cells.
- * - **Mono cell:** `--font-mono` at 13/400, for IDs.
+ * - **Mono cell:** `--font-mono` at 13/400, for IDs. It sits about 1px
+ *   higher than the other cells (GAPS.md item 20).
  * - **Rows not clickable:** no pointer, no hover color, no chevron
  *   column.
  * - **Clickable row, rest:** a trailing › chevron in
@@ -106,8 +107,9 @@ import { cn } from "@/lib/utils"
  * - **No rows:** replace the table with an EmptyState in the same Card,
  *   with the filters still in view. *Source: decisions.md, 2026-11-18
  *   empty state.*
- * - **None yet:** loading, row selection (GAPS.md item 16), pagination,
- *   long text, narrow screens and sticky headers.
+ * - **None yet:** loading (GAPS.md item 16), the layout when loading
+ *   fails (GAPS.md item 17), row selection (GAPS.md item 19),
+ *   pagination, long text, narrow screens and sticky headers.
  *
  * *Source: table.tsx, decisions.md (Components: Table; 2026-11-12 table
  * and remaining components).*
@@ -147,7 +149,7 @@ import { cn } from "@/lib/utils"
  *   view it opens. Where rows open nothing, see GAPS.md item 4.
  *   *Source: decisions.md, 2026-11-18 actions in clickable table rows.*
  * - What a clickable row opens (a page, a panel or a modal) isn't
- *   decided: see GAPS.md item 14.
+ *   decided: see GAPS.md item 12.
  *
  * ### Anatomy
  *
@@ -176,7 +178,7 @@ import { cn } from "@/lib/utils"
  *   inside the same Card. *Source: decisions.md (Filter triggers),
  *   stories.*
  * - **Mixed tables**, where only some rows open something: not decided,
- *   see GAPS.md item 15.
+ *   see GAPS.md item 13.
  *
  * ### Accessibility
  *
@@ -202,7 +204,7 @@ import { cn } from "@/lib/utils"
  *
  * Known limits: a clickable row keeps the row role, so screen readers
  * may not say that it opens anything. Not yet tested with a screen
- * reader (GAPS.md item 17). Dark-mode row lines measure 1.35:1 against
+ * reader (GAPS.md item 23). Dark-mode row lines measure 1.35:1 against
  * the card; they're decorative. *Source: decisions.md, 2026-11-12 open
  * items closed.*
  *
@@ -225,7 +227,7 @@ import { cn } from "@/lib/utils"
  *   stories.*
  * - Dates: the stories write "Nov 2, 2026". The content style guide
  *   writes dates as "July 14, 2026". Whether tables may shorten the
- *   month isn't decided (GAPS.md item 18).
+ *   month isn't decided (GAPS.md item 24).
  * - No em dashes. *Source: CLAUDE.md content style guide.*
  *
  * ### Related components and patterns
@@ -240,7 +242,7 @@ import { cn } from "@/lib/utils"
  * inline editing, column resize); 2026-11-12 table and remaining
  * components; 2026-11-12 open items closed (decorative borders);
  * 2026-11-18 actions in clickable table rows; 2026-11-18 empty state.
- * GAPS.md: items 4, 14, 15, 16, 17 and 18. Figma: none yet.
+ * GAPS.md: items 4, 12, 13, 16, 17, 19, 20, 23 and 24. Figma: none yet.
  *
  * @import import { Table } from "@/components/ui/table"
  */

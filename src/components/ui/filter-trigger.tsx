@@ -163,7 +163,8 @@ type FilterSelectProps = Omit<
  * ### Anatomy
  *
  * 1. FilterRow: the row that holds the filters, 8px apart, 12px above
- *    the content they filter.
+ *    the content they filter. The space between the card title and
+ *    FilterRow isn't decided (GAPS.md item 15).
  * 2. Trigger: the label ("Status:"), the selected value and a caret.
  * 3. Menu: the options, with a check on the selected one.
  *
@@ -201,7 +202,7 @@ type FilterSelectProps = Omit<
  *   *Source: label prop comment.*
  *
  * Known limit: when results change, screen readers aren't told how many
- * rows are left. None yet (GAPS.md item 21).
+ * rows are left. None yet (GAPS.md item 26).
  *
  * Test checklist:
  * 1. Tab reaches each filter and shows the outline in light and dark
@@ -239,7 +240,8 @@ type FilterSelectProps = Omit<
  * decisions.md: Components (Filter triggers); 2026-11-12 table and
  * remaining components (accessible name); 2026-11-12 open items closed
  * (field borders); 2026-11-13 accessibility checks fail story tests;
- * 2026-11-18 empty state; 2026-11-18 date filter. GAPS.md: item 21.
+ * 2026-11-18 empty state; 2026-11-18 date filter. GAPS.md: items 15
+ * and 26.
  * Figma: none yet.
  *
  * @import import { FilterSelect, type FilterOption } from "@/components/ui/filter-trigger"

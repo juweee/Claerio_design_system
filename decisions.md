@@ -495,5 +495,6 @@ Accepted rules:
   that repeats the title's action, such as "File dispute".
 
 Why: each rule matched how the stories and other components already
-work, but nothing had decided it. GAPS.md item 19 is closed, and the
-naming half of item 17 is decided.
+work, but nothing had decided it. The GAPS.md item that listed these
+fields is closed, and the naming half of item 23 (screen readers and
+clickable rows) is decided.

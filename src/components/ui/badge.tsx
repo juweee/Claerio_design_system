@@ -204,6 +204,8 @@ type StatusChipProps = React.ComponentProps<"span"> & {
  * - Sentence case, no ending punctuation. *Source: decisions.md, 2026-11-18 component record review.*
  * - Claim states: Paid is positive, Pending is neutral, Review is
  *   alert, Denied is error. *Source: decisions.md, 2026-11-18 component record review.*
+ *   The full list of claim statuses, such as "Needs info", and where it
+ *   lives: not decided (GAPS.md item 18).
  * - No em dashes. *Source: CLAUDE.md content style guide.*
  *
  * ### Related components and patterns
@@ -215,7 +217,7 @@ type StatusChipProps = React.ComponentProps<"span"> & {
  *
  * decisions.md: 2026-11-12 table and remaining components (status chip
  * colors, type exceptions); 2026-11-12 success color and chip tints
- * accepted. GAPS.md: item 8. Figma: none yet.
+ * accepted. GAPS.md: items 8 and 18. Figma: none yet.
  *
  * @import import { StatusChip } from "@/components/ui/badge"
  */
