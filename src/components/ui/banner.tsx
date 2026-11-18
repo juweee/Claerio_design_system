@@ -22,7 +22,9 @@ import { cn } from "@/lib/utils"
  *   the reference. Built from filled Phosphor Info (info) or
  *   WarningCircle (warning, error) over a --background disc, because
  *   Phosphor has no plain "i" glyph.
- * - Title: 14/600. Action: an underlined link at 14/500, never a button.
+ * - Title: 14/600. Action: underlined text at 14/500, never a Button. A
+ *   link (<a>) when it goes somewhere; a <button> that looks the same
+ *   when it acts in place, such as "Try again" (decided 2026-11-18).
  * - Dismiss: shown only when onDismiss is passed. Use it only when the
  *   message does not require action. A 16px Phosphor X in a 24px target.
  *
@@ -75,8 +77,10 @@ type BannerProps = React.ComponentProps<"div"> & {
 
 /**
  * Shows an info, warning or error message across a section, or a page-level
- * bar. Banner actions are underlined links, never buttons. Error banners are
- * announced to screen readers right away.
+ * bar. The action (BannerAction) is underlined text, never a Button: a link
+ * when it goes somewhere, or a <button> that looks the same when it acts
+ * in place, such as "Try again". Error banners are announced to screen
+ * readers right away.
  *
  * @import import { Banner } from "@/components/ui/banner"
  */
@@ -148,19 +152,49 @@ function BannerDescription({ className, ...props }: React.ComponentProps<"p">) {
   return <p data-slot="banner-description" className={cn("text-foreground", className)} {...props} />
 }
 
+type BannerActionProps =
+  | (React.ComponentProps<"a"> & {
+      /** Where the action goes. With href, BannerAction is a link. */
+      href: string
+    })
+  | (React.ComponentProps<"button"> & {
+      /** Leave out for an action that happens in place, such as "Try again". */
+      href?: undefined
+    })
+
+const bannerActionClasses = [
+  "font-[500] text-(color:--banner-fg) underline",
+  "focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-solid focus-visible:outline-offset-2 focus-visible:outline-ring",
+]
+
 /**
+ * The banner's action, as underlined text in the banner color. Never a
+ * Button.
+ *
+ * With href, it's a link, for actions that go somewhere, such as "Review
+ * now". Without href, it's a <button> that looks the same, for actions
+ * that happen in place, such as "Try again" after an error. Give the
+ * button an onClick. Never use a link with href="#" for an in-place
+ * action: screen readers announce it as a link that goes nowhere.
+ *
  * @import import { BannerAction } from "@/components/ui/banner"
  */
-function BannerAction({ className, ...props }: React.ComponentProps<"a">) {
+function BannerAction({ className, ...props }: BannerActionProps) {
+  if (props.href !== undefined) {
+    return (
+      <a
+        data-slot="banner-action"
+        className={cn(bannerActionClasses, className)}
+        {...(props as React.ComponentProps<"a">)}
+      />
+    )
+  }
   return (
-    <a
+    <button
+      type="button"
       data-slot="banner-action"
-      className={cn(
-        "font-[500] text-(color:--banner-fg) underline",
-        "focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-solid focus-visible:outline-offset-2 focus-visible:outline-ring",
-        className
-      )}
-      {...props}
+      className={cn(bannerActionClasses, "cursor-pointer", className)}
+      {...(props as React.ComponentProps<"button">)}
     />
   )
 }

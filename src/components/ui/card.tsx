@@ -12,8 +12,10 @@ import { cn } from "@/lib/utils"
  * - --card surface, 1px --border, radius-lg, space-4 padding.
  * - No shadow, in either mode. The Card README gives light mode a faint
  *   shadow, but the CLAUDE.md hard rule "No shadows on cards" outranks it.
- * - Title: heading-2 type, always an <h3> element. Body: body, 8px below. Meta: body-small in
- *   --muted-foreground, 12px below.
+ * - Title: heading-2 type. An <h3> by default; the level prop sets <h2>,
+ *   <h3> or <h4> to fit the page's heading order (decided 2026-11-18).
+ *   The look never changes with the level. Body: body, 8px below. Meta:
+ *   body-small in --muted-foreground, 12px below.
  * - CardHeader puts a view toggle (such as a segmented control) inline at
  *   the top right of the title row. Put data filters on their own row
  *   under the title.
@@ -52,18 +54,35 @@ function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+/** The heading levels CardTitle can render. */
+type CardTitleLevel = 2 | 3 | 4
+
+type CardTitleProps = React.ComponentProps<"h3"> & {
+  /**
+   * The heading level: 2, 3 or 4. Defaults to 3. Pick the level that
+   * follows the heading above the card, so no level is skipped: 2 when
+   * cards sit right under the page's <h1>, 3 under an <h2> section title.
+   * The look stays the same at every level.
+   */
+  level?: CardTitleLevel
+}
+
+const headingTags = { 2: "h2", 3: "h3", 4: "h4" } as const satisfies Record<CardTitleLevel, string>
+
 /**
  * The card's title, in heading-2 type.
  *
- * Always renders an <h3>, a level-3 heading, whatever the page around it.
- * There is no prop to change the level. Make sure an <h2> comes before it
- * on the page, or screen reader users hear a skipped heading level and
- * axe reports heading-order.
+ * Renders an <h3> by default. Set level to 2 when the card sits right
+ * under the page's <h1>, or to 4 under an <h3>, so screen reader users
+ * never hear a skipped heading level and axe doesn't report
+ * heading-order. Don't use aria-level for this. The look is the same at
+ * every level.
  *
  * @import import { CardTitle } from "@/components/ui/card"
  */
-function CardTitle({ className, ...props }: React.ComponentProps<"h3">) {
-  return <h3 data-slot="card-title" className={cn("text-heading-2", className)} {...props} />
+function CardTitle({ className, level = 3, ...props }: CardTitleProps) {
+  const Heading = headingTags[level]
+  return <Heading data-slot="card-title" className={cn("text-heading-2", className)} {...props} />
 }
 
 /**
