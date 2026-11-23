@@ -67,7 +67,7 @@
      at 90% opacity (5.64:1), so .dark does not redefine this token. */
   --destructive-hover: oklch(0.52 0.245 27.325);
 
-  /* ---- Button colors that switch by mode: PROPOSED 2026-11-23 ----
+  /* ---- Button colors that switch by mode: added 2026-11-23, accepted on review ----
      Experiment 1.6 (generating Figma from code) needed one variable per
      fill, because a Figma fill can't switch tokens with a dark: class.
      These tokens hold the switch, so Button reads one token per role
@@ -220,12 +220,12 @@
   --error-foreground: oklch(0.44 0.245 27.325); /* darker than --destructive, see note above */
   --banner-tint: 10%;
   --banner-border: 30%;
-  /* PROPOSED 2026-11-23: BannerBar text, --terracotta-700 in light mode
+  /* Added 2026-11-23, accepted on review: BannerBar text, --terracotta-700 in light mode
      and --terracotta-400 in dark mode (the existing dark: override), as
      one token for Figma. Same reason as --button-text-link. */
   --banner-bar-foreground: var(--terracotta-700);
 
-  /* ---- Controls: PROPOSED 2026-11-23 ----
+  /* ---- Controls: added 2026-11-23, accepted on review ----
      Values the components already used as literals, as tokens so Figma
      can bind them (experiment 1.6). Nothing looks different.
      - --disabled-opacity: every disabled control (CLAUDE.md hard rule).
@@ -312,7 +312,7 @@
   --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: oklch(0.153 0.006 107.1);
 
-  /* PROPOSED 2026-11-23: see :root. Ghost and link text keeps the
+  /* Added 2026-11-23, accepted on review: see :root. Ghost and link text keeps the
      existing dark-mode value. The destructive hover is the solid color
      that --destructive at 90% opacity rendered over --background in
      Chrome: #E85B5E. --destructive-foreground on it measures 5.66:1
@@ -377,5 +377,5 @@
   --error-foreground: var(--destructive);
   --banner-tint: 15%;
   --banner-border: 35%;
-  --banner-bar-foreground: var(--terracotta-400); /* PROPOSED 2026-11-23, see :root */
+  --banner-bar-foreground: var(--terracotta-400); /* Added 2026-11-23, accepted on review, see :root */
 }

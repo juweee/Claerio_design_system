@@ -43,5 +43,5 @@ switched with a `dark:` class, and found literal values with no token.
 The code now has tokens for them, so these are no longer differences:
 `--button-text-link`, `--button-destructive-hover`,
 `--banner-bar-foreground`, `--disabled-opacity`, `--control-height-md`
-and `--control-height-sm`. All 6 are PROPOSED until reviewed. The
+and `--control-height-sm`. All 6 were accepted on review on November 23, 2026. The
 BannerBar's 10px vertical padding still has no token (GAPS.md item 28).

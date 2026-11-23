@@ -92,10 +92,8 @@ type BannerProps = React.ComponentProps<"div"> & {
  *
  * Covers Banner (inline) and BannerBar (page level).
  *
- * Status: PROPOSED: **first pass**. Built and tested, but whether
- * BannerBar can be dismissed is undecided (GAPS.md item 9). *Source:
- * drafted 2026-11-23 from the status levels in decisions.md (2026-11-18
- * component record review).*
+ * Status: **first pass**. Built and tested, but whether BannerBar can
+ * be dismissed is undecided (GAPS.md item 9). *Source: decisions.md, 2026-11-23 Banner record review.*
  *
  * Each field ends with where its content came from. "PROPOSED" means
  * nothing in the repository decides it yet: treat it as a suggestion, not
@@ -171,8 +169,8 @@ type BannerProps = React.ComponentProps<"div"> & {
  * `--banner-border`, `--primary`, `--banner-bar-foreground`,
  * `--foreground`, `--background` (icon disc), `--ring`, `--radius-md`,
  * `--radius-sm`, `--font-sans`, `--type-body-size`,
- * `--type-body-line-height`. `--banner-bar-foreground` is PROPOSED
- * (November 23, 2026). *Source: banner.tsx class names,
+ * `--type-body-line-height`. `--banner-bar-foreground` was added on
+ * November 23, 2026. *Source: banner.tsx class names,
  * design-tokens.css.*
  *
  * ### Purpose
@@ -181,7 +179,7 @@ type BannerProps = React.ComponentProps<"div"> & {
  * or an action. BannerBar shows a message about the whole app or account
  * across the top of the page. *Source: Banner drafted from the
  * description above and decisions.md (2026-11-18 StatusChip record);
- * BannerBar PROPOSED.*
+ * BannerBar from decisions.md, 2026-11-23 Banner record review.*
  *
  * ### When to use, when not to
  *
@@ -198,10 +196,9 @@ type BannerProps = React.ComponentProps<"div"> & {
  *   notes.*
  * - Use the action as underlined text, never a Button. *Source: CLAUDE.md
  *   hard rules, decisions.md 2026-11-18.*
- * - PROPOSED: use BannerBar for a message about the whole account, such
- *   as a plan renewal, and Banner for a message about one section. Show
- *   at most one BannerBar at a time. *Source: drafted from the Page-level
- *   bar story.*
+ * - Use BannerBar for a message about the whole account, such as a
+ *   plan renewal, and Banner for a message about one section. Show at
+ *   most one BannerBar at a time. *Source: decisions.md, 2026-11-23 Banner record review.*
  *
  * ### Anatomy
  *
@@ -226,9 +223,8 @@ type BannerProps = React.ComponentProps<"div"> & {
  * - BannerAction with `href` goes to that page. Without `href`, it runs
  *   its `onClick` in place, such as "Try again". *Source: decisions.md,
  *   2026-11-18 banner retry.*
- * - PROPOSED: after dismiss, move focus to the next sensible element,
- *   because the dismiss button disappears with the banner. *Source:
- *   drafted, not yet decided.*
+ * - After dismiss, move focus to the next sensible element, because the
+ *   dismiss button disappears with the banner. *Source: decisions.md, 2026-11-23 Banner record review.*
  *
  * ### Accessibility
  *
@@ -250,11 +246,12 @@ type BannerProps = React.ComponentProps<"div"> & {
  *
  * You must provide:
  * - A `dismissLabel` that names the message when a page has more than
- *   one dismissible banner, such as "Dismiss claim received". PROPOSED.
+ *   one dismissible banner, such as "Dismiss claim received".
+ *   *Source: decisions.md, 2026-11-23 Banner record review.*
  * - An `onClick` on a BannerAction without `href`. Never a link with
  *   `href="#"`. *Source: BannerAction description.*
  * - Text that makes sense without color: the variant color alone
- *   doesn't say how serious the message is. PROPOSED.
+ *   doesn't say how serious the message is. *Source: decisions.md, 2026-11-23 Banner record review.*
  *
  * Test checklist:
  * 1. Tab reaches the action and dismiss, and shows the outline in light
@@ -269,10 +266,10 @@ type BannerProps = React.ComponentProps<"div"> & {
  *
  * - Error banners say what happened, why if known, and what to do next.
  *   *Source: CLAUDE.md content style guide (error messages).*
- * - PROPOSED: titles are 2 to 4 words in sentence case with no ending
+ * - Titles are 2 to 4 words in sentence case with no ending
  *   punctuation, such as "Sync failed". Descriptions are one or two
  *   short sentences. Action labels start with a verb, such as "Review
- *   claim" or "Try again". *Source: drafted from the stories.*
+ *   claim" or "Try again". *Source: decisions.md, 2026-11-23 Banner record review.*
  * - Write dates as "January 1, 2027". No em dashes. *Source: CLAUDE.md
  *   content style guide.*
  *

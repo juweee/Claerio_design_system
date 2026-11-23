@@ -154,7 +154,7 @@ type ButtonProps = React.ComponentProps<"button"> & {
  * `--font-sans`, `--type-button-size`, `--type-button-weight`,
  * `--type-button-line-height`. `--button-text-link`,
  * `--button-destructive-hover`, `--control-height-md` and
- * `--disabled-opacity` are PROPOSED (November 23, 2026).
+ * `--disabled-opacity` were added on November 23, 2026.
  * *Source: button.tsx class names, design-tokens.css.*
  *
  * ### Purpose

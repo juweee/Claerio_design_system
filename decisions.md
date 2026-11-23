@@ -575,19 +575,54 @@ clickable rows) is decided.
   `var()`: `--teal` and `--chart-2` (light and dark) point to
   `--teal-500`. These were the only exact matches. Every story renders
   the same pixels before and after. Closes experiment 1.6 GAPS item 18.
-- **Mode switches as tokens (PROPOSED):** `--button-text-link`,
+- **Mode switches as tokens:** `--button-text-link`,
   `--button-destructive-hover` and `--banner-bar-foreground` replace the
   `dark:` overrides in Button and BannerBar, so Figma can bind one
   variable per fill. The dark destructive hover is now a solid color,
   `oklch(0.654 0.175 22.156)` (#E85B5E), which matches the 90% opacity
   hover over `--background`; dark text on it measures 5.66:1.
-- **Control tokens (PROPOSED):** `--disabled-opacity` (50%),
+- **Control tokens:** `--disabled-opacity` (50%),
   `--control-height-md` (40px) and `--control-height-sm` (32px), used by
   every component that had these literals.
 - **BannerBar padding:** the 10px vertical padding stays for now.
   GAPS.md item 28 asks for a preview first.
 - **Banner record:** Banner and BannerBar now have a component record.
-  Its PROPOSED fields are pending review.
 - **Known differences:** `docs/figma-known-differences.md` lists what
   Figma can't express (unitless line heights, shadows, font fallback
   stacks, `color-mix()`), so a sync or parity check doesn't flag them.
+
+## 2026-11-23: Figma parity tokens and Banner record review
+Reviewed under the CLAUDE.md "Before pushing" rule. Every PROPOSED item
+from the Figma parity prep was accepted.
+
+Accepted tokens:
+- `--button-text-link`: `--primary` in light mode, `--terracotta-400` in
+  dark mode. Ghost and link button text.
+- `--button-destructive-hover`: `--destructive-hover` in light mode,
+  `oklch(0.654 0.175 22.156)` in dark mode. Replaces the dark 90%
+  opacity hover. The hard rule's wording ("dark = --destructive at 90%
+  opacity") now means this solid color, which looks the same.
+- `--banner-bar-foreground`: `--terracotta-700` in light mode,
+  `--terracotta-400` in dark mode.
+- `--disabled-opacity` (50%), `--control-height-md` (40px) and
+  `--control-height-sm` (32px).
+
+Accepted Banner record fields:
+- **Status:** first pass, until BannerBar dismiss is decided (GAPS.md
+  item 9).
+- **BannerBar use:** for a message about the whole account, such as a
+  plan renewal. Banner is for one section. At most one BannerBar at a
+  time.
+- **Dismiss focus:** after dismiss, move focus to the next sensible
+  element.
+- **Dismiss label:** name the message when a page has more than one
+  dismissible banner, such as "Dismiss claim received".
+- **Color alone:** the text must say how serious the message is, not
+  only the variant color.
+- **Content:** titles are 2 to 4 words in sentence case with no ending
+  punctuation. Descriptions are one or two short sentences. Action
+  labels start with a verb.
+
+Why: the tokens let Figma bind one variable per fill and value with no
+visual change (experiment 1.6). The record fields matched how the
+stories already work, but nothing had decided them.
