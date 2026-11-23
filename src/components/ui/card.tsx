@@ -18,14 +18,15 @@ import { cn } from "@/lib/utils"
  *   The look never changes with the level. Body: body, 8px below. Meta:
  *   body-small in --muted-foreground, 12px below.
  * - CardHeader puts a view toggle (such as a segmented control) inline at
- *   the top right of the title row. Put data filters on their own row
- *   under the title.
+ *   the top right of the title row. Put data filters in a FilterRow at
+ *   the top of CardBody, 8px under the title (decided 2026-11-23).
  */
 
 /**
  * Groups content about one subject, such as a claim, a visit or a
- * recommendation. Cards have no shadow. Put view toggles in the header and
- * data filters on their own row under the title.
+ * recommendation. Cards have no shadow. Put view toggles in the header.
+ * Put data filters in a FilterRow at the top of CardBody, followed by the
+ * table or chart they filter.
  *
  * @import import { Card } from "@/components/ui/card"
  */

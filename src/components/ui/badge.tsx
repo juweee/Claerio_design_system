@@ -81,8 +81,10 @@ const statusChipVariants = cva(
 
 type StatusChipProps = React.ComponentProps<"span"> & {
   /**
-   * positive: good news, such as Paid. neutral: the default, such as
-   * Pending. alert: needs the person's attention. error: failed or denied.
+   * positive: good news, such as Approved or Paid. neutral: the default,
+   * such as Pending. alert: needs the person's attention, such as Review.
+   * error: failed or denied. For claims, use the claim status list in the
+   * record.
    * Always name the state in the chip's text, too.
    */
   variant?: StatusChipVariant
@@ -120,7 +122,7 @@ type StatusChipProps = React.ComponentProps<"span"> & {
  *
  * | Variant | Use for | Fill, light / dark | Text |
  * | --- | --- | --- | --- |
- * | positive | Good news, such as Paid | `--success` at 12% / 10% | `--teal-dark` |
+ * | positive | Good news, such as Approved or Paid | `--success` at 12% / 10% | `--teal-dark` |
  * | neutral (default) | Waiting or informational, such as Pending | `--olive-600` at 10% / 16% | `--olive-700`; dark: `--muted-foreground` |
  * | alert | Needs the person's attention | `--warning` at 10% / 15% | `--warning-foreground` |
  * | error | Failed or denied | `--destructive` at 10% / 6% | `--error-foreground` |
@@ -202,10 +204,20 @@ type StatusChipProps = React.ComponentProps<"span"> & {
  *   pending" or "Deductible 62% met". The chip never wraps.
  *   *Source: decisions.md, 2026-11-18 component record review.*
  * - Sentence case, no ending punctuation. *Source: decisions.md, 2026-11-18 component record review.*
- * - Claim states: Paid is positive, Pending is neutral, Review is
- *   alert, Denied is error. *Source: decisions.md, 2026-11-18 component record review.*
- *   The full list of claim statuses, such as "Needs info", and where it
- *   lives: not decided (GAPS.md item 18).
+ * - Claim statuses: use only these labels, with these variants.
+ *
+ *   | Status | Variant |
+ *   | --- | --- |
+ *   | Approved | positive |
+ *   | Paid | positive |
+ *   | Pending | neutral |
+ *   | Review | alert |
+ *   | Denied | error |
+ *
+ *   Other labels, such as "Needs info", aren't claim statuses. Add a new
+ *   one to decisions.md and this list before using it. *Source:
+ *   decisions.md, 2026-11-18 component record review; 2026-11-23
+ *   "Approved" is a claim status.*
  * - No em dashes. *Source: CLAUDE.md content style guide.*
  *
  * ### Related components and patterns
@@ -217,7 +229,8 @@ type StatusChipProps = React.ComponentProps<"span"> & {
  *
  * decisions.md: 2026-11-12 table and remaining components (status chip
  * colors, type exceptions); 2026-11-12 success color and chip tints
- * accepted. GAPS.md: items 8 and 18. Figma: none yet.
+ * accepted; 2026-11-23 "Approved" is a claim status. GAPS.md: item 8.
+ * Figma: none yet.
  *
  * @import import { StatusChip } from "@/components/ui/badge"
  */

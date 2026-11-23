@@ -163,8 +163,9 @@ type FilterSelectProps = Omit<
  * ### Anatomy
  *
  * 1. FilterRow: the row that holds the filters, 8px apart, 12px above
- *    the content they filter. The space between the card title and
- *    FilterRow isn't decided (GAPS.md item 15).
+ *    the content they filter. Put the FilterRow inside CardBody, so the
+ *    filters sit 8px under the card title. *Source: decisions.md,
+ *    2026-11-23 filters go inside CardBody.*
  * 2. Trigger: the label ("Status:"), the selected value and a caret.
  * 3. Menu: the options, with a check on the selected one.
  *
@@ -240,8 +241,8 @@ type FilterSelectProps = Omit<
  * decisions.md: Components (Filter triggers); 2026-11-12 table and
  * remaining components (accessible name); 2026-11-12 open items closed
  * (field borders); 2026-11-13 accessibility checks fail story tests;
- * 2026-11-18 empty state; 2026-11-18 date filter. GAPS.md: items 15
- * and 26.
+ * 2026-11-18 empty state; 2026-11-18 date filter. GAPS.md: item 26.
+ * decisions.md: 2026-11-23 filters go inside CardBody.
  * Figma: none yet.
  *
  * @import import { FilterSelect, type FilterOption } from "@/components/ui/filter-trigger"

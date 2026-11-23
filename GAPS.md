@@ -1,6 +1,6 @@
 # Documentation gaps that need a design decision
 
-Last updated: November 18, 2026.
+Last updated: November 23, 2026.
 
 These came up in experiment 1.4, when agents built a payments review
 screen from the Storybook MCP docs alone, and in the comparison with the
@@ -18,6 +18,11 @@ Decided on November 18, 2026, and removed: 1 (CardTitle level), 2
 layout, and the foundations in the MCP docs). Also decided on
 November 18, 2026: the PROPOSED fields in the experiment 1.3 component
 records. See decisions.md.
+
+Decided on November 23, 2026, from round 1.4c: 15 (spacing under the
+card title), 17 (layout when loading fails), 18 (claim status list) and
+24 (short dates in tables) are removed, and 13 is narrowed. The row
+highlight now lasts as long as its success toast. See decisions.md.
 
 ## 4. Define actions in tables without a detail view
 
@@ -108,16 +113,16 @@ records. See decisions.md.
   panel, and when a Modal is enough. Also decide where focus goes when
   it closes.
 
-## 13. Define tables where only some rows open
+## 13. Decide how rows that don't open differ on hover
 
 - **Found in:** experiment 1.4b.
-- **Today:** no documented pattern for a table where some rows are
-  clickable and others aren't.
-- **What agents did:** runs 1 and 2 put an empty cell where the chevron
-  would be. Run 3 made every row clickable, including approved claims.
-- **Decide:** the pattern for mixed rows, including what fills the
-  chevron column on rows that don't open, and how those rows differ on
-  hover (raised again in experiment 1.3).
+- **Decided November 23, 2026:** a row that doesn't open ends with an
+  empty TableCell in the chevron column (see decisions.md).
+- **Today:** a row without `onClick` has no pointer, hover color or
+  chevron. Nothing says whether that's enough for people to tell it
+  apart from rows that open.
+- **Decide:** whether rows that don't open need more on hover (raised in
+  experiment 1.3).
 
 ## 14. Decide whether a Modal can open without a trigger
 
@@ -129,16 +134,6 @@ records. See decisions.md.
 - **Decide:** whether this is supported, and where focus returns when
   the Modal closes.
 
-## 15. Set the spacing between CardTitle and FilterRow
-
-- **Found in:** experiment 1.4b.
-- **Today:** the docs say FilterRow sits under the card title, 12px
-  above what it filters, but not how far below the title. No story
-  pairs CardTitle with FilterRow.
-- **What agents did:** the 3 runs solved it 3 ways: an 8px class, no
-  gap, and wrapping the content in CardBody.
-- **Decide:** one answer, and show it in a story.
-
 ## 16. Design a loading state
 
 - **Found in:** experiment 1.4b.
@@ -147,33 +142,6 @@ records. See decisions.md.
   loaded data, with nothing in between.
 - **Decide:** what shows while data loads, such as a skeleton, a
   spinner or a text message.
-
-## 17. Define the layout when loading fails
-
-- **Found in:** experiment 1.4b.
-- **Today:** Banner covers the error message, but nothing says what
-  replaces the content when loading fails.
-- **What agents did:** run 3 showed the error Banner alone, with no
-  card, filters or table.
-- **Decide:** whether the card, filters or table stay on screen, and
-  where the Banner sits.
-
-## 18. Decide where claim status labels are documented
-
-- **Found in:** experiment 1.4b.
-- **Today:** StatusChip has 4 variants, but no list of claim statuses
-  or which variant each one uses.
-- **What agents did:** each run chose its own labels and variants. Run
-  3 used "Pending review" (neutral), "Needs info" (alert), "Approved"
-  (positive) and "Denied" (error).
-- **Partly decided November 18, 2026:** the experiment 1.3 record
-  review accepted a mapping for 4 states in the StatusChip record: Paid
-  is positive, Pending is neutral, Review is alert, Denied is error (see
-  decisions.md).
-- **Decide:** whether status labels and their variants are documented,
-  and where. They're product content rather than design system
-  content. If they move out of the design system, the StatusChip
-  mapping moves with them.
 
 ## 19. Decide whether Table supports row selection
 
@@ -225,13 +193,6 @@ records. See decisions.md.
   reader.
 - **Decide:** whether clickable rows need more for screen readers,
   after a screen reader test.
-
-## 24. Decide whether tables may shorten dates
-
-- **Found in:** experiment 1.3, writing the Table record.
-- **Today:** the table stories write "Nov 2, 2026". The content style
-  guide in CLAUDE.md writes dates as "July 14, 2026".
-- **Decide:** whether tables use the short month to save width.
 
 ## 25. Show subcomponent guidance on Storybook Docs pages
 
