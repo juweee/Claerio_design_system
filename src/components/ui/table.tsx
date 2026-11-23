@@ -31,11 +31,13 @@ import { cn } from "@/lib/utils"
  * - Clickable rows (onClick): pointer, --accent hover and a trailing
  *   chevron, all three together. Rows are reachable with Tab and open
  *   with Enter or Space. Non-clickable tables have no chevron column.
+ *   In a mixed table, a row that doesn't open ends with an empty
+ *   TableCell in the chevron column (decided 2026-11-23).
  * - Clickable rows hold no buttons or links: the row opens the detail
  *   view, and the item's actions live there (decided 2026-11-18). Say
  *   what's needed in plain text in the row instead.
- * - highlighted: the --accent "just created" highlight. Remove it after
- *   a few seconds or on first interaction (pairs with a success toast).
+ * - highlighted: the --accent "just created" highlight. It lasts as long
+ *   as the success toast that confirms the action (decided 2026-11-23).
  * - Status cells reuse StatusChip exactly.
  * - Known gap: dark-mode --border reaches 1.35:1 against the card.
  */
@@ -97,19 +99,25 @@ import { cn } from "@/lib/utils"
  *   higher than the other cells (GAPS.md item 20).
  * - **Rows not clickable:** no pointer, no hover color, no chevron
  *   column.
+ * - **Mixed table, row that doesn't open:** no pointer, no hover color,
+ *   and an empty TableCell in the chevron column so the columns stay
+ *   aligned. *Source: decisions.md, 2026-11-23 rows that don't open.*
  * - **Clickable row, rest:** a trailing › chevron in
  *   `--muted-foreground`.
  * - **Clickable row, hover:** pointer, `--accent` fill, chevron in
  *   `--foreground`.
  * - **Clickable row, focus visible:** 2px `--ring` outline, 2px offset.
  * - **Highlighted row:** `--accent` fill, for a just-created or
- *   just-updated row.
+ *   just-updated row, for as long as its success toast is open.
  * - **No rows:** replace the table with an EmptyState in the same Card,
  *   with the filters still in view. *Source: decisions.md, 2026-11-18
  *   empty state.*
- * - **None yet:** loading (GAPS.md item 16), the layout when loading
- *   fails (GAPS.md item 17), row selection (GAPS.md item 19),
- *   pagination, long text, narrow screens and sticky headers.
+ * - **Loading failed:** replace the table with an error Banner in the
+ *   same Card, under the filters, which stay active. The Banner offers
+ *   "Try again". *Source: decisions.md, 2026-11-23 layout when loading
+ *   fails.*
+ * - **None yet:** loading (GAPS.md item 16), row selection (GAPS.md
+ *   item 19), pagination, long text, narrow screens and sticky headers.
  *
  * *Source: table.tsx, decisions.md (Components: Table; 2026-11-12 table
  * and remaining components).*
@@ -119,7 +127,9 @@ import { cn } from "@/lib/utils"
  * Story IDs, with links to the published Storybook:
  * [components-table--interactive](https://juweee.github.io/Claerio_design_system/?path=/story/components-table--interactive),
  * [components-table--all-states](https://juweee.github.io/Claerio_design_system/?path=/story/components-table--all-states),
- * [components-table--reference-layout](https://juweee.github.io/Claerio_design_system/?path=/story/components-table--reference-layout).
+ * [components-table--reference-layout](https://juweee.github.io/Claerio_design_system/?path=/story/components-table--reference-layout),
+ * [components-table--with-title-and-filters](https://juweee.github.io/Claerio_design_system/?path=/story/components-table--with-title-and-filters),
+ * [components-table--load-failed](https://juweee.github.io/Claerio_design_system/?path=/story/components-table--load-failed).
  * *Source: table.stories.tsx.*
  *
  * ### Tokens
@@ -153,8 +163,10 @@ import { cn } from "@/lib/utils"
  *
  * ### Anatomy
  *
- * 1. Card: the surface the table sits on. Filters go above the table,
- *    in a FilterRow.
+ * 1. Card: the surface the table sits on. Under the CardTitle, a
+ *    CardBody holds a FilterRow and then the table, so the filters sit
+ *    8px under the title. *Source: decisions.md, 2026-11-23 filters go
+ *    inside CardBody.*
  * 2. TableHeader: one `<tr>` of TableHead cells, plus a TableChevronHead
  *    when rows are clickable.
  * 3. TableBody: TableRow elements.
@@ -171,13 +183,18 @@ import { cn } from "@/lib/utils"
  *   second click flips it. *Source: decisions.md, 2026-11-18 component record review.*
  * - **Clickable rows:** a click anywhere in the row, or Enter or Space
  *   on the focused row, calls `onClick`. *Source: table.tsx.*
- * - **Highlight:** remove `highlighted` after a few seconds or on the
- *   first interaction. Pair it with a success toast. The exact time:
- *   none yet. *Source: table.tsx.*
+ * - **Highlight:** set `highlighted` on the changed row when its success
+ *   toast opens, and remove it when the toast closes (the Toast's
+ *   `onOpenChange`). The default toast lasts 5 seconds and pauses on
+ *   hover or focus. *Source: decisions.md, 2026-11-23 row highlight.*
  * - **Filtering:** FilterSelect controls in a FilterRow above the table,
  *   inside the same Card. *Source: decisions.md (Filter triggers),
  *   stories.*
- * - **Mixed tables**, where only some rows open something: not decided,
+ * - **Mixed tables**, where only some rows open something: give the
+ *   rows that open an `onClick` and a TableChevronCell. End each row
+ *   that doesn't open with an empty `<TableCell />`. Keep the
+ *   TableChevronHead. *Source: decisions.md, 2026-11-23 rows that don't
+ *   open.* Whether these rows need more to tell them apart on hover:
  *   see GAPS.md item 13.
  *
  * ### Accessibility
@@ -225,9 +242,11 @@ import { cn } from "@/lib/utils"
  *   decimals, such as "$1,240.00". *Source: table.tsx, stories.*
  * - Status: a StatusChip with a one-word label. *Source: table.tsx,
  *   stories.*
- * - Dates: the stories write "Nov 2, 2026". The content style guide
- *   writes dates as "July 14, 2026". Whether tables may shorten the
- *   month isn't decided (GAPS.md item 24).
+ * - Dates: short month names, such as "Nov 16, 2026", to save width.
+ *   Running text keeps the full month, such as "November 16, 2026".
+ *   *Source: decisions.md, 2026-11-23 short month names.*
+ * - Status: use the claim status list in the StatusChip record, such as
+ *   "Approved" (positive). *Source: decisions.md, 2026-11-23.*
  * - No em dashes. *Source: CLAUDE.md content style guide.*
  *
  * ### Related components and patterns
@@ -241,8 +260,10 @@ import { cn } from "@/lib/utils"
  * decisions.md: Components (Table); Deferred / open (multi-select,
  * inline editing, column resize); 2026-11-12 table and remaining
  * components; 2026-11-12 open items closed (decorative borders);
- * 2026-11-18 actions in clickable table rows; 2026-11-18 empty state.
- * GAPS.md: items 4, 12, 13, 16, 17, 19, 20, 23 and 24. Figma: none yet.
+ * 2026-11-18 actions in clickable table rows; 2026-11-18 empty state;
+ * 2026-11-23 rows that don't open, row highlight, short month names,
+ * filters go inside CardBody, layout when loading fails.
+ * GAPS.md: items 4, 12, 13, 16, 19, 20 and 23. Figma: none yet.
  *
  * @import import { Table } from "@/components/ui/table"
  */
@@ -290,9 +311,8 @@ type TableRowProps = React.ComponentProps<"tr"> & {
    */
   onClick?: React.MouseEventHandler<HTMLTableRowElement>
   /**
-   * Briefly marks a just-created or just-updated row with --accent. Remove
-   * it after a few seconds or on the first interaction. Pairs with a
-   * success toast.
+   * Marks a just-created or just-updated row with --accent. Set it when
+   * the success toast opens and remove it when the toast closes.
    */
   highlighted?: boolean
 } & ChildrenProps &
@@ -306,6 +326,8 @@ type TableRowProps = React.ComponentProps<"tr"> & {
  * One data row. Give it an onClick to make the whole row clickable: it
  * then gets a pointer, the --accent hover, Tab focus, and opens with Enter
  * or Space. Clickable rows need a TableChevronCell as their last cell.
+ * In a table where only some rows open, end each row that doesn't open
+ * with an empty TableCell, so the columns stay aligned.
  *
  * Don't put buttons or links in a clickable row. The row opens on any
  * click inside it and on Enter, so a control there would fire both or
@@ -427,7 +449,9 @@ function TableCell({ className, numeric, mono, ...props }: TableCellProps) {
 }
 
 /**
- * The trailing › for clickable rows. Leave it out when rows are not clickable.
+ * The trailing › for clickable rows. Leave it out when no row is
+ * clickable. In a table where only some rows open, put an empty TableCell
+ * in this column on the rows that don't open.
  *
  * @import import { TableChevronCell } from "@/components/ui/table"
  */

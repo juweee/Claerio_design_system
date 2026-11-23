@@ -50,6 +50,7 @@ Applies to all written copy: UI text, headings, body copy, labels, and docs.
 - Write descriptive, task-based headings: "Install the app", not "Installation".
 - Use bullets for unordered information, numbered lists for sequences, and tables for comparisons.
 - Use numerals for dates, measurements, percentages, versions, and stats. Write dates as "July 14, 2026".
+  - Exception: tables use the short month name, such as "Nov 16, 2026", to save width. Running text keeps the full month name (decisions.md, 2026-11-23).
 - Never use em dashes. Rewrite with periods, commas, or colons instead. This rule overrides every other stylistic preference in this guide.
 
 **Tone**

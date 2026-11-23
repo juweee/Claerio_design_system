@@ -83,6 +83,10 @@ type BannerProps = React.ComponentProps<"div"> & {
  * in place, such as "Try again". Error banners are announced to screen
  * readers right away.
  *
+ * When a table's data fails to load, put an error Banner in the table's
+ * place, inside the same Card and under its filters, with a "Try again"
+ * action (decisions.md, 2026-11-23).
+ *
  * @import import { Banner } from "@/components/ui/banner"
  */
 function Banner({

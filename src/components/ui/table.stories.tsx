@@ -3,8 +3,11 @@ import type { Meta, StoryObj } from "@storybook/react-vite"
 
 import { ModePanels, modePanelParameters, withModePanels } from "@/foundations/mode-panels"
 
+import { expect, fn } from "storybook/test"
+
 import { StatusChip } from "./badge"
-import { Card } from "./card"
+import { Banner, BannerAction, BannerDescription, BannerTitle } from "./banner"
+import { Card, CardBody, CardTitle } from "./card"
 import { FilterRow, FilterSelect } from "./filter-trigger"
 import {
   Table,
@@ -208,4 +211,122 @@ export const ReferenceLayout: Story = {
   parameters: modePanelParameters,
   decorators: [withModePanels("stacked")],
   render: ClaimsTable,
+}
+
+/* ---- Card with a title, filters and a table (decisions.md, 2026-11-23). ---- */
+
+const statusOptions = [
+  { value: "all", label: "All" },
+  { value: "approved", label: "Approved" },
+  { value: "pending", label: "Pending" },
+  { value: "denied", label: "Denied" },
+]
+
+const dateOptions = [
+  { value: "7", label: "Last 7 days" },
+  { value: "30", label: "Last 30 days" },
+  { value: "90", label: "Last 90 days" },
+  { value: "all", label: "All dates" },
+]
+
+function ClaimFilters() {
+  return (
+    <FilterRow>
+      <FilterSelect label="Status:" defaultValue="all" options={statusOptions} />
+      <FilterSelect label="Date:" defaultValue="30" options={dateOptions} />
+    </FilterRow>
+  )
+}
+
+function TitledClaims() {
+  const titleId = React.useId()
+  return (
+    <Card className="max-w-180">
+      <CardTitle id={titleId}>Recent claims</CardTitle>
+      <CardBody>
+        <ClaimFilters />
+        <Table aria-labelledby={titleId}>
+          <TableHeader>
+            <tr>
+              <TableHead>Claim</TableHead>
+              <TableHead>Date</TableHead>
+              <TableHead>Provider</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead numeric>Amount</TableHead>
+            </tr>
+          </TableHeader>
+          <TableBody>
+            <TableRow>
+              <TableCell mono>CLA-48213</TableCell>
+              <TableCell>Nov 16, 2026</TableCell>
+              <TableCell>Dr. Okafor</TableCell>
+              <TableCell>
+                <StatusChip variant="positive">Approved</StatusChip>
+              </TableCell>
+              <TableCell numeric>$240.00</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell mono>CLA-48190</TableCell>
+              <TableCell>Nov 12, 2026</TableCell>
+              <TableCell>City Lab</TableCell>
+              <TableCell>
+                <StatusChip variant="neutral">Pending</StatusChip>
+              </TableCell>
+              <TableCell numeric>$86.50</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </CardBody>
+    </Card>
+  )
+}
+
+/**
+ * Put the FilterRow and the table inside CardBody, so the filters sit 8px
+ * under the card title with no extra class.
+ */
+export const WithTitleAndFilters: Story = {
+  name: "Card with title and filters",
+  parameters: modePanelParameters,
+  decorators: [withModePanels()],
+  render: TitledClaims,
+  play: async ({ canvas }) => {
+    await expect(canvas.getAllByRole("table", { name: "Recent claims" })).toHaveLength(2)
+  },
+}
+
+const onRetry = fn()
+
+function LoadFailedClaims() {
+  return (
+    <Card className="max-w-180">
+      <CardTitle>Recent claims</CardTitle>
+      <CardBody>
+        <ClaimFilters />
+        <Banner variant="error">
+          <BannerTitle>Claims didn't load</BannerTitle>
+          <BannerDescription>
+            We couldn't reach the claims service. <BannerAction onClick={onRetry}>Try again</BannerAction>
+          </BannerDescription>
+        </Banner>
+      </CardBody>
+    </Card>
+  )
+}
+
+/**
+ * When loading fails, an error Banner takes the table's place in the same
+ * Card. The filters stay in view and active. onRetry is a test spy; in an
+ * app, pass your own retry handler.
+ */
+export const LoadFailed: Story = {
+  name: "Loading failed",
+  parameters: modePanelParameters,
+  decorators: [withModePanels()],
+  render: LoadFailedClaims,
+  play: async ({ canvas, userEvent }) => {
+    await expect(canvas.queryByRole("table")).toBeNull()
+    await userEvent.click(canvas.getAllByRole("button", { name: "Try again" })[0])
+    await expect(onRetry).toHaveBeenCalled()
+  },
 }

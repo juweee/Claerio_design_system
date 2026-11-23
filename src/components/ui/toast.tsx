@@ -154,6 +154,10 @@ type ToastProps = Omit<
  * A short confirmation at the bottom right that closes on its own after 5
  * seconds. It pauses on hover or focus and is announced to screen readers.
  *
+ * When the toast confirms a change to a table row, highlight that row
+ * (TableRow `highlighted`) while the toast is open, and remove the
+ * highlight in `onOpenChange` when it closes (decisions.md, 2026-11-23).
+ *
  * @import import { Toast } from "@/components/ui/toast"
  */
 function Toast({ className, variant = "success", children, ...props }: ToastProps) {

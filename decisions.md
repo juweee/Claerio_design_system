@@ -498,3 +498,74 @@ Why: each rule matched how the stories and other components already
 work, but nothing had decided it. The GAPS.md item that listed these
 fields is closed, and the naming half of item 23 (screen readers and
 clickable rows) is decided.
+
+## 2026-11-23: rows that don't open, in a mixed table
+- In a table where some rows open and others don't, a row that doesn't
+  open ends with an empty `TableCell` in the chevron column. The columns
+  stay aligned, and the row has no chevron, pointer or hover color.
+- A table where no row opens still has no chevron column.
+- Why: all 3 round 1.4c runs did this. It closes the fill half of GAPS.md
+  item 13. How these rows differ on hover stays open there.
+- No change to how Table looks or behaves. The Table record, TableRow and
+  TableChevronCell docs say it.
+
+## 2026-11-23: "Approved" is a claim status
+- "Approved" is a claim status, shown with the positive StatusChip.
+- The full list of claim statuses and their variants lives in the
+  StatusChip record (Content guidance), where `docs-show` returns it:
+  | Status | Variant |
+  | --- | --- |
+  | Approved | positive |
+  | Paid | positive |
+  | Pending | neutral |
+  | Review | alert |
+  | Denied | error |
+- Labels not on this list, such as "Needs info" or "Pending review",
+  aren't claim statuses. Add one here and in the record before using it.
+- Why: all 3 round 1.4c runs showed "Approved" with the positive chip.
+  Closes GAPS.md item 18.
+
+## 2026-11-23: a row's highlight lasts as long as its success toast
+- After an action, the changed row keeps `highlighted` for as long as the
+  success toast that confirms it is open. Remove the highlight when the
+  toast closes, in the Toast's `onOpenChange`. With the default
+  duration, that's 5 seconds, longer if the person hovers or focuses the
+  toast.
+- Why: all 3 round 1.4c runs tied the 2 together. It replaces "after a
+  few seconds" in the Table record, which had no exact time.
+- No change to Table or Toast behavior. The docs say it.
+
+## 2026-11-23: tables use short month names
+- Dates in tables use the short month name: "Nov 16, 2026". It saves
+  width in a column.
+- Running text keeps the full month name, per the content style guide:
+  "November 16, 2026". CLAUDE.md now lists tables as the one exception.
+- Why: all 3 round 1.4c runs did this, and the table stories already
+  did. Closes GAPS.md item 24.
+
+## 2026-11-23: filters go inside CardBody, under the card title
+- When a Card has a title and filters, put the FilterRow and the content
+  it filters inside CardBody: `CardTitle`, then `CardBody` holding
+  `FilterRow` and the table or chart. CardBody's 8px (`--space-2`) is the
+  space between the title and the filters. Don't add a class for it.
+- FilterRow keeps its 12px above the content it filters.
+- Why: it uses the spacing every card body already has, so screens can't
+  drift, and one 1.4b run built it this way. Compared on November 23,
+  2026 against 8px, 12px and 16px set on FilterRow by hand. Closes
+  GAPS.md item 15.
+- Shown in the Table story "Card with title and filters".
+
+## 2026-11-23: layout when loading fails
+- When a table's data fails to load, keep the Card, its title and its
+  filters. Put an error Banner in the table's place, under the FilterRow,
+  inside CardBody. The filters stay active. The Banner says what failed
+  and offers "Try again" (a BannerAction button).
+- Same pattern as the empty state: the message takes the content's
+  place, and the filters stay in view.
+- Not adopted: disabling the filters while the error shows (it hides
+  that they're still set), and putting the Banner above the Card (it
+  separates the error from what failed and leaves an empty card).
+- Why: compared on November 23, 2026 against the 3 layouts the round
+  1.4c runs built. Closes GAPS.md item 17. Loading itself stays open in
+  item 16.
+- Shown in the Table story "Loading failed".
