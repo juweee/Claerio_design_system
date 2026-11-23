@@ -61,7 +61,7 @@ function Checkbox({
         "data-[state=checked]:border-terracotta-600 data-[state=checked]:bg-terracotta-600",
         "data-[state=indeterminate]:border-terracotta-600 data-[state=indeterminate]:bg-terracotta-600",
         "focus-visible:outline-2 focus-visible:outline-solid focus-visible:outline-offset-2 focus-visible:outline-ring",
-        "disabled:cursor-not-allowed disabled:opacity-50",
+        "disabled:cursor-not-allowed disabled:opacity-(--disabled-opacity)",
         className
       )}
       {...props}

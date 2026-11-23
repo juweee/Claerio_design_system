@@ -45,6 +45,8 @@
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-destructive-hover: var(--destructive-hover); /* light mode only */
+  --color-button-text-link: var(--button-text-link); /* added 2026-11-23 */
+  --color-button-destructive-hover: var(--button-destructive-hover); /* added 2026-11-23 */
   --color-teal: var(--teal);
   --color-teal-dark: var(--teal-dark);
   --color-success: var(--success);
@@ -73,6 +75,7 @@
   --color-warning: var(--warning);
   --color-warning-foreground: var(--warning-foreground);
   --color-error-foreground: var(--error-foreground);
+  --color-banner-bar-foreground: var(--banner-bar-foreground); /* added 2026-11-23 */
 
   /* ---- Terracotta ramp ---- */
   --color-terracotta-50: var(--terracotta-50);

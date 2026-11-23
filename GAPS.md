@@ -24,6 +24,9 @@ card title), 17 (layout when loading fails), 18 (claim status list) and
 24 (short dates in tables) are removed, and 13 is narrowed. The row
 highlight now lasts as long as its success toast. See decisions.md.
 
+Item 28 came up in experiment 1.6, when Figma was generated from the
+code.
+
 ## 4. Define actions in tables without a detail view
 
 - **Decided November 18, 2026:** a clickable row holds no buttons or
@@ -228,3 +231,15 @@ highlight now lasts as long as its success toast. See decisions.md.
 - **Decide:** the loading and error states, whether to add a close
   button, whether a destructive confirmation uses the destructive
   Button, and whether forms belong in a modal.
+
+## 28. Decide BannerBar's vertical padding
+
+- **Found in:** experiment 1.6 (generating Figma from code).
+- **Today:** BannerBar has 10px top and bottom padding (`py-2.5`). 10px
+  isn't on the spacing scale (4, 8, 12, 16, 24, 32, 48), so it has no
+  token and Figma can't bind it.
+- **Options:** keep 10px and add a token, or move to 8px or 12px
+  (`--space-2` or `--space-3`). Either change makes the bar 4px shorter
+  or taller.
+- **Decide:** after a side-by-side preview in Storybook, in light and
+  dark mode.

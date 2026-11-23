@@ -132,7 +132,7 @@ function TabsTrigger({
         "data-[state=inactive]:hover:bg-sidebar-accent",
         "data-[state=active]:bg-[color-mix(in_oklch,var(--nav-active)_var(--nav-active-tint),transparent)]",
         "data-[state=active]:text-nav-active-foreground data-[state=active]:font-[600]",
-        "disabled:cursor-not-allowed disabled:opacity-50",
+        "disabled:cursor-not-allowed disabled:opacity-(--disabled-opacity)",
         className
       )}
       {...props}

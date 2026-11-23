@@ -137,9 +137,11 @@ type FilterSelectProps = Omit<
  * `--muted-foreground`, `--accent`, `--ring`, `--radius-md`,
  * `--radius-sm` (options), `--popover`, `--popover-foreground`,
  * `--border`, `--shadow-overlay`, `--terracotta-600`,
- * `--terracotta-400`, `--font-sans`, `--type-body-size`,
- * `--type-body-weight`. *Source: filter-trigger.tsx and select.tsx
- * class names, design-tokens.css.*
+ * `--terracotta-400`, `--control-height-sm`, `--disabled-opacity`,
+ * `--font-sans`, `--type-body-size`, `--type-body-weight`.
+ * `--control-height-sm` and `--disabled-opacity` were added on November
+ * 23, 2026. *Source: filter-trigger.tsx and select.tsx class names,
+ * design-tokens.css.*
  *
  * ### Purpose
  *
