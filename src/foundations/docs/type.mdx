@@ -6,6 +6,8 @@ import { Meta } from "@storybook/addon-docs/blocks"
 
 The product uses two fonts. Lora (`font-serif`) is only for Display and Heading 1. Inter (`font-sans`, the default) is for everything else. Each style is a token set in `design-tokens.css` (size, weight and line height), with one Tailwind utility that applies all three.
 
+Text uses grayscale font smoothing: the `antialiased` class on `<body>`, which the component library's `globals.css` sets. An app that uses these components should put `antialiased` on its own `<body>` too. Without it, macOS browsers draw text heavier than Figma does.
+
 The "Foundations/Type" story shows every style.
 
 ## Pick a style
