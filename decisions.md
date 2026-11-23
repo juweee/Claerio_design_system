@@ -569,3 +569,25 @@ clickable rows) is decided.
   1.4c runs built. Closes GAPS.md item 17. Loading itself stays open in
   item 16.
 - Shown in the Table story "Loading failed".
+
+## 2026-11-23: Figma parity prep (experiment 1.6)
+- **Semantic tokens that equal a ramp step** now reference it with
+  `var()`: `--teal` and `--chart-2` (light and dark) point to
+  `--teal-500`. These were the only exact matches. Every story renders
+  the same pixels before and after. Closes experiment 1.6 GAPS item 18.
+- **Mode switches as tokens (PROPOSED):** `--button-text-link`,
+  `--button-destructive-hover` and `--banner-bar-foreground` replace the
+  `dark:` overrides in Button and BannerBar, so Figma can bind one
+  variable per fill. The dark destructive hover is now a solid color,
+  `oklch(0.654 0.175 22.156)` (#E85B5E), which matches the 90% opacity
+  hover over `--background`; dark text on it measures 5.66:1.
+- **Control tokens (PROPOSED):** `--disabled-opacity` (50%),
+  `--control-height-md` (40px) and `--control-height-sm` (32px), used by
+  every component that had these literals.
+- **BannerBar padding:** the 10px vertical padding stays for now.
+  GAPS.md item 28 asks for a preview first.
+- **Banner record:** Banner and BannerBar now have a component record.
+  Its PROPOSED fields are pending review.
+- **Known differences:** `docs/figma-known-differences.md` lists what
+  Figma can't express (unitless line heights, shadows, font fallback
+  stacks, `color-mix()`), so a sync or parity check doesn't flag them.

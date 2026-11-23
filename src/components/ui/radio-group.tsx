@@ -83,7 +83,7 @@ function RadioGroupItem({
         "rounded-full border border-muted-foreground bg-input",
         "data-[state=checked]:border-terracotta-600 data-[state=checked]:bg-card",
         "focus-visible:outline-2 focus-visible:outline-solid focus-visible:outline-offset-2 focus-visible:outline-ring",
-        "disabled:cursor-not-allowed disabled:opacity-50",
+        "disabled:cursor-not-allowed disabled:opacity-(--disabled-opacity)",
         className
       )}
       {...props}

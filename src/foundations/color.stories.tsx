@@ -11,7 +11,7 @@ const groups: { title: string; note?: string; tokens: string[] }[] = [
   {
     title: "Actions",
     note: "Primary is terracotta. Use it for the one action that matters on a screen, links, checked controls and the focus ring.",
-    tokens: ["primary", "primary-foreground", "ring", "secondary", "secondary-foreground"],
+    tokens: ["primary", "primary-foreground", "ring", "secondary", "secondary-foreground", "button-text-link"],
   },
   {
     title: "Quiet and hover",
@@ -20,16 +20,18 @@ const groups: { title: string; note?: string; tokens: string[] }[] = [
   },
   {
     title: "Status and feedback",
-    note: "Amber (warning, nav-active) marks warnings and where you are. Never use it on buttons or links. destructive-hover is light mode only: dark mode uses destructive at 90% opacity.",
+    note: "Amber (warning, nav-active) marks warnings and where you are. Never use it on buttons or links. destructive-hover is light mode only. The destructive button hovers to button-destructive-hover, which matches destructive at 90% opacity in dark mode.",
     tokens: [
       "destructive",
       "destructive-hover",
+      "button-destructive-hover",
       "destructive-foreground",
       "error-foreground",
       "info",
       "info-foreground",
       "warning",
       "warning-foreground",
+      "banner-bar-foreground",
       "nav-active",
       "nav-active-foreground",
       "teal",

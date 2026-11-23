@@ -74,7 +74,7 @@ function SegmentedControl({
         onValueChange?.(next)
       }}
       className={cn(
-        "inline-flex h-8 items-stretch gap-0.5 rounded-md border border-border bg-muted p-0.5 dark:bg-background",
+        "inline-flex h-(--control-height-sm) items-stretch gap-0.5 rounded-md border border-border bg-muted p-0.5 dark:bg-background",
         className
       )}
       {...props}
@@ -103,7 +103,7 @@ function SegmentedControlOption({
         "font-sans text-body-small leading-none font-[500] text-muted-foreground hover:text-foreground",
         "data-[state=on]:border-border data-[state=on]:bg-card data-[state=on]:font-[600] data-[state=on]:text-foreground",
         "focus-visible:outline-2 focus-visible:outline-solid focus-visible:outline-offset-2 focus-visible:outline-ring",
-        "disabled:cursor-not-allowed disabled:opacity-50",
+        "disabled:cursor-not-allowed disabled:opacity-(--disabled-opacity)",
         className
       )}
       {...props}

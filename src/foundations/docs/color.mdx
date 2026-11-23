@@ -18,12 +18,15 @@ The "Foundations/Color" stories show every token's value in light and dark mode.
 | Borders and dividers | `--border` | `border-border` |
 | Input fields | `--input`, `--input-border` | `bg-input`, `border-input-border` |
 | The main action on a screen, and links | `--primary` (terracotta), `--primary-foreground` | `bg-primary`, `text-primary` |
+| Ghost and link button text (PROPOSED) | `--button-text-link`: `--primary` in light mode, `--terracotta-400` in dark | `text-button-text-link` |
 | Secondary buttons | `--secondary`, `--secondary-foreground` | `bg-secondary` |
 | Hover fills, selected rows, new-row highlight | `--accent`, `--accent-foreground` | `bg-accent` |
 | Focus outline | `--ring` | `outline-ring` |
 | Delete or cancel, and errors | `--destructive`, `--destructive-hover`, `--error-foreground` | `bg-destructive` |
+| Destructive button hover (PROPOSED) | `--button-destructive-hover`: `--destructive-hover` in light mode, a solid color in dark | `bg-button-destructive-hover` |
 | Information | `--info` (teal), `--info-foreground` | `bg-info` |
 | Warnings | `--warning` (amber), `--warning-foreground` | `bg-warning` |
+| Page-level bar text (PROPOSED) | `--banner-bar-foreground`: `--terracotta-700` in light mode, `--terracotta-400` in dark | Used by BannerBar |
 | Success | `--success` (teal) | `bg-success` |
 | Where you are in navigation | `--nav-active`, `--nav-active-foreground` | Used by SidebarNav and Tabs |
 | Navigation rail | `--sidebar`, `--sidebar-foreground`, `--sidebar-accent`, `--sidebar-border` | `bg-sidebar` |
@@ -36,9 +39,9 @@ The "Foundations/Color" stories show every token's value in light and dark mode.
 - **Amber** (`--warning`, `--nav-active`) is for warnings and navigation selection only. Never use it on buttons or links.
 - **Brand Charcoal** (#2D2D2B) is only for fixed surfaces: logo blocks and the tooltip. Product text uses `--foreground`.
 - **Cream** text is only for text on terracotta or Charcoal.
-- **Hover:** the primary button darkens to `--terracotta-700` in both modes. Never use an opacity hover such as `bg-primary/90`. The destructive button uses `--destructive-hover` in light mode and `--destructive` at 90% in dark mode.
+- **Hover:** the primary button darkens to `--terracotta-700` in both modes. Never use an opacity hover such as `bg-primary/90`. The destructive button uses `--button-destructive-hover` (PROPOSED): `--destructive-hover` in light mode, and in dark mode a solid color that matches `--destructive` at 90%.
 - **Tables:** no zebra striping. Row hover and selection use `--accent`.
-- **Disabled:** 50% opacity with a not-allowed cursor, not a separate color.
+- **Disabled:** `--disabled-opacity` (50%, PROPOSED) with a not-allowed cursor, not a separate color. Use `disabled:opacity-(--disabled-opacity)`.
 
 ## Use the color ramps sparingly
 

@@ -101,12 +101,12 @@ function SelectTrigger({
     <SelectPrimitive.Trigger
       data-slot="select-trigger"
       className={cn(
-        "inline-flex h-8 cursor-pointer items-center justify-between gap-2 whitespace-nowrap",
+        "inline-flex h-(--control-height-sm) cursor-pointer items-center justify-between gap-2 whitespace-nowrap",
         "rounded-md border border-input-border bg-background px-3",
         "font-sans text-body leading-none text-foreground",
         "data-[placeholder]:text-muted-foreground",
         "focus-visible:outline-2 focus-visible:outline-solid focus-visible:outline-offset-2 focus-visible:outline-ring",
-        "disabled:cursor-not-allowed disabled:opacity-50",
+        "disabled:cursor-not-allowed disabled:opacity-(--disabled-opacity)",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0",
         className
       )}
@@ -184,7 +184,7 @@ function SelectItem({
       className={cn(
         "flex cursor-pointer items-center gap-2 rounded-sm px-2.5 py-2 outline-none select-none",
         "data-[highlighted]:bg-accent",
-        "data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50",
+        "data-[disabled]:cursor-not-allowed data-[disabled]:opacity-(--disabled-opacity)",
         className
       )}
       {...props}

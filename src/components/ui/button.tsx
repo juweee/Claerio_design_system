@@ -11,13 +11,15 @@ import { cn } from "@/lib/utils"
  * Sources: decisions.md (Buttons), CLAUDE.md hard rules,
  * claude-design-reference/components/Button.
  *
- * - 40px tall, 16px side padding, radius-md, Inter 14/500.
+ * - 40px tall (--control-height-md), 16px side padding, radius-md, Inter 14/500.
  * - Primary hover: terracotta-700 in both modes. No opacity hover.
- * - Destructive hover: --destructive-hover in light mode, 90%
- *   opacity in dark mode.
- * - Ghost and link text: terracotta-400 in dark mode.
+ * - Destructive hover: --button-destructive-hover. Light mode: the
+ *   --destructive-hover value. Dark mode: a solid color that matches the
+ *   earlier --destructive at 90% opacity.
+ * - Ghost and link text: --button-text-link (--primary in light mode,
+ *   terracotta-400 in dark mode).
  * - Secondary reads --foreground for border and text, never brand Charcoal.
- * - Disabled: 50% opacity and not-allowed cursor. Hover styles are skipped
+ * - Disabled: --disabled-opacity (50%) and not-allowed cursor. Hover styles are skipped
  *   while disabled, so the color never changes.
  * - Focus visible: 2px --ring outline, 2px offset.
  * - No amber or teal on buttons.
@@ -27,11 +29,11 @@ type ButtonVariant = "primary" | "secondary" | "ghost" | "destructive" | "link"
 
 const buttonVariants = cva(
   [
-    "inline-flex h-10 shrink-0 cursor-pointer items-center justify-center gap-2 whitespace-nowrap",
+    "inline-flex h-(--control-height-md) shrink-0 cursor-pointer items-center justify-center gap-2 whitespace-nowrap",
     "rounded-md border border-transparent px-4 font-sans text-button",
     "focus-visible:outline-2 focus-visible:outline-solid focus-visible:outline-offset-2 focus-visible:outline-ring",
-    "disabled:cursor-not-allowed disabled:opacity-50",
-    "aria-disabled:cursor-not-allowed aria-disabled:opacity-50",
+    "disabled:cursor-not-allowed disabled:opacity-(--disabled-opacity)",
+    "aria-disabled:cursor-not-allowed aria-disabled:opacity-(--disabled-opacity)",
     // Icons: Phosphor, 20px to match 14px body text.
     "[&_svg]:pointer-events-none [&_svg]:size-5 [&_svg]:shrink-0",
   ],
@@ -47,17 +49,17 @@ const buttonVariants = cva(
           "not-disabled:not-aria-disabled:hover:bg-accent",
         ],
         ghost: [
-          "bg-transparent text-primary dark:text-terracotta-400",
+          "bg-transparent text-button-text-link",
           "not-disabled:not-aria-disabled:hover:bg-accent",
         ],
         destructive: [
           "bg-destructive text-destructive-foreground",
-          // Light: darker --destructive-hover. Dark: 90% opacity.
-          "not-disabled:not-aria-disabled:hover:bg-destructive-hover",
-          "dark:not-disabled:not-aria-disabled:hover:bg-destructive/90",
+          // Light: --destructive-hover. Dark: a solid color that matches
+          // the earlier 90% opacity hover.
+          "not-disabled:not-aria-disabled:hover:bg-button-destructive-hover",
         ],
         link: [
-          "bg-transparent px-0 text-primary dark:text-terracotta-400",
+          "bg-transparent px-0 text-button-text-link",
           "not-disabled:not-aria-disabled:hover:underline",
         ],
       } satisfies Record<ButtonVariant, string[]>,
@@ -114,16 +116,16 @@ type ButtonProps = React.ComponentProps<"button"> & {
  * | --- | --- | --- |
  * | primary (default) | `--primary` fill (terracotta-600), `--primary-foreground` (Cream) text | `--terracotta-700` fill, both modes |
  * | secondary | Transparent, 1px `--foreground` border and text | `--accent` fill |
- * | ghost | Transparent, `--primary` text (`--terracotta-400` in dark mode) | `--accent` fill |
- * | destructive | `--destructive` fill, `--destructive-foreground` text | Light: `--destructive-hover`. Dark: `--destructive` at 90% |
- * | link | Transparent, no side padding, `--primary` text (`--terracotta-400` in dark mode) | Underline |
+ * | ghost | Transparent, `--button-text-link` text (`--primary` in light mode, `--terracotta-400` in dark mode) | `--accent` fill |
+ * | destructive | `--destructive` fill, `--destructive-foreground` text | `--button-destructive-hover` fill. Light: the `--destructive-hover` value. Dark: a solid color that matches `--destructive` at 90% |
+ * | link | Transparent, no side padding, `--button-text-link` text (`--primary` in light mode, `--terracotta-400` in dark mode) | Underline |
  *
- * Every variant: 40px tall, 16px side padding (link: 0), `--radius-md`,
- * Inter 14/500.
+ * Every variant: 40px tall (`--control-height-md`), 16px side padding
+ * (link: 0), `--radius-md`, Inter 14/500.
  *
  * - **Focus visible:** 2px `--ring` outline, 2px offset.
- * - **Disabled** (`disabled` or `aria-disabled`): 50% opacity,
- *   not-allowed cursor, no hover change.
+ * - **Disabled** (`disabled` or `aria-disabled`): `--disabled-opacity`
+ *   (50%), not-allowed cursor, no hover change.
  * - **None yet:** sizes, a loading state, a pressed state and an
  *   icon-only variant (see GAPS.md items 21 and 22).
  *
@@ -146,10 +148,13 @@ type ButtonProps = React.ComponentProps<"button"> & {
  * ### Tokens
  *
  * `--primary`, `--primary-foreground`, `--terracotta-700`,
- * `--terracotta-400`, `--foreground`, `--accent`, `--destructive`,
- * `--destructive-foreground`, `--destructive-hover`, `--ring`,
- * `--radius-md`, `--font-sans`, `--type-button-size`,
- * `--type-button-weight`, `--type-button-line-height`.
+ * `--button-text-link`, `--foreground`, `--accent`, `--destructive`,
+ * `--destructive-foreground`, `--button-destructive-hover`, `--ring`,
+ * `--radius-md`, `--control-height-md`, `--disabled-opacity`,
+ * `--font-sans`, `--type-button-size`, `--type-button-weight`,
+ * `--type-button-line-height`. `--button-text-link`,
+ * `--button-destructive-hover`, `--control-height-md` and
+ * `--disabled-opacity` are PROPOSED (November 23, 2026).
  * *Source: button.tsx class names, design-tokens.css.*
  *
  * ### Purpose
@@ -202,7 +207,8 @@ type ButtonProps = React.ComponentProps<"button"> & {
  * - The focus outline (2px `--ring`, 2px offset) in both modes.
  * - Contrast: Cream on the primary hover measures 7.90:1, white on the
  *   light destructive hover 5.61:1, dark text on the dark destructive
- *   hover 5.64:1. *Source: decisions.md, 2026-11-12.*
+ *   hover 5.66:1. *Source: decisions.md, 2026-11-12; design-tokens.css,
+ *   2026-11-23.*
  * - A 40px height, above the 24px minimum target size in WCAG 2.2
  *   (Web Content Accessibility Guidelines).
  *

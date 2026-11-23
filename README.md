@@ -28,6 +28,10 @@ Google Drive; that doc references token *names* only — values live here.
    retires in December 2026, so there is nothing to sync.
 2. **Figma / Figma Make** — import `tokens.json` via Tokens Studio (or
    paste `design-tokens.css` as context in Figma Make).
+   Some things can't be expressed in Figma, such as unitless line
+   heights, shadows and font fallback stacks. They're listed in
+   `docs/figma-known-differences.md`, so a sync or parity check doesn't
+   report them as drift.
 3. **Product code** — drop `design-tokens.css` into the shadcn/ui app css.
 4. **Component library** (`src/`): React components built on shadcn/ui,
    with a Storybook for review. It imports `design-tokens.css` unchanged

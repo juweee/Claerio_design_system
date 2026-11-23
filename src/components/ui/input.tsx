@@ -37,7 +37,7 @@ function Input({
       type={type}
       data-slot="input"
       className={cn(
-        "h-10 w-full min-w-0 rounded-md border border-input-border bg-card px-3",
+        "h-(--control-height-md) w-full min-w-0 rounded-md border border-input-border bg-card px-3",
         "font-sans text-body leading-none text-foreground",
         "placeholder:text-muted-foreground",
         // Focus: border swap plus the universal outline.
@@ -46,7 +46,7 @@ function Input({
         // Error: destructive border, kept while focused.
         "aria-invalid:border-[1.5px] aria-invalid:border-destructive",
         "aria-invalid:focus-visible:border-destructive",
-        "disabled:cursor-not-allowed disabled:opacity-50",
+        "disabled:cursor-not-allowed disabled:opacity-(--disabled-opacity)",
         className
       )}
       {...props}
