@@ -98,10 +98,19 @@
     },
     "noVisualEffect": {
       "$rule": "no-visual-effect",
-      "$why": "Props that change behavior, semantics or DOM attributes, not the look. Figma has nothing to show for them.",
-      "patterns": ["^aria-", "^on[A-Z]", "^data-"],
-      "names": ["ref", "className", "style", "id", "title", "role", "tabIndex", "hidden", "name", "value", "form", "autoFocus", "asChild", "type", "href", "dismissLabel"],
-      "except": { "Banner": ["onDismiss"] }
+      "$why": "Props that change behavior, semantics or DOM attributes, not the look. Figma has nothing to show for them. Listed per component, by exact name, so a new prop is reported until someone decides whether it changes the look. A component in figma-scope with no entry here has no props skipped.",
+      "groups": {
+        "common": ["aria-describedby", "aria-hidden", "aria-label", "aria-labelledby", "className", "hidden", "id", "ref", "role", "style", "tabIndex", "title"],
+        "events": ["onBlur", "onClick", "onFocus", "onKeyDown"]
+      },
+      "components": {
+        "Button": { "groups": ["common", "events"], "names": ["asChild", "autoFocus", "form", "name", "type", "value"] },
+        "Banner": { "groups": ["common", "events"], "names": ["dismissLabel"] },
+        "BannerTitle": { "groups": ["common", "events"] },
+        "BannerDescription": { "groups": ["common", "events"] },
+        "BannerAction": { "groups": ["common"], "names": ["href"] },
+        "BannerBar": { "groups": ["common", "events"] }
+      }
     },
     "handlerAsBoolean": {
       "$rule": "handler-as-boolean",

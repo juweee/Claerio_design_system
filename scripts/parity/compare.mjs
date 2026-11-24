@@ -203,9 +203,16 @@ for (const styleName of Object.keys(figma.textStyles).sort(byKey)) {
 const cr = rules.components
 const inFigma = new Set(cr.inFigma.names)
 const layerParts = cr.layers.parts
-const noVisual = (component, prop) =>
-  !(cr.noVisualEffect.except[component] ?? []).includes(prop) &&
-  (cr.noVisualEffect.names.includes(prop) || cr.noVisualEffect.patterns.some((p) => new RegExp(p).test(prop)))
+/** True when the rules list this prop as having no visual effect on this component, by exact name. */
+function noVisual(component, prop) {
+  const entry = cr.noVisualEffect.components[component]
+  if (!entry) return false
+  const names = (entry.groups ?? []).flatMap((g) => {
+    if (!cr.noVisualEffect.groups[g]) throw new Error(`no-visual-effect: unknown group ${g} on ${component}`)
+    return cr.noVisualEffect.groups[g]
+  })
+  return names.includes(prop) || (entry.names ?? []).includes(prop)
+}
 const figmaOnlyComponent = (name) => cr.figmaOnly.patterns.some((p) => new RegExp(p).test(name))
 
 /** Compares one code prop with one Figma property. Returns { status, detail?, rules[] }. */
