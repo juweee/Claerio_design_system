@@ -77,7 +77,7 @@ State what happened, why (if known), and what to do next.
 - Amber = navigation selection + warning ONLY — never buttons or links.
 - Primary actions = terracotta --primary; banner actions = underlined text, never Buttons. BannerAction is a link with href, or a <button> that looks the same for in-place actions such as "Try again", per decisions.md (2026-11-18).
 - Primary button hover = terracotta-700 in both light and dark mode, per decisions.md (2026-11-12: dark-mode primary hover changed to terracotta-700). Never shadcn's bg-primary/90 opacity hover.
-- Destructive button hover darkens: light = --destructive-hover, dark = --destructive at 90% opacity, per decisions.md (2026-11-12: destructive button hover darkens in light mode).
+- Destructive button hover darkens: use --button-destructive-hover. Light = the --destructive-hover value; dark = a solid color that matches --destructive at 90% opacity. Never an opacity hover. Per decisions.md (2026-11-12: destructive button hover darkens in light mode; 2026-11-23: Figma parity tokens and Banner record review).
 - Radius: 4/8/12/9999 only. Nested radius = outer − inset.
 - Disabled = 50% opacity + not-allowed cursor. Focus-visible = 2px --ring outline, 2px offset.
 - No zebra striping; row hover/selection = --accent. Cream reserved for text on terracotta/charcoal. No shadows on cards.

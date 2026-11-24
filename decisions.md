@@ -626,3 +626,18 @@ Accepted Banner record fields:
 Why: the tokens let Figma bind one variable per fill and value with no
 visual change (experiment 1.6). The record fields matched how the
 stories already work, but nothing had decided them.
+
+## 2026-11-23: text uses antialiased font smoothing
+- `body` in `src/styles/globals.css` now has Tailwind's `antialiased`
+  class (`-webkit-font-smoothing: antialiased`,
+  `-moz-osx-font-smoothing: grayscale`).
+- Why: experiment 1.6 found Storybook text heavier than Figma at the
+  same weight. Both use Inter 4 at the same widths. The cause was the
+  browsers' default font smoothing on macOS, which thickens glyphs.
+  Measured on the "Review claim" button at 2x: the label had 30% more
+  ink than Figma on the primary button and 11% more on secondary. With
+  `antialiased` it's within 0.2% of Figma on both.
+- Effect: on macOS, all text looks slightly lighter. Windows and Linux
+  ignore the setting. Apps should put `antialiased` on their own
+  `<body>` too (Foundations/Docs/Type).
+- Closes experiment 1.6 GAPS item 19.

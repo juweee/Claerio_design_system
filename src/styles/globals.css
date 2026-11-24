@@ -13,7 +13,10 @@
   * {
     @apply border-border;
   }
+  /* antialiased: macOS browsers otherwise thicken text, so labels looked
+     heavier than in Figma (up to 30% more ink). Added 2026-11-23, see
+     decisions.md. */
   body {
-    @apply bg-background font-sans text-body text-foreground;
+    @apply bg-background font-sans text-body text-foreground antialiased;
   }
 }
