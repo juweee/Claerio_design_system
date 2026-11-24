@@ -50,7 +50,7 @@ type AvatarProps = Omit<React.ComponentProps<"span">, "children"> &
  *
  * @import import { Avatar } from "@/components/ui/avatar"
  */
-function Avatar({ className, size, initials, name, ...props }: AvatarProps) {
+function Avatar({ className, size = "md", initials, name, ...props }: AvatarProps) {
   return (
     <span
       data-slot="avatar"

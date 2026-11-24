@@ -32,7 +32,7 @@ const labelVariants = cva("font-sans text-foreground", {
  */
 function Label({
   className,
-  variant,
+  variant = "field",
   ...props
 }: React.ComponentProps<typeof LabelPrimitive.Root> & {
   /**

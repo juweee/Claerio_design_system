@@ -234,7 +234,7 @@ type StatusChipProps = React.ComponentProps<"span"> & {
  *
  * @import import { StatusChip } from "@/components/ui/badge"
  */
-function StatusChip({ className, variant, ...props }: StatusChipProps) {
+function StatusChip({ className, variant = "neutral", ...props }: StatusChipProps) {
   return (
     <span
       data-slot="status-chip"

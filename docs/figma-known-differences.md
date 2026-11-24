@@ -7,6 +7,9 @@ Figma can't express some things the code does. The Figma file holds the
 closest match instead. These differences are expected: a future sync or
 parity check should not report them as drift.
 
+The parity check in `scripts/parity/` applies these differences as
+rules, in `scripts/parity/mapping-rules.json`. Keep both in step.
+
 `design-tokens.css` stays the source of truth. When a value below
 changes in the code, update the Figma stand-in to match.
 

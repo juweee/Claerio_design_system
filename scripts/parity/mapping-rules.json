@@ -1,0 +1,151 @@
+{
+  "$description": "Known differences between the code and the Figma file \"Clærio design system (from code)\". compare.mjs applies these rules so expected differences aren't reported as drift. Each rule has an id that the report cites. Source: docs/figma-known-differences.md and the experiment 1.6 report. When a rule changes, update that doc too.",
+
+  "modes": {
+    "$rule": "mode-names",
+    "$why": "The code has a light block (:root) and a dark block (.dark). Figma's semantic collection has Light and Dark modes. The primitive and type collections have one mode, Value, which applies to both.",
+    "light": "Light",
+    "dark": "Dark",
+    "singleMode": "Value"
+  },
+
+  "tokens": {
+    "skip": {
+      "$rule": "shadows",
+      "$why": "Figma has no shadow variable type, and an effect style can't switch value by mode (dark --shadow-modal is none).",
+      "names": ["shadow-modal", "shadow-overlay"]
+    },
+    "fontFirstFamily": {
+      "$rule": "font-stacks",
+      "$why": "A Figma font variable holds one family name, not a fallback stack. Compare the first family only.",
+      "names": ["font-sans", "font-serif", "font-mono"]
+    },
+    "fontOverride": {
+      "$rule": "font-mono-menlo",
+      "$why": "--font-mono starts with ui-monospace, the system's own monospace font. Figma has no ui-monospace alias, so the variable holds Menlo.",
+      "values": { "ui-monospace": "Menlo" }
+    },
+    "percentAsNumber": {
+      "$rule": "percent-as-number",
+      "$why": "Figma stores opacity variables as a number of percent: 50% in the code is 50 in Figma."
+    },
+    "pxAsNumber": {
+      "$rule": "px-as-number",
+      "$why": "Figma FLOAT variables have no unit: 40px in the code is 40 in Figma."
+    },
+    "colorTolerance": {
+      "$rule": "oklch-to-srgb",
+      "$why": "The code writes OKLCH. Figma stores sRGB. Colors outside sRGB are clipped per channel, as Chrome does, and rounding can differ by 1 of 255.",
+      "maxChannelDelta": 1
+    },
+    "references": {
+      "$rule": "references-as-aliases",
+      "$why": "A var() reference in the code should be a Figma alias to the variable with the same name, in that mode. A copied value has the right color today but won't follow the source when it changes, so it's reported as differs."
+    },
+    "codeSyntax": {
+      "$rule": "code-syntax",
+      "$why": "Every variable's Web code syntax should be var(--name), so Dev Mode shows the CSS variable.",
+      "pattern": "var(--{name})"
+    }
+  },
+
+  "textStyles": {
+    "$rule": "line-heights",
+    "$why": "Figma reads a line-height variable as pixels, so text styles can't bind the unitless type-*-line-height tokens. Each style sets the line height as a percent instead: the token times 100. The unbound line height isn't drift.",
+    "tokenPrefix": "type-",
+    "weights": { "Regular": 400, "Medium": 500, "Semi Bold": 600, "Bold": 700 },
+    "family": {
+      "$why": "Lora is for Display and H1 only; Inter for everything else (CLAUDE.md). Monospace uses --font-mono.",
+      "display": "font-serif",
+      "heading-1": "font-serif",
+      "monospace": "font-mono",
+      "*": "font-sans"
+    },
+    "unboundFamily": {
+      "$rule": "font-mono-menlo",
+      "$why": "The monospace style can't bind its family, because font-mono holds Menlo and the code's ui-monospace has no Figma equivalent.",
+      "styles": ["monospace"]
+    }
+  },
+
+  "colorMix": {
+    "$rule": "color-mix",
+    "$why": "The banner tint and border use color-mix(in oklch, base N%, transparent). Figma fills a layer with the base color and binds its opacity to --banner-tint or --banner-border. That is layer styling, not a token or a prop, so this check doesn't compare it. The tokens banner-tint and banner-border are compared as numbers (percent-as-number).",
+    "tokens": ["banner-tint", "banner-border"]
+  },
+
+  "components": {
+    "inFigma": {
+      "$rule": "figma-scope",
+      "$why": "Experiment 1.6 built only Button and Banner in Figma. Other code components are reported as only in code, but expected until they are built.",
+      "names": ["Button", "Banner", "BannerTitle", "BannerDescription", "BannerAction", "BannerBar"]
+    },
+    "figmaOnly": {
+      "$rule": "icon-components",
+      "$why": "Figma needs a component per Phosphor glyph to swap icons. The code imports them from @phosphor-icons/react, which isn't in the manifest.",
+      "patterns": ["^Icon/"]
+    },
+    "layers": {
+      "$rule": "subcomponents-as-layers",
+      "$why": "Banner's parts are layers inside the Banner component set, not separate components. Each part's children becomes a text property named Part.children. A part that can be left out also gets a boolean named after the part, which shows or hides the layer.",
+      "parent": "Banner",
+      "parts": {
+        "BannerTitle": { "optional": true },
+        "BannerDescription": { "optional": false },
+        "BannerAction": { "optional": true }
+      },
+      "parentChildren": "Banner.children is split into the parts' properties, so it has no Figma property of its own."
+    },
+    "noVisualEffect": {
+      "$rule": "no-visual-effect",
+      "$why": "Props that change behavior, semantics or DOM attributes, not the look. Figma has nothing to show for them. Listed per component, by exact name, so a new prop is reported until someone decides whether it changes the look. A component in figma-scope with no entry here has no props skipped.",
+      "groups": {
+        "common": ["aria-describedby", "aria-hidden", "aria-label", "aria-labelledby", "className", "hidden", "id", "ref", "role", "style", "tabIndex", "title"],
+        "events": ["onBlur", "onClick", "onFocus", "onKeyDown"]
+      },
+      "components": {
+        "Button": { "groups": ["common", "events"], "names": ["asChild", "autoFocus", "form", "name", "type", "value"] },
+        "Banner": { "groups": ["common", "events"], "names": ["dismissLabel"] },
+        "BannerTitle": { "groups": ["common", "events"] },
+        "BannerDescription": { "groups": ["common", "events"] },
+        "BannerAction": { "groups": ["common"], "names": ["href"] },
+        "BannerBar": { "groups": ["common", "events"] }
+      }
+    },
+    "handlerAsBoolean": {
+      "$rule": "handler-as-boolean",
+      "$why": "Banner shows its dismiss button only when onDismiss is passed. Figma has a boolean with the same name that shows or hides the button.",
+      "props": { "Banner": ["onDismiss"] }
+    },
+    "booleanAsVariant": {
+      "$rule": "boolean-as-variant",
+      "$why": "A boolean prop that changes many layers is a variant with values false and true in Figma, such as Button disabled. An unset boolean prop in React is false, so the Figma default should be false."
+    },
+    "childrenAsText": {
+      "$rule": "children-as-text",
+      "$why": "A ReactNode or string prop is a Figma text property. Its default is sample text, so only the name and type are compared."
+    },
+    "state": {
+      "$rule": "state-variant",
+      "$why": "The code uses CSS states (:hover, :focus-visible). Figma uses a state variant property. Compare its values to this list. Disabled is a prop in the code, so it isn't a state.",
+      "property": "state",
+      "values": {
+        "Button": ["default", "focus", "hover"],
+        "Banner": ["default", "focus"]
+      },
+      "default": "default"
+    },
+    "icons": {
+      "$rule": "icon-booleans-and-swaps",
+      "$why": "The code puts icons in children. Figma shows or hides an icon layer with a boolean and picks the glyph with an instance swap.",
+      "properties": {
+        "Button": {
+          "iconStart": { "type": "BOOLEAN", "default": false },
+          "iconEnd": { "type": "BOOLEAN", "default": false },
+          "iconStartGlyph": { "type": "INSTANCE_SWAP", "default": "Icon/FileText" },
+          "iconEndGlyph": { "type": "INSTANCE_SWAP", "default": "Icon/ArrowRight" }
+        }
+      }
+    }
+  }
+}
