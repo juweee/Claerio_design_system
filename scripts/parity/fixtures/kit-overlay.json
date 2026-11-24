@@ -1,0 +1,9 @@
+{
+  "$description": "Overlay for the Obra kit file in experiment 1.7 part B. Pairs the kit's component names with Clærio's, so their properties and bindings can be compared. The name itself is still reported as differs until it's renamed.",
+  "components": {
+    "aliases": {
+      "Button - Nova": "Button",
+      "Alert - Nova": "Banner"
+    }
+  }
+}
