@@ -13,7 +13,11 @@
 // - bindings: true to record, for each component, every visible fill and
 //   stroke color, padding, gap and corner radius, and the variable bound
 //   to it, if any. Layers inside nested instances are left out: they
-//   belong to the nested component.
+//   belong to the nested component. Also records bindingsByVariant, the
+//   same values per variant, so a file can be compared layer by layer
+//   with the Clærio file (compare.mjs --reference).
+// - propertyLinks: true to record, for each boolean, text and instance
+//   swap property, in how many variants a layer uses it.
 //
 // Uses only the async node and variable APIs (getNodeByIdAsync,
 // getMainComponentAsync, getLocalVariablesAsync and so on), because the
@@ -23,7 +27,7 @@
 // sorted, so the same file always gives the same result. Node IDs are
 // kept only as `id` fields, which compare.mjs ignores.
 
-const OPTIONS = { components: null, variables: true, textStyles: true, bindings: false }
+const OPTIONS = { components: null, variables: true, textStyles: true, bindings: false, propertyLinks: false }
 
 const byKey = (a, b) => (a < b ? -1 : a > b ? 1 : 0)
 const sortObject = (o) => Object.fromEntries(Object.keys(o).sort(byKey).map((k) => [k, o[k]]))
@@ -187,15 +191,20 @@ const RADIUS = ["topLeftRadius", "topRightRadius", "bottomLeftRadius", "bottomRi
 /**
  * Records fills, strokes, spacing and radius for every layer of every variant,
  * grouped by layer path and field: { "path|field": { "bound or literal value": count } }.
+ * Also returns the same values per variant: { variant: { "path|field": "value" } }.
  * Skips layers that are hidden and not controlled by a boolean property, invisible or 0%
  * paints, zero spacing and radius that isn't bound, and everything inside nested instances.
  */
 async function bindings(variants) {
   const groups = {}
+  const byVariant = {}
+  let current = null
   const count = (path, field, value) => {
     const key = `${path || "(root)"}|${field}`
     groups[key] ??= {}
     groups[key][value] = (groups[key][value] ?? 0) + 1
+    // Two layers with the same path in one variant are joined, in layer order.
+    current[key] = current[key] === undefined ? value : current[key] + " + " + value
   }
   // A layer hidden by a boolean property is still part of the component, so it's checked.
   const shown = (n) => n.visible !== false || Boolean(n.componentPropertyReferences?.visible)
@@ -230,8 +239,40 @@ async function bindings(variants) {
     if (node.type === "INSTANCE" || !("children" in node)) return
     for (const child of node.children) await visit(child, path ? path + "/" + child.name : child.name)
   }
-  for (const variant of variants) await visit(variant, "")
-  return sortObject(Object.fromEntries(Object.entries(groups).map(([k, v]) => [k, sortObject(v)])))
+  for (const variant of variants) {
+    current = {}
+    await visit(variant, "")
+    byVariant[variant.name] = sortObject(current)
+  }
+  return {
+    bindings: sortObject(Object.fromEntries(Object.entries(groups).map(([k, v]) => [k, sortObject(v)]))),
+    bindingsByVariant: sortObject(byVariant),
+  }
+}
+
+/**
+ * For each boolean, text and instance swap property, the number of variants in which
+ * a layer uses it. A layer inside a nested instance belongs to that instance's
+ * component, but the nested instance itself counts.
+ */
+function propertyLinks(node, variants) {
+  const used = {}
+  for (const [key, def] of Object.entries(node.componentPropertyDefinitions)) {
+    if (def.type === "VARIANT") continue
+    let n = 0
+    for (const variant of variants) {
+      const stack = [variant]
+      let found = false
+      while (stack.length && !found) {
+        const x = stack.pop()
+        if (Object.values(x.componentPropertyReferences ?? {}).includes(key)) found = true
+        else if (x.type !== "INSTANCE" && "children" in x) stack.push(...x.children)
+      }
+      if (found) n++
+    }
+    used[key.replace(/#[^#]*$/, "")] = n
+  }
+  return sortObject(used)
 }
 
 const sectionOf = (node) => {
@@ -256,7 +297,8 @@ for (const page of figma.root.children) {
       properties: await properties(node),
       topLayers: [...layers].sort(byKey),
       nestedInstances: await nestedInstances(node),
-      ...(OPTIONS.bindings ? { bindings: await bindings(variants) } : {}),
+      ...(OPTIONS.bindings ? await bindings(variants) : {}),
+      ...(OPTIONS.propertyLinks ? { propertyLinks: propertyLinks(node, variants) } : {}),
     }
   }
 }

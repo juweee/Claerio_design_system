@@ -3,12 +3,15 @@
 //
 // Usage:
 //   node scripts/parity/compare.mjs <code.json> <figma.json> <out-dir> [rules.json]
-//     [--overlay extra-rules.json] [--components Button,Banner]
+//     [--overlay extra-rules.json] [--components Button,Banner] [--reference claerio.json]
 //
 // --overlay   merges a second rules file over the first, for a file with
 //             its own known differences, such as other component names.
 // --components limits the check to these code components and their parts.
 //             Tokens and text styles are left out.
+// --reference compares bindings with another Figma list, normally the
+//             Clærio file's, variant by variant and layer by layer, where
+//             the variant and layer names match.
 //
 // Writes <out-dir>/results.json (every item) and <out-dir>/results.md
 // (a readable table). Exits with 1 if anything unexpected is found, so
@@ -17,7 +20,12 @@
 // Each item that a mapping rule explains gets `expected: true` and the
 // rule's id. Drift is every item that isn't a match and isn't expected.
 // When figma.json has bindings (extract-figma.js with bindings: true),
-// every fill, stroke, padding, gap and radius is checked too.
+// every fill, stroke, padding, gap and radius is checked too. When it has
+// propertyLinks, every boolean, text and instance swap property must
+// control a layer in every variant.
+//
+// Statuses: match, differs, only in code, only in Figma, and missing in
+// Figma for a Figma property the rules expect but the file lacks.
 //
 // Same input, same output: no timestamps, no randomness, sorted items.
 
@@ -35,13 +43,15 @@ const flag = (name) => {
 }
 const overlayPath = flag("--overlay")
 const scopeArg = flag("--components")
+const referencePath = flag("--reference")
 const [codePath, figmaPath, outDir, rulesPath = join(here, "mapping-rules.json")] = args
 if (!outDir) {
-  console.error("Usage: node scripts/parity/compare.mjs <code.json> <figma.json> <out-dir> [rules.json] [--overlay rules.json] [--components A,B]")
+  console.error("Usage: node scripts/parity/compare.mjs <code.json> <figma.json> <out-dir> [rules.json] [--overlay rules.json] [--components A,B] [--reference figma.json]")
   process.exit(2)
 }
 const code = JSON.parse(readFileSync(codePath, "utf8"))
 const figma = JSON.parse(readFileSync(figmaPath, "utf8"))
+const reference = referencePath ? JSON.parse(readFileSync(referencePath, "utf8")) : null
 
 /** Merges b over a: objects merge key by key, everything else is replaced. */
 function merge(a, b) {
@@ -392,6 +402,63 @@ function checkBindings(codeName, groups) {
   }
 }
 
+// ---------------------------------------------------------------- property links
+
+/** Every boolean, text and instance swap property should control a layer in every variant. */
+function checkPropertyLinks(codeName, fc) {
+  for (const prop of Object.keys(fc.propertyLinks).sort(byKey)) {
+    const used = fc.propertyLinks[prop]
+    const name = `${codeName}.${prop}`
+    if (used === fc.variantCount) add({ kind: "property link", name, status: "match", expected: false })
+    else add({ kind: "property link", name, status: "differs", expected: false, detail: `controls no layer in ${fc.variantCount - used} of ${fc.variantCount} variants` })
+  }
+}
+
+// ---------------------------------------------------------------- reference
+
+const referenceNotes = []
+/** "var primary (semantic, library) @30%" -> "primary @30%"; literals stay as they are. */
+const plainValue = (v) => v.split(" + ").map((x) => x.replace(VAR, (m, name, coll, lib, op) => name + (op ?? ""))).join(" + ")
+
+/**
+ * Compares bindings with the reference file's, variant by variant, for every
+ * layer and field whose names match. One item per layer and field.
+ */
+function compareWithReference(codeName, fc) {
+  const ref = reference.components[codeName]
+  if (!ref?.bindingsByVariant) {
+    referenceNotes.push(`${codeName}: the reference has no per-variant bindings for this component`)
+    return
+  }
+  const variants = Object.keys(fc.bindingsByVariant).filter((v) => ref.bindingsByVariant[v]).sort(byKey)
+  const onlyHere = Object.keys(fc.bindingsByVariant).filter((v) => !ref.bindingsByVariant[v])
+  const onlyRef = Object.keys(ref.bindingsByVariant).filter((v) => !fc.bindingsByVariant[v])
+  if (onlyHere.length || onlyRef.length) referenceNotes.push(`${codeName}: ${variants.length} variants compared; not compared: ${[...onlyHere.map((v) => v + " (only here)"), ...onlyRef.map((v) => v + " (only in the reference)")].join(", ")}`)
+  const keys = new Set()
+  const unmatched = new Set()
+  for (const v of variants) {
+    const here = fc.bindingsByVariant[v]
+    const there = ref.bindingsByVariant[v]
+    for (const k of Object.keys(here)) (k in there ? keys : unmatched).add(k)
+    for (const k of Object.keys(there)) if (!(k in here)) unmatched.add(k)
+  }
+  if (unmatched.size) referenceNotes.push(`${codeName}: layers and fields not in both files, not compared: ${[...unmatched].sort(byKey).join(", ")}`)
+  for (const key of [...keys].sort(byKey)) {
+    const diffs = []
+    let compared = 0
+    for (const v of variants) {
+      const a = fc.bindingsByVariant[v][key]
+      const b = ref.bindingsByVariant[v][key]
+      if (a === undefined || b === undefined) continue
+      compared++
+      if (plainValue(a) !== plainValue(b)) diffs.push(`${v}: reference ${plainValue(b)}, here ${plainValue(a)}`)
+    }
+    const [path, field] = [key.slice(0, key.lastIndexOf("|")), key.slice(key.lastIndexOf("|") + 1)]
+    const name = `${codeName} ${path} ${field}`
+    add({ kind: "layer binding", name, status: diffs.length ? "differs" : "match", expected: false, detail: diffs.length ? diffs.join("; ") : `same in ${compared} variants` })
+  }
+}
+
 // Figma components and properties the code doesn't account for.
 for (const name of Object.keys(figma.components).sort(byKey)) {
   const fc = figma.components[name]
@@ -406,6 +473,9 @@ for (const name of Object.keys(figma.components).sort(byKey)) {
     continue
   }
   if (fc.bindings) checkBindings(codeName, fc.bindings)
+  if (fc.propertyLinks) checkPropertyLinks(codeName, fc)
+  if (reference && fc.bindingsByVariant) compareWithReference(codeName, fc)
+  else if (reference) referenceNotes.push(`${codeName}: this file has no per-variant bindings, so nothing was compared. Extract it with bindings: true.`)
   const taken = claimed.get(name) ?? new Set()
   for (const propName of Object.keys(fc.properties).sort(byKey)) {
     if (taken.has(propName)) continue
@@ -442,26 +512,26 @@ for (const name of Object.keys(figma.components).sort(byKey)) {
 for (const [component, want] of Object.entries(cr.state.values)) {
   const found = inScope(component) && figmaComponentFor(component)
   if (found && !found.component.properties[cr.state.property]) {
-    add({ kind: "prop", name: `${component}.${cr.state.property}`, status: "only in code", expected: false, rule: cr.state.$rule, detail: `the rules expect a state variant with ${want.join(", ")}` })
+    add({ kind: "prop", name: `${component}.${cr.state.property}`, status: "missing in Figma", expected: false, rule: cr.state.$rule, detail: `the rules expect a state variant with ${want.join(", ")}` })
   }
 }
 for (const [component, props] of Object.entries(cr.icons.properties)) {
   const found = inScope(component) && figmaComponentFor(component)
   for (const prop of Object.keys(props)) {
     if (found && !found.component.properties[prop]) {
-      add({ kind: "prop", name: `${component}.${prop}`, status: "only in code", expected: false, rule: cr.icons.$rule, detail: "the rules expect this Figma property" })
+      add({ kind: "prop", name: `${component}.${prop}`, status: "missing in Figma", expected: false, rule: cr.icons.$rule, detail: "the rules expect this Figma property" })
     }
   }
 }
 
 // ---------------------------------------------------------------- output
 
-const kindOrder = ["token", "text style", "component", "prop", "binding"]
+const kindOrder = ["token", "text style", "component", "prop", "property link", "binding", "layer binding"]
 items.sort((a, b) => kindOrder.indexOf(a.kind) - kindOrder.indexOf(b.kind) || byKey(a.name, b.name))
 for (const item of items) if (item.detail === undefined) delete item.detail
 
 const isDrift = (i) => i.status !== "match" && !i.expected
-const statuses = ["match", "differs", "only in code", "only in Figma"]
+const statuses = ["match", "differs", "only in code", "only in Figma", "missing in Figma"]
 const summary = {}
 for (const kind of kindOrder) {
   const group = items.filter((i) => i.kind === kind)
@@ -472,7 +542,7 @@ for (const kind of kindOrder) {
 const drift = items.filter(isDrift)
 
 mkdirSync(outDir, { recursive: true })
-writeFileSync(join(outDir, "results.json"), JSON.stringify({ figmaFile: figma.file, summary, drift, items }, null, 2) + "\n")
+writeFileSync(join(outDir, "results.json"), JSON.stringify({ figmaFile: figma.file, ...(reference ? { referenceFile: reference.file, referenceNotes } : {}), summary, drift, items }, null, 2) + "\n")
 
 const esc = (s) => String(s ?? "").replace(/\|/g, "\\|")
 const lines = [
@@ -482,10 +552,13 @@ const lines = [
   ``,
   `## Summary`,
   ``,
-  `| Kind | Match | Differs | Only in code | Only in Figma | Expected by a rule | Drift |`,
-  `| --- | --- | --- | --- | --- | --- | --- |`,
+  `| Kind | Match | Differs | Only in code | Only in Figma | Missing in Figma | Expected by a rule | Drift |`,
+  `| --- | --- | --- | --- | --- | --- | --- | --- |`,
   ...kindOrder.map((k) => `| ${k} | ${statuses.map((s) => summary[k][s]).join(" | ")} | ${summary[k].expected} | ${summary[k].drift} |`),
   ``,
+  ...(reference
+    ? [`## Reference`, ``, `Layer bindings compared with ${reference.file}, where variant and layer names match.`, ``, ...(referenceNotes.length ? referenceNotes.map((n) => `- ${n}`) : [`- Every variant and layer was compared.`]), ``]
+    : []),
   `## Drift (${drift.length})`,
   ``,
   ...(drift.length
