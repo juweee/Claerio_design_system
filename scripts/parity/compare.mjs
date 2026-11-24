@@ -3,6 +3,12 @@
 //
 // Usage:
 //   node scripts/parity/compare.mjs <code.json> <figma.json> <out-dir> [rules.json]
+//     [--overlay extra-rules.json] [--components Button,Banner]
+//
+// --overlay   merges a second rules file over the first, for a file with
+//             its own known differences, such as other component names.
+// --components limits the check to these code components and their parts.
+//             Tokens and text styles are left out.
 //
 // Writes <out-dir>/results.json (every item) and <out-dir>/results.md
 // (a readable table). Exits with 1 if anything unexpected is found, so
@@ -10,6 +16,8 @@
 //
 // Each item that a mapping rule explains gets `expected: true` and the
 // rule's id. Drift is every item that isn't a match and isn't expected.
+// When figma.json has bindings (extract-figma.js with bindings: true),
+// every fill, stroke, padding, gap and radius is checked too.
 //
 // Same input, same output: no timestamps, no randomness, sorted items.
 
@@ -18,14 +26,46 @@ import { dirname, join } from "node:path"
 import { fileURLToPath } from "node:url"
 
 const here = dirname(fileURLToPath(import.meta.url))
-const [codePath, figmaPath, outDir, rulesPath = join(here, "mapping-rules.json")] = process.argv.slice(2)
+const args = process.argv.slice(2)
+const flag = (name) => {
+  const i = args.indexOf(name)
+  if (i === -1) return undefined
+  const [, value] = args.splice(i, 2)
+  return value
+}
+const overlayPath = flag("--overlay")
+const scopeArg = flag("--components")
+const [codePath, figmaPath, outDir, rulesPath = join(here, "mapping-rules.json")] = args
 if (!outDir) {
-  console.error("Usage: node scripts/parity/compare.mjs <code.json> <figma.json> <out-dir> [rules.json]")
+  console.error("Usage: node scripts/parity/compare.mjs <code.json> <figma.json> <out-dir> [rules.json] [--overlay rules.json] [--components A,B]")
   process.exit(2)
 }
 const code = JSON.parse(readFileSync(codePath, "utf8"))
 const figma = JSON.parse(readFileSync(figmaPath, "utf8"))
-const rules = JSON.parse(readFileSync(rulesPath, "utf8"))
+
+/** Merges b over a: objects merge key by key, everything else is replaced. */
+function merge(a, b) {
+  if (!b || typeof b !== "object" || Array.isArray(b) || !a || typeof a !== "object" || Array.isArray(a)) return b
+  const out = { ...a }
+  for (const [k, v] of Object.entries(b)) out[k] = k in a ? merge(a[k], v) : v
+  return out
+}
+const rules = merge(JSON.parse(readFileSync(rulesPath, "utf8")), overlayPath ? JSON.parse(readFileSync(overlayPath, "utf8")) : {})
+
+// The code components in scope: the named ones and their parts.
+const scope = scopeArg
+  ? new Set(Object.keys(code.components).filter((n) => scopeArg.split(",").includes(n) || scopeArg.split(",").includes(code.components[n].partOf)))
+  : null
+const inScope = (codeName) => !scope || scope.has(codeName)
+
+// Figma names that stand in for code names in this file, such as "Button - Nova".
+const aliases = rules.components.aliases ?? {}
+const codeNameOf = (figmaName) => aliases[figmaName] ?? figmaName
+function figmaComponentFor(codeName) {
+  if (figma.components[codeName]) return { name: codeName, component: figma.components[codeName] }
+  const alias = Object.keys(aliases).find((f) => aliases[f] === codeName && figma.components[f])
+  return alias ? { name: alias, component: figma.components[alias] } : null
+}
 
 const items = []
 const add = (item) => items.push(item)
@@ -113,7 +153,7 @@ const show = (expected) => (expected.kind === "color" ? toHex(expected.value) : 
 const skip = new Set(rules.tokens.skip.names)
 const tokenNames = [...new Set([...Object.keys(code.tokens), ...Object.keys(figma.variables)])].sort(byKey)
 
-for (const name of tokenNames) {
+for (const name of scope ? [] : tokenNames) {
   const c = code.tokens[name]
   const f = figma.variables[name]
   if (c && !f) {
@@ -164,7 +204,7 @@ for (const name of tokenNames) {
 // ---------------------------------------------------------------- text styles
 
 const ts = rules.textStyles
-for (const styleName of Object.keys(figma.textStyles).sort(byKey)) {
+for (const styleName of scope ? [] : Object.keys(figma.textStyles).sort(byKey)) {
   const style = figma.textStyles[styleName]
   const token = (field) => code.tokens[`${ts.tokenPrefix}${styleName}-${field}`]?.modes.light.resolved
   const problems = []
@@ -250,13 +290,14 @@ function compareProp(component, propName, cp, fp) {
   return { status: problems.length ? "differs" : "match", detail: problems.join("; "), rules: used }
 }
 
-const codeComponents = Object.keys(code.components).sort(byKey)
-const claimed = new Map() // Figma component -> Set of property names matched
+const codeComponents = Object.keys(code.components).filter(inScope).sort(byKey)
+const claimed = new Map() // Figma component name -> Set of property names matched
 
 for (const name of codeComponents) {
   const cc = code.components[name]
   if (!inFigma.has(name)) {
-    if (figma.components[name]) {
+    const found = figmaComponentFor(name)
+    if (found) {
       add({ kind: "component", name, status: "match", expected: false, detail: "in Figma but not in figma-scope: add it to the rules" })
     } else {
       add({ kind: "component", name, status: "only in code", expected: true, rule: cr.inFigma.$rule })
@@ -266,19 +307,25 @@ for (const name of codeComponents) {
   // Parts that live as layers in their parent.
   const part = layerParts[name]
   const target = part ? cr.layers.parent : name
-  const fc = figma.components[target]
-  if (!fc) {
+  const found = figmaComponentFor(target)
+  if (!found) {
     add({ kind: "component", name, status: "only in code", expected: false, detail: part ? `parent ${target} is missing in Figma` : undefined })
     continue
   }
-  add({ kind: "component", name, status: "match", expected: false, ...(part ? { detail: `layer in ${target}`, rules: [cr.layers.$rule] } : {}) })
-  if (!claimed.has(target)) claimed.set(target, new Set())
-  const taken = claimed.get(target)
+  const fc = found.component
+  const figmaName = found.name
+  if (!part && figmaName !== name) {
+    add({ kind: "component", name, status: "differs", expected: false, detail: `named "${figmaName}" in Figma` })
+  } else {
+    add({ kind: "component", name, status: "match", expected: false, ...(part ? { detail: `layer in ${target}`, rules: [cr.layers.$rule] } : {}) })
+  }
+  if (!claimed.has(figmaName)) claimed.set(figmaName, new Set())
+  const taken = claimed.get(figmaName)
 
   if (part?.optional) {
     const fp = fc.properties[name]
     taken.add(name)
-    if (!fp) add({ kind: "prop", name: `${name}`, component: target, status: "only in code", expected: false, detail: `${target} has no boolean to show or hide ${name}`, rules: [cr.layers.$rule] })
+    if (!fp) add({ kind: "prop", name: `${name}`, component: target, status: "only in code", expected: false, detail: `${figmaName} has no boolean to show or hide ${name}`, rules: [cr.layers.$rule] })
     else if (fp.type !== "BOOLEAN") add({ kind: "prop", name, component: target, status: "differs", expected: false, detail: `expected BOOLEAN, found ${fp.type}`, rules: [cr.layers.$rule] })
     else add({ kind: "prop", name, component: target, status: "match", expected: false, detail: "shows or hides the part", rules: [cr.layers.$rule] })
   }
@@ -294,11 +341,11 @@ for (const name of codeComponents) {
       add({ kind: "prop", name: label, status: "only in code", expected: true, rule: cr.layers.$rule, detail: cr.layers.parentChildren })
       continue
     }
-    const figmaName = part ? `${name}.${propName}` : propName
-    const fp = fc.properties[figmaName]
-    taken.add(figmaName)
+    const propInFigma = part ? `${name}.${propName}` : propName
+    const fp = fc.properties[propInFigma]
+    taken.add(propInFigma)
     if (!fp) {
-      add({ kind: "prop", name: label, status: "only in code", expected: false, detail: `no Figma property ${figmaName} on ${target}` })
+      add({ kind: "prop", name: label, status: "only in code", expected: false, detail: `no Figma property ${propInFigma} on ${figmaName}` })
       continue
     }
     const result = compareProp(name, propName, cp, fp)
@@ -313,24 +360,59 @@ for (const name of codeComponents) {
   }
 }
 
+// ---------------------------------------------------------------- bindings
+
+const br = rules.bindings
+const VAR = /^var (.+) \((.+?)(, library)?\)( @\d+%)?$/
+
+/** Checks that every fill, stroke, padding, gap and radius in a component is bound to a code token's variable. */
+function checkBindings(codeName, groups) {
+  for (const key of Object.keys(groups).sort(byKey)) {
+    const split = key.lastIndexOf("|")
+    const path = key.slice(0, split)
+    const field = key.slice(split + 1)
+    const bad = []
+    const excused = new Set()
+    for (const [value, n] of Object.entries(groups[key])) {
+      const v = value.match(VAR)
+      if (v && code.tokens[v[1]] && br.collections.includes(v[2])) continue
+      const literal = value.match(/^literal (.+)$/)
+      const exception = literal && br.literals.find((e) =>
+        e.component === codeName && new RegExp(e.path).test(path) && new RegExp(e.field).test(field) && String(e.value) === literal[1])
+      if (exception) {
+        excused.add(exception.$rule)
+        continue
+      }
+      bad.push(`${value} (${n})`)
+    }
+    const name = `${codeName} ${path} ${field}`
+    if (bad.length) add({ kind: "binding", name, status: "differs", expected: false, detail: `not bound to a Clærio variable: ${bad.join("; ")}` })
+    else if (excused.size) add({ kind: "binding", name, status: "differs", expected: true, rule: [...excused].sort(byKey).join(", "), detail: Object.keys(groups[key]).join("; ") })
+    else add({ kind: "binding", name, status: "match", expected: false })
+  }
+}
+
 // Figma components and properties the code doesn't account for.
 for (const name of Object.keys(figma.components).sort(byKey)) {
   const fc = figma.components[name]
+  const codeName = codeNameOf(name)
+  if (!inScope(codeName)) continue
   if (figmaOnlyComponent(name)) {
     add({ kind: "component", name, status: "only in Figma", expected: true, rule: cr.figmaOnly.$rule })
     continue
   }
-  if (!code.components[name]) {
+  if (!code.components[codeName]) {
     add({ kind: "component", name, status: "only in Figma", expected: false })
     continue
   }
+  if (fc.bindings) checkBindings(codeName, fc.bindings)
   const taken = claimed.get(name) ?? new Set()
   for (const propName of Object.keys(fc.properties).sort(byKey)) {
     if (taken.has(propName)) continue
     const fp = fc.properties[propName]
-    const label = `${name}.${propName}`
-    if (propName === cr.state.property && cr.state.values[name]) {
-      const want = cr.state.values[name]
+    const label = `${codeName}.${propName}`
+    if (propName === cr.state.property && cr.state.values[codeName]) {
+      const want = cr.state.values[codeName]
       const problems = []
       if (fp.type !== "VARIANT") problems.push(`expected VARIANT, found ${fp.type}`)
       else {
@@ -344,7 +426,7 @@ for (const name of Object.keys(figma.components).sort(byKey)) {
       add({ kind: "prop", name: label, status: problems.length ? "differs" : "only in Figma", expected: !problems.length, rule: cr.state.$rule, ...(problems.length ? { detail: problems.join("; ") } : {}) })
       continue
     }
-    const icon = cr.icons.properties[name]?.[propName]
+    const icon = cr.icons.properties[codeName]?.[propName]
     if (icon) {
       const problems = []
       if (fp.type !== icon.type) problems.push(`expected ${icon.type}, found ${fp.type}`)
@@ -358,13 +440,15 @@ for (const name of Object.keys(figma.components).sort(byKey)) {
 
 // Expected Figma-only properties that are missing (for example a deleted state or icon property).
 for (const [component, want] of Object.entries(cr.state.values)) {
-  if (figma.components[component] && !figma.components[component].properties[cr.state.property]) {
+  const found = inScope(component) && figmaComponentFor(component)
+  if (found && !found.component.properties[cr.state.property]) {
     add({ kind: "prop", name: `${component}.${cr.state.property}`, status: "only in code", expected: false, rule: cr.state.$rule, detail: `the rules expect a state variant with ${want.join(", ")}` })
   }
 }
 for (const [component, props] of Object.entries(cr.icons.properties)) {
+  const found = inScope(component) && figmaComponentFor(component)
   for (const prop of Object.keys(props)) {
-    if (figma.components[component] && !figma.components[component].properties[prop]) {
+    if (found && !found.component.properties[prop]) {
       add({ kind: "prop", name: `${component}.${prop}`, status: "only in code", expected: false, rule: cr.icons.$rule, detail: "the rules expect this Figma property" })
     }
   }
@@ -372,7 +456,7 @@ for (const [component, props] of Object.entries(cr.icons.properties)) {
 
 // ---------------------------------------------------------------- output
 
-const kindOrder = ["token", "text style", "component", "prop"]
+const kindOrder = ["token", "text style", "component", "prop", "binding"]
 items.sort((a, b) => kindOrder.indexOf(a.kind) - kindOrder.indexOf(b.kind) || byKey(a.name, b.name))
 for (const item of items) if (item.detail === undefined) delete item.detail
 

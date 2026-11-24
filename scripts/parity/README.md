@@ -30,6 +30,29 @@ First used in experiment 1.7, part A (November 24, 2026).
    This writes `results/results.json` and `results/results.md`. It exits
    with 1 if it finds drift.
 
+## Check another file, such as a kit being repaired
+
+Experiment 1.7 part B used these options on a shadcn/ui kit file:
+
+- **Limit the extraction:** in `extract-figma.js`, set `OPTIONS` to
+  `{ components: ["Button - Nova", "Alert - Nova"], variables: false, textStyles: false, bindings: true }`.
+  `bindings: true` records every fill, stroke, padding, gap and radius,
+  and the variable bound to it.
+- **Limit the comparison:** `--components Button,Banner` checks only
+  those components and their parts, and skips tokens and text styles.
+- **Pair different names:** `--overlay overlay.json` merges extra rules,
+  such as `{ "components": { "aliases": { "Button - Nova": "Button" } } }`.
+  The name is still reported as differs until it's renamed.
+
+```bash
+node scripts/parity/compare.mjs code.json figma.json results/ --components Button,Banner --overlay overlay.json
+```
+
+The `bindings` rule in `mapping-rules.json` passes a value bound to a
+code token's variable from Clærio's collections, and lists the literals
+that are expected, such as the focus ring radius. It doesn't check that
+the bound variable is the right one.
+
 ## Test the compare script
 
 ```bash
