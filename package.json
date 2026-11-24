@@ -12,7 +12,8 @@
     "build-storybook": "storybook build",
     "typecheck": "tsc --noEmit",
     "tokens:json": "node scripts/generate-tokens-json.mjs",
-    "test-storybook": "vitest run --project=storybook"
+    "test-storybook": "vitest run --project=storybook",
+    "test:parity": "node --test scripts/parity/compare.test.mjs"
   },
   "dependencies": {
     "@fontsource/inter": "5.3.0",

@@ -1,0 +1,6617 @@
+{
+  "source": {
+    "manifest": "storybook",
+    "tokens": "design-tokens.css"
+  },
+  "components": {
+    "Avatar": {
+      "entry": "components-avatar",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "initials": {
+          "type": "string",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "size": {
+          "type": "enum",
+          "values": [
+            "lg",
+            "md",
+            "sm"
+          ],
+          "default": "md"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "Badge": {
+      "entry": "components-badge-and-status-chip",
+      "partOf": "StatusChip",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "Banner": {
+      "entry": "components-banner",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "dismissLabel": {
+          "type": "string",
+          "default": "Dismiss"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onDismiss": {
+          "type": "() => void"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        },
+        "variant": {
+          "type": "enum",
+          "values": [
+            "error",
+            "info",
+            "warning"
+          ],
+          "default": "info"
+        }
+      }
+    },
+    "BannerAction": {
+      "entry": "components-banner",
+      "partOf": "Banner",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "href": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "BannerBar": {
+      "entry": "components-banner",
+      "partOf": "Banner",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "BannerDescription": {
+      "entry": "components-banner",
+      "partOf": "Banner",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "BannerTitle": {
+      "entry": "components-banner",
+      "partOf": "Banner",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "Button": {
+      "entry": "components-button",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "asChild": {
+          "type": "boolean",
+          "default": "false"
+        },
+        "autoFocus": {
+          "type": "boolean"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "form": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        },
+        "type": {
+          "type": "enum",
+          "values": [
+            "button",
+            "reset",
+            "submit"
+          ]
+        },
+        "value": {
+          "type": "string | readonly string[] | number"
+        },
+        "variant": {
+          "type": "enum",
+          "values": [
+            "destructive",
+            "ghost",
+            "link",
+            "primary",
+            "secondary"
+          ],
+          "default": "primary"
+        }
+      }
+    },
+    "Card": {
+      "entry": "components-card",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "CardBody": {
+      "entry": "components-card",
+      "partOf": "Card",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "CardHeader": {
+      "entry": "components-card",
+      "partOf": "Card",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "CardMeta": {
+      "entry": "components-card",
+      "partOf": "Card",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "CardTitle": {
+      "entry": "components-card",
+      "partOf": "Card",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "level": {
+          "type": "enum",
+          "values": [
+            "2",
+            "3",
+            "4"
+          ],
+          "default": "3"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "Checkbox": {
+      "entry": "components-selection-controls",
+      "partOf": "Select",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "asChild": {
+          "type": "boolean"
+        },
+        "checked": {
+          "type": "boolean | \"indeterminate\""
+        },
+        "className": {
+          "type": "string"
+        },
+        "defaultChecked": {
+          "type": "boolean | \"indeterminate\""
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "form": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string | readonly string[] | number"
+        }
+      }
+    },
+    "EmptyState": {
+      "entry": "components-empty-state",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "EmptyStateActions": {
+      "entry": "components-empty-state",
+      "partOf": "EmptyState",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "EmptyStateDescription": {
+      "entry": "components-empty-state",
+      "partOf": "EmptyState",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "EmptyStateTitle": {
+      "entry": "components-empty-state",
+      "partOf": "EmptyState",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "FilterRow": {
+      "entry": "components-filter-trigger",
+      "partOf": "FilterSelect",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "FilterSelect": {
+      "entry": "components-filter-trigger",
+      "props": {
+        "autoComplete": {
+          "type": "string"
+        },
+        "className": {
+          "type": "string"
+        },
+        "defaultOpen": {
+          "type": "boolean"
+        },
+        "defaultValue": {
+          "type": "string"
+        },
+        "dir": {
+          "type": "enum",
+          "values": [
+            "ltr",
+            "rtl"
+          ]
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "form": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string",
+          "required": true
+        },
+        "name": {
+          "type": "string"
+        },
+        "onOpenChange": {
+          "type": "(open: boolean) => void"
+        },
+        "onValueChange": {
+          "type": "(value: string) => void"
+        },
+        "open": {
+          "type": "boolean"
+        },
+        "options": {
+          "type": "FilterOption[]",
+          "required": true
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "Label": {
+      "entry": "components-selection-controls",
+      "partOf": "Select",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "asChild": {
+          "type": "boolean"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "htmlFor": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        },
+        "variant": {
+          "type": "enum",
+          "values": [
+            "control",
+            "field"
+          ],
+          "default": "field"
+        }
+      }
+    },
+    "Modal": {
+      "entry": "components-modal",
+      "props": {
+        "children": {
+          "type": "node"
+        },
+        "defaultOpen": {
+          "type": "boolean"
+        },
+        "modal": {
+          "type": "boolean"
+        },
+        "onOpenChange": {
+          "type": "(open: boolean) => void"
+        },
+        "open": {
+          "type": "boolean"
+        }
+      }
+    },
+    "ModalClose": {
+      "entry": "components-modal",
+      "partOf": "Modal",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "asChild": {
+          "type": "boolean"
+        },
+        "autoFocus": {
+          "type": "boolean"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "form": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        },
+        "type": {
+          "type": "enum",
+          "values": [
+            "button",
+            "reset",
+            "submit"
+          ]
+        },
+        "value": {
+          "type": "string | readonly string[] | number"
+        }
+      }
+    },
+    "ModalContent": {
+      "entry": "components-modal",
+      "partOf": "Modal",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "asChild": {
+          "type": "boolean"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "forceMount": {
+          "type": "literal"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onCloseAutoFocus": {
+          "type": "(event: Event) => void"
+        },
+        "onEscapeKeyDown": {
+          "type": "(event: KeyboardEvent) => void"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onFocusOutside": {
+          "type": "(event: CustomEvent<{ originalEvent: FocusEvent }>) => void"
+        },
+        "onInteractOutside": {
+          "type": "(\n  event: CustomEvent<{ originalEvent: PointerEvent }> | CustomEvent<{ originalEvent: FocusEvent }>\n) => void"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "onOpenAutoFocus": {
+          "type": "(event: Event) => void"
+        },
+        "onPointerDownOutside": {
+          "type": "(event: CustomEvent<{ originalEvent: PointerEvent }>) => void"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "ModalDescription": {
+      "entry": "components-modal",
+      "partOf": "Modal",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "asChild": {
+          "type": "boolean"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "ModalFooter": {
+      "entry": "components-modal",
+      "partOf": "Modal",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "ModalTitle": {
+      "entry": "components-modal",
+      "partOf": "Modal",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "asChild": {
+          "type": "boolean"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "ModalTrigger": {
+      "entry": "components-modal",
+      "partOf": "Modal",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "asChild": {
+          "type": "boolean"
+        },
+        "autoFocus": {
+          "type": "boolean"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "form": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        },
+        "type": {
+          "type": "enum",
+          "values": [
+            "button",
+            "reset",
+            "submit"
+          ]
+        },
+        "value": {
+          "type": "string | readonly string[] | number"
+        }
+      }
+    },
+    "NavTabs": {
+      "entry": "components-navigation",
+      "partOf": "SidebarNav",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "NavTabsItem": {
+      "entry": "components-navigation",
+      "partOf": "SidebarNav",
+      "props": {
+        "active": {
+          "type": "boolean"
+        },
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "asChild": {
+          "type": "boolean",
+          "default": "false"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "download": {
+          "type": "boolean | string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "href": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "rel": {
+          "type": "string"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "target": {
+          "type": "React.HTMLAttributeAnchorTarget"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "PageHeader": {
+      "entry": "components-page-header",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "PageHeaderActions": {
+      "entry": "components-page-header",
+      "partOf": "PageHeader",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "PageHeaderTitle": {
+      "entry": "components-page-header",
+      "partOf": "PageHeader",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "ProgressField": {
+      "entry": "components-progress",
+      "props": {
+        "className": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string",
+          "required": true
+        },
+        "value": {
+          "type": "number",
+          "required": true
+        },
+        "valueText": {
+          "type": "string",
+          "required": true
+        }
+      }
+    },
+    "RadioGroup": {
+      "entry": "components-selection-controls",
+      "partOf": "Select",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "asChild": {
+          "type": "boolean"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "defaultValue": {
+          "type": "string"
+        },
+        "dir": {
+          "type": "enum",
+          "values": [
+            "ltr",
+            "rtl"
+          ]
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "form": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "loop": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "onValueChange": {
+          "type": "(value: string) => void"
+        },
+        "orientation": {
+          "type": "enum",
+          "values": [
+            "horizontal",
+            "vertical"
+          ]
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string | null"
+        }
+      }
+    },
+    "RadioGroupItem": {
+      "entry": "components-selection-controls",
+      "partOf": "Select",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "asChild": {
+          "type": "boolean"
+        },
+        "className": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "required": true
+        }
+      }
+    },
+    "SegmentedControl": {
+      "entry": "components-segmented-control",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "asChild": {
+          "type": "boolean"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "defaultValue": {
+          "type": "string"
+        },
+        "dir": {
+          "type": "enum",
+          "values": [
+            "ltr",
+            "rtl"
+          ]
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "loop": {
+          "type": "boolean"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "onValueChange": {
+          "type": "(value: string) => void"
+        },
+        "orientation": {
+          "type": "enum",
+          "values": [
+            "horizontal",
+            "vertical"
+          ]
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "rovingFocus": {
+          "type": "boolean"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "SegmentedControlOption": {
+      "entry": "components-segmented-control",
+      "partOf": "SegmentedControl",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "asChild": {
+          "type": "boolean"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "required": true
+        }
+      }
+    },
+    "Select": {
+      "entry": "components-selection-controls",
+      "props": {
+        "autoComplete": {
+          "type": "string"
+        },
+        "children": {
+          "type": "node"
+        },
+        "defaultOpen": {
+          "type": "boolean"
+        },
+        "defaultValue": {
+          "type": "string"
+        },
+        "dir": {
+          "type": "enum",
+          "values": [
+            "ltr",
+            "rtl"
+          ]
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "form": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "onOpenChange": {
+          "type": "(open: boolean) => void"
+        },
+        "onValueChange": {
+          "type": "(value: string) => void"
+        },
+        "open": {
+          "type": "boolean"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "SelectContent": {
+      "entry": "components-selection-controls",
+      "partOf": "Select",
+      "props": {
+        "align": {
+          "type": "enum",
+          "values": [
+            "center",
+            "end",
+            "start"
+          ]
+        },
+        "alignOffset": {
+          "type": "number"
+        },
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "asChild": {
+          "type": "boolean"
+        },
+        "avoidCollisions": {
+          "type": "boolean"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "collisionPadding": {
+          "type": "number | Partial<Record<\"top\" | \"right\" | \"bottom\" | \"left\", number>>"
+        },
+        "forceMount": {
+          "type": "literal"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "hideWhenDetached": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onCloseAutoFocus": {
+          "type": "(event: Event) => void"
+        },
+        "onEscapeKeyDown": {
+          "type": "(event: KeyboardEvent) => void"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "onPointerDownOutside": {
+          "type": "(event: CustomEvent<{ originalEvent: PointerEvent }>) => void"
+        },
+        "position": {
+          "type": "enum",
+          "values": [
+            "item-aligned",
+            "popper"
+          ],
+          "default": "popper"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "side": {
+          "type": "enum",
+          "values": [
+            "bottom",
+            "left",
+            "right",
+            "top"
+          ]
+        },
+        "sideOffset": {
+          "type": "number",
+          "default": "4"
+        },
+        "sticky": {
+          "type": "enum",
+          "values": [
+            "always",
+            "partial"
+          ]
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "SelectItem": {
+      "entry": "components-selection-controls",
+      "partOf": "Select",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "asChild": {
+          "type": "boolean"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "textValue": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "required": true
+        }
+      }
+    },
+    "SelectTrigger": {
+      "entry": "components-selection-controls",
+      "partOf": "Select",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "asChild": {
+          "type": "boolean"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "SelectValue": {
+      "entry": "components-selection-controls",
+      "partOf": "Select",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "asChild": {
+          "type": "boolean"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "placeholder": {
+          "type": "node"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "SidebarNav": {
+      "entry": "components-navigation",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "SidebarNavItem": {
+      "entry": "components-navigation",
+      "partOf": "SidebarNav",
+      "props": {
+        "active": {
+          "type": "boolean"
+        },
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "asChild": {
+          "type": "boolean",
+          "default": "false"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "download": {
+          "type": "boolean | string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "href": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "rel": {
+          "type": "string"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "target": {
+          "type": "React.HTMLAttributeAnchorTarget"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "SidebarNavLabel": {
+      "entry": "components-navigation",
+      "partOf": "SidebarNav",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "StatusChip": {
+      "entry": "components-badge-and-status-chip",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        },
+        "variant": {
+          "type": "enum",
+          "values": [
+            "alert",
+            "error",
+            "neutral",
+            "positive"
+          ],
+          "default": "neutral"
+        }
+      }
+    },
+    "Switch": {
+      "entry": "components-selection-controls",
+      "partOf": "Select",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "asChild": {
+          "type": "boolean"
+        },
+        "checked": {
+          "type": "boolean"
+        },
+        "className": {
+          "type": "string"
+        },
+        "defaultChecked": {
+          "type": "boolean"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "form": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string | readonly string[] | number"
+        }
+      }
+    },
+    "Table": {
+      "entry": "components-table",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "TableBody": {
+      "entry": "components-table",
+      "partOf": "Table",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "TableCell": {
+      "entry": "components-table",
+      "partOf": "Table",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "colSpan": {
+          "type": "number"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "mono": {
+          "type": "boolean"
+        },
+        "numeric": {
+          "type": "boolean"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "rowSpan": {
+          "type": "number"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "TableChevronCell": {
+      "entry": "components-table",
+      "partOf": "Table",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "TableChevronHead": {
+      "entry": "components-table",
+      "partOf": "Table",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "TableHead": {
+      "entry": "components-table",
+      "partOf": "Table",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "colSpan": {
+          "type": "number"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "numeric": {
+          "type": "boolean"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "onSort": {
+          "type": "() => void"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "rowSpan": {
+          "type": "number"
+        },
+        "sorted": {
+          "type": "enum",
+          "values": [
+            "ascending",
+            "descending"
+          ]
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "TableHeader": {
+      "entry": "components-table",
+      "partOf": "Table",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "TableRow": {
+      "entry": "components-table",
+      "partOf": "Table",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "highlighted": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<HTMLTableRowElement>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "Tabs": {
+      "entry": "components-navigation",
+      "partOf": "SidebarNav",
+      "props": {
+        "activationMode": {
+          "type": "enum",
+          "values": [
+            "automatic",
+            "manual"
+          ]
+        },
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "asChild": {
+          "type": "boolean"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "defaultValue": {
+          "type": "string"
+        },
+        "dir": {
+          "type": "enum",
+          "values": [
+            "ltr",
+            "rtl"
+          ]
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "onValueChange": {
+          "type": "(value: string) => void"
+        },
+        "orientation": {
+          "type": "enum",
+          "values": [
+            "horizontal",
+            "vertical"
+          ]
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "TabsContent": {
+      "entry": "components-navigation",
+      "partOf": "SidebarNav",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "asChild": {
+          "type": "boolean"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "forceMount": {
+          "type": "literal"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "required": true
+        }
+      }
+    },
+    "TabsList": {
+      "entry": "components-navigation",
+      "partOf": "SidebarNav",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "asChild": {
+          "type": "boolean"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "loop": {
+          "type": "boolean"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "TabsTrigger": {
+      "entry": "components-navigation",
+      "partOf": "SidebarNav",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "asChild": {
+          "type": "boolean"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "required": true
+        }
+      }
+    },
+    "TextField": {
+      "entry": "components-text-field",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "autoComplete": {
+          "type": "React.HTMLInputAutoCompleteAttribute"
+        },
+        "autoFocus": {
+          "type": "boolean"
+        },
+        "className": {
+          "type": "string"
+        },
+        "defaultValue": {
+          "type": "string | readonly string[] | number"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "error": {
+          "type": "node"
+        },
+        "fieldClassName": {
+          "type": "string"
+        },
+        "form": {
+          "type": "string"
+        },
+        "helper": {
+          "type": "node"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "inputMode": {
+          "type": "enum",
+          "values": [
+            "decimal",
+            "email",
+            "none",
+            "numeric",
+            "search",
+            "tel",
+            "text",
+            "url"
+          ]
+        },
+        "label": {
+          "type": "node",
+          "required": true
+        },
+        "max": {
+          "type": "number | string"
+        },
+        "maxLength": {
+          "type": "number"
+        },
+        "min": {
+          "type": "number | string"
+        },
+        "minLength": {
+          "type": "number"
+        },
+        "name": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onChange": {
+          "type": "React.ChangeEventHandler<HTMLInputElement>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "pattern": {
+          "type": "string"
+        },
+        "placeholder": {
+          "type": "string"
+        },
+        "readOnly": {
+          "type": "boolean"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "step": {
+          "type": "number | string"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        },
+        "type": {
+          "type": "React.HTMLInputTypeAttribute"
+        },
+        "value": {
+          "type": "string | readonly string[] | number"
+        }
+      }
+    },
+    "Toast": {
+      "entry": "components-toast",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "asChild": {
+          "type": "boolean"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "defaultOpen": {
+          "type": "boolean"
+        },
+        "duration": {
+          "type": "number"
+        },
+        "forceMount": {
+          "type": "literal"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onEscapeKeyDown": {
+          "type": "(event: KeyboardEvent) => void"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "onOpenChange": {
+          "type": "(open: boolean) => void"
+        },
+        "onPause": {
+          "type": "() => void"
+        },
+        "onResume": {
+          "type": "() => void"
+        },
+        "open": {
+          "type": "boolean"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        },
+        "type": {
+          "type": "enum",
+          "values": [
+            "background",
+            "foreground"
+          ]
+        },
+        "variant": {
+          "type": "enum",
+          "values": [
+            "error",
+            "success"
+          ],
+          "default": "success"
+        }
+      }
+    },
+    "ToastAction": {
+      "entry": "components-toast",
+      "partOf": "Toast",
+      "props": {
+        "altText": {
+          "type": "string",
+          "required": true
+        },
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "asChild": {
+          "type": "boolean"
+        },
+        "autoFocus": {
+          "type": "boolean"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "form": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        },
+        "type": {
+          "type": "enum",
+          "values": [
+            "button",
+            "reset",
+            "submit"
+          ]
+        },
+        "value": {
+          "type": "string | readonly string[] | number"
+        }
+      }
+    },
+    "ToastBody": {
+      "entry": "components-toast",
+      "partOf": "Toast",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "ToastDescription": {
+      "entry": "components-toast",
+      "partOf": "Toast",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "asChild": {
+          "type": "boolean"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "ToastProvider": {
+      "entry": "components-toast",
+      "partOf": "Toast",
+      "props": {
+        "announcerContainer": {
+          "type": "Element | DocumentFragment"
+        },
+        "children": {
+          "type": "node"
+        },
+        "duration": {
+          "type": "number"
+        },
+        "label": {
+          "type": "string"
+        },
+        "swipeDirection": {
+          "type": "enum",
+          "values": [
+            "down",
+            "left",
+            "right",
+            "up"
+          ]
+        },
+        "swipeThreshold": {
+          "type": "number"
+        }
+      }
+    },
+    "ToastTitle": {
+      "entry": "components-toast",
+      "partOf": "Toast",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "asChild": {
+          "type": "boolean"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "ToastViewport": {
+      "entry": "components-toast",
+      "partOf": "Toast",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "asChild": {
+          "type": "boolean"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "hotkey": {
+          "type": "string[]"
+        },
+        "id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "Tooltip": {
+      "entry": "components-tooltip",
+      "props": {
+        "children": {
+          "type": "node"
+        },
+        "defaultOpen": {
+          "type": "boolean"
+        },
+        "delayDuration": {
+          "type": "number"
+        },
+        "disableHoverableContent": {
+          "type": "boolean"
+        },
+        "onOpenChange": {
+          "type": "(open: boolean) => void"
+        },
+        "open": {
+          "type": "boolean"
+        }
+      }
+    },
+    "TooltipContent": {
+      "entry": "components-tooltip",
+      "partOf": "Tooltip",
+      "props": {
+        "align": {
+          "type": "enum",
+          "values": [
+            "center",
+            "end",
+            "start"
+          ]
+        },
+        "alignOffset": {
+          "type": "number"
+        },
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "asChild": {
+          "type": "boolean"
+        },
+        "avoidCollisions": {
+          "type": "boolean"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "collisionPadding": {
+          "type": "number | Partial<Record<\"top\" | \"right\" | \"bottom\" | \"left\", number>>"
+        },
+        "forceMount": {
+          "type": "literal"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "hideWhenDetached": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onEscapeKeyDown": {
+          "type": "(event: KeyboardEvent) => void"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "onPointerDownOutside": {
+          "type": "(event: CustomEvent<{ originalEvent: PointerEvent }>) => void"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "side": {
+          "type": "enum",
+          "values": [
+            "bottom",
+            "left",
+            "right",
+            "top"
+          ]
+        },
+        "sideOffset": {
+          "type": "number",
+          "default": "4"
+        },
+        "sticky": {
+          "type": "enum",
+          "values": [
+            "always",
+            "partial"
+          ]
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "TooltipProvider": {
+      "entry": "components-tooltip",
+      "partOf": "Tooltip",
+      "props": {
+        "children": {
+          "type": "node",
+          "required": true
+        },
+        "delayDuration": {
+          "type": "number"
+        },
+        "disableHoverableContent": {
+          "type": "boolean"
+        },
+        "skipDelayDuration": {
+          "type": "number"
+        }
+      }
+    },
+    "TooltipTerm": {
+      "entry": "components-tooltip",
+      "partOf": "Tooltip",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "tip": {
+          "type": "node",
+          "required": true
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "TooltipTrigger": {
+      "entry": "components-tooltip",
+      "partOf": "Tooltip",
+      "props": {
+        "aria-describedby": {
+          "type": "string"
+        },
+        "aria-hidden": {
+          "type": "boolean | \"true\" | \"false\""
+        },
+        "aria-label": {
+          "type": "string"
+        },
+        "aria-labelledby": {
+          "type": "string"
+        },
+        "asChild": {
+          "type": "boolean"
+        },
+        "autoFocus": {
+          "type": "boolean"
+        },
+        "children": {
+          "type": "node"
+        },
+        "className": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "form": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "onBlur": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onClick": {
+          "type": "React.MouseEventHandler<E>"
+        },
+        "onFocus": {
+          "type": "React.FocusEventHandler<E>"
+        },
+        "onKeyDown": {
+          "type": "React.KeyboardEventHandler<E>"
+        },
+        "ref": {
+          "type": "React.Ref<E>"
+        },
+        "role": {
+          "type": "React.AriaRole"
+        },
+        "style": {
+          "type": "React.CSSProperties"
+        },
+        "tabIndex": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        },
+        "type": {
+          "type": "enum",
+          "values": [
+            "button",
+            "reset",
+            "submit"
+          ]
+        },
+        "value": {
+          "type": "string | readonly string[] | number"
+        }
+      }
+    }
+  },
+  "tokens": {
+    "accent": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.966 0.005 106.5)",
+          "resolved": "oklch(0.966 0.005 106.5)"
+        },
+        "dark": {
+          "raw": "oklch(0.286 0.016 107.4)",
+          "resolved": "oklch(0.286 0.016 107.4)"
+        }
+      }
+    },
+    "accent-foreground": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.228 0.013 107.4)",
+          "resolved": "oklch(0.228 0.013 107.4)"
+        },
+        "dark": {
+          "raw": "oklch(0.988 0.003 106.5)",
+          "resolved": "oklch(0.988 0.003 106.5)"
+        }
+      }
+    },
+    "avatar-lg": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "40px",
+          "resolved": "40px"
+        },
+        "dark": {
+          "raw": "40px",
+          "resolved": "40px"
+        }
+      }
+    },
+    "avatar-md": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "32px",
+          "resolved": "32px"
+        },
+        "dark": {
+          "raw": "32px",
+          "resolved": "32px"
+        }
+      }
+    },
+    "avatar-sm": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "24px",
+          "resolved": "24px"
+        },
+        "dark": {
+          "raw": "24px",
+          "resolved": "24px"
+        }
+      }
+    },
+    "background": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "oklch(1 0 0)",
+          "resolved": "oklch(1 0 0)"
+        },
+        "dark": {
+          "raw": "oklch(0.153 0.006 107.1)",
+          "resolved": "oklch(0.153 0.006 107.1)"
+        }
+      }
+    },
+    "banner-bar-foreground": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "var(--terracotta-700)",
+          "ref": "terracotta-700",
+          "resolved": "oklch(0.44 0.143 48.998)"
+        },
+        "dark": {
+          "raw": "var(--terracotta-400)",
+          "ref": "terracotta-400",
+          "resolved": "oklch(0.70 0.147 48.998)"
+        }
+      }
+    },
+    "banner-border": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "30%",
+          "resolved": "30%"
+        },
+        "dark": {
+          "raw": "35%",
+          "resolved": "35%"
+        }
+      }
+    },
+    "banner-tint": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "10%",
+          "resolved": "10%"
+        },
+        "dark": {
+          "raw": "15%",
+          "resolved": "15%"
+        }
+      }
+    },
+    "border": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.93 0.007 106.5)",
+          "resolved": "oklch(0.93 0.007 106.5)"
+        },
+        "dark": {
+          "raw": "oklch(1 0 0 / 10%)",
+          "resolved": "oklch(1 0 0 / 10%)"
+        }
+      }
+    },
+    "button-destructive-hover": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "var(--destructive-hover)",
+          "ref": "destructive-hover",
+          "resolved": "oklch(0.52 0.245 27.325)"
+        },
+        "dark": {
+          "raw": "oklch(0.654 0.175 22.156)",
+          "resolved": "oklch(0.654 0.175 22.156)"
+        }
+      }
+    },
+    "button-text-link": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "var(--primary)",
+          "ref": "primary",
+          "resolved": "oklch(0.555 0.163 48.998)"
+        },
+        "dark": {
+          "raw": "var(--terracotta-400)",
+          "ref": "terracotta-400",
+          "resolved": "oklch(0.70 0.147 48.998)"
+        }
+      }
+    },
+    "card": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "oklch(1 0 0)",
+          "resolved": "oklch(1 0 0)"
+        },
+        "dark": {
+          "raw": "oklch(0.228 0.013 107.4)",
+          "resolved": "oklch(0.228 0.013 107.4)"
+        }
+      }
+    },
+    "card-foreground": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.153 0.006 107.1)",
+          "resolved": "oklch(0.153 0.006 107.1)"
+        },
+        "dark": {
+          "raw": "oklch(0.988 0.003 106.5)",
+          "resolved": "oklch(0.988 0.003 106.5)"
+        }
+      }
+    },
+    "chart-1": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "var(--terracotta-600)",
+          "ref": "terracotta-600",
+          "resolved": "oklch(0.555 0.163 48.998)"
+        },
+        "dark": {
+          "raw": "var(--terracotta-600)",
+          "ref": "terracotta-600",
+          "resolved": "oklch(0.555 0.163 48.998)"
+        }
+      }
+    },
+    "chart-2": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "var(--teal-500)",
+          "ref": "teal-500",
+          "resolved": "oklch(0.593 0.070 182.939)"
+        },
+        "dark": {
+          "raw": "var(--teal-500)",
+          "ref": "teal-500",
+          "resolved": "oklch(0.593 0.070 182.939)"
+        }
+      }
+    },
+    "chart-3": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.438 0.055 183.452)",
+          "resolved": "oklch(0.438 0.055 183.452)"
+        },
+        "dark": {
+          "raw": "oklch(0.681 0.075 185.43)",
+          "resolved": "oklch(0.681 0.075 185.43)"
+        }
+      }
+    },
+    "chart-4": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "var(--olive-600)",
+          "ref": "olive-600",
+          "resolved": "oklch(0.54 0.031 107.3)"
+        },
+        "dark": {
+          "raw": "oklch(0.737 0.021 106.9)",
+          "resolved": "oklch(0.737 0.021 106.9)"
+        }
+      }
+    },
+    "chart-5": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.153 0.006 107.1)",
+          "resolved": "oklch(0.153 0.006 107.1)"
+        },
+        "dark": {
+          "raw": "oklch(0.988 0.003 106.5)",
+          "resolved": "oklch(0.988 0.003 106.5)"
+        }
+      }
+    },
+    "control-height-md": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "40px",
+          "resolved": "40px"
+        },
+        "dark": {
+          "raw": "40px",
+          "resolved": "40px"
+        }
+      }
+    },
+    "control-height-sm": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "32px",
+          "resolved": "32px"
+        },
+        "dark": {
+          "raw": "32px",
+          "resolved": "32px"
+        }
+      }
+    },
+    "destructive": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.577 0.245 27.325)",
+          "resolved": "oklch(0.577 0.245 27.325)"
+        },
+        "dark": {
+          "raw": "oklch(0.704 0.191 22.216)",
+          "resolved": "oklch(0.704 0.191 22.216)"
+        }
+      }
+    },
+    "destructive-foreground": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "oklch(1 0 0)",
+          "resolved": "oklch(1 0 0)"
+        },
+        "dark": {
+          "raw": "oklch(0.153 0.006 107.1)",
+          "resolved": "oklch(0.153 0.006 107.1)"
+        }
+      }
+    },
+    "destructive-hover": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.52 0.245 27.325)",
+          "resolved": "oklch(0.52 0.245 27.325)"
+        },
+        "dark": {
+          "raw": "oklch(0.52 0.245 27.325)",
+          "resolved": "oklch(0.52 0.245 27.325)"
+        }
+      }
+    },
+    "disabled-opacity": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "50%",
+          "resolved": "50%"
+        },
+        "dark": {
+          "raw": "50%",
+          "resolved": "50%"
+        }
+      }
+    },
+    "error-foreground": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.44 0.245 27.325)",
+          "resolved": "oklch(0.44 0.245 27.325)"
+        },
+        "dark": {
+          "raw": "var(--destructive)",
+          "ref": "destructive",
+          "resolved": "oklch(0.704 0.191 22.216)"
+        }
+      }
+    },
+    "font-mono": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "ui-monospace, SFMono-Regular, Menlo, monospace",
+          "resolved": "ui-monospace, SFMono-Regular, Menlo, monospace"
+        },
+        "dark": {
+          "raw": "ui-monospace, SFMono-Regular, Menlo, monospace",
+          "resolved": "ui-monospace, SFMono-Regular, Menlo, monospace"
+        }
+      }
+    },
+    "font-sans": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "'Inter', system-ui, -apple-system, sans-serif",
+          "resolved": "'Inter', system-ui, -apple-system, sans-serif"
+        },
+        "dark": {
+          "raw": "'Inter', system-ui, -apple-system, sans-serif",
+          "resolved": "'Inter', system-ui, -apple-system, sans-serif"
+        }
+      }
+    },
+    "font-serif": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "'Lora', Georgia, serif",
+          "resolved": "'Lora', Georgia, serif"
+        },
+        "dark": {
+          "raw": "'Lora', Georgia, serif",
+          "resolved": "'Lora', Georgia, serif"
+        }
+      }
+    },
+    "foreground": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.153 0.006 107.1)",
+          "resolved": "oklch(0.153 0.006 107.1)"
+        },
+        "dark": {
+          "raw": "oklch(0.988 0.003 106.5)",
+          "resolved": "oklch(0.988 0.003 106.5)"
+        }
+      }
+    },
+    "info": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "var(--teal)",
+          "ref": "teal",
+          "resolved": "oklch(0.593 0.070 182.939)"
+        },
+        "dark": {
+          "raw": "var(--teal)",
+          "ref": "teal",
+          "resolved": "oklch(0.593 0.070 182.939)"
+        }
+      }
+    },
+    "info-foreground": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "var(--teal-dark)",
+          "ref": "teal-dark",
+          "resolved": "oklch(0.438 0.055 183.452)"
+        },
+        "dark": {
+          "raw": "var(--teal-dark)",
+          "ref": "teal-dark",
+          "resolved": "oklch(0.681 0.075 185.43)"
+        }
+      }
+    },
+    "input": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.93 0.007 106.5)",
+          "resolved": "oklch(0.93 0.007 106.5)"
+        },
+        "dark": {
+          "raw": "oklch(1 0 0 / 15%)",
+          "resolved": "oklch(1 0 0 / 15%)"
+        }
+      }
+    },
+    "input-border": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "var(--olive-500)",
+          "ref": "olive-500",
+          "resolved": "oklch(0.60 0.033 107.3)"
+        },
+        "dark": {
+          "raw": "var(--olive-500)",
+          "ref": "olive-500",
+          "resolved": "oklch(0.60 0.033 107.3)"
+        }
+      }
+    },
+    "layout-max-width": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "1280px",
+          "resolved": "1280px"
+        },
+        "dark": {
+          "raw": "1280px",
+          "resolved": "1280px"
+        }
+      }
+    },
+    "modal-max-width": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "480px",
+          "resolved": "480px"
+        },
+        "dark": {
+          "raw": "480px",
+          "resolved": "480px"
+        }
+      }
+    },
+    "muted": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.966 0.005 106.5)",
+          "resolved": "oklch(0.966 0.005 106.5)"
+        },
+        "dark": {
+          "raw": "oklch(0.286 0.016 107.4)",
+          "resolved": "oklch(0.286 0.016 107.4)"
+        }
+      }
+    },
+    "muted-foreground": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "var(--olive-600)",
+          "ref": "olive-600",
+          "resolved": "oklch(0.54 0.031 107.3)"
+        },
+        "dark": {
+          "raw": "oklch(0.737 0.021 106.9)",
+          "resolved": "oklch(0.737 0.021 106.9)"
+        }
+      }
+    },
+    "nav-active": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.769 0.188 70.08)",
+          "resolved": "oklch(0.769 0.188 70.08)"
+        },
+        "dark": {
+          "raw": "oklch(0.769 0.188 70.08)",
+          "resolved": "oklch(0.769 0.188 70.08)"
+        }
+      }
+    },
+    "nav-active-foreground": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "var(--warning-foreground)",
+          "ref": "warning-foreground",
+          "resolved": "oklch(0.50 0.11 70)"
+        },
+        "dark": {
+          "raw": "var(--warning-foreground)",
+          "ref": "warning-foreground",
+          "resolved": "oklch(0.80 0.15 75)"
+        }
+      }
+    },
+    "nav-active-tint": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "10%",
+          "resolved": "10%"
+        },
+        "dark": {
+          "raw": "15%",
+          "resolved": "15%"
+        }
+      }
+    },
+    "olive-100": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.94 0.009 107.3)",
+          "resolved": "oklch(0.94 0.009 107.3)"
+        },
+        "dark": {
+          "raw": "oklch(0.94 0.009 107.3)",
+          "resolved": "oklch(0.94 0.009 107.3)"
+        }
+      }
+    },
+    "olive-200": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.88 0.015 107.3)",
+          "resolved": "oklch(0.88 0.015 107.3)"
+        },
+        "dark": {
+          "raw": "oklch(0.88 0.015 107.3)",
+          "resolved": "oklch(0.88 0.015 107.3)"
+        }
+      }
+    },
+    "olive-300": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.80 0.022 107.3)",
+          "resolved": "oklch(0.80 0.022 107.3)"
+        },
+        "dark": {
+          "raw": "oklch(0.80 0.022 107.3)",
+          "resolved": "oklch(0.80 0.022 107.3)"
+        }
+      }
+    },
+    "olive-400": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.70 0.028 107.3)",
+          "resolved": "oklch(0.70 0.028 107.3)"
+        },
+        "dark": {
+          "raw": "oklch(0.70 0.028 107.3)",
+          "resolved": "oklch(0.70 0.028 107.3)"
+        }
+      }
+    },
+    "olive-50": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.97 0.005 107.3)",
+          "resolved": "oklch(0.97 0.005 107.3)"
+        },
+        "dark": {
+          "raw": "oklch(0.97 0.005 107.3)",
+          "resolved": "oklch(0.97 0.005 107.3)"
+        }
+      }
+    },
+    "olive-500": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.60 0.033 107.3)",
+          "resolved": "oklch(0.60 0.033 107.3)"
+        },
+        "dark": {
+          "raw": "oklch(0.60 0.033 107.3)",
+          "resolved": "oklch(0.60 0.033 107.3)"
+        }
+      }
+    },
+    "olive-600": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.54 0.031 107.3)",
+          "resolved": "oklch(0.54 0.031 107.3)"
+        },
+        "dark": {
+          "raw": "oklch(0.54 0.031 107.3)",
+          "resolved": "oklch(0.54 0.031 107.3)"
+        }
+      }
+    },
+    "olive-700": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.44 0.027 107.3)",
+          "resolved": "oklch(0.44 0.027 107.3)"
+        },
+        "dark": {
+          "raw": "oklch(0.44 0.027 107.3)",
+          "resolved": "oklch(0.44 0.027 107.3)"
+        }
+      }
+    },
+    "olive-800": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.36 0.022 107.3)",
+          "resolved": "oklch(0.36 0.022 107.3)"
+        },
+        "dark": {
+          "raw": "oklch(0.36 0.022 107.3)",
+          "resolved": "oklch(0.36 0.022 107.3)"
+        }
+      }
+    },
+    "olive-900": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.29 0.017 107.3)",
+          "resolved": "oklch(0.29 0.017 107.3)"
+        },
+        "dark": {
+          "raw": "oklch(0.29 0.017 107.3)",
+          "resolved": "oklch(0.29 0.017 107.3)"
+        }
+      }
+    },
+    "olive-950": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.21 0.012 107.3)",
+          "resolved": "oklch(0.21 0.012 107.3)"
+        },
+        "dark": {
+          "raw": "oklch(0.21 0.012 107.3)",
+          "resolved": "oklch(0.21 0.012 107.3)"
+        }
+      }
+    },
+    "overlay": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.153 0.006 107.1 / 50%)",
+          "resolved": "oklch(0.153 0.006 107.1 / 50%)"
+        },
+        "dark": {
+          "raw": "oklch(0 0 0 / 60%)",
+          "resolved": "oklch(0 0 0 / 60%)"
+        }
+      }
+    },
+    "popover": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "oklch(1 0 0)",
+          "resolved": "oklch(1 0 0)"
+        },
+        "dark": {
+          "raw": "oklch(0.228 0.013 107.4)",
+          "resolved": "oklch(0.228 0.013 107.4)"
+        }
+      }
+    },
+    "popover-foreground": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.153 0.006 107.1)",
+          "resolved": "oklch(0.153 0.006 107.1)"
+        },
+        "dark": {
+          "raw": "oklch(0.988 0.003 106.5)",
+          "resolved": "oklch(0.988 0.003 106.5)"
+        }
+      }
+    },
+    "primary": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "var(--terracotta-600)",
+          "ref": "terracotta-600",
+          "resolved": "oklch(0.555 0.163 48.998)"
+        },
+        "dark": {
+          "raw": "var(--terracotta-600)",
+          "ref": "terracotta-600",
+          "resolved": "oklch(0.555 0.163 48.998)"
+        }
+      }
+    },
+    "primary-foreground": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.987 0.022 95.277)",
+          "resolved": "oklch(0.987 0.022 95.277)"
+        },
+        "dark": {
+          "raw": "oklch(0.987 0.022 95.277)",
+          "resolved": "oklch(0.987 0.022 95.277)"
+        }
+      }
+    },
+    "progress-fill": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "var(--teal)",
+          "ref": "teal",
+          "resolved": "oklch(0.593 0.070 182.939)"
+        },
+        "dark": {
+          "raw": "var(--teal)",
+          "ref": "teal",
+          "resolved": "oklch(0.593 0.070 182.939)"
+        }
+      }
+    },
+    "progress-height": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "8px",
+          "resolved": "8px"
+        },
+        "dark": {
+          "raw": "8px",
+          "resolved": "8px"
+        }
+      }
+    },
+    "progress-track": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "var(--border)",
+          "ref": "border",
+          "resolved": "oklch(0.93 0.007 106.5)"
+        },
+        "dark": {
+          "raw": "var(--background)",
+          "ref": "background",
+          "resolved": "oklch(0.153 0.006 107.1)"
+        }
+      }
+    },
+    "radius": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "var(--radius-md)",
+          "ref": "radius-md",
+          "resolved": "8px"
+        },
+        "dark": {
+          "raw": "var(--radius-md)",
+          "ref": "radius-md",
+          "resolved": "8px"
+        }
+      }
+    },
+    "radius-full": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "9999px",
+          "resolved": "9999px"
+        },
+        "dark": {
+          "raw": "9999px",
+          "resolved": "9999px"
+        }
+      }
+    },
+    "radius-lg": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "12px",
+          "resolved": "12px"
+        },
+        "dark": {
+          "raw": "12px",
+          "resolved": "12px"
+        }
+      }
+    },
+    "radius-md": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "8px",
+          "resolved": "8px"
+        },
+        "dark": {
+          "raw": "8px",
+          "resolved": "8px"
+        }
+      }
+    },
+    "radius-sm": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "4px",
+          "resolved": "4px"
+        },
+        "dark": {
+          "raw": "4px",
+          "resolved": "4px"
+        }
+      }
+    },
+    "ring": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "var(--terracotta-600)",
+          "ref": "terracotta-600",
+          "resolved": "oklch(0.555 0.163 48.998)"
+        },
+        "dark": {
+          "raw": "var(--terracotta-600)",
+          "ref": "terracotta-600",
+          "resolved": "oklch(0.555 0.163 48.998)"
+        }
+      }
+    },
+    "secondary": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.967 0.001 286.375)",
+          "resolved": "oklch(0.967 0.001 286.375)"
+        },
+        "dark": {
+          "raw": "oklch(0.274 0.006 286.033)",
+          "resolved": "oklch(0.274 0.006 286.033)"
+        }
+      }
+    },
+    "secondary-foreground": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.21 0.006 285.885)",
+          "resolved": "oklch(0.21 0.006 285.885)"
+        },
+        "dark": {
+          "raw": "oklch(0.985 0 0)",
+          "resolved": "oklch(0.985 0 0)"
+        }
+      }
+    },
+    "shadow-modal": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "0 8px 24px rgba(45, 45, 43, 0.16)",
+          "resolved": "0 8px 24px rgba(45, 45, 43, 0.16)"
+        },
+        "dark": {
+          "raw": "none",
+          "resolved": "none"
+        }
+      }
+    },
+    "shadow-overlay": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "0 4px 16px rgba(45, 45, 43, 0.12)",
+          "resolved": "0 4px 16px rgba(45, 45, 43, 0.12)"
+        },
+        "dark": {
+          "raw": "0 4px 16px rgba(0, 0, 0, 0.4)",
+          "resolved": "0 4px 16px rgba(0, 0, 0, 0.4)"
+        }
+      }
+    },
+    "sidebar": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.988 0.003 106.5)",
+          "resolved": "oklch(0.988 0.003 106.5)"
+        },
+        "dark": {
+          "raw": "oklch(0.228 0.013 107.4)",
+          "resolved": "oklch(0.228 0.013 107.4)"
+        }
+      }
+    },
+    "sidebar-accent": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.966 0.005 106.5)",
+          "resolved": "oklch(0.966 0.005 106.5)"
+        },
+        "dark": {
+          "raw": "oklch(0.286 0.016 107.4)",
+          "resolved": "oklch(0.286 0.016 107.4)"
+        }
+      }
+    },
+    "sidebar-accent-foreground": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.228 0.013 107.4)",
+          "resolved": "oklch(0.228 0.013 107.4)"
+        },
+        "dark": {
+          "raw": "oklch(0.988 0.003 106.5)",
+          "resolved": "oklch(0.988 0.003 106.5)"
+        }
+      }
+    },
+    "sidebar-border": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.93 0.007 106.5)",
+          "resolved": "oklch(0.93 0.007 106.5)"
+        },
+        "dark": {
+          "raw": "oklch(1 0 0 / 10%)",
+          "resolved": "oklch(1 0 0 / 10%)"
+        }
+      }
+    },
+    "sidebar-foreground": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.153 0.006 107.1)",
+          "resolved": "oklch(0.153 0.006 107.1)"
+        },
+        "dark": {
+          "raw": "oklch(0.988 0.003 106.5)",
+          "resolved": "oklch(0.988 0.003 106.5)"
+        }
+      }
+    },
+    "sidebar-primary": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.666 0.179 58.318)",
+          "resolved": "oklch(0.666 0.179 58.318)"
+        },
+        "dark": {
+          "raw": "oklch(0.769 0.188 70.08)",
+          "resolved": "oklch(0.769 0.188 70.08)"
+        }
+      }
+    },
+    "sidebar-primary-foreground": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.987 0.022 95.277)",
+          "resolved": "oklch(0.987 0.022 95.277)"
+        },
+        "dark": {
+          "raw": "oklch(0.279 0.077 45.635)",
+          "resolved": "oklch(0.279 0.077 45.635)"
+        }
+      }
+    },
+    "sidebar-ring": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.737 0.021 106.9)",
+          "resolved": "oklch(0.737 0.021 106.9)"
+        },
+        "dark": {
+          "raw": "oklch(0.58 0.031 107.3)",
+          "resolved": "oklch(0.58 0.031 107.3)"
+        }
+      }
+    },
+    "space-1": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "4px",
+          "resolved": "4px"
+        },
+        "dark": {
+          "raw": "4px",
+          "resolved": "4px"
+        }
+      }
+    },
+    "space-12": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "48px",
+          "resolved": "48px"
+        },
+        "dark": {
+          "raw": "48px",
+          "resolved": "48px"
+        }
+      }
+    },
+    "space-2": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "8px",
+          "resolved": "8px"
+        },
+        "dark": {
+          "raw": "8px",
+          "resolved": "8px"
+        }
+      }
+    },
+    "space-3": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "12px",
+          "resolved": "12px"
+        },
+        "dark": {
+          "raw": "12px",
+          "resolved": "12px"
+        }
+      }
+    },
+    "space-4": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "16px",
+          "resolved": "16px"
+        },
+        "dark": {
+          "raw": "16px",
+          "resolved": "16px"
+        }
+      }
+    },
+    "space-6": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "24px",
+          "resolved": "24px"
+        },
+        "dark": {
+          "raw": "24px",
+          "resolved": "24px"
+        }
+      }
+    },
+    "space-8": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "32px",
+          "resolved": "32px"
+        },
+        "dark": {
+          "raw": "32px",
+          "resolved": "32px"
+        }
+      }
+    },
+    "success": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "var(--teal)",
+          "ref": "teal",
+          "resolved": "oklch(0.593 0.070 182.939)"
+        },
+        "dark": {
+          "raw": "var(--teal)",
+          "ref": "teal",
+          "resolved": "oklch(0.593 0.070 182.939)"
+        }
+      }
+    },
+    "teal": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "var(--teal-500)",
+          "ref": "teal-500",
+          "resolved": "oklch(0.593 0.070 182.939)"
+        },
+        "dark": {
+          "raw": "var(--teal-500)",
+          "ref": "teal-500",
+          "resolved": "oklch(0.593 0.070 182.939)"
+        }
+      }
+    },
+    "teal-100": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.94 0.021 182.939)",
+          "resolved": "oklch(0.94 0.021 182.939)"
+        },
+        "dark": {
+          "raw": "oklch(0.94 0.021 182.939)",
+          "resolved": "oklch(0.94 0.021 182.939)"
+        }
+      }
+    },
+    "teal-200": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.88 0.035 182.939)",
+          "resolved": "oklch(0.88 0.035 182.939)"
+        },
+        "dark": {
+          "raw": "oklch(0.88 0.035 182.939)",
+          "resolved": "oklch(0.88 0.035 182.939)"
+        }
+      }
+    },
+    "teal-300": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.80 0.050 182.939)",
+          "resolved": "oklch(0.80 0.050 182.939)"
+        },
+        "dark": {
+          "raw": "oklch(0.80 0.050 182.939)",
+          "resolved": "oklch(0.80 0.050 182.939)"
+        }
+      }
+    },
+    "teal-400": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.70 0.063 182.939)",
+          "resolved": "oklch(0.70 0.063 182.939)"
+        },
+        "dark": {
+          "raw": "oklch(0.70 0.063 182.939)",
+          "resolved": "oklch(0.70 0.063 182.939)"
+        }
+      }
+    },
+    "teal-50": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.97 0.011 182.939)",
+          "resolved": "oklch(0.97 0.011 182.939)"
+        },
+        "dark": {
+          "raw": "oklch(0.97 0.011 182.939)",
+          "resolved": "oklch(0.97 0.011 182.939)"
+        }
+      }
+    },
+    "teal-500": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.593 0.070 182.939)",
+          "resolved": "oklch(0.593 0.070 182.939)"
+        },
+        "dark": {
+          "raw": "oklch(0.593 0.070 182.939)",
+          "resolved": "oklch(0.593 0.070 182.939)"
+        }
+      }
+    },
+    "teal-600": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.52 0.062 182.939)",
+          "resolved": "oklch(0.52 0.062 182.939)"
+        },
+        "dark": {
+          "raw": "oklch(0.52 0.062 182.939)",
+          "resolved": "oklch(0.52 0.062 182.939)"
+        }
+      }
+    },
+    "teal-700": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.44 0.054 182.939)",
+          "resolved": "oklch(0.44 0.054 182.939)"
+        },
+        "dark": {
+          "raw": "oklch(0.44 0.054 182.939)",
+          "resolved": "oklch(0.44 0.054 182.939)"
+        }
+      }
+    },
+    "teal-800": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.36 0.045 182.939)",
+          "resolved": "oklch(0.36 0.045 182.939)"
+        },
+        "dark": {
+          "raw": "oklch(0.36 0.045 182.939)",
+          "resolved": "oklch(0.36 0.045 182.939)"
+        }
+      }
+    },
+    "teal-900": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.29 0.034 182.939)",
+          "resolved": "oklch(0.29 0.034 182.939)"
+        },
+        "dark": {
+          "raw": "oklch(0.29 0.034 182.939)",
+          "resolved": "oklch(0.29 0.034 182.939)"
+        }
+      }
+    },
+    "teal-950": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.21 0.024 182.939)",
+          "resolved": "oklch(0.21 0.024 182.939)"
+        },
+        "dark": {
+          "raw": "oklch(0.21 0.024 182.939)",
+          "resolved": "oklch(0.21 0.024 182.939)"
+        }
+      }
+    },
+    "teal-dark": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.438 0.055 183.452)",
+          "resolved": "oklch(0.438 0.055 183.452)"
+        },
+        "dark": {
+          "raw": "oklch(0.681 0.075 185.43)",
+          "resolved": "oklch(0.681 0.075 185.43)"
+        }
+      }
+    },
+    "terracotta-100": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.94 0.049 48.998)",
+          "resolved": "oklch(0.94 0.049 48.998)"
+        },
+        "dark": {
+          "raw": "oklch(0.94 0.049 48.998)",
+          "resolved": "oklch(0.94 0.049 48.998)"
+        }
+      }
+    },
+    "terracotta-200": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.88 0.081 48.998)",
+          "resolved": "oklch(0.88 0.081 48.998)"
+        },
+        "dark": {
+          "raw": "oklch(0.88 0.081 48.998)",
+          "resolved": "oklch(0.88 0.081 48.998)"
+        }
+      }
+    },
+    "terracotta-300": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.80 0.117 48.998)",
+          "resolved": "oklch(0.80 0.117 48.998)"
+        },
+        "dark": {
+          "raw": "oklch(0.80 0.117 48.998)",
+          "resolved": "oklch(0.80 0.117 48.998)"
+        }
+      }
+    },
+    "terracotta-400": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.70 0.147 48.998)",
+          "resolved": "oklch(0.70 0.147 48.998)"
+        },
+        "dark": {
+          "raw": "oklch(0.70 0.147 48.998)",
+          "resolved": "oklch(0.70 0.147 48.998)"
+        }
+      }
+    },
+    "terracotta-50": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.97 0.024 48.998)",
+          "resolved": "oklch(0.97 0.024 48.998)"
+        },
+        "dark": {
+          "raw": "oklch(0.97 0.024 48.998)",
+          "resolved": "oklch(0.97 0.024 48.998)"
+        }
+      }
+    },
+    "terracotta-500": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.60 0.171 48.998)",
+          "resolved": "oklch(0.60 0.171 48.998)"
+        },
+        "dark": {
+          "raw": "oklch(0.60 0.171 48.998)",
+          "resolved": "oklch(0.60 0.171 48.998)"
+        }
+      }
+    },
+    "terracotta-600": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.555 0.163 48.998)",
+          "resolved": "oklch(0.555 0.163 48.998)"
+        },
+        "dark": {
+          "raw": "oklch(0.555 0.163 48.998)",
+          "resolved": "oklch(0.555 0.163 48.998)"
+        }
+      }
+    },
+    "terracotta-700": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.44 0.143 48.998)",
+          "resolved": "oklch(0.44 0.143 48.998)"
+        },
+        "dark": {
+          "raw": "oklch(0.44 0.143 48.998)",
+          "resolved": "oklch(0.44 0.143 48.998)"
+        }
+      }
+    },
+    "terracotta-800": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.36 0.117 48.998)",
+          "resolved": "oklch(0.36 0.117 48.998)"
+        },
+        "dark": {
+          "raw": "oklch(0.36 0.117 48.998)",
+          "resolved": "oklch(0.36 0.117 48.998)"
+        }
+      }
+    },
+    "terracotta-900": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.29 0.090 48.998)",
+          "resolved": "oklch(0.29 0.090 48.998)"
+        },
+        "dark": {
+          "raw": "oklch(0.29 0.090 48.998)",
+          "resolved": "oklch(0.29 0.090 48.998)"
+        }
+      }
+    },
+    "terracotta-950": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.21 0.062 48.998)",
+          "resolved": "oklch(0.21 0.062 48.998)"
+        },
+        "dark": {
+          "raw": "oklch(0.21 0.062 48.998)",
+          "resolved": "oklch(0.21 0.062 48.998)"
+        }
+      }
+    },
+    "tooltip-background": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.153 0.006 107.1)",
+          "resolved": "oklch(0.153 0.006 107.1)"
+        },
+        "dark": {
+          "raw": "oklch(0.153 0.006 107.1)",
+          "resolved": "oklch(0.153 0.006 107.1)"
+        }
+      }
+    },
+    "tooltip-foreground": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.988 0.003 106.5)",
+          "resolved": "oklch(0.988 0.003 106.5)"
+        },
+        "dark": {
+          "raw": "oklch(0.988 0.003 106.5)",
+          "resolved": "oklch(0.988 0.003 106.5)"
+        }
+      }
+    },
+    "type-body-line-height": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "1.4",
+          "resolved": "1.4"
+        },
+        "dark": {
+          "raw": "1.4",
+          "resolved": "1.4"
+        }
+      }
+    },
+    "type-body-size": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "14px",
+          "resolved": "14px"
+        },
+        "dark": {
+          "raw": "14px",
+          "resolved": "14px"
+        }
+      }
+    },
+    "type-body-small-line-height": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "1.4",
+          "resolved": "1.4"
+        },
+        "dark": {
+          "raw": "1.4",
+          "resolved": "1.4"
+        }
+      }
+    },
+    "type-body-small-size": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "12px",
+          "resolved": "12px"
+        },
+        "dark": {
+          "raw": "12px",
+          "resolved": "12px"
+        }
+      }
+    },
+    "type-body-small-weight": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "400",
+          "resolved": "400"
+        },
+        "dark": {
+          "raw": "400",
+          "resolved": "400"
+        }
+      }
+    },
+    "type-body-weight": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "400",
+          "resolved": "400"
+        },
+        "dark": {
+          "raw": "400",
+          "resolved": "400"
+        }
+      }
+    },
+    "type-button-line-height": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "1",
+          "resolved": "1"
+        },
+        "dark": {
+          "raw": "1",
+          "resolved": "1"
+        }
+      }
+    },
+    "type-button-size": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "14px",
+          "resolved": "14px"
+        },
+        "dark": {
+          "raw": "14px",
+          "resolved": "14px"
+        }
+      }
+    },
+    "type-button-weight": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "500",
+          "resolved": "500"
+        },
+        "dark": {
+          "raw": "500",
+          "resolved": "500"
+        }
+      }
+    },
+    "type-display-line-height": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "1.2",
+          "resolved": "1.2"
+        },
+        "dark": {
+          "raw": "1.2",
+          "resolved": "1.2"
+        }
+      }
+    },
+    "type-display-size": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "32px",
+          "resolved": "32px"
+        },
+        "dark": {
+          "raw": "32px",
+          "resolved": "32px"
+        }
+      }
+    },
+    "type-display-weight": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "700",
+          "resolved": "700"
+        },
+        "dark": {
+          "raw": "700",
+          "resolved": "700"
+        }
+      }
+    },
+    "type-heading-1-line-height": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "1.25",
+          "resolved": "1.25"
+        },
+        "dark": {
+          "raw": "1.25",
+          "resolved": "1.25"
+        }
+      }
+    },
+    "type-heading-1-size": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "24px",
+          "resolved": "24px"
+        },
+        "dark": {
+          "raw": "24px",
+          "resolved": "24px"
+        }
+      }
+    },
+    "type-heading-1-weight": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "700",
+          "resolved": "700"
+        },
+        "dark": {
+          "raw": "700",
+          "resolved": "700"
+        }
+      }
+    },
+    "type-heading-2-line-height": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "1.3",
+          "resolved": "1.3"
+        },
+        "dark": {
+          "raw": "1.3",
+          "resolved": "1.3"
+        }
+      }
+    },
+    "type-heading-2-size": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "20px",
+          "resolved": "20px"
+        },
+        "dark": {
+          "raw": "20px",
+          "resolved": "20px"
+        }
+      }
+    },
+    "type-heading-2-weight": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "600",
+          "resolved": "600"
+        },
+        "dark": {
+          "raw": "600",
+          "resolved": "600"
+        }
+      }
+    },
+    "type-heading-3-line-height": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "1.4",
+          "resolved": "1.4"
+        },
+        "dark": {
+          "raw": "1.4",
+          "resolved": "1.4"
+        }
+      }
+    },
+    "type-heading-3-size": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "16px",
+          "resolved": "16px"
+        },
+        "dark": {
+          "raw": "16px",
+          "resolved": "16px"
+        }
+      }
+    },
+    "type-heading-3-weight": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "600",
+          "resolved": "600"
+        },
+        "dark": {
+          "raw": "600",
+          "resolved": "600"
+        }
+      }
+    },
+    "type-label-line-height": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "1.4",
+          "resolved": "1.4"
+        },
+        "dark": {
+          "raw": "1.4",
+          "resolved": "1.4"
+        }
+      }
+    },
+    "type-label-size": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "12px",
+          "resolved": "12px"
+        },
+        "dark": {
+          "raw": "12px",
+          "resolved": "12px"
+        }
+      }
+    },
+    "type-label-weight": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "600",
+          "resolved": "600"
+        },
+        "dark": {
+          "raw": "600",
+          "resolved": "600"
+        }
+      }
+    },
+    "type-monospace-line-height": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "1.4",
+          "resolved": "1.4"
+        },
+        "dark": {
+          "raw": "1.4",
+          "resolved": "1.4"
+        }
+      }
+    },
+    "type-monospace-size": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "13px",
+          "resolved": "13px"
+        },
+        "dark": {
+          "raw": "13px",
+          "resolved": "13px"
+        }
+      }
+    },
+    "type-monospace-weight": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "400",
+          "resolved": "400"
+        },
+        "dark": {
+          "raw": "400",
+          "resolved": "400"
+        }
+      }
+    },
+    "warning": {
+      "darkOverride": false,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.769 0.188 70.08)",
+          "resolved": "oklch(0.769 0.188 70.08)"
+        },
+        "dark": {
+          "raw": "oklch(0.769 0.188 70.08)",
+          "resolved": "oklch(0.769 0.188 70.08)"
+        }
+      }
+    },
+    "warning-foreground": {
+      "darkOverride": true,
+      "modes": {
+        "light": {
+          "raw": "oklch(0.50 0.11 70)",
+          "resolved": "oklch(0.50 0.11 70)"
+        },
+        "dark": {
+          "raw": "oklch(0.80 0.15 75)",
+          "resolved": "oklch(0.80 0.15 75)"
+        }
+      }
+    }
+  }
+}
