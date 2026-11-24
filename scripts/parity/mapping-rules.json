@@ -68,6 +68,34 @@
     }
   },
 
+  "bindings": {
+    "$rule": "bindings",
+    "$why": "Every visible fill and stroke color, padding, gap and corner radius in a component should be bound to the variable of a code token, from one of Clærio's collections (local in the Clærio file, from the published library elsewhere). Only checked when figma.json has bindings. The check confirms a Clærio variable is bound, not that it's the right one.",
+    "collections": ["primitive", "semantic", "type"],
+    "literals": [
+      {
+        "$rule": "focus-ring-radius",
+        "$why": "CSS draws the focus outline 2px outside the element, so its radius is the element's radius plus 2px: 10px on Button and 6px on banner targets. No token holds those values (docs/figma-known-differences.md, Close matches).",
+        "component": "Button", "path": "(^|/)focus-ring$", "field": "Radius$", "value": "10"
+      },
+      {
+        "$rule": "focus-ring-radius",
+        "$why": "See the Button entry.",
+        "component": "Banner", "path": "(^|/)focus-ring$", "field": "Radius$", "value": "6"
+      },
+      {
+        "$rule": "banner-action-gap",
+        "$why": "Figma can't put two text layers in one paragraph, so a 4px gap stands in for the space before the action (experiment 1.6 GAPS.md item 16).",
+        "component": "Banner", "path": "(^|/)BannerDescription$", "field": "^itemSpacing$", "value": "4"
+      },
+      {
+        "$rule": "bannerbar-padding",
+        "$why": "BannerBar's 10px vertical padding has no token (design system GAPS.md item 28).",
+        "component": "BannerBar", "path": "^\\(root\\)$", "field": "^padding(Top|Bottom)$", "value": "10"
+      }
+    ]
+  },
+
   "colorMix": {
     "$rule": "color-mix",
     "$why": "The banner tint and border use color-mix(in oklch, base N%, transparent). Figma fills a layer with the base color and binds its opacity to --banner-tint or --banner-border. That is layer styling, not a token or a prop, so this check doesn't compare it. The tokens banner-tint and banner-border are compared as numbers (percent-as-number).",

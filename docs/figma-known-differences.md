@@ -8,7 +8,10 @@ closest match instead. These differences are expected: a future sync or
 parity check should not report them as drift.
 
 The parity check in `scripts/parity/` applies these differences as
-rules, in `scripts/parity/mapping-rules.json`. Keep both in step.
+rules, in `scripts/parity/mapping-rules.json`. Its binding check allows
+4 literal values and no others: the focus ring radius (10px on Button
+and 6px on banner targets), the 4px gap before the banner action, and
+BannerBar's 10px vertical padding. Keep both files in step.
 
 `design-tokens.css` stays the source of truth. When a value below
 changes in the code, update the Figma stand-in to match.
@@ -34,6 +37,10 @@ them either.
 - **Focus outline.** CSS draws a 2px outline 2px outside the element.
   Figma uses a `focus-ring` rectangle 4px larger than the element, with
   a literal corner radius (10px on Button, 6px on banner targets).
+- **Space before the banner action.** The code puts the description and
+  the action in one paragraph, separated by a space. Figma can't put 2
+  text layers in one paragraph, so a literal 4px gap stands in for the
+  space.
 - **Hover, focus and icons.** The code uses CSS states and children.
   Figma uses a `state` variant property and icon booleans and swaps.
 - **Sizes within 1px.** Figma rounds auto layout sizes and line boxes
