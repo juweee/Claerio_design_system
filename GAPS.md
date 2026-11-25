@@ -1,6 +1,6 @@
 # Documentation gaps that need a design decision
 
-Last updated: November 23, 2026.
+Last updated: November 25, 2026.
 
 These came up in experiment 1.4, when agents built a payments review
 screen from the Storybook MCP docs alone, and in the comparison with the
@@ -25,7 +25,8 @@ card title), 17 (layout when loading fails), 18 (claim status list) and
 highlight now lasts as long as its success toast. See decisions.md.
 
 Item 28 came up in experiment 1.6, when Figma was generated from the
-code.
+code. Items 29 and 30 came up in experiment 1.1, which compared 4 kinds
+of design system guidance over 12 runs.
 
 ## 4. Define actions in tables without a detail view
 
@@ -243,3 +244,29 @@ code.
   or taller.
 - **Decide:** after a side-by-side preview in Storybook, in light and
   dark mode.
+
+## 29. Style an element that receives focus by script
+
+- **Status:** open.
+- **Found in:** experiment 1.1 (none 2, rules 2 and skill 2).
+- **Today:** after an action, some screens move focus to a card title
+  so screen reader users know where they are. Three runs put
+  `outline-none` on that title. That breaks the hard rule that
+  focus-visible is a 2px `--ring` outline, 2px offset. skill 1 made the
+  same choice, then removed it for that reason. The records don't say
+  how to style an element that receives focus by script.
+- **Decide:** whether an element that takes focus by script, such as a
+  heading with `tabIndex={-1}`, shows the focus-visible outline, and
+  record the rule.
+
+## 30. Keep TableRow in the Tab order when `tabIndex` is undefined
+
+- **Status:** open.
+- **Found in:** experiment 1.1 (skill 1, skill 3, mcp 1 and mcp 2).
+- **Today:** TableRow sets `tabIndex={0}` on a clickable row, then
+  spreads the remaining props after it. Passing `tabIndex={undefined}`
+  overrides that value, so every row leaves the Tab order. Four runs hit
+  this bug.
+- **Suggestion:** TableRow should handle this itself, for example by
+  ignoring an undefined `tabIndex` on a clickable row (from mcp 2).
+- **Decide:** whether to fix it in TableRow, and add a test for it.
